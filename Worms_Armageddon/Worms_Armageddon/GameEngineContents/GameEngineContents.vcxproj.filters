@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="Worms.h" />
+    <ClInclude Include="TitleLevel.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Worms.cpp" />
+    <ClCompile Include="TitleLevel.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Title">
+      <UniqueIdentifier>{1240f482-bd0d-4a0b-9d8f-c9e3dace40c9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
