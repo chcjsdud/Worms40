@@ -172,6 +172,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="LobbyLevel.h" />
+    <ClInclude Include="PlayLevel.h" />
     <ClInclude Include="TitleLevel.h">
       <SubType>
       </SubType>
@@ -182,6 +184,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="LobbyLevel.cpp" />
+    <ClCompile Include="PlayLevel.cpp" />
     <ClCompile Include="TitleLevel.cpp">
       <SubType>
       </SubType>
