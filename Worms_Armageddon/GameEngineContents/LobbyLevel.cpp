@@ -8,3 +8,11 @@ LobbyLevel::~LobbyLevel()
 {
 }
 
+void LobbyLevel::Loading()
+{
+}
+
+void LobbyLevel::Update()
+{
+}
+

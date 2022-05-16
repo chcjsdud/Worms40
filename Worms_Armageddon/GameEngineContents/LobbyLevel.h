@@ -1,7 +1,8 @@
 #pragma once
+#include <GameEngine/GameEngineLevel.h>
 
 // Ό³Έν :
-class LobbyLevel
+class LobbyLevel : public GameEngineLevel
 {
 public:
 	// constrcuter destructer
@@ -15,7 +16,8 @@ public:
 	LobbyLevel& operator=(LobbyLevel&& _Other) noexcept = delete;
 
 protected:
-
+	void Loading() override;
+	void Update() override;
 private:
 
 };
