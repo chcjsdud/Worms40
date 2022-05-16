@@ -1,4 +1,5 @@
 #include "PlayLevel.h"
+#include "TestMap.h"
 
 PlayLevel::PlayLevel() 
 {
@@ -10,7 +11,7 @@ PlayLevel::~PlayLevel()
 
 void PlayLevel::Loading()
 {
-
+	TestMapActor = CreateActor<TestMap>();
 }
 
 void PlayLevel::Update()

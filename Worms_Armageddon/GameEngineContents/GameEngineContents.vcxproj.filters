@@ -11,6 +11,9 @@
     <ClInclude Include="LobbyLevel.h">
       <Filter>01.LobbyLevel</Filter>
     </ClInclude>
+    <ClInclude Include="TestMap.h">
+      <Filter>02.PlayLevel\TestActor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
@@ -23,6 +26,9 @@
     <ClCompile Include="LobbyLevel.cpp">
       <Filter>01.LobbyLevel</Filter>
     </ClCompile>
+    <ClCompile Include="TestMap.cpp">
+      <Filter>02.PlayLevel\TestActor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="02.PlayLevel">
@@ -33,6 +39,9 @@
     </Filter>
     <Filter Include="01.LobbyLevel">
       <UniqueIdentifier>{8084ddbc-5d77-4a00-ab28-f1dccd093d96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.PlayLevel\TestActor">
+      <UniqueIdentifier>{fd58066b-ce4b-45e0-9990-7b4a2a9c9c50}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

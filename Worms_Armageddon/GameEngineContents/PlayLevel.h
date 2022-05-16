@@ -1,4 +1,5 @@
 #pragma once
+#include "TestMap.h"
 #include <GameEngine/GameEngineLevel.h>
 
 // Ό³Έν :
@@ -23,7 +24,7 @@ protected:
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:
-
+	TestMap* TestMapActor;
 
 
 private:
