@@ -1,5 +1,6 @@
 #pragma once
-#include "TestMap.h"
+#include "PlayLevelTestMap.h"
+#include "PlayLevelTestMouse.h"
 #include <GameEngine/GameEngineLevel.h>
 
 // Ό³Έν :
@@ -24,10 +25,11 @@ protected:
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:
-	TestMap* TestMapActor;
+	PlayLevelTestMap* PlayLevelTestMap_;
+	PlayLevelTestMouse* PlayLevelTestMouse_;
 
 
 private:
-
+	void CreateTestBullet();
 };
 

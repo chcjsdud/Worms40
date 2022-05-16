@@ -45,6 +45,11 @@ public:
 		return Inst_->Scale_;
 	}
 
+	//핸들값 받아오는 함수
+	static inline HWND GetHWND()
+	{
+		return Inst_->hWnd_;
+	}
 
 protected:
 

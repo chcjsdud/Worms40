@@ -174,7 +174,11 @@
   <ItemGroup>
     <ClInclude Include="LobbyLevel.h" />
     <ClInclude Include="PlayLevel.h" />
-    <ClInclude Include="TestMap.h">
+    <ClInclude Include="PlayLevelTestMouse.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayLevelTestMap.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -190,7 +194,11 @@
   <ItemGroup>
     <ClCompile Include="LobbyLevel.cpp" />
     <ClCompile Include="PlayLevel.cpp" />
-    <ClCompile Include="TestMap.cpp">
+    <ClCompile Include="PlayLevelTestMouse.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayLevelTestMap.cpp">
       <SubType>
       </SubType>
     </ClCompile>

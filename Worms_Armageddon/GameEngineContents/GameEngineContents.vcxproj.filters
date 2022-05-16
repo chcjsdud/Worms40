@@ -11,7 +11,10 @@
     <ClInclude Include="LobbyLevel.h">
       <Filter>01.LobbyLevel</Filter>
     </ClInclude>
-    <ClInclude Include="TestMap.h">
+    <ClInclude Include="PlayLevelTestMap.h">
+      <Filter>02.PlayLevel\TestActor</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayLevelTestMouse.h">
       <Filter>02.PlayLevel\TestActor</Filter>
     </ClInclude>
   </ItemGroup>
@@ -26,7 +29,10 @@
     <ClCompile Include="LobbyLevel.cpp">
       <Filter>01.LobbyLevel</Filter>
     </ClCompile>
-    <ClCompile Include="TestMap.cpp">
+    <ClCompile Include="PlayLevelTestMap.cpp">
+      <Filter>02.PlayLevel\TestActor</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayLevelTestMouse.cpp">
       <Filter>02.PlayLevel\TestActor</Filter>
     </ClCompile>
   </ItemGroup>
