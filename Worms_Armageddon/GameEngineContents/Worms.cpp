@@ -1,5 +1,6 @@
 #include "Worms.h"
 #include "TitleLevel.h"
+#include "PlayLevel.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineBase/GameEngineFile.h>
@@ -16,11 +17,12 @@ Worms::~Worms()
 
 void Worms::GameInit()
 {
-	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 100, 100 }, { 1280, 720 });
+	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 100, 100 }, { 1280, 960 });
 
 
-	CreateLevel<TitleLevel>("Title");
-	ChangeLevel("Title");
+	CreateLevel<TitleLevel>("TitleLevel");
+	CreateLevel<PlayLevel>("PlayLevel");
+	ChangeLevel("TitleLevel");
 
 
 }

@@ -3,17 +3,26 @@
   <ItemGroup>
     <ClInclude Include="Worms.h" />
     <ClInclude Include="TitleLevel.h">
-      <Filter>Title</Filter>
+      <Filter>00.TitleLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayLevel.h">
+      <Filter>02.PlayLevel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
     <ClCompile Include="TitleLevel.cpp">
-      <Filter>Title</Filter>
+      <Filter>00.TitleLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayLevel.cpp">
+      <Filter>02.PlayLevel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Title">
+    <Filter Include="02.PlayLevel">
+      <UniqueIdentifier>{44cd1b98-72cb-44c6-8ad1-651f6ac78963}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00.TitleLevel">
       <UniqueIdentifier>{1240f482-bd0d-4a0b-9d8f-c9e3dace40c9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
