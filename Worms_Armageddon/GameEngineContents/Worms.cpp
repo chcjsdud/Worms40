@@ -47,7 +47,7 @@ void Worms::GameInit()
 
 	CreateLevel<TitleLevel>("TitleLevel");
 	CreateLevel<PlayLevel>("PlayLevel");
-	ChangeLevel("PlayLevel");
+	ChangeLevel("TitleLevel");
 
 
 }
