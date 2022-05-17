@@ -1,7 +1,9 @@
 #pragma once
+#include <GameEngine/GameEngineActor.h>
 
 // Ό³Έν :
-class LobbyBackGround
+class GameEngineRenderer;
+class LobbyBackGround : public GameEngineActor
 {
 public:
 	// constrcuter destructer
@@ -16,7 +18,12 @@ public:
 
 protected:
 
+	virtual void Start() override;
+	virtual void Update() override;
+
 private:
+
+	GameEngineRenderer* BackGround_;
 
 };
 

@@ -2,6 +2,7 @@
 #include <GameEngine/GameEngineActor.h>
 
 #include "LobbyBackGround.h"
+#include "Enums.h"
 
 LobbyLevel::LobbyLevel() 
 {
@@ -19,11 +20,12 @@ void LobbyLevel::Loading()
 
 void LobbyLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	CreateActor<LobbyBackGround>();
+	CreateActor<LobbyBackGround>(static_cast<int>(ActorGroup::UI));
 }
 
 void LobbyLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
+
 }
 
 
