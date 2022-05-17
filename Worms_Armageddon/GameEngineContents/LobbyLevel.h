@@ -16,9 +16,13 @@ public:
 	LobbyLevel& operator=(LobbyLevel&& _Other) noexcept = delete;
 
 protected:
+	void LevelChangeStart(GameEngineLevel* _PrevLevel);
+	void LevelChangeEnd(GameEngineLevel* _NextLevel);
 	void Loading() override;
 	void Update() override;
 private:
+
+
 
 };
 
