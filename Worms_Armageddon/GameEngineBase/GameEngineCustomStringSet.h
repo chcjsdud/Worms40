@@ -9,6 +9,7 @@
 
 // ·¹º§
 #define LEVEL_TITLE_LEVEL "TitleLevel"
+#define LEVEL_LOBBY_LEVEL "LobbyLevel"
 #define LEVEL_PLAY_LEVEL "PlayLevel"
 
 // Å°

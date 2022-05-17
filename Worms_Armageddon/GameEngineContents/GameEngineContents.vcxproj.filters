@@ -23,6 +23,9 @@
     <ClInclude Include="Enums.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="StartLogo.h">
+      <Filter>00.TitleLevel\TitleActor</Filter>
+    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>02.PlayLevel</Filter>
     </ClInclude>
@@ -50,8 +53,8 @@
     <ClCompile Include="Player.cpp">
       <Filter>02.PlayLevel</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerState.cpp">
-      <Filter>02.PlayLevel</Filter>
+    <ClCompile Include="StartLogo.cpp">
+      <Filter>00.TitleLevel\TitleActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +75,9 @@
     </Filter>
     <Filter Include="Global">
       <UniqueIdentifier>{04a3fa67-596e-4462-9dd0-ada612d6568f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00.TitleLevel\TitleActor">
+      <UniqueIdentifier>{d5ca74ef-d67c-4c7b-84ef-9e315762c0e6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

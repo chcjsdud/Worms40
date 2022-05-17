@@ -2,6 +2,7 @@
 #include <GameEngine/GameEngineLevel.h>
 
 // Ό³Έν :
+class GameEngineActor;
 class LobbyLevel : public GameEngineLevel
 {
 public:
@@ -21,7 +22,7 @@ protected:
 	void Loading() override;
 	void Update() override;
 private:
-
+	GameEngineActor* BackGround_;
 
 
 };
