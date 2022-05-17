@@ -178,6 +178,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="LobbyLevel.h" />
+    <ClInclude Include="Player.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PlayLevel.h" />
     <ClInclude Include="PlayLevelTestMouse.h">
       <SubType>
@@ -202,6 +206,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="LobbyLevel.cpp" />
+    <ClCompile Include="Player.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PlayLevel.cpp" />
     <ClCompile Include="PlayLevelTestMouse.cpp">
       <SubType>

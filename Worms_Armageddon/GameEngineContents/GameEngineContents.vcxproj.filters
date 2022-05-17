@@ -23,6 +23,9 @@
     <ClInclude Include="Enums.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>02.PlayLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
@@ -43,6 +46,9 @@
     </ClCompile>
     <ClCompile Include="LobbyBackGround.cpp">
       <Filter>01.LobbyLevel\LobbyActor</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>02.PlayLevel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
