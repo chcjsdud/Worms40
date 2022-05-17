@@ -15,9 +15,9 @@ TitleLevel::~TitleLevel()
 }
 
 void TitleLevel::Loading()
-{
-	StartLogo_ = CreateActor<StartLogo>();
-	StartLogo_->SetPosition({ GameEngineWindow::GetInst().GetScale().Half().x, GameEngineWindow::GetInst().GetScale().Half().y });
+{ 
+	StartLogo_ = CreateActor<StartLogo>(); 
+	StartLogo_->SetPosition({ GameEngineWindow::GetInst().GetScale().Half().x,  GameEngineWindow::GetInst().GetScale().Half().y});
 }
 
 void TitleLevel::Update()

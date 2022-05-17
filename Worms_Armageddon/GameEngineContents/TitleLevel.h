@@ -22,6 +22,5 @@ protected:
 
 private:
 	StartLogo* StartLogo_;
-
 };
 
