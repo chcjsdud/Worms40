@@ -20,6 +20,9 @@
     <ClInclude Include="Baz.h">
       <Filter>02.PlayLevel\TestActor</Filter>
     </ClInclude>
+    <ClInclude Include="StartLogo.h">
+      <Filter>00.TitleLevel\TitleActor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
@@ -41,6 +44,9 @@
     <ClCompile Include="Baz.cpp">
       <Filter>02.PlayLevel\TestActor</Filter>
     </ClCompile>
+    <ClCompile Include="StartLogo.cpp">
+      <Filter>00.TitleLevel\TitleActor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="02.PlayLevel">
@@ -54,6 +60,9 @@
     </Filter>
     <Filter Include="02.PlayLevel\TestActor">
       <UniqueIdentifier>{fd58066b-ce4b-45e0-9990-7b4a2a9c9c50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00.TitleLevel\TitleActor">
+      <UniqueIdentifier>{18ec502e-d698-4176-b91a-ed1808d5df9b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
