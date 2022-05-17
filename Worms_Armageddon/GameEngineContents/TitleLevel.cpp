@@ -22,6 +22,7 @@ void TitleLevel::Loading()
 
 void TitleLevel::Update()
 {
+	int sung = 0;
 
 	if (true == GameEngineInput::GetInst()->IsPress(KEY_CHANGE_PLAYLEVEL))
 	{
