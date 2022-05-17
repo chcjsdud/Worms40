@@ -61,6 +61,8 @@
 #define IMG_MAPBOOKS "MapBooks.bmp"
 #define IMG_MAPBOOKS_GROUND "MapBooks_Ground.bmp"
 
+#define IMG_BAZAIMLEFT "bazAimLeft.bmp"
+
 // 이미지 스케일
 #define SCALE_GRADIENT_X 1280.0f
 #define SCALE_GRADIENT_Y 720.0f

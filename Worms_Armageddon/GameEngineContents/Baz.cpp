@@ -12,7 +12,7 @@ Baz::~Baz()
 
 void Baz::Start()
 {
-	WeaponRender_ = CreateRenderer("bazTest.bmp", 1);
+	WeaponRender_ = CreateRenderer("bazAimLeft.bmp", 1);
 	WeaponRender_->SetPivot({ 100,100 });
 	WeaponRender_->SetIndex(0);
 }

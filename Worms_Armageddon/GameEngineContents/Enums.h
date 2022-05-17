@@ -14,3 +14,8 @@ enum class PlayerState
 	Idle,
 	Move,
 };
+
+enum class WeaponState
+{
+	Baz
+};
