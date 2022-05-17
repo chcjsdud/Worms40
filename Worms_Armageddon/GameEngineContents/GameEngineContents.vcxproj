@@ -172,16 +172,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Enums.h" />
-    <ClInclude Include="LobbyBackGround.h">
+    <ClInclude Include="Baz.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="LobbyLevel.h" />
-    <ClInclude Include="Player.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="PlayLevel.h" />
     <ClInclude Include="PlayLevelTestMouse.h">
       <SubType>
@@ -191,7 +186,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="StartLogo.h" />
     <ClInclude Include="TitleLevel.h">
       <SubType>
       </SubType>
@@ -202,16 +196,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LobbyBackGround.cpp">
+    <ClCompile Include="Baz.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="LobbyLevel.cpp" />
-    <ClCompile Include="Player.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PlayLevel.cpp" />
     <ClCompile Include="PlayLevelTestMouse.cpp">
       <SubType>
@@ -221,7 +210,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="StartLogo.cpp" />
     <ClCompile Include="TitleLevel.cpp">
       <SubType>
       </SubType>

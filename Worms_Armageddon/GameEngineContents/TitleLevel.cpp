@@ -1,11 +1,8 @@
 #include "TitleLevel.h"
 #include "GameEngineBase/GameEngineInput.h"
 #include "GameEngine/GameEngine.h"
-#include "GameEngineBase/GameEngineWindow.h"
 
-TitleLevel::TitleLevel()
-	:
-	StartLogo_(nullptr)
+TitleLevel::TitleLevel() 
 {
 }
 
@@ -16,8 +13,6 @@ TitleLevel::~TitleLevel()
 
 void TitleLevel::Loading()
 {
-	StartLogo_ = CreateActor<StartLogo>();
-	StartLogo_->SetPosition({ GameEngineWindow::GetInst().GetScale().Half().x, GameEngineWindow::GetInst().GetScale().Half().y });
 }
 
 void TitleLevel::Update()

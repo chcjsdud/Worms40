@@ -1,6 +1,5 @@
 #include "Worms.h"
 #include "TitleLevel.h"
-#include "LobbyLevel.h"
 #include "PlayLevel.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineDirectory.h>
@@ -8,6 +7,7 @@
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngineBase/GameEngineSound.h>
 #include <GameEngineBase/GameEngineInput.h>
+#include <GameEngine/GameEngineImage.h>
 
 
 Worms::Worms()
@@ -45,10 +45,12 @@ void Worms::GameInit()
 
 	}
 
-
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("bazTest.bmp");
+		Image->CutCount(1, 32);
+	}
 
 	CreateLevel<TitleLevel>(LEVEL_TITLE_LEVEL);
-	CreateLevel<LobbyLevel>(LEVEL_LOBBY_LEVEL);
 	CreateLevel<PlayLevel>(LEVEL_PLAY_LEVEL);
 	ChangeLevel(LEVEL_TITLE_LEVEL);
 

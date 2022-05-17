@@ -1,6 +1,7 @@
 #include "PlayLevel.h"
 #include "PlayLevelTestMap.h"
 #include "PlayLevelTestMouse.h"
+#include "Baz.h"
 #include <GameEngineBase/GameEngineInput.h>
 
 PlayLevel::PlayLevel() 
@@ -16,6 +17,8 @@ void PlayLevel::Loading()
 	PlayLevelTestMap_ = CreateActor<PlayLevelTestMap>();
 	
 	PlayLevelTestMouse_ = CreateActor<PlayLevelTestMouse>();
+
+	BazTset_ = CreateActor<Baz>();
 
 	if (false == GameEngineInput::GetInst()->IsKey("TestClick"))
 	{

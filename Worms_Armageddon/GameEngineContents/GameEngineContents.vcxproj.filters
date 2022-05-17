@@ -17,17 +17,8 @@
     <ClInclude Include="PlayLevelTestMouse.h">
       <Filter>02.PlayLevel\TestActor</Filter>
     </ClInclude>
-    <ClInclude Include="LobbyBackGround.h">
-      <Filter>01.LobbyLevel\LobbyActor</Filter>
-    </ClInclude>
-    <ClInclude Include="Enums.h">
-      <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="StartLogo.h">
-      <Filter>00.TitleLevel\TitleActor</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>02.PlayLevel</Filter>
+    <ClInclude Include="Baz.h">
+      <Filter>02.PlayLevel\TestActor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -47,14 +38,8 @@
     <ClCompile Include="PlayLevelTestMouse.cpp">
       <Filter>02.PlayLevel\TestActor</Filter>
     </ClCompile>
-    <ClCompile Include="LobbyBackGround.cpp">
-      <Filter>01.LobbyLevel\LobbyActor</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>02.PlayLevel</Filter>
-    </ClCompile>
-    <ClCompile Include="StartLogo.cpp">
-      <Filter>00.TitleLevel\TitleActor</Filter>
+    <ClCompile Include="Baz.cpp">
+      <Filter>02.PlayLevel\TestActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -69,15 +54,6 @@
     </Filter>
     <Filter Include="02.PlayLevel\TestActor">
       <UniqueIdentifier>{fd58066b-ce4b-45e0-9990-7b4a2a9c9c50}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01.LobbyLevel\LobbyActor">
-      <UniqueIdentifier>{83644981-93b6-4345-ba05-8dbd484e2f20}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Global">
-      <UniqueIdentifier>{04a3fa67-596e-4462-9dd0-ada612d6568f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="00.TitleLevel\TitleActor">
-      <UniqueIdentifier>{d5ca74ef-d67c-4c7b-84ef-9e315762c0e6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@
 #include <GameEngine/GameEngineLevel.h>
 
 // Ό³Έν :
+class Baz;
 class PlayLevel	:public GameEngineLevel
 {
 public:
@@ -27,6 +28,7 @@ protected:
 private:
 	PlayLevelTestMap* PlayLevelTestMap_;
 	PlayLevelTestMouse* PlayLevelTestMouse_;
+	Baz* BazTset_;
 
 
 private:

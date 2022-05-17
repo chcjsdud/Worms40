@@ -2,7 +2,6 @@
 #include <GameEngine/GameEngineLevel.h>
 
 // Ό³Έν :
-class GameEngineActor;
 class LobbyLevel : public GameEngineLevel
 {
 public:
@@ -17,13 +16,9 @@ public:
 	LobbyLevel& operator=(LobbyLevel&& _Other) noexcept = delete;
 
 protected:
-	void LevelChangeStart(GameEngineLevel* _PrevLevel);
-	void LevelChangeEnd(GameEngineLevel* _NextLevel);
 	void Loading() override;
 	void Update() override;
 private:
-	GameEngineActor* BackGround_;
-
 
 };
 
