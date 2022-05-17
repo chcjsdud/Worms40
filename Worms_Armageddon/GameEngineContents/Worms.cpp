@@ -188,7 +188,7 @@ void Worms::GameInit()
 	CreateLevel<LobbyLevel>(LEVEL_LOBBY_LEVEL);
 	ChangeLevel(LEVEL_TITLE_LEVEL);
 
-
+	int z = 0;
 }
 
 void Worms::GameLoop()
