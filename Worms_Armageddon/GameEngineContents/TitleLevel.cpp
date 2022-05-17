@@ -28,6 +28,7 @@ void TitleLevel::Update()
 		GameEngine::GetInst().ChangeLevel(LEVEL_PLAY_LEVEL);
 	}
 
+	int a = 0;
 	//if (true == GameEngineInput::GetInst()->IsPress("ChangeLobbyLevel"))
 	//{
 	//	GameEngine::GetInst().ChangeLevel("LobbyLevel");
