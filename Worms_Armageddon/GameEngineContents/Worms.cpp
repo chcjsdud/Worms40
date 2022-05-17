@@ -1,5 +1,6 @@
 #include "Worms.h"
 #include "TitleLevel.h"
+#include "LobbyLevel.h"
 #include "PlayLevel.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineDirectory.h>
@@ -47,6 +48,7 @@ void Worms::GameInit()
 
 
 	CreateLevel<TitleLevel>(LEVEL_TITLE_LEVEL);
+	CreateLevel<LobbyLevel>(LEVEL_LOBBY_LEVEL);
 	CreateLevel<PlayLevel>(LEVEL_PLAY_LEVEL);
 	ChangeLevel(LEVEL_TITLE_LEVEL);
 
