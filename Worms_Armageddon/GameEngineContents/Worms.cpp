@@ -44,6 +44,8 @@ void Worms::GameInit()
 			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 		}
 
+
+
 	}
 
 	
@@ -170,6 +172,11 @@ void Worms::GameInit()
 		for (size_t i = 0; i < AllImageFileList.size(); i++)
 		{
 			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+		}
+
+		{
+			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("bazTest.bmp");
+			Image->CutCount(1, 32);
 		}
 
 	}
