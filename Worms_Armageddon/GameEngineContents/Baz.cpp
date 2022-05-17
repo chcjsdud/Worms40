@@ -25,4 +25,5 @@ void Baz::Update()
 void Baz::Render()
 {
 
+	int a = 0;
 }
