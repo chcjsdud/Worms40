@@ -5,6 +5,7 @@
 
 // Ό³Έν :
 class Baz;
+class Player;
 class PlayLevel	:public GameEngineLevel
 {
 public:
@@ -29,6 +30,7 @@ private:
 	PlayLevelTestMap* PlayLevelTestMap_;
 	PlayLevelTestMouse* PlayLevelTestMouse_;
 	Baz* BazTset_;
+	Player* Player_;
 
 
 private:

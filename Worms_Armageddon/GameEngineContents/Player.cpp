@@ -5,6 +5,7 @@
 Player::Player()
 	: Speed_(1.0f)
 	, MoveDir_(float4::ZERO)
+	, PlayerRenderer_(nullptr)
 {
 }
 
@@ -14,6 +15,7 @@ Player::~Player()
 
 void Player::Start()
 {
+	this->SetPosition({ 300, 300 });
 	PlayerAnimationInit();
 	PlayerKeyInit();
 }
@@ -25,7 +27,10 @@ void Player::Update()
 
 void Player::PlayerAnimationInit()
 {
+	PlayerRenderer_ = CreateRenderer(IMG_PLAYER_IDLE_RIGHT);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_IDLE_RIGHT, ANIM_NAME_PLAYER_IDLE_RIGHT, 0, 0, 0.1f, false);
 
+	PlayerRenderer_->ChangeAnimation(ANIM_NAME_PLAYER_IDLE_RIGHT);
 }
 
 void Player::PlayerKeyInit()

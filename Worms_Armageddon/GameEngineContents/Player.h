@@ -3,6 +3,7 @@
 #include <GameEngineBase/GameEngineCustomStringSet.h>
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineSound.h>
+#include <GameEngine/GameEngineRenderer.h>
 
 // 설명 :
 class Player : public GameEngineActor
@@ -31,6 +32,9 @@ private:
 	float4 CameraPos_;
 	// 사운드 오브젝트
 	GameEngineSound* SoundPlayer_;
+
+	// 플레이어 렌더러
+	GameEngineRenderer* PlayerRenderer_;
 
 	// 현재 레벨
 	inline std::string GetCurrentLevel()

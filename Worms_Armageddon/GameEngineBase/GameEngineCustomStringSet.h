@@ -70,3 +70,9 @@
 #define SCALE_MAPBOOKS_GROUND_Y 1392.0f
 #define SCALE_MAPBOOKS_LOBBY_X 3840.0f
 #define SCALE_MAPBOOKS_LOBBY_Y 1392.0f
+
+// 플레이어 이미지
+#define IMG_PLAYER_IDLE_RIGHT "idleRight.bmp"
+
+// 애니메이션 이름
+#define ANIM_NAME_PLAYER_IDLE_RIGHT "idleRight.bmp"
