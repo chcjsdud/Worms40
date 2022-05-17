@@ -7,7 +7,6 @@
 // 파일 확장자
 #define FILE_EXT_BMP "Bmp"
 
-
 // 레벨
 #define LEVEL_TITLE_LEVEL "TitleLevel"
 #define LEVEL_PLAY_LEVEL "PlayLevel"
@@ -22,3 +21,12 @@
 #define IMG_MAPBOOKS "MapBooks.bmp"
 #define IMG_MAPBOOKS_GROUND "MapBooks_Ground.bmp"
 
+// 이미지 스케일
+#define SCALE_GRADIENT_X 1280.0f
+#define SCALE_GRADIENT_Y 720.0f
+#define SCALE_MAPBOOKS_X 3840.0f
+#define SCALE_MAPBOOKS_Y 1392.0f
+#define SCALE_MAPBOOKS_GROUND_X 3840.0f
+#define SCALE_MAPBOOKS_GROUND_Y 1392.0f
+#define SCALE_MAPBOOKS_LOBBY_X 3840.0f
+#define SCALE_MAPBOOKS_LOBBY_Y 1392.0f
