@@ -23,19 +23,19 @@ void Worms::GameInit()
 
 
 	//레벨변경 키생성
-	GameEngineInput::GetInst()->CreateKey("ChangePlayLevel", VK_RETURN);
-	GameEngineInput::GetInst()->CreateKey("ChangeLobbyLevel", VK_SPACE);
+	GameEngineInput::GetInst()->CreateKey(KEY_CHANGE_PLAYLEVEL, VK_RETURN);
+	GameEngineInput::GetInst()->CreateKey(KEY_CHANGE_LOBBYLEVEL, VK_SPACE);
 
 
 
 	//Image폴더내 파일 로드
 	{
 		GameEngineDirectory Dir;
-		Dir.MoveParent("Worms_Armageddon");
-		Dir.Move("Resources");
-		Dir.Move("Image");
+		Dir.MoveParent(DIR_WORMS_PARENTS);
+		Dir.Move(DIR_RESOURCES);
+		Dir.Move(DIR_IMAGE);
 
-		std::vector<GameEngineFile> AllImageFileList = Dir.GetAllFile("Bmp");
+		std::vector<GameEngineFile> AllImageFileList = Dir.GetAllFile(FILE_EXT_BMP);
 
 		for (size_t i = 0; i < AllImageFileList.size(); i++)
 		{
@@ -46,9 +46,9 @@ void Worms::GameInit()
 
 
 
-	CreateLevel<TitleLevel>("TitleLevel");
-	CreateLevel<PlayLevel>("PlayLevel");
-	ChangeLevel("TitleLevel");
+	CreateLevel<TitleLevel>(LEVEL_TITLE_LEVEL);
+	CreateLevel<PlayLevel>(LEVEL_PLAY_LEVEL);
+	ChangeLevel(LEVEL_TITLE_LEVEL);
 
 
 }

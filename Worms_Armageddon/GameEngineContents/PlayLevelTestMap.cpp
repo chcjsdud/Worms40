@@ -1,4 +1,5 @@
 #include "PlayLevelTestMap.h"
+#include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngineBase/GameEngineInput.h>
@@ -14,25 +15,25 @@ PlayLevelTestMap::~PlayLevelTestMap()
 
 void PlayLevelTestMap::Start()
 {
-	BackGround_ = CreateRendererToScale("gradient.bmp", { 1280,960 }, 0);
+	BackGround_ = CreateRendererToScale(IMG_GRADIENT, { 1280,960 }, 0);
 	float4 BackGroundHalf = BackGround_->GetScale().Half();
 	BackGround_->SetPivot(BackGroundHalf);
 
 
 	//임시 크기 설정
-	Ground_ = CreateRendererToScale("MapBooks.bmp", { 1280,960 },2);
+	Ground_ = CreateRendererToScale(IMG_MAPBOOKS, { 1280,960 },2);
 	//BackGround->SetImage("MapBooks.bmp");
 	float4 GroundHalf = Ground_->GetScale().Half();
 	Ground_->SetPivot(GroundHalf);
 
 	//픽셀충돌 체크할 이미지
-	ColImage_ = CreateRendererToScale("MapBooks_Ground.bmp", { 1280,960 }, 1);
+	ColImage_ = CreateRendererToScale(IMG_MAPBOOKS_GROUND, { 1280,960 }, 1);
 	float4 ColImageHalf = ColImage_->GetScale().Half();
 	ColImage_->SetPivot(ColImageHalf);
 
 
 	//픽셀확인용 임시 키
-	GameEngineInput::GetInst()->CreateKey("ChangePixelMode", '0');
+	GameEngineInput::GetInst()->CreateKey(KEY_CHANGE_PIXELMODE, '0');
 }
 
 void PlayLevelTestMap::Update()
@@ -49,7 +50,7 @@ void PlayLevelTestMap::Render()
 
 void PlayLevelTestMap::ChangePixelMode()
 {
-	if (GameEngineInput::GetInst()->IsDown("ChangePixelMode"))
+	if (GameEngineInput::GetInst()->IsDown(KEY_CHANGE_PIXELMODE))
 	{
 		if (false == ChangeMode_)
 		{

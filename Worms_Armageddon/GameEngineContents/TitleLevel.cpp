@@ -18,9 +18,9 @@ void TitleLevel::Loading()
 void TitleLevel::Update()
 {
 
-	if (true == GameEngineInput::GetInst()->IsPress("ChangePlayLevel"))
+	if (true == GameEngineInput::GetInst()->IsPress(KEY_CHANGE_PLAYLEVEL))
 	{
-		GameEngine::GetInst().ChangeLevel("PlayLevel");
+		GameEngine::GetInst().ChangeLevel(LEVEL_PLAY_LEVEL);
 	}
 
 	//if (true == GameEngineInput::GetInst()->IsPress("ChangeLobbyLevel"))

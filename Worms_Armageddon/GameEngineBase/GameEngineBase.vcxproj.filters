@@ -34,6 +34,9 @@
     <Filter Include="ThirdParty\Inc">
       <UniqueIdentifier>{f81d13d7-2f4c-4730-815b-bcf32f52912d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Custom">
+      <UniqueIdentifier>{1672b2cf-1eff-4db8-9cab-5c9fd55eb4f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineWindow.h">
@@ -80,6 +83,9 @@
     </ClInclude>
     <ClInclude Include="GameEngineDirectory.h">
       <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineCustomStringSet.h">
+      <Filter>Custom</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

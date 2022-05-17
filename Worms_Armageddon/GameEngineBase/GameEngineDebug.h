@@ -1,4 +1,5 @@
 #pragma once
+#include "GameEngineCustomStringSet.h"
 #include <crtdbg.h>
 #include <string>
 #include <assert.h>
