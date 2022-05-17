@@ -52,6 +52,7 @@ void Worms::GameInit()
 
 	CreateLevel<TitleLevel>(LEVEL_TITLE_LEVEL);
 	CreateLevel<PlayLevel>(LEVEL_PLAY_LEVEL);
+	CreateLevel<LobbyLevel>(LEVEL_LOBBY_LEVEL);
 	ChangeLevel(LEVEL_TITLE_LEVEL);
 
 
