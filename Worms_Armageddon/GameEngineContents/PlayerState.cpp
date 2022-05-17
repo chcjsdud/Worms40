@@ -3,11 +3,11 @@
 void IdleUpdate()
 {
 	// 이동키가 눌리면 이동
-	if (true == IsMoveKeyDown())
-	{
-		StateChange(PlayerState::Move);
-		return;
-	}
+	//if (true == IsMoveKeyDown())
+	//{
+	//	StateChange(PlayerState::Move);
+	//	return;
+	//}
 }
 
 void MoveUpdate()

@@ -1,6 +1,7 @@
 #include "Worms.h"
 #include "TitleLevel.h"
 #include "PlayLevel.h"
+#include "LobbyLevel.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineBase/GameEngineFile.h>
