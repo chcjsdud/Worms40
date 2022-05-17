@@ -210,6 +210,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PlayLevel.cpp" />
     <ClCompile Include="PlayLevelTestMouse.cpp">
       <SubType>

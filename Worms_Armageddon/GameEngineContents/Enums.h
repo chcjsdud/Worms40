@@ -8,3 +8,9 @@ enum class ActorGroup
 	Player,
 	UI,
 };
+
+enum class PlayerState
+{
+	Idle,
+	Move,
+};

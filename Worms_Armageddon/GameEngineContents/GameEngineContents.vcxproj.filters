@@ -50,6 +50,9 @@
     <ClCompile Include="Player.cpp">
       <Filter>02.PlayLevel</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>02.PlayLevel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="02.PlayLevel">

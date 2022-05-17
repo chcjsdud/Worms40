@@ -15,6 +15,12 @@
 #define KEY_CHANGE_PLAYLEVEL "ChangePlayLevel"
 #define KEY_CHANGE_LOBBYLEVEL "ChangeLobbyLevel"
 #define KEY_CHANGE_PIXELMODE "ChangePixelMode"
+#define KEY_MOVE_LEFT "MoveLeft"
+#define KEY_MOVE_RIGHT "MoveRight"
+#define KEY_MOVE_JUMP "MoveJump"
+#define KEY_MOVE_BACKFLIP "MoveBackflip"
+#define KEY_ANGLE_UP "AngleUp"
+#define KEY_ANGLE_DOWN "AngleDown"
 
 // 이미지 이름
 #define IMG_GRADIENT "gradient.bmp"
