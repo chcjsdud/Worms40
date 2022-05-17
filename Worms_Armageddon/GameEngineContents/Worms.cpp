@@ -7,6 +7,7 @@
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngineBase/GameEngineSound.h>
 #include <GameEngineBase/GameEngineInput.h>
+#include <GameEngine/GameEngineImage.h>
 
 
 Worms::Worms()

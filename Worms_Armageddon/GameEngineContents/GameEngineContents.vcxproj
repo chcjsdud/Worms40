@@ -172,8 +172,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Enums.h" />
-    <ClInclude Include="LobbyBackGround.h">
+    <ClInclude Include="Baz.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -187,6 +186,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="StartLogo.h" />
     <ClInclude Include="TitleLevel.h">
       <SubType>
       </SubType>
@@ -197,7 +197,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LobbyBackGround.cpp">
+    <ClCompile Include="Baz.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -211,6 +211,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="StartLogo.cpp" />
     <ClCompile Include="TitleLevel.cpp">
       <SubType>
       </SubType>
