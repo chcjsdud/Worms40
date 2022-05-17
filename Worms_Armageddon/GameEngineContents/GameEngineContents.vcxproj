@@ -176,7 +176,16 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Enums.h" />
+    <ClInclude Include="LobbyBackGround.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="LobbyLevel.h" />
+    <ClInclude Include="Player.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PlayLevel.h" />
     <ClInclude Include="PlayLevelTestMouse.h">
       <SubType>
@@ -201,7 +210,16 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="LobbyBackGround.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="LobbyLevel.cpp" />
+    <ClCompile Include="Player.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PlayLevel.cpp" />
     <ClCompile Include="PlayLevelTestMouse.cpp">
       <SubType>

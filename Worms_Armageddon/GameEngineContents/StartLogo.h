@@ -25,5 +25,6 @@ private:
 
 	GameEngineRenderer* StartLogoRenderer_;
 
+
 };
 

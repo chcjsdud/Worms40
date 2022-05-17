@@ -23,6 +23,11 @@
     <ClInclude Include="StartLogo.h">
       <Filter>00.TitleLevel\TitleActor</Filter>
     </ClInclude>
+    <ClInclude Include="Enums.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="LobbyBackGround.h">
+      <Filter>01.LobbyLevel\LobbyActor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
@@ -47,6 +52,11 @@
     <ClCompile Include="StartLogo.cpp">
       <Filter>00.TitleLevel\TitleActor</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerState.cpp" />
+    <ClCompile Include="LobbyBackGround.cpp">
+      <Filter>01.LobbyLevel\LobbyActor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="02.PlayLevel">
@@ -63,6 +73,9 @@
     </Filter>
     <Filter Include="00.TitleLevel\TitleActor">
       <UniqueIdentifier>{18ec502e-d698-4176-b91a-ed1808d5df9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.LobbyLevel\LobbyActor">
+      <UniqueIdentifier>{5c8d914d-5ef3-413a-a5ff-02d5280fcfc7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
