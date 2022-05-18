@@ -73,10 +73,5 @@ private:
 	int PlayerNum_;
 	// ¸Ê Á¾·ù
 	MapType MapType_;
-
-
-private:
-	GameOptions();
-	~GameOptions();
 };
 

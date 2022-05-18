@@ -48,6 +48,12 @@
     <ClInclude Include="WindGauge.h">
       <Filter>02.PlayLevel\TestActor</Filter>
     </ClInclude>
+    <ClInclude Include="ChatBox.h">
+      <Filter>01.LobbyLevel\LobbyActor</Filter>
+    </ClInclude>
+    <ClInclude Include="TypingBox.h">
+      <Filter>01.LobbyLevel\LobbyActor</Filter>
+    </ClInclude>
     <ClInclude Include="WeaponMaster.h">
       <Filter>02.PlayLevel\Weapon</Filter>
     </ClInclude>
@@ -100,6 +106,12 @@
     </ClCompile>
     <ClCompile Include="GameOptions.cpp">
       <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="ChatBox.cpp">
+      <Filter>01.LobbyLevel\LobbyActor</Filter>
+    </ClCompile>
+    <ClCompile Include="TypingBox.cpp">
+      <Filter>01.LobbyLevel\LobbyActor</Filter>
     </ClCompile>
     <ClCompile Include="WeaponMaster.cpp">
       <Filter>02.PlayLevel\Weapon</Filter>

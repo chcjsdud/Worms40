@@ -172,11 +172,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ChatBox.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Baz.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="GameOptions.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TypingBox.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -232,7 +240,15 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ChatBox.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameOptions.cpp" />
+    <ClCompile Include="TypingBox.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Baz.cpp">
       <SubType>
       </SubType>

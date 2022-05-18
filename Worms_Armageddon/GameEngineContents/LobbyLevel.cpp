@@ -3,6 +3,8 @@
 #include "PlayersBox.h"
 #include "TeamListBox.h"
 #include "TeamEditBox.h"
+#include "ChatBox.h"
+#include "TypingBox.h"
 #include "Cursor.h"
 #include "Enums.h"
 
@@ -32,13 +34,25 @@ void LobbyLevel::Loading()
 	PlayersBox_ = CreateActor<PlayersBox>(static_cast<int>(ActorGroup::UI));
 	TeamListBox_ = CreateActor<TeamListBox>(static_cast<int>(ActorGroup::UI));
 	TeamEditBox_ = CreateActor<TeamEditBox>(static_cast<int>(ActorGroup::UI));
-
+	ChatBox_ = CreateActor<ChatBox>(static_cast<int>(ActorGroup::UI));
+	TypingBox_ = CreateActor<TypingBox>(static_cast<int>(ActorGroup::UI));
 }
 
 void LobbyLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	PlayersBox_->SetPosition(float4{ 16, 13 });
 	TeamListBox_->SetPosition(float4{ 260, 13 });
+	TeamEditBox_->SetPosition(float4{ 260, 296 });
+	ChatBox_->SetPosition(float4{ 16, 477 });
+	TypingBox_->SetPosition(float4{ 16, 814 });
+
+	// 원본 비교 용
+	//PlayersBox_->Off();
+	//TeamListBox_->Off();
+	//TeamEditBox_->Off();
+	//ChatBox_->Off();
+	//TypingBox_->Off();
+
 }
 
 void LobbyLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)

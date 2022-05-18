@@ -13,10 +13,9 @@ PlayersBox::~PlayersBox()
 
 void PlayersBox::Start()
 {
-	Renderer_ = CreateRenderer(static_cast<int>(RenderOrder::UI));
-	Renderer_->SetImage("4459.bmp");
-	Renderer_->SetScale(float4{ 222, 258 });
-	Renderer_->SetPivot(Renderer_->GetScale().Half());
+	BoxRenderer_ = CreateRenderer("4459.bmp", static_cast<int>(RenderOrder::UI));
+	BoxRenderer_->SetScale(float4{ 222, 258 });
+	BoxRenderer_->SetPivot(BoxRenderer_->GetScale().Half());
 }
 
 void PlayersBox::Update()

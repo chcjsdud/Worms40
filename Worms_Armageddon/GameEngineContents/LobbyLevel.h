@@ -27,6 +27,8 @@ private:
 	GameEngineActor* PlayersBox_;
 	GameEngineActor* TeamListBox_;
 	GameEngineActor* TeamEditBox_;
+	GameEngineActor* ChatBox_;
+	GameEngineActor* TypingBox_;
 
 };
 
