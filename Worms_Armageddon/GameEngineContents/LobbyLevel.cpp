@@ -13,6 +13,10 @@
 #include <GameEngineBase/GameEngineInput.h>
 
 LobbyLevel::LobbyLevel()
+	: BackGround_(nullptr)
+	, PlayersBox_(nullptr)
+	, TeamEditBox_(nullptr)
+	, TeamListBox_(nullptr)
 {
 }
 
