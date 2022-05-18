@@ -5,7 +5,9 @@
 
 
 TitleLevel::TitleLevel()
-	: StartLogo_(nullptr)
+	:
+	StartLogo_(nullptr),
+	MainLogo_(nullptr)
 {
 }
 
@@ -22,14 +24,12 @@ void TitleLevel::Loading()
 
 void TitleLevel::Update()
 {
-	int sung = 0;
 
 	if (true == GameEngineInput::GetInst()->IsPress(KEY_CHANGE_PLAYLEVEL))
 	{
 		GameEngine::GetInst().ChangeLevel(LEVEL_PLAY_LEVEL);
 	}
 
-	int a = 0;
 	//if (true == GameEngineInput::GetInst()->IsPress("ChangeLobbyLevel"))
 	//{
 	//	GameEngine::GetInst().ChangeLevel("LobbyLevel");

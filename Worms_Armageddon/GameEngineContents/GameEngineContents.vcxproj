@@ -186,6 +186,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="LobbyLevel.h" />
+    <ClInclude Include="MainLogo.h" />
     <ClInclude Include="Player.h">
       <SubType>
       </SubType>
@@ -235,6 +236,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="LobbyLevel.cpp" />
+    <ClCompile Include="MainLogo.cpp" />
     <ClCompile Include="Player.cpp">
       <SubType>
       </SubType>

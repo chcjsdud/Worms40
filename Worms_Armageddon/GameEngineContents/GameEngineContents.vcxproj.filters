@@ -27,6 +27,9 @@
     <ClInclude Include="LobbyBackGround.h">
       <Filter>01.LobbyLevel\LobbyActor</Filter>
     </ClInclude>
+    <ClInclude Include="MainLogo.h">
+      <Filter>00.TitleLevel\TitleActor</Filter>
+    </ClInclude>
     <ClInclude Include="PlayersBox.h">
       <Filter>01.LobbyLevel\LobbyActor</Filter>
     </ClInclude>
@@ -82,6 +85,9 @@
     </ClCompile>
     <ClCompile Include="TeamListBox.cpp">
       <Filter>01.LobbyLevel\LobbyActor</Filter>
+    </ClCompile>
+    <ClCompile Include="MainLogo.cpp">
+      <Filter>00.TitleLevel\TitleActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
 #include "StartLogo.h"
+#include "MainLogo.h"
 
 // Ό³Έν :
 class TitleLevel : public GameEngineLevel
@@ -22,5 +23,6 @@ protected:
 
 private:
 	StartLogo* StartLogo_;
+	MainLogo* MainLogo_;
 };
 
