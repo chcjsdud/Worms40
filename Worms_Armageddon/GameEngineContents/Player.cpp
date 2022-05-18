@@ -35,6 +35,7 @@ void Player::PlayerAnimationInit()
 {
 	PlayerRenderer_ = CreateRenderer((int)RenderOrder::Player);
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_IDLE_RIGHT, ANIM_NAME_PLAYER_IDLE_RIGHT, 0, 5, 0.1f, true);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_IDLE_LEFT, ANIM_NAME_PLAYER_IDLE_LEFT, 0, 5, 0.1f, true);
 
 	PlayerRenderer_->ChangeAnimation(ANIM_NAME_PLAYER_IDLE_RIGHT);
 }
@@ -190,6 +191,9 @@ void Player::MoveCheck(float4 _MoveDir)
 
 	// 이동
 	SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
+
+	// 임시데이터
+	PlayerAnimationChange(ANIM_KEYWORD_PLAYER_IDLE);
 }
 
 
@@ -227,4 +231,20 @@ void Player::StateUpdate()
 	default:
 		break;
 	}
+}
+
+void Player::PlayerAnimationChange(std::string _Anim)
+{
+	std::string Dir;
+
+	if (MoveDir_.CompareInt2D(float4::LEFT))
+	{
+		Dir = "Left";
+	}
+	if (MoveDir_.CompareInt2D(float4::RIGHT))
+	{
+		Dir = "Right";
+	}
+
+	PlayerRenderer_->ChangeAnimation(_Anim + Dir);
 }

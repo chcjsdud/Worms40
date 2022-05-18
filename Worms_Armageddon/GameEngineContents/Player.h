@@ -78,5 +78,7 @@ private:
 	void IdleUpdate();
 	void MoveUpdate();
 	void ActionUpdate();
+
+	void PlayerAnimationChange(std::string _Anim);
 };
 

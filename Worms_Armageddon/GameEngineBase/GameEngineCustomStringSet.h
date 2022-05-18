@@ -76,8 +76,15 @@
 #define IMG_PLAYER_IDLE_LEFT "idleLeft.bmp"
 #define IMG_PLAYER_IDLE_RIGHT "idleRight.bmp"
 
+// 애니메이션 키워드
+#define ANIM_KEYWORD_PLAYER_IDLE "idle"
+
+#define ANIM_KEYWORD_DIR_LEFT "Left"
+#define ANIM_KEYWORD_DIR_RIGHT "Right"
+
 // 애니메이션 이름
-#define ANIM_NAME_PLAYER_IDLE_RIGHT "idleRight.bmp"
+#define ANIM_NAME_PLAYER_IDLE_LEFT "idleLeft"
+#define ANIM_NAME_PLAYER_IDLE_RIGHT "idleRight"
 
 // 무기 이미지
 #define IMG_BAZ_AIM_LEFT "bazAimLeft.bmp"
