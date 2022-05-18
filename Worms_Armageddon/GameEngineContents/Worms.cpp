@@ -25,8 +25,8 @@ void Worms::GameInit()
 
 
 	//레벨변경 키생성
-	GameEngineInput::GetInst()->CreateKey(KEY_CHANGE_PLAYLEVEL, VK_NUMPAD2);
-	GameEngineInput::GetInst()->CreateKey(KEY_CHANGE_LOBBYLEVEL, VK_NUMPAD1);
+	GameEngineInput::GetInst()->CreateKey(KEY_CHANGE_PLAYLEVEL, 'P');
+	GameEngineInput::GetInst()->CreateKey(KEY_CHANGE_LOBBYLEVEL, 'L');
 
 
 	//Image폴더내 파일 로드
@@ -189,7 +189,7 @@ void Worms::GameInit()
 	CreateLevel<TitleLevel>(LEVEL_TITLE_LEVEL);
 	CreateLevel<PlayLevel>(LEVEL_PLAY_LEVEL);
 	CreateLevel<LobbyLevel>(LEVEL_LOBBY_LEVEL);
-	ChangeLevel(LEVEL_LOBBY_LEVEL);
+	ChangeLevel(LEVEL_TITLE_LEVEL);
 
 }
 
