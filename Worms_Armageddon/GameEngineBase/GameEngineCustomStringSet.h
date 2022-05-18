@@ -84,3 +84,7 @@
 #define IMG_BAZ_AIM_RIGHT "bazAimRight.bmp"
 #define IMG_HOMING_AIM_LEFT "homingAimLeft.bmp"
 #define IMG_HOMING_AIM_RIGHT "homingAimRight.bmp"
+#define IMG_BAZ_ON_LEFT "bazOnLeft.bmp"
+#define IMG_BAZ_ON_RIGHT "bazOnRight.bmp"
+#define IMG_BAZ_OFF_LEFT "bazOffLeft.bmp"
+#define IMG_BAZ_OFF_RIGHT "bazOffRight.bmp"
