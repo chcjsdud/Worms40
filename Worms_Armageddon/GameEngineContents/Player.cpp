@@ -209,8 +209,13 @@ void Player::StateChange(PlayerState _State)
 		switch (_State)
 		{
 		case PlayerState::Idle:
+			IdleStart();
 			break;
 		case PlayerState::Move:
+			MoveStart();
+			break;
+		case PlayerState::Action:
+			ActionStart();
 			break;
 		default:
 			break;
@@ -231,6 +236,9 @@ void Player::StateUpdate()
 		break;
 	case PlayerState::Move:
 		MoveUpdate();
+		break;
+	case PlayerState::Action:
+		ActionUpdate();
 		break;
 	default:
 		break;

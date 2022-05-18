@@ -51,8 +51,11 @@ void Player::MoveUpdate()
 
 void Player::ActionUpdate()
 {
-	// TODO::동작이 끝날경우에 Idle로 전환
-	StateChange(PlayerState::Idle);
+	if (false == Weapon_->WeaponUpdate())
+	{
+		// TODO::동작이 끝날경우에 Idle로 전환
+		StateChange(PlayerState::Idle);
+	}
 }
 
 
@@ -70,5 +73,6 @@ void Player::MoveStart()
 
 void Player::ActionStart()
 {
-
+	// 무기 액터 생성
+	Weapon_ = GetLevel()->CreateActor<Baz>();
 }

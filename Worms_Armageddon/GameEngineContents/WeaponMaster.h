@@ -16,6 +16,10 @@ public:
 	WeaponMaster& operator=(const WeaponMaster& _Other) = delete;
 	WeaponMaster& operator=(WeaponMaster&& _Other) noexcept = delete;
 
+	virtual bool WeaponUpdate() 
+	{ 
+		return true;
+	}
 protected:
 	void Start() override;
 	void Update() override;

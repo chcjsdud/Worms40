@@ -38,6 +38,9 @@ private:
 	// 플레이어 렌더러
 	GameEngineRenderer* PlayerRenderer_;
 
+	// 플레이어가 들고 있는 무기의 타입
+	int WeaponType_;
+	// 생성할 무기
 	WeaponMaster* Weapon_;
 
 	// 현재 레벨

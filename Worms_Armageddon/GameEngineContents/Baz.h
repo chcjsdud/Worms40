@@ -16,10 +16,13 @@ public:
 	Baz& operator=(const Baz& _Other) = delete;
 	Baz& operator=(Baz&& _Other) noexcept = delete;
 
+	bool WeaponUpdate() override;
+
 protected:
 	void Start() override;
 	void Update() override;
 	void Render() override;
+
 
 private:
 	GameEngineRenderer* WeaponRender_;
