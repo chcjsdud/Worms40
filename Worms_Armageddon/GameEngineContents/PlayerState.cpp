@@ -32,13 +32,13 @@ void Player::MoveUpdate()
 	{
 		//PlayerAnimationChange(ANIM_WALK_RIGHT);
 
-		ColCheck(float4::RIGHT);
+		MoveCheck(float4::RIGHT);
 	}
 	if (true == GameEngineInput::GetInst()->IsPress(KEY_MOVE_LEFT))
 	{
 		//PlayerAnimationChange(ANIM_WALK_LEFT);
 
-		ColCheck(float4::LEFT);
+		MoveCheck(float4::LEFT);
 	}
 }
 

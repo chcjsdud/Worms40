@@ -3,7 +3,7 @@
 #include <GameEngineBase/GameEngineInput.h>
 
 Player::Player()
-	: Speed_(1.0f)
+	: Speed_(50.0f)
 	, MoveDir_(float4::ZERO)
 	, PlayerRenderer_(nullptr)
 {
@@ -23,6 +23,7 @@ void Player::Start()
 void Player::Update()
 {
 	UpdateCamera();
+	StateUpdate();
 }
 
 void Player::Render()
@@ -32,8 +33,8 @@ void Player::Render()
 
 void Player::PlayerAnimationInit()
 {
-	PlayerRenderer_ = CreateRenderer(IMG_PLAYER_IDLE_RIGHT, (int)RenderOrder::Player);
-	PlayerRenderer_->CreateAnimation(IMG_PLAYER_IDLE_RIGHT, ANIM_NAME_PLAYER_IDLE_RIGHT, 0, 0, 0.1f, false);
+	PlayerRenderer_ = CreateRenderer((int)RenderOrder::Player);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_IDLE_RIGHT, ANIM_NAME_PLAYER_IDLE_RIGHT, 0, 5, 0.1f, true);
 
 	PlayerRenderer_->ChangeAnimation(ANIM_NAME_PLAYER_IDLE_RIGHT);
 }
@@ -171,13 +172,13 @@ void Player::UpdateCamera()
 }
 
 // 충돌체크
-void Player::ColCheck(float4 _MoveDir)
+void Player::MoveCheck(float4 _MoveDir)
 {
 	// MoveDir은 오직 이동중에서만 갱신됨.
 	MoveDir_ = _MoveDir;
 	float4 CheckLength = MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_;
 
-	// 컬리전맵 취득
+	// TODO::컬리전맵 취득
 	// GetMapColImage();
 
 

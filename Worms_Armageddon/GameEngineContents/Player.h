@@ -59,7 +59,7 @@ private:
 	bool IsActionKeyUp();
 
 	// 충돌체크
-	void ColCheck(float4 _MoveDir);
+	void MoveCheck(float4 _MoveDir);
 
 	// FSM
 public:
