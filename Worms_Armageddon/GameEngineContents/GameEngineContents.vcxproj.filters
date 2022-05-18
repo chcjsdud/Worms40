@@ -45,6 +45,9 @@
     <ClInclude Include="TeamListBox.h">
       <Filter>01.LobbyLevel\LobbyActor</Filter>
     </ClInclude>
+    <ClInclude Include="LargeCloud.h">
+      <Filter>02.PlayLevel\TestActor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
@@ -88,6 +91,9 @@
     </ClCompile>
     <ClCompile Include="MainLogo.cpp">
       <Filter>00.TitleLevel\TitleActor</Filter>
+    </ClCompile>
+    <ClCompile Include="LargeCloud.cpp">
+      <Filter>02.PlayLevel\TestActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

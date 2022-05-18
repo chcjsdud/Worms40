@@ -204,6 +204,8 @@ private:
 		float InterTime_;
 		bool Loop_ = false;
 		bool IsEnd;
+		bool Reverse;
+		bool IsReverse;
 
 	public:
 		inline int WorldCurrentFrame() const
@@ -239,7 +241,9 @@ private:
 			CurrentInterTime_(0.1f),
 			InterTime_(0.1f),
 			Loop_(true),
-			IsEnd(false)
+			IsEnd(false),
+			Reverse(false),
+			IsReverse(false)
 		{
 		}
 
@@ -259,7 +263,7 @@ private:
 
 public:
 	// 애니메이션을 만든다.
-	void CreateAnimation(const std::string& _Image, const std::string& _Name, int _StartIndex, int _EndIndex, float _InterTime, bool _Loop = true);
+	void CreateAnimation(const std::string& _Image, const std::string& _Name, int _StartIndex, int _EndIndex, float _InterTime, bool _Loop = true, bool _Reverse = false);
 
 	void CreateFolderAnimation(const std::string& _Image, const std::string& _Name, int _StartIndex, int _EndIndex, float _InterTime, bool _Loop = true);
 

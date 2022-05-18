@@ -181,6 +181,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Enums.h" />
+    <ClInclude Include="LargeCloud.h" />
     <ClInclude Include="LobbyBackGround.h">
       <SubType>
       </SubType>
@@ -227,6 +228,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="LargeCloud.cpp" />
     <ClCompile Include="Cursor.cpp">
       <SubType>
       </SubType>

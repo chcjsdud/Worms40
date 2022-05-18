@@ -21,6 +21,9 @@ void PlayLevel::Loading()
 	
 	PlayLevelTestMouse_ = CreateActor<PlayLevelTestMouse>();
 
+
+	LargeCloudActor_ = CreateActor<LargeCloud>();
+	LargeCloudActor_->SetPosition({ 200,200 });
 	BazTset_ = CreateActor<Baz>();
 	// 테스트용 코드
 

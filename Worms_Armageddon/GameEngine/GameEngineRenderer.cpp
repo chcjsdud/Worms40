@@ -167,7 +167,8 @@ void GameEngineRenderer::CreateAnimation(
 	int _StartIndex,
 	int _EndIndex,
 	float _InterTime,
-	bool _Loop)
+	bool _Loop,
+	bool _Reverse)
 {
 	GameEngineImage* FindImage = GameEngineImageManager::GetInst()->Find(_Image);
 	if (nullptr == FindImage)
@@ -194,6 +195,7 @@ void GameEngineRenderer::CreateAnimation(
 	NewAnimation.CurrentInterTime_ = _InterTime;
 	NewAnimation.InterTime_ = _InterTime;
 	NewAnimation.Loop_ = _Loop;
+	NewAnimation.Reverse = _Reverse;
 
 }
 
@@ -289,15 +291,51 @@ void GameEngineRenderer::FrameAnimation::Update()
 		CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime(TimeKey);
 		if (0 >= CurrentInterTime_)
 		{
-			CurrentInterTime_ = InterTime_;
-			++CurrentFrame_;
+			//역재생 
+			if (Reverse == true)
+			{
+				if (0 == CurrentFrame_)
+				{
+					IsReverse = false;
+					//여기들어오면 currentframe == -1
+					CurrentFrame_ = 0;
+				}
+
+
+				//Reverese가 true 라면 
+				if (IsReverse == true)
+				{
+					CurrentInterTime_ = InterTime_;
+					--CurrentFrame_;
+				}
+				else
+				{
+					CurrentInterTime_ = InterTime_;
+					++CurrentFrame_;
+				}
+			}
+			else
+			{
+				CurrentInterTime_ = InterTime_;
+				++CurrentFrame_;
+			}
+
 
 			if (EndFrame_ < CurrentFrame_)
 			{
 				if (true == Loop_)
 				{
 					IsEnd = true;
-					CurrentFrame_ = StartFrame_;	// Loop가 True라면 이미지를 반복시킨다.
+					if (Reverse == true)
+					{
+						IsReverse = true;
+						//CurrentFrame 은최대보다 1 더해진 값이므로 -1
+						CurrentFrame_ -= 1;
+					}
+					else
+					{
+						CurrentFrame_ = StartFrame_;	// Loop가 True라면 이미지를 반복시킨다.
+					}
 				}
 				else
 				{

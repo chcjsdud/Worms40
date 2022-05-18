@@ -2,6 +2,7 @@
 #include "PlayLevelTestMap.h"
 #include "PlayLevelTestMouse.h"
 #include <GameEngine/GameEngineLevel.h>
+#include "LargeCloud.h"
 
 // Ό³Έν :
 class Baz;
@@ -29,6 +30,7 @@ protected:
 private:
 	PlayLevelTestMap* PlayLevelTestMap_;
 	PlayLevelTestMouse* PlayLevelTestMouse_;
+	LargeCloud* LargeCloudActor_;
 	Baz* BazTset_;
 	Player* Player_;
 

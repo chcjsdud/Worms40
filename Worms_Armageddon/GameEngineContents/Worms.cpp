@@ -117,6 +117,9 @@ void Worms::GameInit()
 			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 		}
 
+		GameEngineImage* cloud = GameEngineImageManager::GetInst()->Find("cloudl.bmp");
+		cloud->Cut({ 160, 160 });
+
 	}
 
 
@@ -173,7 +176,7 @@ void Worms::GameInit()
 		}
 
 		{
-			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("bazTest.bmp");
+			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("bazAimLeft.bmp");
 			Image->CutCount(1, 32); 
 			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_IDLE_RIGHT);
 			Image->CutCount(1, 6);
