@@ -62,8 +62,6 @@
 #define IMG_MAPBOOKS "MapBooks.bmp"
 #define IMG_MAPBOOKS_GROUND "MapBooks_Ground.bmp"
 
-#define IMG_BAZAIMLEFT "bazAimLeft.bmp"
-
 // 이미지 스케일
 #define SCALE_GRADIENT_X 1280.0f
 #define SCALE_GRADIENT_Y 720.0f
@@ -75,7 +73,14 @@
 #define SCALE_MAPBOOKS_LOBBY_Y 1392.0f
 
 // 플레이어 이미지
+#define IMG_PLAYER_IDLE_LEFT "idleLeft.bmp"
 #define IMG_PLAYER_IDLE_RIGHT "idleRight.bmp"
 
 // 애니메이션 이름
 #define ANIM_NAME_PLAYER_IDLE_RIGHT "idleRight.bmp"
+
+// 무기 이미지
+#define IMG_BAZ_AIM_LEFT "bazAimLeft.bmp"
+#define IMG_BAZ_AIM_RIGHT "bazAimRight.bmp"
+#define IMG_HOMING_AIM_LEFT "homingAimLeft.bmp"
+#define IMG_HOMING_AIM_RIGHT "homingAimRight.bmp"

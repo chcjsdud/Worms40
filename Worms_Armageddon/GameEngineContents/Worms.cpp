@@ -176,8 +176,14 @@ void Worms::GameInit()
 		}
 
 		{
-			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("bazAimLeft.bmp");
+			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_AIM_LEFT);
 			Image->CutCount(1, 32); 
+			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_IDLE_LEFT);
+			Image->CutCount(1, 6);
+		}
+		{
+			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_AIM_RIGHT);
+			Image->CutCount(1, 32);
 			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_IDLE_RIGHT);
 			Image->CutCount(1, 6);
 		}
