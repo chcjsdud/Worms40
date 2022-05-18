@@ -49,7 +49,7 @@
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="WindGauge.h">
-      <Filter>02.PlayLevel\TestActor</Filter>
+      <Filter>02.PlayLevel\UI</Filter>
     </ClInclude>
     <ClInclude Include="ChatBox.h">
       <Filter>01.LobbyLevel\LobbyActor</Filter>
@@ -108,7 +108,7 @@
       <Filter>02.PlayLevel\TestActor</Filter>
     </ClCompile>
     <ClCompile Include="WindGauge.cpp">
-      <Filter>02.PlayLevel\TestActor</Filter>
+      <Filter>02.PlayLevel\UI</Filter>
     </ClCompile>
     <ClCompile Include="GameOptions.cpp">
       <Filter>Global</Filter>
@@ -150,6 +150,9 @@
     </Filter>
     <Filter Include="02.PlayLevel\Weapon">
       <UniqueIdentifier>{c0fca085-c4b7-4fba-bd07-7ee15314afa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.PlayLevel\UI">
+      <UniqueIdentifier>{c64655e0-e238-4f34-8871-e10fcd9e5199}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

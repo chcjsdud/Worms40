@@ -34,3 +34,10 @@ enum class MapType
 {
 	MAPBOOKS,
 };
+
+
+enum class WindType
+{
+	Left,
+	Right
+};

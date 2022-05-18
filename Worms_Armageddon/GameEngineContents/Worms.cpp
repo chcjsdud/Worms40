@@ -122,6 +122,9 @@ void Worms::GameInit()
 		GameEngineImage* cloud = GameEngineImageManager::GetInst()->Find("cloudl.bmp");
 		cloud->Cut({ 160, 160 });
 
+		GameEngineImage* wind = GameEngineImageManager::GetInst()->Find("windBar.bmp");
+		wind->Cut({ 87, 13 });
+
 	}
 
 

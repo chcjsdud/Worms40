@@ -1,4 +1,5 @@
 #pragma once
+#include "Enums.h"
 #include <GameEngine/GameEngineActor.h>
 
 // 설명 :
@@ -20,8 +21,33 @@ protected:
 	void Update() override;
 	void Render() override;
 private:
+	//윈드게이지 UI바 이미지
 	GameEngineRenderer* WindGaugeRenderer_;
-	GameEngineRenderer* WindR_;
-	GameEngineRenderer* WindL_;
+	//방향 UI이미지
+	GameEngineRenderer* WindLeftRenderer_;
+	GameEngineRenderer* WindRightRenderer_;
+
+	//wind 방향UI 가리는 이미지
+	GameEngineRenderer* WindLeftHiderRenderer_;
+	GameEngineRenderer* WindRightHiderRenderer_;
+
+	float MaxWindFigure_;
+	int WindFigure_;
+	int HideWindFigure_;
+	int MyWindFigure_;
+
+	int WindRightHider_x;
+	int WindLeftHider_x;
+	WindType WindDir_;
+
+	bool IsEnd;
+
+public:
+	inline void SetWind(WindType _WindDir,float _WindFigure)
+	{
+		WindDir_ = _WindDir;
+		WindFigure_ = static_cast<int>(_WindFigure);
+	}
+
 };
 

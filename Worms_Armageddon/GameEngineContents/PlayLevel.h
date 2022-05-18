@@ -3,6 +3,7 @@
 #include <GameEngine/GameEngineLevel.h>
 #include "LargeCloud.h"
 #include "Cursor.h"
+#include "WindGauge.h"
 
 // Ό³Έν :
 class WeaponMaster;
@@ -33,9 +34,15 @@ private:
 	WeaponMaster* WeaponTset_;
 	Player* Player_;
 	Cursor* Mouse_;
+	WindGauge* WindGaugeActor_;
+
+	float4 WindDir_;
+	float WindSpeed_;
+
 
 
 private:
 	void CreateTestBullet();
+	void SetWindUI(int _WindDir);
 };
 
