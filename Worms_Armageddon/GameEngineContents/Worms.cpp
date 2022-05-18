@@ -43,6 +43,8 @@ void Worms::GameInit()
 			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 		}
 
+		GameEngineImage* TitleLogo_Actor = GameEngineImageManager::GetInst()->Find("TitleLogo_Actor.bmp");
+		TitleLogo_Actor->CutCount(5, 1);
 
 	}
 

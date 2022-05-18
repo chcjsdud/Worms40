@@ -26,5 +26,13 @@ private:
 	GameEngineRenderer* StartLogoRenderer_;
 
 
+
+public:
+
+	GameEngineRenderer* GetRenderer()
+	{
+		return StartLogoRenderer_;
+	}
+
 };
 

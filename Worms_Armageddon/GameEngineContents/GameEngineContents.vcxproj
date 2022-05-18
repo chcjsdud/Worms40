@@ -226,6 +226,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TitleImage.h" />
     <ClInclude Include="TitleLevel.h">
       <SubType>
       </SubType>
@@ -291,6 +292,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TitleImage.cpp" />
     <ClCompile Include="TitleLevel.cpp">
       <SubType>
       </SubType>
