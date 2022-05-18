@@ -23,7 +23,7 @@ protected:
 	void Update() override;
 private:
 	GameEngineActor* BackGround_;
-
+	GameEngineActor* PlayersBox_;
 
 };
 

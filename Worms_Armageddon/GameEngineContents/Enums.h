@@ -20,7 +20,6 @@ enum class RenderOrder
 	Player,
 	UI,
 };
-};
 
 enum class WeaponState
 {

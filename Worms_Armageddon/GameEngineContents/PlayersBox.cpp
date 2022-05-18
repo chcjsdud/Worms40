@@ -15,7 +15,7 @@ void PlayersBox::Start()
 {
 	Renderer_ = CreateRenderer(static_cast<int>(RenderOrder::UI));
 	Renderer_->SetImage("4459.bmp");
-	Renderer_->SetPivot(float4{ 130, 140 });
+	Renderer_->SetPivot(Renderer_->GetScale().Half());
 }
 
 void PlayersBox::Update()
