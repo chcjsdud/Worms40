@@ -25,9 +25,14 @@ void Player::Update()
 	UpdateCamera();
 }
 
+void Player::Render()
+{
+
+}
+
 void Player::PlayerAnimationInit()
 {
-	PlayerRenderer_ = CreateRenderer(IMG_PLAYER_IDLE_RIGHT);
+	PlayerRenderer_ = CreateRenderer(IMG_PLAYER_IDLE_RIGHT, (int)RenderOrder::Player);
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_IDLE_RIGHT, ANIM_NAME_PLAYER_IDLE_RIGHT, 0, 0, 0.1f, false);
 
 	PlayerRenderer_->ChangeAnimation(ANIM_NAME_PLAYER_IDLE_RIGHT);
@@ -50,9 +55,10 @@ void Player::PlayerKeyInit()
 		// 각도조절
 		GameEngineInput::GetInst()->CreateKey(KEY_ANGLE_UP, VK_UP);
 		GameEngineInput::GetInst()->CreateKey(KEY_ANGLE_DOWN, VK_DOWN);
+
+		GameEngineInput::GetInst()->CreateKey(KEY_ACTION, VK_SPACE);
 	}
 }
-
 
 // 눌리게 된 키가 있을경우 True
 bool Player::IsMoveKeyDown()
@@ -79,6 +85,38 @@ bool Player::IsMoveKeyPress()
 
 	return true;
 }
+// 액션키가 눌릴경우 True
+bool Player::IsActionKeyDown()
+{
+	if (false == GameEngineInput::GetInst()->IsDown(KEY_ACTION))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+// 액션키가 눌리고 있을 경우
+bool Player::IsActionKeyPress()
+{
+	if (false == GameEngineInput::GetInst()->IsPress(KEY_ACTION))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+// 액션키가 떨어진 경우
+bool Player::IsActionKeyUp()
+{
+	if (false == GameEngineInput::GetInst()->IsUp(KEY_ACTION))
+	{
+		return false;
+	}
+
+	return true;
+}
 
 // 눌리지 않게 된 키가 있을경우 True
 bool Player::IsMoveKeyUp()
@@ -98,11 +136,13 @@ void Player::UpdateCamera()
 	float CurrentLevelH = 0.0f;
 	float CurrentLevelW = 0.0f;
 
-	if (GetCurrentLevel() == IMG_MAPBOOKS)
+	// 테스트용 코드
+	if (GetCurrentLevel() == LEVEL_PLAY_LEVEL)
 	{
 		CurrentLevelH = SCALE_MAPBOOKS_X;
 		CurrentLevelW = SCALE_MAPBOOKS_Y;
 	}
+	// 테스트용 코드
 
 	// TODO::마우스 이동에 따라서 카메라 위치를 변경하거나
 	// TODO::플레이어의 위치에 맞춰서 카메라가 따라다니거나의 2가지 모드
@@ -130,6 +170,26 @@ void Player::UpdateCamera()
 	GetLevel()->SetCameraPos(CameraPos_);
 }
 
+// 충돌체크
+void Player::ColCheck(float4 _MoveDir)
+{
+	// MoveDir은 오직 이동중에서만 갱신됨.
+	MoveDir_ = _MoveDir;
+	float4 CheckLength = MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_;
+
+	// 컬리전맵 취득
+	// GetMapColImage();
+
+
+	// TODO::맵과 충돌 판정
+	//float4 NextPos = GetPosition() + CheckLength;
+	//float4 CheckPos = SetCheckPos(NextPos);
+
+	//int Color = MapColImage_->GetImagePixel(CheckPos);
+
+	// 이동
+	SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
+}
 
 
 // 상태 변경

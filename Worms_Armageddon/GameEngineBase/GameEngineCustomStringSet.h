@@ -55,6 +55,7 @@
 #define KEY_MOVE_BACKFLIP "MoveBackflip"
 #define KEY_ANGLE_UP "AngleUp"
 #define KEY_ANGLE_DOWN "AngleDown"
+#define KEY_ACTION "PlayerAction"
 
 // 이미지 이름
 #define IMG_GRADIENT "gradient.bmp"

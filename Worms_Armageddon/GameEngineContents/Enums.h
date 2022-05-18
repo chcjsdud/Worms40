@@ -12,6 +12,7 @@ enum class PlayerState
 {
 	Idle,
 	Move,
+	Action
 };
 
 enum class RenderOrder

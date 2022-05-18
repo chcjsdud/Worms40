@@ -22,6 +22,7 @@ public:
 protected:
 	void Start() override;
 	void Update() override;
+	void Render() override;
 
 private:
 	// 속도
@@ -53,6 +54,12 @@ private:
 	bool IsMoveKeyDown();
 	bool IsMoveKeyPress();
 	bool IsMoveKeyUp();
+	bool IsActionKeyDown();
+	bool IsActionKeyPress();
+	bool IsActionKeyUp();
+
+	// 충돌체크
+	void ColCheck(float4 _MoveDir);
 
 	// FSM
 public:
@@ -66,8 +73,10 @@ private:
 
 	void IdleStart();
 	void MoveStart();
+	void ActionStart();
 
 	void IdleUpdate();
 	void MoveUpdate();
+	void ActionUpdate();
 };
 

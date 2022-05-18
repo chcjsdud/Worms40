@@ -28,7 +28,7 @@ void PlayLevel::Loading()
 	// 테스트용 코드
 
 	// TODO::수정
-	//Player_ = CreateActor<Player>();
+	Player_ = CreateActor<Player>();
 
 	if (false == GameEngineInput::GetInst()->IsKey("TestClick"))
 	{
