@@ -201,10 +201,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="PlayLevel.h" />
-    <ClInclude Include="PlayLevelTestMouse.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="PlayLevelTestMap.h">
       <SubType>
       </SubType>
@@ -219,6 +215,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TitleLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="WindGauge.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -253,10 +253,6 @@
     </ClCompile>
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PlayLevel.cpp" />
-    <ClCompile Include="PlayLevelTestMouse.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="PlayLevelTestMap.cpp">
       <SubType>
       </SubType>
@@ -271,6 +267,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TitleLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="WindGauge.cpp">
       <SubType>
       </SubType>
     </ClCompile>

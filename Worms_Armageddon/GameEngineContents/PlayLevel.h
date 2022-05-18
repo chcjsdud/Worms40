@@ -1,8 +1,8 @@
 #pragma once
 #include "PlayLevelTestMap.h"
-#include "PlayLevelTestMouse.h"
 #include <GameEngine/GameEngineLevel.h>
 #include "LargeCloud.h"
+#include "Cursor.h"
 
 // Ό³Έν :
 class WeaponMaster;
@@ -29,10 +29,10 @@ protected:
 
 private:
 	PlayLevelTestMap* PlayLevelTestMap_;
-	PlayLevelTestMouse* PlayLevelTestMouse_;
 	LargeCloud* LargeCloudActor_;
 	WeaponMaster* WeaponTset_;
 	Player* Player_;
+	Cursor* Mouse_;
 
 
 private:

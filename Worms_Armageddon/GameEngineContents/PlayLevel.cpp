@@ -1,8 +1,8 @@
 #include "PlayLevel.h"
 #include "PlayLevelTestMap.h"
-#include "PlayLevelTestMouse.h"
 #include "Player.h"
 #include "WeaponMaster.h"
+#include "Cursor.h"
 #include <GameEngineBase/GameEngineInput.h>
 
 PlayLevel::PlayLevel() 
@@ -18,9 +18,7 @@ void PlayLevel::Loading()
 {
 	// 테스트용 코드
 	PlayLevelTestMap_ = CreateActor<PlayLevelTestMap>();
-	
-	PlayLevelTestMouse_ = CreateActor<PlayLevelTestMouse>();
-
+	Mouse_ = CreateActor<Cursor>((int)ActorGroup::UI);
 
 	LargeCloudActor_ = CreateActor<LargeCloud>();
 	LargeCloudActor_->SetPosition({ 200,200 });
