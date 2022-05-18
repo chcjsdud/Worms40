@@ -204,6 +204,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="StartLogo.h" />
+    <ClInclude Include="TeamEditBox.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TeamListBox.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TitleLevel.h">
       <SubType>
       </SubType>
@@ -246,6 +254,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="StartLogo.cpp" />
+    <ClCompile Include="TeamEditBox.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TeamListBox.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TitleLevel.cpp">
       <SubType>
       </SubType>

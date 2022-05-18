@@ -19,6 +19,7 @@ enum class RenderOrder
 	BackGround,
 	Player,
 	UI,
+	Cursor,
 };
 
 enum class WeaponState

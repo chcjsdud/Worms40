@@ -32,7 +32,7 @@ void LobbyLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 void LobbyLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-	BackGround_->Death();
+	
 }
 
 

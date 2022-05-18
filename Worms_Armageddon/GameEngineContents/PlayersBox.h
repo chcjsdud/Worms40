@@ -19,6 +19,7 @@ public:
 protected:
 	virtual void Start() override;
 	virtual void Update() override;
+	virtual void Render() override;
 private:
 	GameEngineRenderer* Renderer_;
 

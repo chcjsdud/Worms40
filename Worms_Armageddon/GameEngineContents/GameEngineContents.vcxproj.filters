@@ -36,6 +36,12 @@
     <ClInclude Include="Cursor.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="TeamEditBox.h">
+      <Filter>01.LobbyLevel\LobbyActor</Filter>
+    </ClInclude>
+    <ClInclude Include="TeamListBox.h">
+      <Filter>01.LobbyLevel\LobbyActor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
@@ -70,6 +76,12 @@
     </ClCompile>
     <ClCompile Include="Cursor.cpp">
       <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="TeamEditBox.cpp">
+      <Filter>01.LobbyLevel\LobbyActor</Filter>
+    </ClCompile>
+    <ClCompile Include="TeamListBox.cpp">
+      <Filter>01.LobbyLevel\LobbyActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
