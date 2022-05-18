@@ -31,7 +31,6 @@ private:
 	PlayLevelTestMap* PlayLevelTestMap_;
 	PlayLevelTestMouse* PlayLevelTestMouse_;
 	LargeCloud* LargeCloudActor_;
-	Baz* BazTset_;
 	WeaponMaster* WeaponTset_;
 	Player* Player_;
 

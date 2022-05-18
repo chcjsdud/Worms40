@@ -24,7 +24,6 @@ void PlayLevel::Loading()
 
 	LargeCloudActor_ = CreateActor<LargeCloud>();
 	LargeCloudActor_->SetPosition({ 200,200 });
-	BazTset_ = CreateActor<Baz>();
 	WeaponTset_ = CreateActor<WeaponMaster>();
 	// 테스트용 코드
 
