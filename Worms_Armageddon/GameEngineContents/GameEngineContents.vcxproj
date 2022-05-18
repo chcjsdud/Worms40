@@ -172,6 +172,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameOptions.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="WeaponMaster.h">
       <SubType>
       </SubType>

@@ -48,6 +48,9 @@
     <ClInclude Include="LargeCloud.h">
       <Filter>02.PlayLevel\TestActor</Filter>
     </ClInclude>
+    <ClInclude Include="GameOptions.h">
+      <Filter>Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />

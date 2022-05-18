@@ -27,3 +27,9 @@ enum class WeaponState
 {
 	Baz
 };
+
+// ∏ ≈∏¿‘
+enum class MapType
+{
+	MAPBOOKS,
+};
