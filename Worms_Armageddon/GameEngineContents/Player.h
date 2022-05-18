@@ -1,5 +1,6 @@
 #pragma once
 #include "Enums.h"
+#include "WeaponMaster.h"
 #include <GameEngineBase/GameEngineCustomStringSet.h>
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineSound.h>
@@ -36,6 +37,8 @@ private:
 
 	// 플레이어 렌더러
 	GameEngineRenderer* PlayerRenderer_;
+
+	WeaponMaster* Weapon_;
 
 	// 현재 레벨
 	inline std::string GetCurrentLevel()

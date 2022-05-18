@@ -18,6 +18,7 @@ enum class PlayerState
 enum class RenderOrder
 {
 	BackGround,
+	Weapon,
 	Player,
 	UI,
 	Cursor,

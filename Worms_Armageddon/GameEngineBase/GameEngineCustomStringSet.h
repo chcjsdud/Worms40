@@ -85,6 +85,10 @@
 // 애니메이션 이름
 #define ANIM_NAME_PLAYER_IDLE_LEFT "idleLeft"
 #define ANIM_NAME_PLAYER_IDLE_RIGHT "idleRight"
+#define ANIM_NAME_WEAPON_ON_LEFT "bazOnLeft"
+#define ANIM_NAME_WEAPON_ON_RIGHT "bazOnRight"
+#define ANIM_NAME_WEAPON_OFF_LEFT "bazOffLeft"
+#define ANIM_NAME_WEAPON_OFF_RIGHT "bazOffRight"
 
 // 무기 이미지
 #define IMG_BAZ_AIM_LEFT "bazAimLeft.bmp"
@@ -95,3 +99,4 @@
 #define IMG_BAZ_ON_RIGHT "bazOnRight.bmp"
 #define IMG_BAZ_OFF_LEFT "bazOffLeft.bmp"
 #define IMG_BAZ_OFF_RIGHT "bazOffRight.bmp"
+#define IMG_MISSILE "missile.bmp"

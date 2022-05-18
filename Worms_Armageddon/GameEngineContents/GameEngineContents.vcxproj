@@ -172,6 +172,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Baz.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameOptions.h">
       <SubType>
       </SubType>
@@ -229,6 +233,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameOptions.cpp" />
+    <ClCompile Include="Baz.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="WeaponMaster.cpp">
       <SubType>
       </SubType>

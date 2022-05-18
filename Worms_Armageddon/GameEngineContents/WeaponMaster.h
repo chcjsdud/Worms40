@@ -1,8 +1,8 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
+#include <GameEngineBase/GameEngineCustomStringSet.h>
 
 // Ό³Έν :
-class GameEngineRenderer;
 class WeaponMaster :public GameEngineActor
 {
 public:
@@ -19,9 +19,5 @@ public:
 protected:
 	void Start() override;
 	void Update() override;
-	void Render() override;
-
-private:
-	GameEngineRenderer* WeaponRender_;
 };
 

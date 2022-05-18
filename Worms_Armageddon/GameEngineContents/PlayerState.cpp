@@ -1,5 +1,6 @@
 #include "Player.h"
 #include <GameEngineBase/GameEngineInput.h>
+#include "Baz.h"
 
 void Player::IdleUpdate()
 {

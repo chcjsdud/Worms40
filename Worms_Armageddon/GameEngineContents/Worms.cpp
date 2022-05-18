@@ -199,7 +199,10 @@ void Worms::GameInit()
 			Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_OFF_RIGHT);
 			Image->CutCount(1, 7);
 		}
-
+		{ // 
+			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find(IMG_MISSILE);
+			Image->Cut({ 60,60 });
+		}
 	}
 
 
