@@ -4,6 +4,12 @@
 
 void Player::IdleUpdate()
 {
+	// 액션은 이동보다 우선순위가 높음.
+	if (true == IsActionKeyDown())
+	{
+		StateChange(PlayerState::Action);
+		return;
+	}
 	// 이동키가 눌리면 이동
 	if (true == IsMoveKeyDown())
 	{

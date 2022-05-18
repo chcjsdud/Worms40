@@ -235,6 +235,7 @@ void Player::StateUpdate()
 	default:
 		break;
 	}
+
 }
 
 void Player::PlayerAnimationChange(std::string _Anim)
@@ -243,11 +244,11 @@ void Player::PlayerAnimationChange(std::string _Anim)
 
 	if (MoveDir_.CompareInt2D(float4::LEFT))
 	{
-		Dir = "Left";
+		Dir = ANIM_KEYWORD_DIR_LEFT;
 	}
 	if (MoveDir_.CompareInt2D(float4::RIGHT))
 	{
-		Dir = "Right";
+		Dir = ANIM_KEYWORD_DIR_RIGHT;
 	}
 
 	PlayerRenderer_->ChangeAnimation(_Anim + Dir);
