@@ -2,7 +2,7 @@
 #include "PlayLevelTestMap.h"
 #include "PlayLevelTestMouse.h"
 #include "Player.h"
-#include "Baz.h"
+#include "WeaponMaster.h"
 #include <GameEngineBase/GameEngineInput.h>
 
 PlayLevel::PlayLevel() 
@@ -25,6 +25,7 @@ void PlayLevel::Loading()
 	LargeCloudActor_ = CreateActor<LargeCloud>();
 	LargeCloudActor_->SetPosition({ 200,200 });
 	BazTset_ = CreateActor<Baz>();
+	WeaponTset_ = CreateActor<WeaponMaster>();
 	// 테스트용 코드
 
 	// TODO::수정

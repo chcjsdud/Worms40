@@ -172,7 +172,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Baz.h">
+    <ClInclude Include="WeaponMaster.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -224,7 +224,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Baz.cpp">
+    <ClCompile Include="WeaponMaster.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -17,7 +17,7 @@
     <ClInclude Include="PlayLevelTestMouse.h">
       <Filter>02.PlayLevel\TestActor</Filter>
     </ClInclude>
-    <ClInclude Include="Baz.h">
+    <ClInclude Include="WeaponMaster.h">
       <Filter>02.PlayLevel\TestActor</Filter>
     </ClInclude>
     <ClInclude Include="StartLogo.h">
@@ -66,7 +66,7 @@
     <ClCompile Include="PlayLevelTestMouse.cpp">
       <Filter>02.PlayLevel\TestActor</Filter>
     </ClCompile>
-    <ClCompile Include="Baz.cpp">
+    <ClCompile Include="WeaponMaster.cpp">
       <Filter>02.PlayLevel\TestActor</Filter>
     </ClCompile>
     <ClCompile Include="StartLogo.cpp">
