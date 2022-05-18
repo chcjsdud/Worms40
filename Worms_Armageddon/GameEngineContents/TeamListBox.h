@@ -1,7 +1,9 @@
 #pragma once
+#include <GameEngine/GameEngineActor.h>
 
 // Ό³Έν :
-class TeamListBox
+class GameEngineRenderer;
+class TeamListBox : public GameEngineActor
 {
 public:
 	// constrcuter destructer
@@ -15,8 +17,9 @@ public:
 	TeamListBox& operator=(TeamListBox&& _Other) noexcept = delete;
 
 protected:
-
+	virtual void Start() override;
+	virtual void Update() override;
 private:
-
+	GameEngineRenderer* BoxRenderer_;
 };
 

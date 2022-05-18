@@ -8,6 +8,9 @@
 class GameOptions
 {
 public:
+	static GameOptions PlayingOptions;
+
+public:
 	inline void SetPlayerName(int _Num, std::string _Names)
 	{
 		PlayerNames_.insert(std::pair<int, std::string>(_Num, _Names));
@@ -72,7 +75,8 @@ private:
 	MapType MapType_;
 
 
-
-
+private:
+	GameOptions();
+	~GameOptions();
 };
 

@@ -98,6 +98,9 @@
     <ClCompile Include="WindGauge.cpp">
       <Filter>02.PlayLevel\TestActor</Filter>
     </ClCompile>
+    <ClCompile Include="GameOptions.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="02.PlayLevel">

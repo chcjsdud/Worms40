@@ -228,6 +228,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameOptions.cpp" />
     <ClCompile Include="WeaponMaster.cpp">
       <SubType>
       </SubType>

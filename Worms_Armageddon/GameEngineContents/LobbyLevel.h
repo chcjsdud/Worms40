@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
 
+
 // Ό³Έν :
 class GameEngineActor;
 class LobbyLevel : public GameEngineLevel
@@ -24,6 +25,8 @@ protected:
 private:
 	GameEngineActor* BackGround_;
 	GameEngineActor* PlayersBox_;
+	GameEngineActor* TeamListBox_;
+	GameEngineActor* TeamEditBox_;
 
 };
 
