@@ -25,8 +25,8 @@ void Worms::GameInit()
 
 
 	//레벨변경 키생성
-	GameEngineInput::GetInst()->CreateKey(KEY_CHANGE_PLAYLEVEL, VK_RETURN);
-	GameEngineInput::GetInst()->CreateKey(KEY_CHANGE_LOBBYLEVEL, VK_SPACE);
+	GameEngineInput::GetInst()->CreateKey(KEY_CHANGE_PLAYLEVEL, VK_NUMPAD2);
+	GameEngineInput::GetInst()->CreateKey(KEY_CHANGE_LOBBYLEVEL, VK_NUMPAD1);
 
 
 	//Image폴더내 파일 로드

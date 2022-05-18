@@ -30,10 +30,10 @@ void TitleLevel::Update()
 		GameEngine::GetInst().ChangeLevel(LEVEL_PLAY_LEVEL);
 	}
 
-	//if (true == GameEngineInput::GetInst()->IsPress("ChangeLobbyLevel"))
-	//{
-	//	GameEngine::GetInst().ChangeLevel("LobbyLevel");
-	//}
+	{
+	if (true == GameEngineInput::GetInst()->IsPress("ChangeLobbyLevel"))
+		GameEngine::GetInst().ChangeLevel("LobbyLevel");
+	}
 
 }
 
