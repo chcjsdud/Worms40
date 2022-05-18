@@ -175,17 +175,29 @@ void Worms::GameInit()
 			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 		}
 
-		{
+		{ // LEFT 용 이미지
 			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_AIM_LEFT);
 			Image->CutCount(1, 32); 
 			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_IDLE_LEFT);
 			Image->CutCount(1, 6);
+			Image = GameEngineImageManager::GetInst()->Find(IMG_HOMING_AIM_LEFT); 
+			Image->CutCount(1, 32);
+			Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_ON_LEFT);
+			Image->CutCount(1, 7);
+			Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_OFF_LEFT);
+			Image->CutCount(1, 7);
 		}
-		{
+		{ // RIGHT 용 이미지
 			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_AIM_RIGHT);
 			Image->CutCount(1, 32);
 			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_IDLE_RIGHT);
 			Image->CutCount(1, 6);
+			Image = GameEngineImageManager::GetInst()->Find(IMG_HOMING_AIM_RIGHT);
+			Image->CutCount(1, 32);
+			Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_ON_RIGHT);
+			Image->CutCount(1, 7);
+			Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_OFF_RIGHT);
+			Image->CutCount(1, 7);
 		}
 
 	}
