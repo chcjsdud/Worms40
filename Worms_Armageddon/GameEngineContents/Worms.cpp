@@ -29,7 +29,6 @@ void Worms::GameInit()
 	GameEngineInput::GetInst()->CreateKey(KEY_CHANGE_LOBBYLEVEL, VK_SPACE);
 
 
-
 	//Image폴더내 파일 로드
 	{
 		GameEngineDirectory Dir;
@@ -43,7 +42,6 @@ void Worms::GameInit()
 		{
 			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 		}
-
 
 
 	}
@@ -188,7 +186,7 @@ void Worms::GameInit()
 	CreateLevel<TitleLevel>(LEVEL_TITLE_LEVEL);
 	CreateLevel<PlayLevel>(LEVEL_PLAY_LEVEL);
 	CreateLevel<LobbyLevel>(LEVEL_LOBBY_LEVEL);
-	ChangeLevel(LEVEL_TITLE_LEVEL);
+	ChangeLevel(LEVEL_LOBBY_LEVEL);
 
 }
 

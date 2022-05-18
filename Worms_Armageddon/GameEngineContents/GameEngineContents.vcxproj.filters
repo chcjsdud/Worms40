@@ -23,10 +23,18 @@
     <ClInclude Include="StartLogo.h">
       <Filter>00.TitleLevel\TitleActor</Filter>
     </ClInclude>
-    <ClInclude Include="Enums.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="LobbyBackGround.h">
       <Filter>01.LobbyLevel\LobbyActor</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayersBox.h">
+      <Filter>01.LobbyLevel\LobbyActor</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Cursor.h">
+      <Filter>Global</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +65,12 @@
     <ClCompile Include="LobbyBackGround.cpp">
       <Filter>01.LobbyLevel\LobbyActor</Filter>
     </ClCompile>
+    <ClCompile Include="PlayersBox.cpp">
+      <Filter>01.LobbyLevel\LobbyActor</Filter>
+    </ClCompile>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="02.PlayLevel">
@@ -76,6 +90,9 @@
     </Filter>
     <Filter Include="01.LobbyLevel\LobbyActor">
       <UniqueIdentifier>{5c8d914d-5ef3-413a-a5ff-02d5280fcfc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global">
+      <UniqueIdentifier>{5e5f2c03-780d-427d-ab9c-46425c823768}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
