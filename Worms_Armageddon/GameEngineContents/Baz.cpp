@@ -1,5 +1,6 @@
 #include "Baz.h"
 #include "Enums.h"
+#include "PlayLevel.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineRenderer.h>
 
@@ -37,8 +38,13 @@ bool Baz::WeaponUpdate()
 		return false;
 	}
 
+	PlayLevel* Play = dynamic_cast<PlayLevel*>(GetLevel());
+	float4 Wind = Play->GetWindDir();
+
 	SetMove(Dir_ * GameEngineTime::GetDeltaTime());
 	Dir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * 100;
+	Dir_ += Wind * GameEngineTime::GetDeltaTime();
+	
 
 	// 동작
 	//  동작

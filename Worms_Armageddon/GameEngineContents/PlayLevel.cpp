@@ -87,6 +87,7 @@ void PlayLevel::SetWindUI(int _WindDir)
 		//바람 세기를 랜덤하게 받는다
 		WindSpeed_ = Ran.RandomFloat(0, 100.0f);
 		//바람게이지UI에 바람방향과 속도를 넘겨준다
+		WindDir_ = float4::LEFT * WindSpeed_;
 		WindGaugeActor_->SetWind(WindType::Left,WindSpeed_);
 		//구름Actor에도 넘겨준다
 
@@ -101,7 +102,6 @@ void PlayLevel::SetWindUI(int _WindDir)
 		WindGaugeActor_->SetWind(WindType::Right, WindSpeed_);
 		LargeCloudActor_->SetLargeCloudDir(_WindDir,WindSpeed_);
 		SmallCloudActor_->SetSmallCloudDir(_WindDir, WindSpeed_);
-
 	}
 }
 

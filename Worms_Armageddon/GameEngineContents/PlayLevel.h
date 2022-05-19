@@ -48,5 +48,11 @@ private:
 private:
 	void CreateTestBullet();
 	void SetWindUI(int _WindDir);
+
+public:
+	float4 GetWindDir()
+	{
+		return WindDir_;
+	}
 };
 
