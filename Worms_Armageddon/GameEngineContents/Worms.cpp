@@ -28,6 +28,10 @@ void Worms::GameInit()
 	GameEngineInput::GetInst()->CreateKey(KEY_CHANGE_PLAYLEVEL, 'P');
 	GameEngineInput::GetInst()->CreateKey(KEY_CHANGE_LOBBYLEVEL, 'L');
 
+	//마우스 클릭 키생성
+	GameEngineInput::GetInst()->CreateKey(KEY_MOUSE_LEFT, VK_LBUTTON);
+	GameEngineInput::GetInst()->CreateKey(KEY_MOUSE_MID, VK_MBUTTON);
+	GameEngineInput::GetInst()->CreateKey(KEY_MOUSE_RIGHT, VK_RBUTTON);
 
 	//Image폴더내 파일 로드
 	{

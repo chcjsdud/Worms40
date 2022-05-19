@@ -57,6 +57,11 @@
 #define KEY_ANGLE_DOWN "AngleDown"
 #define KEY_ACTION "PlayerAction"
 
+// 마우스
+#define KEY_MOUSE_LEFT "ClickLeft"
+#define KEY_MOUSE_MID "ClickMid"
+#define KEY_MOUSE_RIGHT "ClickRight"
+
 // 이미지 이름
 #define IMG_GRADIENT "gradient.bmp"
 #define IMG_MAPBOOKS "MapBooks.bmp"

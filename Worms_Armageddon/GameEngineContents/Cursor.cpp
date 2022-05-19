@@ -10,6 +10,7 @@ const float CursorImgPivot_X = 16.0f;
 const float CursorImgPivot_Y = 16.0f;
 
 Cursor::Cursor() 
+	: IsDebugMode_(false)
 {
 }
 
@@ -42,7 +43,10 @@ void Cursor::Update()
 
 void Cursor::Render()
 {
-	CursorDebugRender();
+	if (true == IsDebugMode_)
+	{
+		CursorDebugRender();
+	}
 }
 
 void Cursor::CursorUpdate()
@@ -54,6 +58,8 @@ void Cursor::CursorUpdate()
 	CursorPos_.y = static_cast<float>(MousePos_.y);
 
 	SetPosition(CursorPos_);
+
+	DebugMode();
 }
 
 
@@ -64,4 +70,12 @@ void Cursor::CursorDebugRender()
 	sprintf_s(szBuff, "Mouse X: %d, Y: %d", CursorPos_.ix(), CursorPos_.iy());
 	TextOut(GameEngine::GetInst().BackBufferDC(), CursorPos_.ix() + 20, CursorPos_.iy() - 20, szBuff, static_cast<int>(strlen(szBuff)));
 
+}
+
+void Cursor::DebugMode()
+{
+	if (true == GameEngineInput::GetInst()->IsDown(KEY_MOUSE_MID))
+	{
+		IsDebugMode_ = !IsDebugMode_;
+	}
 }

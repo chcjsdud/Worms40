@@ -22,11 +22,15 @@ protected:
 	void Render() override;
 
 private:
-	void CursorDebugRender();
 	void CursorUpdate();
+
+	void CursorDebugRender();
+	void DebugMode();
 
 private:
 	class GameEngineRenderer* Renderer_;
+
+	bool IsDebugMode_;
 
 	POINT MousePos_;
 	float4 CursorPos_;
