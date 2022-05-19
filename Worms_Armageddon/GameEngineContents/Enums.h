@@ -40,7 +40,9 @@ enum class WeaponState
 // ∏ ≈∏¿‘
 enum class MapType
 {
-	MAPBOOKS,
+	Birthday,
+	Books,
+
 };
 
 

@@ -4,6 +4,7 @@
 #include <GameEngine/GameEngineRenderer.h>
 
 TerrainBox::TerrainBox() 
+	: BoxRenderer_(nullptr)
 {
 }
 

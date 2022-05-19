@@ -4,6 +4,7 @@
 #include <GameEngine/GameEngineRenderer.h>
 
 ChatBox::ChatBox() 
+	: BoxRenderer_(nullptr)
 {
 }
 

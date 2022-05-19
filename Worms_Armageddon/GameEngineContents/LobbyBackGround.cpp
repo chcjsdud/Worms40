@@ -4,6 +4,7 @@
 #include <GameEngine/GameEngineRenderer.h>
 
 LobbyBackGround::LobbyBackGround()
+	: BackGround_(nullptr)
 {
 }
 

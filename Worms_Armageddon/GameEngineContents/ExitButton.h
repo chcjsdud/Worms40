@@ -21,6 +21,6 @@ protected:
 	virtual void Update() override;
 
 private:
-	GameEngineRenderer* BoxRenderer_;
+	GameEngineRenderer* ButtonRenderer_;
 };
 

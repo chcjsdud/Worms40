@@ -3,7 +3,14 @@
 
 #include <GameEngine/GameEngineRenderer.h>
 
+// 설명 : 선택한 팀(ex. 1-UP클릭)을 TeamListBox로 올린다
+
+//TODO:: 버튼 리스트
+//TODO:: 버튼들을 담은 스크롤
+//TODO:: 버튼 클릭 시 TeamListBox로 올림
+
 TeamEditBox::TeamEditBox() 
+	: BoxRenderer_(nullptr)
 {
 }
 

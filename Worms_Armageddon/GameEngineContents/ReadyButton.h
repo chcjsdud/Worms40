@@ -1,8 +1,6 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
 
-
-
 // Ό³Έν :
 class GameEngineRenderer;
 class ReadyButton : public GameEngineActor
@@ -18,14 +16,32 @@ public:
 	ReadyButton& operator=(const ReadyButton& _Other) = delete;
 	ReadyButton& operator=(ReadyButton&& _Other) noexcept = delete;
 
+	inline void OnMouseEnter()
+	{
+		IsMouseIn_ = true;
+	}
+
+	inline void OnMouseExit()
+	{
+		IsMouseIn_ = false;
+	}
+
+	inline void SwitchPlayerReady()
+	{
+		IsPlayerReady_ = !IsPlayerReady_;
+	}
+
 protected:
 	virtual void Start() override;
 	virtual void Update() override;
 
 private:
-	GameEngineRenderer* BoxRenderer_;
+	void ButtonBorder();
 
-	bool IsMouseOver_;
+private:
+	GameEngineRenderer* ButtonRenderer_;
+
+	bool IsMouseIn_;
 	bool IsPlayerReady_;
 };
 

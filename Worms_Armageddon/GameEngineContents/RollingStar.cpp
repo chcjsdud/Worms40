@@ -4,6 +4,7 @@
 #include <GameEngine/GameEngineRenderer.h>
 
 RollingStar::RollingStar() 
+	: Renderer_(nullptr)
 {
 }
 

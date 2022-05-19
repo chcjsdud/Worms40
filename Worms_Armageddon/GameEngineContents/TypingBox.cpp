@@ -4,6 +4,7 @@
 #include <GameEngine/GameEngineRenderer.h>
 
 TypingBox::TypingBox() 
+	: BoxRenderer_(nullptr)
 {
 }
 

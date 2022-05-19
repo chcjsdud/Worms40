@@ -4,6 +4,7 @@
 #include <GameEngine/GameEngineRenderer.h>
 
 LobbySettings::LobbySettings() 
+	: BoxRenderer_(nullptr)
 {
 }
 

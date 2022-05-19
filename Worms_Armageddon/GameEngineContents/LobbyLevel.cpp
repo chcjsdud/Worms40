@@ -13,6 +13,14 @@ LobbyLevel::LobbyLevel()
 	, PlayersBox_(nullptr)
 	, TeamEditBox_(nullptr)
 	, TeamListBox_(nullptr)
+	, ChatBox_(nullptr)
+	, TypingBox_(nullptr)
+	, RollingStar_(nullptr)
+	, TerrainBox_(nullptr)
+	, LobbySettings_(nullptr)
+	, ReadyButton_(nullptr)
+	, StartButton_(nullptr)
+	, ExitButton_(nullptr)
 {
 }
 
@@ -51,6 +59,7 @@ void LobbyLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	RollingStar_->SetPosition({ 679, 100 });
 	TerrainBox_->SetPosition({ 785, 22 });
 
+	//TODO:: 지금은 통 이미지, 리소스 구하기
 	LobbySettings_->SetPosition({ 580, 260 });
 
 	// 버튼
@@ -67,7 +76,7 @@ void LobbyLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	GameOptions::PlayingOptions.SetPlayerColor(0, RGB(255,255,255));
 	GameOptions::PlayingOptions.SetTurnTime(45);
 	GameOptions::PlayingOptions.SetPlayerNum(3);
-	GameOptions::PlayingOptions.SetMapType(MapType::MAPBOOKS);
+	GameOptions::PlayingOptions.SetMapType(MapType::Books);
 
 }
 

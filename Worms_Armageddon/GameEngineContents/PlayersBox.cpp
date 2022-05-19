@@ -4,6 +4,7 @@
 #include <GameEngine/GameEngineRenderer.h>
 
 PlayersBox::PlayersBox() 
+	: BoxRenderer_(nullptr)
 {
 }
 

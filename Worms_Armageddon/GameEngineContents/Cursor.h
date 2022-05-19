@@ -23,7 +23,7 @@ protected:
 
 private:
 	void CursorUpdate();
-
+	void SetCursorPos();
 	void CursorDebugRender();
 	void DebugMode();
 

@@ -12,6 +12,9 @@ const float CursorImgPivot_Y = 16.0f;
 
 Cursor::Cursor() 
 	: IsDebugMode_(false)
+	, MousePos_(POINT())
+	, Renderer_(nullptr)
+	, Collision_(nullptr)
 {
 }
 
@@ -55,15 +58,18 @@ void Cursor::Render()
 
 void Cursor::CursorUpdate()
 {
-	//마우스 관련 함수
+	SetCursorPos();
+	SetPosition(CursorPos_);
+
+	DebugMode();
+}
+
+void Cursor::SetCursorPos()
+{
 	GetCursorPos(&MousePos_);
 	ScreenToClient(GameEngineWindow::GetHWND(), &MousePos_);
 	CursorPos_.x = static_cast<float>(MousePos_.x);
 	CursorPos_.y = static_cast<float>(MousePos_.y);
-
-	SetPosition(CursorPos_);
-
-	DebugMode();
 }
 
 
