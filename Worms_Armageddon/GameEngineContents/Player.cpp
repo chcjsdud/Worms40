@@ -41,7 +41,7 @@ void Player::PlayerAnimationInit()
 	PlayerRenderer_->CreateAnimation(IMG_BAZ_ON_LEFT, ANIM_NAME_WEAPON_ON_LEFT, 0, 5, 0.1f, false);
 	PlayerRenderer_->CreateAnimation(IMG_BAZ_ON_RIGHT, ANIM_NAME_WEAPON_ON_RIGHT, 0, 5, 0.1f, false);
 
-	PlayerRenderer_->ChangeAnimation(IMG_BAZ_ON_RIGHT);
+	PlayerRenderer_->ChangeAnimation(ANIM_NAME_WEAPON_ON_RIGHT);
 }
 
 void Player::PlayerKeyInit()
