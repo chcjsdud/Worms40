@@ -68,8 +68,9 @@ private:
 	bool IsActionKeyPress();
 	bool IsActionKeyUp();
 
-	// 충돌체크
+	// 이동중 충돌체크
 	void MoveCheck(float4 _MoveDir);
+	void MoveFall();
 
 	// FSM
 public:

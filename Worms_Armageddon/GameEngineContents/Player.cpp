@@ -27,6 +27,7 @@ void Player::Start()
 void Player::Update()
 {
 	UpdateCamera();
+	MoveFall();
 	StateUpdate();
 }
 
@@ -180,7 +181,7 @@ void Player::UpdateCamera()
 	GetLevel()->SetCameraPos(CameraPos_);
 }
 
-// 충돌체크
+// 이동중 충돌체크
 void Player::MoveCheck(float4 _MoveDir)
 {
 	// MoveDir은 오직 이동중에서만 갱신됨.
@@ -204,6 +205,21 @@ void Player::MoveCheck(float4 _MoveDir)
 	PlayerAnimationChange(ANIM_KEYWORD_PLAYER_IDLE);
 }
 
+// 낙하중 충돌체크
+void Player::MoveFall()
+{
+
+	float4 CheckLength = float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
+
+	float4 NextPos = GetPosition() + CheckLength;
+
+	int Color = ColMapImage_->GetImagePixel(NextPos);
+
+	if (RGB(0, 0, 255) != Color)
+	{
+		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_);
+	}
+}
 
 // 상태 변경
 void Player::StateChange(PlayerState _State)
