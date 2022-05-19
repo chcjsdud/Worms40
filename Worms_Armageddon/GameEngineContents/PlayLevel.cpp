@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "WeaponMaster.h"
 #include "Cursor.h"
+#include "MapBooks.h"
 #include "GameEngineBase/GameEngineRandom.h"
 #include <GameEngineBase/GameEngineInput.h>
 
@@ -17,9 +18,10 @@ PlayLevel::~PlayLevel()
 
 void PlayLevel::Loading()
 {
-	// 테스트용 코드
+	// 테스트용 코드, 맵 선택에 따라서 다른 액터 생성
 	//배경화면 액터
-	PlayLevelTestMap_ = CreateActor<PlayLevelTestMap>();
+	GameMapInfo_ = CreateActor<MapBooks>();
+
 	//마우스
 	Mouse_ = CreateActor<Cursor>((int)ActorGroup::UI);
 	//바람 게이지

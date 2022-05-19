@@ -81,6 +81,12 @@
     <ClInclude Include="SmallCloud.h">
       <Filter>02.PlayLevel\TestActor</Filter>
     </ClInclude>
+    <ClInclude Include="MapBooks.h">
+      <Filter>02.PlayLevel\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMapMaster.h">
+      <Filter>02.PlayLevel\Map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
@@ -161,6 +167,12 @@
     <ClCompile Include="SmallCloud.cpp">
       <Filter>02.PlayLevel\TestActor</Filter>
     </ClCompile>
+    <ClCompile Include="MapBooks.cpp">
+      <Filter>02.PlayLevel\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMapMaster.cpp">
+      <Filter>02.PlayLevel\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="02.PlayLevel">
@@ -195,6 +207,9 @@
     </Filter>
     <Filter Include="01.LobbyLevel\LobbyActor\Button">
       <UniqueIdentifier>{6184b198-e4ce-4492-81e1-d33be17f814d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.PlayLevel\Map">
+      <UniqueIdentifier>{cb029cd1-c9c5-4a4b-b214-bb019df3c8a7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

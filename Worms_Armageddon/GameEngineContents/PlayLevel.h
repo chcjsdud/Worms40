@@ -1,5 +1,4 @@
 #pragma once
-#include "PlayLevelTestMap.h"
 #include <GameEngine/GameEngineLevel.h>
 #include "LargeCloud.h"
 #include "Cursor.h"
@@ -8,7 +7,10 @@
 
 // Ό³Έν :
 class WeaponMaster;
+class GameMapMaster;
 class Player;
+class GameEngineRenderer;
+class GameEngineImage;
 class PlayLevel	:public GameEngineLevel
 {
 public:
@@ -30,7 +32,7 @@ protected:
 	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
 
 private:
-	PlayLevelTestMap* PlayLevelTestMap_;
+	GameMapMaster* GameMapInfo_;
 	LargeCloud* LargeCloudActor_;
 	SmallCloud* SmallCloudActor_;
 

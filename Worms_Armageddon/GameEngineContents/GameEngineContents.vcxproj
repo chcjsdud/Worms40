@@ -184,7 +184,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameMapMaster.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameOptions.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MapBooks.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -273,7 +281,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameMapMaster.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameOptions.cpp" />
+    <ClCompile Include="MapBooks.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ReadyButton.cpp">
       <SubType>
       </SubType>
