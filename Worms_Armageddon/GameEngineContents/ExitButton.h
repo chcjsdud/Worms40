@@ -1,7 +1,9 @@
 #pragma once
+#include <GameEngine/GameEngineActor.h>
 
 // Ό³Έν :
-class ExitButton
+class GameEngineRenderer;
+class ExitButton : public GameEngineActor
 {
 public:
 	// constrcuter destructer
@@ -15,8 +17,10 @@ public:
 	ExitButton& operator=(ExitButton&& _Other) noexcept = delete;
 
 protected:
+	virtual void Start() override;
+	virtual void Update() override;
 
 private:
-
+	GameEngineRenderer* BoxRenderer_;
 };
 

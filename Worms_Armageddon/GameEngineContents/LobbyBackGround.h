@@ -1,8 +1,8 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
-#include <GameEngine/GameEngineRenderer.h>
 
 // Ό³Έν :
+class GameEngineRenderer;
 class LobbyBackGround : public GameEngineActor
 {
 public:

@@ -1,17 +1,8 @@
-#include "LobbyLevel.h"
-#include "LobbyBackGround.h"
-#include "PlayersBox.h"
-#include "TeamListBox.h"
-#include "TeamEditBox.h"
-#include "ChatBox.h"
-#include "TypingBox.h"
-#include "RollingStar.h"
-#include "ReadyButton.h"
-#include "TerrainBox.h"
-#include "Cursor.h"
-#include "Enums.h"
 
+#include "Cursor.h"
 #include "GameOptions.h"
+#include "Enums.h"
+#include "LobbyHeaders.h"
 
 #include <GameEngine/GameEngine.h>
 #include <GameEngine/GameEngineActor.h>
@@ -40,9 +31,14 @@ void LobbyLevel::Loading()
 	ChatBox_ = CreateActor<ChatBox>(static_cast<int>(ActorGroup::UI));
 	TypingBox_ = CreateActor<TypingBox>(static_cast<int>(ActorGroup::UI));
 	RollingStar_ = CreateActor<RollingStar>(static_cast<int>(ActorGroup::UI));
-	ReadyButton_ = CreateActor<ReadyButton>(static_cast<int>(ActorGroup::UI));
 	TerrainBox_ = CreateActor<TerrainBox>(static_cast<int>(ActorGroup::UI));
 
+	LobbySettings_ = CreateActor<LobbySettings>(static_cast<int>(ActorGroup::UI));
+
+	// 버튼
+	ReadyButton_ = CreateActor<ReadyButton>(static_cast<int>(ActorGroup::UI));
+	StartButton_ = CreateActor<StartButton>(static_cast<int>(ActorGroup::UI));
+	ExitButton_ = CreateActor<ExitButton>(static_cast<int>(ActorGroup::UI));
 }
 
 void LobbyLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
@@ -52,10 +48,16 @@ void LobbyLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	TeamEditBox_->SetPosition({ 260, 296 });
 	ChatBox_->SetPosition({ 16, 477 });
 	TypingBox_->SetPosition({ 16, 814 });
-
 	RollingStar_->SetPosition({ 679, 100 });
-	ReadyButton_->SetPosition({ 19, 299 });
 	TerrainBox_->SetPosition({ 785, 22 });
+
+	LobbySettings_->SetPosition({ 580, 260 });
+
+	// 버튼
+	ReadyButton_->SetPosition({ 19, 299 });
+	StartButton_->SetPosition({ 966, 814 });
+	ExitButton_->SetPosition({ 966, 892 });
+
 }
 
 void LobbyLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)

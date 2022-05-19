@@ -21,20 +21,11 @@
     <ClInclude Include="MainLogo.h">
       <Filter>00.TitleLevel\TitleActor</Filter>
     </ClInclude>
-    <ClInclude Include="PlayersBox.h">
-      <Filter>01.LobbyLevel\LobbyActor</Filter>
-    </ClInclude>
     <ClInclude Include="Enums.h">
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="Cursor.h">
       <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="TeamEditBox.h">
-      <Filter>01.LobbyLevel\LobbyActor</Filter>
-    </ClInclude>
-    <ClInclude Include="TeamListBox.h">
-      <Filter>01.LobbyLevel\LobbyActor</Filter>
     </ClInclude>
     <ClInclude Include="TitleImage.h">
       <Filter>00.TitleLevel\TitleActor</Filter>
@@ -45,12 +36,6 @@
     <ClInclude Include="WindGauge.h">
       <Filter>02.PlayLevel\UI</Filter>
     </ClInclude>
-    <ClInclude Include="ChatBox.h">
-      <Filter>01.LobbyLevel\LobbyActor</Filter>
-    </ClInclude>
-    <ClInclude Include="TypingBox.h">
-      <Filter>01.LobbyLevel\LobbyActor</Filter>
-    </ClInclude>
     <ClInclude Include="WeaponMaster.h">
       <Filter>02.PlayLevel\Weapon</Filter>
     </ClInclude>
@@ -59,9 +44,6 @@
     </ClInclude>
     <ClInclude Include="RollingStar.h">
       <Filter>01.LobbyLevel\StarSpawner</Filter>
-    </ClInclude>
-    <ClInclude Include="TerrainBox.h">
-      <Filter>01.LobbyLevel\LobbyActor</Filter>
     </ClInclude>
     <ClInclude Include="ReadyButton.h">
       <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
@@ -90,6 +72,30 @@
     <ClInclude Include="GameMapMaster.h">
       <Filter>02.PlayLevel\Map</Filter>
     </ClInclude>
+    <ClInclude Include="LobbyHeaders.h">
+      <Filter>01.LobbyLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="LobbySettings.h">
+      <Filter>01.LobbyLevel\LobbyActor</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatBox.h">
+      <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayersBox.h">
+      <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
+    </ClInclude>
+    <ClInclude Include="TeamEditBox.h">
+      <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
+    </ClInclude>
+    <ClInclude Include="TypingBox.h">
+      <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainBox.h">
+      <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
+    </ClInclude>
+    <ClInclude Include="TeamListBox.h">
+      <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
@@ -110,17 +116,8 @@
     <ClCompile Include="LobbyBackGround.cpp">
       <Filter>01.LobbyLevel\LobbyActor</Filter>
     </ClCompile>
-    <ClCompile Include="PlayersBox.cpp">
-      <Filter>01.LobbyLevel\LobbyActor</Filter>
-    </ClCompile>
     <ClCompile Include="Cursor.cpp">
       <Filter>Global</Filter>
-    </ClCompile>
-    <ClCompile Include="TeamEditBox.cpp">
-      <Filter>01.LobbyLevel\LobbyActor</Filter>
-    </ClCompile>
-    <ClCompile Include="TeamListBox.cpp">
-      <Filter>01.LobbyLevel\LobbyActor</Filter>
     </ClCompile>
     <ClCompile Include="MainLogo.cpp">
       <Filter>00.TitleLevel\TitleActor</Filter>
@@ -134,12 +131,6 @@
     <ClCompile Include="GameOptions.cpp">
       <Filter>Global</Filter>
     </ClCompile>
-    <ClCompile Include="ChatBox.cpp">
-      <Filter>01.LobbyLevel\LobbyActor</Filter>
-    </ClCompile>
-    <ClCompile Include="TypingBox.cpp">
-      <Filter>01.LobbyLevel\LobbyActor</Filter>
-    </ClCompile>
     <ClCompile Include="WeaponMaster.cpp">
       <Filter>02.PlayLevel\Weapon</Filter>
     </ClCompile>
@@ -148,9 +139,6 @@
     </ClCompile>
     <ClCompile Include="RollingStar.cpp">
       <Filter>01.LobbyLevel\StarSpawner</Filter>
-    </ClCompile>
-    <ClCompile Include="TerrainBox.cpp">
-      <Filter>01.LobbyLevel\LobbyActor</Filter>
     </ClCompile>
     <ClCompile Include="ReadyButton.cpp">
       <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
@@ -178,6 +166,27 @@
     </ClCompile>
     <ClCompile Include="GameMapMaster.cpp">
       <Filter>02.PlayLevel\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="LobbySettings.cpp">
+      <Filter>01.LobbyLevel\LobbyActor</Filter>
+    </ClCompile>
+    <ClCompile Include="ChatBox.cpp">
+      <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayersBox.cpp">
+      <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
+    </ClCompile>
+    <ClCompile Include="TeamEditBox.cpp">
+      <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
+    </ClCompile>
+    <ClCompile Include="TeamListBox.cpp">
+      <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
+    </ClCompile>
+    <ClCompile Include="TypingBox.cpp">
+      <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainBox.cpp">
+      <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +222,9 @@
     </Filter>
     <Filter Include="01.LobbyLevel\LobbyActor\Button">
       <UniqueIdentifier>{6184b198-e4ce-4492-81e1-d33be17f814d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.LobbyLevel\LobbyActor\Box">
+      <UniqueIdentifier>{0bb4f140-d2db-462b-853a-602c7dbc5184}</UniqueIdentifier>
     </Filter>
     <Filter Include="02.PlayLevel\Map">
       <UniqueIdentifier>{cb029cd1-c9c5-4a4b-b214-bb019df3c8a7}</UniqueIdentifier>

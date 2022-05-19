@@ -1,7 +1,8 @@
 #include "Cursor.h"
 #include "Enums.h"
-#include <GameEngine/GameEngine.h>
 #include <GameEngineBase/GameEngineWindow.h>
+#include <GameEngineBase/GameEngineInput.h>
+#include <GameEngine/GameEngine.h>
 #include <GameEngine/GameEngineRenderer.h>
 
 const float CursorImgScale = 2.0f;
@@ -25,6 +26,12 @@ void Cursor::Start()
 
 	// 기존 커서 감추기
 	ShowCursor(false);
+
+	// 마우스 가운데 버튼
+	if (false == GameEngineInput::GetInst()->IsKey("MouseDebugSwitch"))
+	{
+		GameEngineInput::GetInst()->CreateKey("MouseDebugSwitch", VK_MBUTTON);
+	}
 }
 
 void Cursor::Update()

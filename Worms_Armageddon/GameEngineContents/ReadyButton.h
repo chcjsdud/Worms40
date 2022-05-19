@@ -2,6 +2,7 @@
 #include <GameEngine/GameEngineActor.h>
 
 // Ό³Έν :
+class GameEngineRenderer;
 class ReadyButton : public GameEngineActor
 {
 public:

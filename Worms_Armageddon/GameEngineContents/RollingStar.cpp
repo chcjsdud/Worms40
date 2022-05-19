@@ -16,7 +16,7 @@ void RollingStar::Start()
 	Renderer_ = CreateRenderer(static_cast<int>(RenderOrder::BackGround_1));
 	Renderer_->SetScale({ 100, 100 });
 	Renderer_->SetTransColor(RGB(0, 0, 0));
-	Renderer_->CreateAnimation("stars.bmp", "RollingStar", 0, 128, 0.1f, true);
+	Renderer_->CreateAnimation("stars.bmp", "RollingStar", 0, 127, 0.05f, true, true);
 	Renderer_->ChangeAnimation("RollingStar");
 }
 

@@ -1,7 +1,9 @@
 #pragma once
+#include <GameEngine/GameEngineActor.h>
 
 // Ό³Έν :
-class StartButton
+class GameEngineRenderer;
+class StartButton : public GameEngineActor
 {
 public:
 	// constrcuter destructer
@@ -15,8 +17,10 @@ public:
 	StartButton& operator=(StartButton&& _Other) noexcept = delete;
 
 protected:
+	virtual void Start() override;
+	virtual void Update() override;
 
 private:
-
+	GameEngineRenderer* BoxRenderer_;
 };
 

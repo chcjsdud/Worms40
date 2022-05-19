@@ -30,8 +30,13 @@ private:
 	GameEngineActor* ChatBox_;
 	GameEngineActor* TypingBox_;
 	GameEngineActor* RollingStar_;
-	GameEngineActor* ReadyButton_;
 	GameEngineActor* TerrainBox_;
+
+	GameEngineActor* LobbySettings_;
+
+	GameEngineActor* ReadyButton_;
+	GameEngineActor* StartButton_;
+	GameEngineActor* ExitButton_;
 
 };
 
