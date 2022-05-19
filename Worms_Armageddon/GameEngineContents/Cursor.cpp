@@ -4,6 +4,7 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngine.h>
 #include <GameEngine/GameEngineRenderer.h>
+#include <GameEngine/GameEngineCollision.h>
 
 const float CursorImgScale = 2.0f;
 const float CursorImgPivot_X = 16.0f;
@@ -24,6 +25,9 @@ void Cursor::Start()
 	Renderer_ = CreateRenderer("Cursor.bmp", static_cast<int>(RenderOrder::Cursor));
 	Renderer_->SetScale(Renderer_->GetScale() * CursorImgScale);
 	Renderer_->SetPivot(float4{ CursorImgPivot_X, CursorImgPivot_Y });
+
+	// 마우스 충돌체
+	Collision_ = CreateCollision("Mouse", {10, 10});
 
 	// 기존 커서 감추기
 	ShowCursor(false);
@@ -77,5 +81,6 @@ void Cursor::DebugMode()
 	if (true == GameEngineInput::GetInst()->IsDown(KEY_MOUSE_MID))
 	{
 		IsDebugMode_ = !IsDebugMode_;
+		GetLevel()->IsDebugModeSwitch();
 	}
 }

@@ -29,6 +29,7 @@ private:
 
 private:
 	class GameEngineRenderer* Renderer_;
+	class GameEngineCollision* Collision_;
 
 	bool IsDebugMode_;
 

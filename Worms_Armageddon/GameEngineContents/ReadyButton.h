@@ -1,6 +1,8 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
 
+
+
 // Ό³Έν :
 class GameEngineRenderer;
 class ReadyButton : public GameEngineActor
@@ -22,5 +24,8 @@ protected:
 
 private:
 	GameEngineRenderer* BoxRenderer_;
+
+	bool IsMouseOver_;
+	bool IsPlayerReady_;
 };
 
