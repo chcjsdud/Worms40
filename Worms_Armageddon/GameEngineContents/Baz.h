@@ -26,5 +26,6 @@ protected:
 
 private:
 	GameEngineRenderer* WeaponRender_;
+	float4 Dir_;
 };
 

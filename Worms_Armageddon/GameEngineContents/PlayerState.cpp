@@ -75,4 +75,5 @@ void Player::ActionStart()
 {
 	// 무기 액터 생성
 	Weapon_ = GetLevel()->CreateActor<Baz>();
+	Weapon_->SetPosition(this->GetPosition());
 }
