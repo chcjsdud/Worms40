@@ -119,8 +119,11 @@ void Worms::GameInit()
 			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 		}
 
-		GameEngineImage* cloud = GameEngineImageManager::GetInst()->Find("cloudl.bmp");
-		cloud->Cut({ 160, 160 });
+		GameEngineImage* cloudl = GameEngineImageManager::GetInst()->Find("cloudl.bmp");
+		cloudl->Cut({ 160, 160 });
+
+		GameEngineImage* clouds = GameEngineImageManager::GetInst()->Find("clouds.bmp");
+		clouds->Cut({ 60, 60 });
 
 		GameEngineImage* wind = GameEngineImageManager::GetInst()->Find("windBar.bmp");
 		wind->Cut({ 87, 13 });

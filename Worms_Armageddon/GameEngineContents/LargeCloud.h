@@ -28,7 +28,7 @@ private:
 
 
 public:
-	inline void SetCloudDir(int  _WindDir, float _CloudSpeed)
+	inline void SetLargeCloudDir(int  _WindDir, float _CloudSpeed)
 	{
 		WindDir_ = _WindDir;
 		CloudSpeed_ = _CloudSpeed;

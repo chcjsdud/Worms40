@@ -63,6 +63,9 @@
     <ClInclude Include="Baz.h">
       <Filter>02.PlayLevel\Weapon</Filter>
     </ClInclude>
+    <ClInclude Include="SmallCloud.h">
+      <Filter>02.PlayLevel\TestActor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
@@ -124,6 +127,9 @@
     </ClCompile>
     <ClCompile Include="Baz.cpp">
       <Filter>02.PlayLevel\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="SmallCloud.cpp">
+      <Filter>02.PlayLevel\TestActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

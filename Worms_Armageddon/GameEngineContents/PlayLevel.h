@@ -4,6 +4,7 @@
 #include "LargeCloud.h"
 #include "Cursor.h"
 #include "WindGauge.h"
+#include "SmallCloud.h"
 
 // Ό³Έν :
 class WeaponMaster;
@@ -31,6 +32,9 @@ protected:
 private:
 	PlayLevelTestMap* PlayLevelTestMap_;
 	LargeCloud* LargeCloudActor_;
+	SmallCloud* SmallCloudActor_;
+
+
 	WeaponMaster* WeaponTset_;
 	Player* Player_;
 	Cursor* Mouse_;

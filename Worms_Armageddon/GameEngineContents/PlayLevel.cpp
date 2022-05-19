@@ -24,12 +24,13 @@ void PlayLevel::Loading()
 	Mouse_ = CreateActor<Cursor>((int)ActorGroup::UI);
 	//바람 게이지
 	WindGaugeActor_ = CreateActor<WindGauge>((int)ActorGroup::UI);
-	WindGaugeActor_->SetPosition({ 1000,600 });
+	WindGaugeActor_->SetPosition({ 1150.0f,20.0f });
 	//구름
 	LargeCloudActor_ = CreateActor<LargeCloud>();
-	LargeCloudActor_->SetPosition({ 200,200 });
+	LargeCloudActor_->SetPosition({ 200.0f,200.0f});
 	
-
+	SmallCloudActor_ = CreateActor<SmallCloud>();
+	SmallCloudActor_->SetPosition({ 250.0f,200.0f });
 
 	WeaponTset_ = CreateActor<WeaponMaster>();
 	// 테스트용 코드
@@ -88,7 +89,9 @@ void PlayLevel::SetWindUI(int _WindDir)
 		//바람게이지UI에 바람방향과 속도를 넘겨준다
 		WindGaugeActor_->SetWind(WindType::Left,WindSpeed_);
 		//구름Actor에도 넘겨준다
-		LargeCloudActor_->SetCloudDir(_WindDir, WindSpeed_);
+
+		LargeCloudActor_->SetLargeCloudDir(_WindDir, WindSpeed_);
+		SmallCloudActor_->SetSmallCloudDir(_WindDir, WindSpeed_);
 	}
 	else
 	{
@@ -96,7 +99,9 @@ void PlayLevel::SetWindUI(int _WindDir)
 		WindSpeed_ = Ran.RandomFloat(0, 100.0f);
 		WindDir_ = float4::RIGHT * WindSpeed_;
 		WindGaugeActor_->SetWind(WindType::Right, WindSpeed_);
-		LargeCloudActor_->SetCloudDir(_WindDir,WindSpeed_);
+		LargeCloudActor_->SetLargeCloudDir(_WindDir,WindSpeed_);
+		SmallCloudActor_->SetSmallCloudDir(_WindDir, WindSpeed_);
+
 	}
 }
 
