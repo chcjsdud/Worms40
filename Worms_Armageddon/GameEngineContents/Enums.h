@@ -17,9 +17,15 @@ enum class PlayerState
 
 enum class RenderOrder
 {
+	// 배경
 	BackGround_0,
+	// 물과 기타등등
 	BackGround_1,
+	// 맵
 	BackGround_2,
+	// 맵
+	BackGround_3,
+
 	Weapon,
 	Player,
 	UI,
