@@ -7,6 +7,7 @@
 #include <GameEngine/GameEngineRenderer.h>
 
 // 설명 :
+class GameEngineImage;
 class Player : public GameEngineActor
 {
 public:
@@ -37,6 +38,9 @@ private:
 
 	// 플레이어 렌더러
 	GameEngineRenderer* PlayerRenderer_;
+
+	// 플레이어가 충돌처리를 할 맵 이미지
+	GameEngineImage* ColMapImage_;
 
 	// 플레이어가 들고 있는 무기의 타입
 	int WeaponType_;

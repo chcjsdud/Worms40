@@ -3,6 +3,7 @@
 #include <GameEngineBase/GameEngineCustomStringSet.h>
 
 // 설명 : 
+class GameEngineImage;
 class WeaponMaster :public GameEngineActor
 {
 public:
@@ -22,11 +23,14 @@ public:
 	}
 
 
-/// <summary>
-private: // 임시용->추후 정리 할 때 기능들 넣을 예정
+private: 
+	// 무기 발사 방향
 	float4 WeaponDir_;
+	// TODO::무기가 발사 되는순간 최초 실행(임시)
 	bool IsThrow_;
-/// </summary>
+	// 충돌용 맵 이미지
+	GameEngineImage* ColMapImage_;
+
 
 protected:
 	void Start() override;
@@ -37,10 +41,20 @@ protected:
 		return WeaponDir_;
 	}
 
+	inline GameEngineImage* GetColMapImage()
+	{
+		return ColMapImage_;
+	}
+
 public:
-	void SetWeaponDir(float4 _WeaponDir)
+	inline void SetWeaponDir(float4 _WeaponDir)
 	{
 		WeaponDir_ = _WeaponDir;
+	}
+
+	inline void SetColMapImage(GameEngineImage* _ColMapImage)
+	{
+		ColMapImage_ = _ColMapImage;
 	}
 };
 

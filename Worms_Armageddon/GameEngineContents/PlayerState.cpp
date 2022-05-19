@@ -77,4 +77,5 @@ void Player::ActionStart()
 	Weapon_ = GetLevel()->CreateActor<Baz>();
 	Weapon_->SetPosition(this->GetPosition());
 	Weapon_->SetWeaponDir(MoveDir_);
+	Weapon_->SetColMapImage(ColMapImage_);
 }

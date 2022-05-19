@@ -1,6 +1,7 @@
 #include "Player.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineInput.h>
+#include <GameEngine/GameEngineImageManager.h>
 
 Player::Player()
 	: Speed_(50.0f)
@@ -18,6 +19,9 @@ void Player::Start()
 	this->SetPosition({ 300, 300 });
 	PlayerAnimationInit();
 	PlayerKeyInit();
+
+	// 테스트 임시 데이터
+	ColMapImage_ = GameEngineImageManager::GetInst()->Find(IMG_MAPBOOKS_GROUND);
 }
 
 void Player::Update()
