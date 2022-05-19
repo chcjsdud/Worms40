@@ -75,9 +75,21 @@
 // 플레이어 이미지
 #define IMG_PLAYER_IDLE_LEFT "idleLeft.bmp"
 #define IMG_PLAYER_IDLE_RIGHT "idleRight.bmp"
+#define IMG_PLAYER_JUMPRDY_LEFT "jumpReadyLeft.bmp"
+#define IMG_PLAYER_JUMPRDY_RIGHT "jumpReadyRight.bmp"
+#define IMG_PLAYER_FLYLINK_LEFT "flyLinkLeft.bmp"
+#define IMG_PLAYER_FLYLINK_RIGHT "flyLinkRight.bmp"
+#define IMG_PLAYER_FLYDOWN_LEFT "flyDownLeft.bmp"
+#define IMG_PLAYER_FLYDOWN_RIGHT "flyDownRight.bmp"
+#define IMG_PLAYER_BACKFLIP_LEFT "backflipLeft.bmp"
+#define IMG_PLAYER_BACKFLIP_RIGHT "backflipRight.bmp"
 
 // 애니메이션 키워드
 #define ANIM_KEYWORD_PLAYER_IDLE "idle"
+#define ANIM_KEYWORD_PLAYER_JUMPRDY "jumpReady"
+#define ANIM_KEYWORD_PLAYER_FLYLINK "flyLink"
+#define ANIM_KEYWORD_PLAYER_FLYDOWN "flyDown"
+#define ANIM_KEYWORD_PLAYER_BACKFLIP "backflip"
 
 #define ANIM_KEYWORD_DIR_LEFT "Left"
 #define ANIM_KEYWORD_DIR_RIGHT "Right"
@@ -85,6 +97,15 @@
 // 애니메이션 이름
 #define ANIM_NAME_PLAYER_IDLE_LEFT "idleLeft"
 #define ANIM_NAME_PLAYER_IDLE_RIGHT "idleRight"
+#define ANIM_NAME_PLAYER_JUMPRDY_LEFT "jumpReadyLeft"
+#define ANIM_NAME_PLAYER_JUMPRDY_RIGHT "jumpReadyRight"
+#define ANIM_NAME_PLAYER_FLYLINK_LEFT "flyLinkLeft"
+#define ANIM_NAME_PLAYER_FLYLINK_RIGHT "flyLinkRight"
+#define ANIM_NAME_PLAYER_FLYDOWN_LEFT "flyDownLeft"
+#define ANIM_NAME_PLAYER_FLYDOWN_RIGHT "flyDownRight"
+#define ANIM_NAME_PLAYER_BACKFLIP_LEFT "backflipLeft"
+#define ANIM_NAME_PLAYER_BACKFLIP_RIGHT "backflipRight"
+
 #define ANIM_NAME_WEAPON_ON_LEFT "bazOnLeft"
 #define ANIM_NAME_WEAPON_ON_RIGHT "bazOnRight"
 #define ANIM_NAME_WEAPON_OFF_LEFT "bazOffLeft"
