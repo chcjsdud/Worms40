@@ -34,6 +34,8 @@ void PlayLevel::Loading()
 	SmallCloudActor_ = CreateActor<SmallCloud>();
 	SmallCloudActor_->SetPosition({ 250.0f,200.0f });
 
+	WaterActor_ = CreateActor<Water>();
+	WaterActor_->SetPosition({ 300.0f,300.0f });
 	WeaponTset_ = CreateActor<WeaponMaster>();
 	// 테스트용 코드
 

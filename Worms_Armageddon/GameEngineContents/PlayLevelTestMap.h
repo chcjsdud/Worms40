@@ -23,6 +23,7 @@ protected:
 private:
 	GameEngineRenderer* BackGround_;
 	GameEngineRenderer* Ground_;
+	GameEngineRenderer* MidGround_;
 	GameEngineRenderer* ColImage_;
 
 private:

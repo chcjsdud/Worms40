@@ -101,6 +101,10 @@ void Worms::GameInit()
 			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 		}
 
+		GameEngineImage* Water = GameEngineImageManager::GetInst()->Find("Water_sprite.bmp");
+		Water->Cut({ 2560, 100 });
+
+
 	}
 
 

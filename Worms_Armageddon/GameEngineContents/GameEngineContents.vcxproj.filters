@@ -11,9 +11,6 @@
     <ClInclude Include="LobbyLevel.h">
       <Filter>01.LobbyLevel</Filter>
     </ClInclude>
-    <ClInclude Include="PlayLevelTestMap.h">
-      <Filter>02.PlayLevel\TestActor</Filter>
-    </ClInclude>
     <ClInclude Include="StartLogo.h">
       <Filter>00.TitleLevel\TitleActor</Filter>
     </ClInclude>
@@ -41,9 +38,6 @@
     </ClInclude>
     <ClInclude Include="TitleImage.h">
       <Filter>00.TitleLevel\TitleActor</Filter>
-    </ClInclude>
-    <ClInclude Include="LargeCloud.h">
-      <Filter>02.PlayLevel\TestActor</Filter>
     </ClInclude>
     <ClInclude Include="GameOptions.h">
       <Filter>Global</Filter>
@@ -79,7 +73,16 @@
       <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
     </ClInclude>
     <ClInclude Include="SmallCloud.h">
-      <Filter>02.PlayLevel\TestActor</Filter>
+      <Filter>02.PlayLevel\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayLevelTestMap.h">
+      <Filter>02.PlayLevel\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="LargeCloud.h">
+      <Filter>02.PlayLevel\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Water.h">
+      <Filter>02.PlayLevel\BackGround</Filter>
     </ClInclude>
     <ClInclude Include="MapBooks.h">
       <Filter>02.PlayLevel\Map</Filter>
@@ -98,9 +101,6 @@
     </ClCompile>
     <ClCompile Include="LobbyLevel.cpp">
       <Filter>01.LobbyLevel</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayLevelTestMap.cpp">
-      <Filter>02.PlayLevel\TestActor</Filter>
     </ClCompile>
     <ClCompile Include="StartLogo.cpp">
       <Filter>00.TitleLevel\TitleActor</Filter>
@@ -127,9 +127,6 @@
     </ClCompile>
     <ClCompile Include="TitleImage.cpp">
       <Filter>00.TitleLevel\TitleActor</Filter>
-    </ClCompile>
-    <ClCompile Include="LargeCloud.cpp">
-      <Filter>02.PlayLevel\TestActor</Filter>
     </ClCompile>
     <ClCompile Include="WindGauge.cpp">
       <Filter>02.PlayLevel\UI</Filter>
@@ -164,8 +161,17 @@
     <ClCompile Include="ExitButton.cpp">
       <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
     </ClCompile>
+    <ClCompile Include="PlayLevelTestMap.cpp">
+      <Filter>02.PlayLevel\BackGround</Filter>
+    </ClCompile>
     <ClCompile Include="SmallCloud.cpp">
-      <Filter>02.PlayLevel\TestActor</Filter>
+      <Filter>02.PlayLevel\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="LargeCloud.cpp">
+      <Filter>02.PlayLevel\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Water.cpp">
+      <Filter>02.PlayLevel\BackGround</Filter>
     </ClCompile>
     <ClCompile Include="MapBooks.cpp">
       <Filter>02.PlayLevel\Map</Filter>
@@ -210,6 +216,9 @@
     </Filter>
     <Filter Include="02.PlayLevel\Map">
       <UniqueIdentifier>{cb029cd1-c9c5-4a4b-b214-bb019df3c8a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.PlayLevel\BackGround">
+      <UniqueIdentifier>{5e393cdd-a522-42b7-90e4-81705b4a1547}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

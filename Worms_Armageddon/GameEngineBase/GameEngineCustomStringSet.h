@@ -60,6 +60,7 @@
 // 이미지 이름
 #define IMG_GRADIENT "gradient.bmp"
 #define IMG_MAPBOOKS "MapBooks.bmp"
+#define IMG_MIDGROUND "Midground.bmp"
 #define IMG_MAPBOOKS_GROUND "MapBooks_Ground.bmp"
 
 // 이미지 스케일

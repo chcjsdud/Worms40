@@ -19,6 +19,9 @@ void PlayLevelTestMap::Start()
 	float4 BackGroundHalf = BackGround_->GetScale().Half();
 	BackGround_->SetPivot(BackGroundHalf);
 
+	MidGround_ = CreateRendererToScale(IMG_MIDGROUND, { 1280,195 }, 0);
+	float4 MidGround_Half = MidGround_->GetScale().Half();
+	MidGround_->SetPivot({MidGround_Half.x, MidGround_Half.y + 765});
 
 	//임시 크기 설정
 	Ground_ = CreateRendererToScale(IMG_MAPBOOKS, { 1280,960 },2);

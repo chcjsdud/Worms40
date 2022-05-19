@@ -4,6 +4,7 @@
 #include "Cursor.h"
 #include "WindGauge.h"
 #include "SmallCloud.h"
+#include "Water.h"
 
 // Ό³Έν :
 class WeaponMaster;
@@ -36,7 +37,7 @@ private:
 	LargeCloud* LargeCloudActor_;
 	SmallCloud* SmallCloudActor_;
 
-
+	Water* WaterActor_;
 	WeaponMaster* WeaponTset_;
 	Player* Player_;
 	Cursor* Mouse_;
