@@ -40,9 +40,8 @@ void WindGauge::Start()
 	WindRightHiderRenderer_->SetPivot({ 89,0 });
 	
 
-	WindDir_ = WindType::Left;
-	WindFigure_ = 50;
-	WindRightHider_x = 0;
+	//WindDir_ = WindType::Left;
+	//WindRightHider_x = 0;
 
 }
 

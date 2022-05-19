@@ -1,4 +1,5 @@
 #pragma once
+#include "Enums.h"
 #include<GameEngine/GameEngineActor.h>
 
 // Ό³Έν :
@@ -21,5 +22,16 @@ protected:
 	void Render() override;
 private:
 	GameEngineRenderer* CloudRenderer_;
+	float4 CloudDir_;
+	float CloudSpeed_;
+	int WindDir_;
+
+
+public:
+	inline void SetCloudDir(int  _WindDir, float _CloudSpeed)
+	{
+		WindDir_ = _WindDir;
+		CloudSpeed_ = _CloudSpeed;
+	}
 };
 

@@ -31,7 +31,6 @@ void PlayLevel::Loading()
 	
 
 
-
 	WeaponTset_ = CreateActor<WeaponMaster>();
 	// 테스트용 코드
 
@@ -43,10 +42,14 @@ void PlayLevel::Loading()
 		GameEngineInput::GetInst()->CreateKey("TestClick", VK_LBUTTON);
 	}
 
+	WindSpeed_ = 45.0f;
 }
 
 void PlayLevel::Update()
 {
+
+	//임시방편
+	//마우스 클릭할때마다 바람세기 변경
 	if (GameEngineInput::GetInst()->IsDown("TestClick"))
 	{
 		GameEngineRandom Ran;
@@ -79,8 +82,13 @@ void PlayLevel::SetWindUI(int _WindDir)
 	if (_WindDir == (int)WindType::Left)
 	{
 		GameEngineRandom Ran;
+
+		//바람 세기를 랜덤하게 받는다
 		WindSpeed_ = Ran.RandomFloat(0, 100.0f);
+		//바람게이지UI에 바람방향과 속도를 넘겨준다
 		WindGaugeActor_->SetWind(WindType::Left,WindSpeed_);
+		//구름Actor에도 넘겨준다
+		LargeCloudActor_->SetCloudDir(_WindDir, WindSpeed_);
 	}
 	else
 	{
@@ -88,6 +96,7 @@ void PlayLevel::SetWindUI(int _WindDir)
 		WindSpeed_ = Ran.RandomFloat(0, 100.0f);
 		WindDir_ = float4::RIGHT * WindSpeed_;
 		WindGaugeActor_->SetWind(WindType::Right, WindSpeed_);
+		LargeCloudActor_->SetCloudDir(_WindDir,WindSpeed_);
 	}
 }
 
