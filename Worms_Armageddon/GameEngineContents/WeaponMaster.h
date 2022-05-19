@@ -32,6 +32,9 @@ private:
 	GameEngineImage* ColMapImage_;
 
 
+	static GameEngineImage* PixelTestImage_;
+	GameEngineRenderer* MapPixelTestRender_;
+
 protected:
 	void Start() override;
 	void Update() override;

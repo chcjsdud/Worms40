@@ -1,6 +1,7 @@
 #include "Baz.h"
 #include "Enums.h"
 #include "PlayLevel.h"
+#include "PlayLevelTestMap.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineRenderer.h>
 
@@ -43,7 +44,8 @@ bool Baz::WeaponUpdate()
 		IsStart_ = true;
 	}
 	
-
+	
+	
 
 	// 테스트
 	if (true == GameEngineInput::GetInst()->IsDown(KEY_ACTION))
@@ -52,7 +54,7 @@ bool Baz::WeaponUpdate()
 		// 동작 끝 - > 플레이어의 State가 변경, 턴종료
 		return false;
 	}
-
+	
 	PlayLevel* Play = dynamic_cast<PlayLevel*>(GetLevel());
 	float4 Wind = Play->GetWindDir();
 	

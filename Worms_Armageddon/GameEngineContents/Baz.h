@@ -3,6 +3,7 @@
 
 // Ό³Έν :
 class GameEngineRenderer;
+class PlayLevelTestMap;
 class Baz : public WeaponMaster
 {
 public:
@@ -28,6 +29,7 @@ private:
 	GameEngineRenderer* WeaponRender_;
 	float4 BazDir_;
 	bool IsStart_;
+	PlayLevelTestMap* MapRender_;
 
 public:
 	inline void SetWindSpeed(float4 _windspeed)

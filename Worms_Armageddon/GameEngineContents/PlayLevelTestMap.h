@@ -32,5 +32,11 @@ private:
 
 private:
 	void ChangePixelMode();
+
+public:
+	GameEngineRenderer* GetBackGround()
+	{
+		return BackGround_;
+	}
 };
 

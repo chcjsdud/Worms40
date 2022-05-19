@@ -37,6 +37,9 @@ void PlayLevelTestMap::Start()
 
 	//픽셀확인용 임시 키
 	GameEngineInput::GetInst()->CreateKey(KEY_CHANGE_PIXELMODE, '0');
+
+	//다른 액터에 참조하기 위한 액터 등록
+	LevelRegist("TestMap");
 }
 
 void PlayLevelTestMap::Update()
