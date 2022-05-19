@@ -26,7 +26,8 @@ protected:
 
 private:
 	GameEngineRenderer* WeaponRender_;
-	float4 Dir_;
+	float4 BazDir_;
+	bool IsStart_;
 
 public:
 	inline void SetWindSpeed(float4 _windspeed)
