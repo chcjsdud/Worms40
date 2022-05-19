@@ -40,6 +40,7 @@ protected:
 	// 바닥
 	GameEngineRenderer* Ground_;
 
+	GameEngineRenderer* ColImage_;
 	// 맵에 사용될 충돌용 이미지
 	GameEngineImage* ColMap_;
 

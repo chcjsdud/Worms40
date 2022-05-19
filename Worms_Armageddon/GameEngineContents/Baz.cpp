@@ -4,13 +4,14 @@
 #include "PlayLevelTestMap.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineRenderer.h>
+#include <GameEngine/GameEngineImage.h>
 
-Baz::Baz() 
+Baz::Baz()
 	: IsStart_(false)
 {
 }
 
-Baz::~Baz() 
+Baz::~Baz()
 {
 }
 
@@ -43,9 +44,9 @@ bool Baz::WeaponUpdate()
 		}
 		IsStart_ = true;
 	}
-	
-	
-	
+
+
+
 
 	// 테스트
 	if (true == GameEngineInput::GetInst()->IsDown(KEY_ACTION))
@@ -54,16 +55,24 @@ bool Baz::WeaponUpdate()
 		// 동작 끝 - > 플레이어의 State가 변경, 턴종료
 		return false;
 	}
-	
+
 	PlayLevel* Play = dynamic_cast<PlayLevel*>(GetLevel());
 	float4 Wind = Play->GetWindDir();
-	
+
 
 	SetMove(BazDir_ * GameEngineTime::GetDeltaTime());
 	BazDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * 100;
 	BazDir_ += Wind * GameEngineTime::GetDeltaTime();
-	
 
+	int Color = GetColMapImage()->GetImagePixel({ GetPosition() });
+
+	if (RGB(0, 0, 255) == Color)
+	{
+		Off();
+		return false;
+
+
+	}
 	// 동작
 	//  동작
 	//  동작

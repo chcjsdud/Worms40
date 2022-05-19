@@ -22,6 +22,7 @@ void MapBooks::Start()
 	BackGround_->SetPivot(GroundHalf);
 
 	Ground_ = CreateRenderer(IMG_MAPBOOKS, (int)RenderOrder::BackGround_2);
+	GroundHalf = Ground_->GetScale().Half();
 	Ground_->SetPivot(GroundHalf);
 
 	ColMap_ = GameEngineImageManager::GetInst()->Find("IMG_MAPBOOKS_GROUND");

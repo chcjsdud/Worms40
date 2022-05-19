@@ -21,10 +21,6 @@ void WeaponMaster::Start()
 
 void WeaponMaster::Update()
 {
-	//int Color = PixelTestImage_->GetImagePixel({ GetPosition() });
 
-	//if (RGB(255, 255, 255) == Color)
-	//{
-
-	//}
+	
 }
