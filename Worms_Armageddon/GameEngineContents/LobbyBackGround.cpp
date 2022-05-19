@@ -13,8 +13,9 @@ LobbyBackGround::~LobbyBackGround()
 
 void LobbyBackGround::Start()
 {
-	BackGround_ = CreateRenderer(static_cast<int>(RenderOrder::BackGround));
+	BackGround_ = CreateRenderer(static_cast<int>(RenderOrder::BackGround_0));
 	BackGround_->SetImage("LobbyBackground.bmp");
+	//BackGround_->SetImage("BlueGrad.bmp");
 	BackGround_->SetPivot(GameEngineWindow::GetScale().Half());
 	BackGround_->SetScale(GameEngineWindow::GetScale());
 }

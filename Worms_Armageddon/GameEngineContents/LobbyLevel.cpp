@@ -5,6 +5,9 @@
 #include "TeamEditBox.h"
 #include "ChatBox.h"
 #include "TypingBox.h"
+#include "RollingStar.h"
+#include "ReadyButton.h"
+#include "TerrainBox.h"
 #include "Cursor.h"
 #include "Enums.h"
 
@@ -36,23 +39,23 @@ void LobbyLevel::Loading()
 	TeamEditBox_ = CreateActor<TeamEditBox>(static_cast<int>(ActorGroup::UI));
 	ChatBox_ = CreateActor<ChatBox>(static_cast<int>(ActorGroup::UI));
 	TypingBox_ = CreateActor<TypingBox>(static_cast<int>(ActorGroup::UI));
+	RollingStar_ = CreateActor<RollingStar>(static_cast<int>(ActorGroup::UI));
+	ReadyButton_ = CreateActor<ReadyButton>(static_cast<int>(ActorGroup::UI));
+	TerrainBox_ = CreateActor<TerrainBox>(static_cast<int>(ActorGroup::UI));
+
 }
 
 void LobbyLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	PlayersBox_->SetPosition(float4{ 16, 13 });
-	TeamListBox_->SetPosition(float4{ 260, 13 });
-	TeamEditBox_->SetPosition(float4{ 260, 296 });
-	ChatBox_->SetPosition(float4{ 16, 477 });
-	TypingBox_->SetPosition(float4{ 16, 814 });
+	PlayersBox_->SetPosition({ 16, 13 });
+	TeamListBox_->SetPosition({ 260, 13 });
+	TeamEditBox_->SetPosition({ 260, 296 });
+	ChatBox_->SetPosition({ 16, 477 });
+	TypingBox_->SetPosition({ 16, 814 });
 
-	// 원본 비교 용
-	//PlayersBox_->Off();
-	//TeamListBox_->Off();
-	//TeamEditBox_->Off();
-	//ChatBox_->Off();
-	//TypingBox_->Off();
-
+	RollingStar_->SetPosition({ 679, 100 });
+	ReadyButton_->SetPosition({ 19, 299 });
+	TerrainBox_->SetPosition({ 785, 22 });
 }
 
 void LobbyLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)

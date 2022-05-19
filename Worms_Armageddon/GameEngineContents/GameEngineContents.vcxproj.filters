@@ -63,6 +63,21 @@
     <ClInclude Include="Baz.h">
       <Filter>02.PlayLevel\Weapon</Filter>
     </ClInclude>
+    <ClInclude Include="RollingStar.h">
+      <Filter>01.LobbyLevel\StarSpawner</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainBox.h">
+      <Filter>01.LobbyLevel\LobbyActor</Filter>
+    </ClInclude>
+    <ClInclude Include="ReadyButton.h">
+      <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="StartButton.h">
+      <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="ExitButton.h">
+      <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
+    </ClInclude>
     <ClInclude Include="SmallCloud.h">
       <Filter>02.PlayLevel\TestActor</Filter>
     </ClInclude>
@@ -128,6 +143,21 @@
     <ClCompile Include="Baz.cpp">
       <Filter>02.PlayLevel\Weapon</Filter>
     </ClCompile>
+    <ClCompile Include="RollingStar.cpp">
+      <Filter>01.LobbyLevel\StarSpawner</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainBox.cpp">
+      <Filter>01.LobbyLevel\LobbyActor</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadyButton.cpp">
+      <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="StartButton.cpp">
+      <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="ExitButton.cpp">
+      <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
+    </ClCompile>
     <ClCompile Include="SmallCloud.cpp">
       <Filter>02.PlayLevel\TestActor</Filter>
     </ClCompile>
@@ -159,6 +189,12 @@
     </Filter>
     <Filter Include="02.PlayLevel\UI">
       <UniqueIdentifier>{c64655e0-e238-4f34-8871-e10fcd9e5199}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.LobbyLevel\StarSpawner">
+      <UniqueIdentifier>{be5de983-1b2e-43f0-8ce9-e647ee3f8dde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.LobbyLevel\LobbyActor\Button">
+      <UniqueIdentifier>{6184b198-e4ce-4492-81e1-d33be17f814d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -180,11 +180,31 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ExitButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameOptions.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="SmallCloud.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ReadyButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RollingStar.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="StartButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TerrainBox.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -249,7 +269,27 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="ExitButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameOptions.cpp" />
+    <ClCompile Include="ReadyButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RollingStar.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="StartButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TerrainBox.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="SmallCloud.cpp">
       <SubType>
       </SubType>

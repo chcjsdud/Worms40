@@ -147,6 +147,8 @@ void Worms::GameInit()
 			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 		}
 
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("stars.bmp");
+		Image->Cut({ 24, 24 });
 	}
 
 
