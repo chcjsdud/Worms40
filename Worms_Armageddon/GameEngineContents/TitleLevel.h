@@ -9,6 +9,7 @@ enum class TITLE_STATE
 	StartLogo,
 	MainLogo,
 	WhiteFadeOut,
+	FontUpdate,
 	Update,
 };
 
@@ -48,8 +49,12 @@ private:
 	TitleImage* WhiteFadeOut_;
 	TitleImage* BlackFadeInOut_;
 
+	int FontCount_;
+
 	float WhiteFadeOutAlpha_;
 	float BlackFadeInOutAlpha_;
+
+	float FontTimer_;
 
 	TITLE_STATE TitleState_;
 

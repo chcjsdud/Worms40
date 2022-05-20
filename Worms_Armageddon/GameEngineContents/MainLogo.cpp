@@ -24,9 +24,9 @@ void MainLogo::Start()
 	MainLogoRenderer_->SetOrder(static_cast<int>(TITLE_RENDER_ORDER::MainLogo));
 
 	CircleRenderer_ = CreateRenderer("TitleLogo_Actor.bmp");
+	CircleRenderer_->SetPivot({-105.f, 0});
 	CircleRenderer_->CreateAnimation("TitleLogo_Actor.bmp", "TITLE_LOGO_ANIMATION", 0, 4, 0.150f, true);
 	CircleRenderer_->CreateAnimation("TitleLogo_Actor.bmp", "TITLE_LOGO_INIT", 0, 0, 0, false);
-
 	CircleRenderer_->ChangeAnimation("TITLE_LOGO_INIT");
 	CircleRenderer_->SetOrder(static_cast<int>(TITLE_RENDER_ORDER::MainLogo));
 
