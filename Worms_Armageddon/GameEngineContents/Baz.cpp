@@ -17,8 +17,11 @@ Baz::~Baz()
 
 void Baz::Start()
 {
-	WeaponRender_ = CreateRenderer(IMG_MISSILE, (int)RenderOrder::Weapon);
-	WeaponRender_->SetIndex(0);
+	/*WeaponRender_ = CreateRenderer(IMG_MISSILE, (int)RenderOrder::Weapon);
+	WeaponRender_->SetIndex(0);*/
+	WeaponRender_ = CreateRenderer((int)RenderOrder::Weapon);
+	WeaponRender_->SetImage("BazSpin.bmp");
+	WeaponRender_->SetRotationFilter("BazSpinFilter.bmp");
 	BazDir_ += float4::UP * 100;
 }
 void Baz::Update()
@@ -49,7 +52,7 @@ bool Baz::WeaponUpdate()
 
 
 	// 테스트
-	if (true == GameEngineInput::GetInst()->IsDown(KEY_ACTION))
+	if (true == GameEngineInput::GetInst()->IsDown(KEY_FIRE))
 	{
 		// 무기가 폭발하고 
 		// 동작 끝 - > 플레이어의 State가 변경, 턴종료
@@ -59,10 +62,16 @@ bool Baz::WeaponUpdate()
 	PlayLevel* Play = dynamic_cast<PlayLevel*>(GetLevel());
 	float4 Wind = Play->GetWindDir();
 
-
 	SetMove(BazDir_ * GameEngineTime::GetDeltaTime());
 	BazDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * 100;
 	BazDir_ += Wind * GameEngineTime::GetDeltaTime();
+
+	float4 MyPos = GetPosition();
+	float4 GetNextPos = BazDir_ + GetPosition();
+
+
+	//float Degree = float4::VectorXYtoDegree(GetPosition(), GetPosition() + BazDir_);
+	//WeaponRender_->SetRotationZ(Degree);
 
 	int Color = GetColMapImage()->GetImagePixel({ GetPosition() });
 

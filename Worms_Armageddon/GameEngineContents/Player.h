@@ -47,6 +47,9 @@ private:
 	// 생성할 무기
 	WeaponMaster* Weapon_;
 
+	std::string DirName_;
+	std::string StateName_;
+
 	// 현재 레벨
 	inline std::string GetCurrentLevel()
 	{

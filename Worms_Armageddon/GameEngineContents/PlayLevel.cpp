@@ -25,7 +25,7 @@ void PlayLevel::Loading()
 	//마우스
 	Mouse_ = CreateActor<Cursor>((int)ActorGroup::UI);
 	//바람 게이지
-	WindGaugeActor_ = CreateActor<WindGauge>((int)ActorGroup::UI);
+	WindGaugeActor_ = CreateActor<WindGauge>((int)RenderOrder::UI);
 	WindGaugeActor_->SetPosition({ 1150.0f,20.0f });
 	//구름
 	LargeCloudActor_ = CreateActor<LargeCloud>();

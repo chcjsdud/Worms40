@@ -206,6 +206,8 @@ void Worms::GameInit()
 			Image->Cut({ 60, 60 });
 			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_BACKFLIP_LEFT);
 			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_WALK_LEFT);
+			Image->Cut({ 60, 60 });
 
 			//무기
 			Image = GameEngineImageManager::GetInst()->Find(IMG_HOMING_AIM_LEFT);
@@ -227,6 +229,8 @@ void Worms::GameInit()
 			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_FLYDOWN_RIGHT);
 			Image->Cut({ 60, 60 });
 			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_BACKFLIP_RIGHT);
+			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_WALK_RIGHT);
 			Image->Cut({ 60, 60 });
 
 			//무기

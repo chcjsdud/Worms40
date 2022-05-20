@@ -14,7 +14,7 @@ SmallCloud::~SmallCloud()
 
 void SmallCloud::Start()
 {
-	CloudRenderer_ = CreateRenderer((int)ActorGroup::UI);
+	CloudRenderer_ = CreateRenderer((int)RenderOrder::BackGround_3);
 	CloudRenderer_->CreateAnimation("clouds.bmp", "CloudsAni", 0, 19,0.05f, true, true);
 	CloudRenderer_->ChangeAnimation("CloudsAni");
 }

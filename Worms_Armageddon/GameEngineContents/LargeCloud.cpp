@@ -16,7 +16,7 @@ LargeCloud::~LargeCloud()
 
 void LargeCloud::Start()
 {	
-	CloudRenderer_ = CreateRenderer(10000);
+	CloudRenderer_ = CreateRenderer((int)RenderOrder::BackGround_3);
 	CloudRenderer_->CreateAnimation("cloudl.bmp", "CloudlAni", 0, 19, 0.05f, true,true);
 	CloudRenderer_->ChangeAnimation("CloudlAni");
 

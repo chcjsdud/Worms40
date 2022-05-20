@@ -14,7 +14,6 @@
     <ClInclude Include="StartLogo.h">
       <Filter>00.TitleLevel\TitleActor</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h" />
     <ClInclude Include="LobbyBackGround.h">
       <Filter>01.LobbyLevel\LobbyActor</Filter>
     </ClInclude>
@@ -37,10 +36,10 @@
       <Filter>02.PlayLevel\UI</Filter>
     </ClInclude>
     <ClInclude Include="WeaponMaster.h">
-      <Filter>02.PlayLevel\Weapon</Filter>
+      <Filter>Player\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="Baz.h">
-      <Filter>02.PlayLevel\Weapon</Filter>
+      <Filter>Player\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="RollingStar.h">
       <Filter>01.LobbyLevel\StarSpawner</Filter>
@@ -55,16 +54,16 @@
       <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
     </ClInclude>
     <ClInclude Include="SmallCloud.h">
-      <Filter>02.PlayLevel\BackGround</Filter>
+      <Filter>02.PlayLevel\BackGroundActor</Filter>
     </ClInclude>
     <ClInclude Include="PlayLevelTestMap.h">
-      <Filter>02.PlayLevel\BackGround</Filter>
+      <Filter>02.PlayLevel\BackGroundActor</Filter>
     </ClInclude>
     <ClInclude Include="LargeCloud.h">
-      <Filter>02.PlayLevel\BackGround</Filter>
+      <Filter>02.PlayLevel\BackGroundActor</Filter>
     </ClInclude>
     <ClInclude Include="Water.h">
-      <Filter>02.PlayLevel\BackGround</Filter>
+      <Filter>02.PlayLevel\BackGroundActor</Filter>
     </ClInclude>
     <ClInclude Include="MapBooks.h">
       <Filter>02.PlayLevel\Map</Filter>
@@ -96,6 +95,9 @@
     <ClInclude Include="TeamListBox.h">
       <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
@@ -111,8 +113,6 @@
     <ClCompile Include="StartLogo.cpp">
       <Filter>00.TitleLevel\TitleActor</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="LobbyBackGround.cpp">
       <Filter>01.LobbyLevel\LobbyActor</Filter>
     </ClCompile>
@@ -132,10 +132,10 @@
       <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="WeaponMaster.cpp">
-      <Filter>02.PlayLevel\Weapon</Filter>
+      <Filter>Player\Weapon</Filter>
     </ClCompile>
     <ClCompile Include="Baz.cpp">
-      <Filter>02.PlayLevel\Weapon</Filter>
+      <Filter>Player\Weapon</Filter>
     </ClCompile>
     <ClCompile Include="RollingStar.cpp">
       <Filter>01.LobbyLevel\StarSpawner</Filter>
@@ -150,16 +150,16 @@
       <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
     </ClCompile>
     <ClCompile Include="PlayLevelTestMap.cpp">
-      <Filter>02.PlayLevel\BackGround</Filter>
+      <Filter>02.PlayLevel\BackGroundActor</Filter>
     </ClCompile>
     <ClCompile Include="SmallCloud.cpp">
-      <Filter>02.PlayLevel\BackGround</Filter>
+      <Filter>02.PlayLevel\BackGroundActor</Filter>
     </ClCompile>
     <ClCompile Include="LargeCloud.cpp">
-      <Filter>02.PlayLevel\BackGround</Filter>
+      <Filter>02.PlayLevel\BackGroundActor</Filter>
     </ClCompile>
     <ClCompile Include="Water.cpp">
-      <Filter>02.PlayLevel\BackGround</Filter>
+      <Filter>02.PlayLevel\BackGroundActor</Filter>
     </ClCompile>
     <ClCompile Include="MapBooks.cpp">
       <Filter>02.PlayLevel\Map</Filter>
@@ -188,6 +188,12 @@
     <ClCompile Include="TerrainBox.cpp">
       <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="02.PlayLevel">
@@ -199,9 +205,6 @@
     <Filter Include="01.LobbyLevel">
       <UniqueIdentifier>{8084ddbc-5d77-4a00-ab28-f1dccd093d96}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.PlayLevel\TestActor">
-      <UniqueIdentifier>{fd58066b-ce4b-45e0-9990-7b4a2a9c9c50}</UniqueIdentifier>
-    </Filter>
     <Filter Include="00.TitleLevel\TitleActor">
       <UniqueIdentifier>{18ec502e-d698-4176-b91a-ed1808d5df9b}</UniqueIdentifier>
     </Filter>
@@ -210,9 +213,6 @@
     </Filter>
     <Filter Include="Global">
       <UniqueIdentifier>{5e5f2c03-780d-427d-ab9c-46425c823768}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.PlayLevel\Weapon">
-      <UniqueIdentifier>{c0fca085-c4b7-4fba-bd07-7ee15314afa2}</UniqueIdentifier>
     </Filter>
     <Filter Include="02.PlayLevel\UI">
       <UniqueIdentifier>{c64655e0-e238-4f34-8871-e10fcd9e5199}</UniqueIdentifier>
@@ -229,7 +229,13 @@
     <Filter Include="02.PlayLevel\Map">
       <UniqueIdentifier>{cb029cd1-c9c5-4a4b-b214-bb019df3c8a7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.PlayLevel\BackGround">
+    <Filter Include="Player">
+      <UniqueIdentifier>{4d283624-41dc-4e67-b4f1-9d3f973f8cf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player\Weapon">
+      <UniqueIdentifier>{c0fca085-c4b7-4fba-bd07-7ee15314afa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.PlayLevel\BackGroundActor">
       <UniqueIdentifier>{5e393cdd-a522-42b7-90e4-81705b4a1547}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

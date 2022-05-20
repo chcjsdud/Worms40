@@ -15,29 +15,33 @@ WindGauge::~WindGauge()
 
 void WindGauge::Start()
 {
-	WindGaugeRenderer_ = CreateRenderer((int)ActorGroup::UI);
+	WindGaugeRenderer_ = CreateRenderer((int)RenderOrder::UI);
 	WindGaugeRenderer_->SetImage("WindGauge.bmp");
+	WindGaugeRenderer_->CameraEffectOff();
 
 	//왼쪽방향 UI애니메이션
-	WindLeftRenderer_ = CreateRenderer((int)ActorGroup::UI);
+	WindLeftRenderer_ = CreateRenderer((int)RenderOrder::UI);
 	WindLeftRenderer_->CreateAnimation("windBar.bmp", "WindBar", 0, 7,0.02f, true);
 	WindLeftRenderer_->ChangeAnimation("WindBar");
 	WindLeftRenderer_->SetPivot({-45,0 });
+	WindLeftRenderer_->CameraEffectOff();
 
 	//오른쪽방향 UI애니메이션
-	WindRightRenderer_= CreateRenderer((int)ActorGroup::UI);
+	WindRightRenderer_= CreateRenderer((int)RenderOrder::UI);
 	WindRightRenderer_->CreateAnimation("windBar.bmp", "WindBar", 8, 15, 0.02f, true);
 	WindRightRenderer_->ChangeAnimation("WindBar");
 	WindRightRenderer_->SetPivot({ 45,0 });
+	WindRightRenderer_->CameraEffectOff();
 
 
 
-
-	WindLeftHiderRenderer_ = CreateRenderer("WindBarHider.bmp", (int)ActorGroup::UI, RenderPivot::LEFT);
+	WindLeftHiderRenderer_ = CreateRenderer("WindBarHider.bmp", (int)RenderOrder::UI, RenderPivot::LEFT);
 	WindLeftHiderRenderer_->SetPivot({ -90,0 });
+	WindLeftHiderRenderer_->CameraEffectOff();
 
-	WindRightHiderRenderer_ = CreateRenderer("WindBarHider.bmp", (int)ActorGroup::UI, RenderPivot::RIGHT);
+	WindRightHiderRenderer_ = CreateRenderer("WindBarHider.bmp", (int)RenderOrder::UI, RenderPivot::RIGHT);
 	WindRightHiderRenderer_->SetPivot({ 89,0 });
+	WindRightHiderRenderer_->CameraEffectOff();
 	
 
 	//WindDir_ = WindType::Left;
@@ -61,19 +65,22 @@ void WindGauge::Update()
 		{//오른쪽바람이 사라지면
 			MyWindFigure_ = MaxWindFigure_ - WindFigure_;
 
+			//같으면 변하지않게
 			if (MyWindFigure_ == HideWindFigure_)
 			{
 				HideWindFigure_ = MyWindFigure_;
 			}
-			else if (MyWindFigure_ >= HideWindFigure_)
+			else if (MyWindFigure_ >= HideWindFigure_) //현재 바람세기가 바뀐바람보다 낮으면
 			{
 				HideWindFigure_++;
 			}
-			else if (MyWindFigure_ <= HideWindFigure_)
+			else if (MyWindFigure_ <= HideWindFigure_) //현재 바람세기가 바뀐바람세기보다 높으면
 			{
 				HideWindFigure_--;
 			}
 
+			//이미지 갱신 
+			//자연스럽게 점점 줄어들게하기위해 이미지크기를 비율로 계산해서 변경
 			WindLeftHider_x = WindLeftHiderRenderer_->GetImageScale().x * HideWindFigure_ / MaxWindFigure_;
 			WindLeftHiderRenderer_->SetScale({ static_cast<float>(WindLeftHider_x), WindLeftHiderRenderer_->GetImageScale().y });
 		}
@@ -81,15 +88,15 @@ void WindGauge::Update()
 	}
 	else if (WindDir_ == WindType::Right)
 	{
-		if (88 > WindLeftHider_x)
+		if (88 > WindLeftHider_x)  //WindBarx크기가 88
 		{
-			WindLeftHider_x += 1;  //점점 없앤다
+			WindLeftHider_x += 1;  //점점 없앤다 Hiderx의 수치가 높을수록 가려짐
 			WindLeftHiderRenderer_->SetScale({ static_cast<float>(WindLeftHider_x), WindLeftHiderRenderer_->GetImageScale().y });
 			HideWindFigure_ = 100;
 		}
 		else
-		{//오른쪽바람이 사라지면
-			MyWindFigure_ = MaxWindFigure_ - WindFigure_;
+		{//왼쪽바람이 사라지면
+			MyWindFigure_ = MaxWindFigure_ - WindFigure_;  //가려야할 이미지는 최대바람세기 - 현재바람세기
 
 			if (MyWindFigure_ == HideWindFigure_)
 			{

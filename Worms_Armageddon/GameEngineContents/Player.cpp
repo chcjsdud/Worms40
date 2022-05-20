@@ -16,6 +16,9 @@ Player::~Player()
 
 void Player::Start()
 {
+	//임시 DirName 초기값
+	DirName_ = ANIM_KEYWORD_DIR_LEFT;
+
 	this->SetPosition({ 300, 300 });
 	PlayerAnimationInit();
 	PlayerKeyInit();
@@ -46,6 +49,10 @@ void Player::PlayerAnimationInit()
 	PlayerRenderer_->CreateAnimation(IMG_BAZ_ON_LEFT, ANIM_NAME_WEAPON_ON_LEFT, 0, 5, 0.1f, false);
 	PlayerRenderer_->CreateAnimation(IMG_BAZ_ON_RIGHT, ANIM_NAME_WEAPON_ON_RIGHT, 0, 5, 0.1f, false);
 
+	// 좌우 걷는 애니메이션
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_WALK_LEFT, ANIM_NAME_PLAYER_WALKLEFT, 0, 14, 0.03f, true);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_WALK_RIGHT, ANIM_NAME_PLAYER_WALKRIGHT, 0, 14, 0.03f, true);
+
 	PlayerRenderer_->ChangeAnimation(ANIM_NAME_WEAPON_ON_RIGHT);
 }
 
@@ -67,7 +74,9 @@ void Player::PlayerKeyInit()
 		GameEngineInput::GetInst()->CreateKey(KEY_ANGLE_UP, VK_UP);
 		GameEngineInput::GetInst()->CreateKey(KEY_ANGLE_DOWN, VK_DOWN);
 
-		GameEngineInput::GetInst()->CreateKey(KEY_ACTION, VK_SPACE);
+
+		// Fire
+		GameEngineInput::GetInst()->CreateKey(KEY_FIRE, VK_SPACE);
 	}
 }
 
@@ -99,7 +108,7 @@ bool Player::IsMoveKeyPress()
 // 액션키가 눌릴경우 True
 bool Player::IsActionKeyDown()
 {
-	if (false == GameEngineInput::GetInst()->IsDown(KEY_ACTION))
+	if (false == GameEngineInput::GetInst()->IsDown(KEY_FIRE))
 	{
 		return false;
 	}
@@ -110,7 +119,7 @@ bool Player::IsActionKeyDown()
 // 액션키가 눌리고 있을 경우
 bool Player::IsActionKeyPress()
 {
-	if (false == GameEngineInput::GetInst()->IsPress(KEY_ACTION))
+	if (false == GameEngineInput::GetInst()->IsPress(KEY_FIRE))
 	{
 		return false;
 	}
@@ -121,7 +130,7 @@ bool Player::IsActionKeyPress()
 // 액션키가 떨어진 경우
 bool Player::IsActionKeyUp()
 {
-	if (false == GameEngineInput::GetInst()->IsUp(KEY_ACTION))
+	if (false == GameEngineInput::GetInst()->IsUp(KEY_FIRE))
 	{
 		return false;
 	}
@@ -202,7 +211,7 @@ void Player::MoveCheck(float4 _MoveDir)
 	SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
 
 	// 임시데이터
-	PlayerAnimationChange(ANIM_KEYWORD_PLAYER_IDLE);
+	//PlayerAnimationChange(ANIM_KEYWORD_PLAYER_IDLE);
 }
 
 // 낙하중 충돌체크
@@ -268,16 +277,15 @@ void Player::StateUpdate()
 
 void Player::PlayerAnimationChange(std::string _Anim)
 {
-	std::string Dir;
 
 	if (MoveDir_.CompareInt2D(float4::LEFT))
 	{
-		Dir = ANIM_KEYWORD_DIR_LEFT;
+		DirName_ = ANIM_KEYWORD_DIR_LEFT;
 	}
 	if (MoveDir_.CompareInt2D(float4::RIGHT))
 	{
-		Dir = ANIM_KEYWORD_DIR_RIGHT;
+		DirName_ = ANIM_KEYWORD_DIR_RIGHT;
 	}
 
-	PlayerRenderer_->ChangeAnimation(_Anim + Dir);
+	PlayerRenderer_->ChangeAnimation(_Anim + DirName_);
 }

@@ -37,16 +37,19 @@ void Player::MoveUpdate()
 	// 이동 상태에서 방향
 	if (true == GameEngineInput::GetInst()->IsPress(KEY_MOVE_RIGHT))
 	{
-		//PlayerAnimationChange(ANIM_WALK_RIGHT);
-
+		StateName_ = ANIM_KEYWORD_PLAYER_WALK;
 		MoveCheck(float4::RIGHT);
+		
 	}
 	if (true == GameEngineInput::GetInst()->IsPress(KEY_MOVE_LEFT))
 	{
-		//PlayerAnimationChange(ANIM_WALK_LEFT);
-
+		StateName_ = ANIM_KEYWORD_PLAYER_WALK;
 		MoveCheck(float4::LEFT);
+
 	}
+
+
+	PlayerAnimationChange(StateName_);
 }
 
 void Player::ActionUpdate()
@@ -61,13 +64,15 @@ void Player::ActionUpdate()
 
 void Player::IdleStart()
 {
+	StateName_ = ANIM_KEYWORD_PLAYER_IDLE;
 	// 아무것도 안함을 시작함
 	// TODO::현재 들고 있는 무기의 종류에 따라서 이미지를 변경?
-	// ChangeAnimation
+	PlayerAnimationChange(StateName_);
 }
 
 void Player::MoveStart()
 {
+
 	// 이동을 시작함
 }
 

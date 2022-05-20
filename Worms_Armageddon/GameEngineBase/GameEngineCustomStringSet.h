@@ -55,7 +55,7 @@
 #define KEY_MOVE_BACKFLIP "MoveBackflip"
 #define KEY_ANGLE_UP "AngleUp"
 #define KEY_ANGLE_DOWN "AngleDown"
-#define KEY_ACTION "PlayerAction"
+#define KEY_FIRE "PlayerAction"
 
 // 마우스
 #define KEY_MOUSE_LEFT "ClickLeft"
@@ -89,6 +89,8 @@
 #define IMG_PLAYER_FLYDOWN_RIGHT "flyDownRight.bmp"
 #define IMG_PLAYER_BACKFLIP_LEFT "backflipLeft.bmp"
 #define IMG_PLAYER_BACKFLIP_RIGHT "backflipRight.bmp"
+#define IMG_PLAYER_WALK_LEFT "WalkLeft.bmp"
+#define IMG_PLAYER_WALK_RIGHT "WalkRight.bmp"
 
 // 애니메이션 키워드
 #define ANIM_KEYWORD_PLAYER_IDLE "idle"
@@ -96,6 +98,7 @@
 #define ANIM_KEYWORD_PLAYER_FLYLINK "flyLink"
 #define ANIM_KEYWORD_PLAYER_FLYDOWN "flyDown"
 #define ANIM_KEYWORD_PLAYER_BACKFLIP "backflip"
+#define ANIM_KEYWORD_PLAYER_WALK "Walk"
 
 #define ANIM_KEYWORD_DIR_LEFT "Left"
 #define ANIM_KEYWORD_DIR_RIGHT "Right"
@@ -111,6 +114,9 @@
 #define ANIM_NAME_PLAYER_FLYDOWN_RIGHT "flyDownRight"
 #define ANIM_NAME_PLAYER_BACKFLIP_LEFT "backflipLeft"
 #define ANIM_NAME_PLAYER_BACKFLIP_RIGHT "backflipRight"
+#define ANIM_NAME_PLAYER_WALKLEFT "WalkLeft"
+#define ANIM_NAME_PLAYER_WALKRIGHT "WalkRight"
+
 
 #define ANIM_NAME_WEAPON_ON_LEFT "bazOnLeft"
 #define ANIM_NAME_WEAPON_ON_RIGHT "bazOnRight"
