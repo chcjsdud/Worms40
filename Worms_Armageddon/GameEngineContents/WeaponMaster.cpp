@@ -5,6 +5,8 @@
 #include <GameEngineBase/GameEngineTime.h>
 #include <GameEngine/GameEngineImage.h>
 
+GameMapMaster* WeaponMaster::GameMap_ = nullptr;
+
 WeaponMaster::WeaponMaster() 
 {
 }

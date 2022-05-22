@@ -23,6 +23,11 @@ public:
 		return BackBufferImage_;
 	}
 
+	static inline GameEngineImage* WindowMainImage()
+	{
+		return WindowMainImage_;
+	}
+
 	static HDC BackBufferDC();
 
 	virtual void GameInit() = 0;

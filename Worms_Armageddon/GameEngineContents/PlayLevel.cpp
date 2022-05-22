@@ -27,19 +27,21 @@ void PlayLevel::Loading()
 	//바람 게이지
 	WindGaugeActor_ = CreateActor<WindGauge>((int)RenderOrder::UI);
 	WindGaugeActor_->SetPosition({ 1150.0f,20.0f });
-	//구름
+
+	// 배경 이미지
 	LargeCloudActor_ = CreateActor<LargeCloud>();
 	LargeCloudActor_->SetPosition({ 200.0f,200.0f});
-	
 	SmallCloudActor_ = CreateActor<SmallCloud>();
 	SmallCloudActor_->SetPosition({ 250.0f,200.0f });
-
 	WaterActor_ = CreateActor<Water>();
 	WaterActor_->SetPosition({ 300.0f,300.0f });
-	WeaponTset_ = CreateActor<WeaponMaster>();
-	// 테스트용 코드
 
-	// TODO::수정
+	// 무기 설정
+	WeaponMaster_ = CreateActor<WeaponMaster>();
+	WeaponMaster_->SetGameMap(GameMapInfo_);
+	// 테스트용 코드 끝
+
+	// TODO::플레이어가 여럿이 나오도록 수정
 	Player_ = CreateActor<Player>();
 
 	if (false == GameEngineInput::GetInst()->IsKey("TestClick"))

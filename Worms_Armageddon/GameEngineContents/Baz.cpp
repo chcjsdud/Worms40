@@ -5,6 +5,7 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngine/GameEngineImage.h>
+#include <GameENgine/GameEngine.h>
 
 Baz::Baz()
 	: IsStart_(false)
@@ -73,10 +74,16 @@ bool Baz::WeaponUpdate()
 	//float Degree = float4::VectorXYtoDegree(GetPosition(), GetPosition() + BazDir_);
 	//WeaponRender_->SetRotationZ(Degree);
 
-	int Color = GetColMapImage()->GetImagePixel({ GetPosition() });
+	int Color = GetGameMap()->GetColMap()->GetImagePixel({GetPosition()});
 
 	if (RGB(0, 0, 255) == Color)
 	{
+		
+		// 파인땅을 그려야할 곳
+		GameEngine::WindowMainImage();
+
+
+
 		Off();
 		return false;
 

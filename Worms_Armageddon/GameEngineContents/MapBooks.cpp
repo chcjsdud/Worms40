@@ -27,7 +27,7 @@ void MapBooks::Start()
 	GroundHalf = Ground_->GetScale().Half();
 	Ground_->SetPivot(GroundHalf);
 
-	ColMap_ = GameEngineImageManager::GetInst()->Find("IMG_MAPBOOKS_GROUND");
+	ColMap_ = GameEngineImageManager::GetInst()->Find(IMG_MAPBOOKS_GROUND);
 }
 
 void MapBooks::Update()

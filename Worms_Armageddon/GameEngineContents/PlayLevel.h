@@ -38,7 +38,7 @@ private:
 	SmallCloud* SmallCloudActor_;
 
 	Water* WaterActor_;
-	WeaponMaster* WeaponTset_;
+	WeaponMaster* WeaponMaster_;
 	Player* Player_;
 	Cursor* Mouse_;
 	WindGauge* WindGaugeActor_;

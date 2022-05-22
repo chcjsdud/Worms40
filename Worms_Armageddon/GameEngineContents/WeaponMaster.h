@@ -1,4 +1,5 @@
 #pragma once
+#include "GameMapMaster.h"
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineCustomStringSet.h>
 
@@ -22,15 +23,25 @@ public:
 		return true;
 	}
 
+	static inline void SetGameMap(GameMapMaster* _GameMap)
+	{
+		GameMap_ = _GameMap;
+	}
+
+	static inline GameMapMaster* GetGameMap()
+	{
+		return GameMap_;
+	}
 
 private: 
 	// 무기 발사 방향
 	float4 WeaponDir_;
 	// TODO::무기가 발사 되는순간 최초 실행(임시)
 	bool IsThrow_;
-	// 충돌용 맵 이미지
-	GameEngineImage* ColMapImage_;
 
+	// 레벨이 시작함과 동시에 초기화될 맵 정보
+	// static으로 설정하여 모든 무기가 공유하도록 함
+	static GameMapMaster* GameMap_;
 
 	static GameEngineImage* PixelTestImage_;
 	GameEngineRenderer* MapPixelTestRender_;
@@ -44,20 +55,10 @@ protected:
 		return WeaponDir_;
 	}
 
-	inline GameEngineImage* GetColMapImage()
-	{
-		return ColMapImage_;
-	}
-
 public:
 	inline void SetWeaponDir(float4 _WeaponDir)
 	{
 		WeaponDir_ = _WeaponDir;
-	}
-
-	inline void SetColMapImage(GameEngineImage* _ColMapImage)
-	{
-		ColMapImage_ = _ColMapImage;
 	}
 };
 

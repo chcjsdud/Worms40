@@ -36,10 +36,10 @@
       <Filter>02.PlayLevel\UI</Filter>
     </ClInclude>
     <ClInclude Include="WeaponMaster.h">
-      <Filter>Player\Weapon</Filter>
+      <Filter>02.PlayLevel\Player\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="Baz.h">
-      <Filter>Player\Weapon</Filter>
+      <Filter>02.PlayLevel\Player\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="RollingStar.h">
       <Filter>01.LobbyLevel\StarSpawner</Filter>
@@ -96,7 +96,7 @@
       <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Player</Filter>
+      <Filter>02.PlayLevel\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -132,10 +132,10 @@
       <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="WeaponMaster.cpp">
-      <Filter>Player\Weapon</Filter>
+      <Filter>02.PlayLevel\Player\Weapon</Filter>
     </ClCompile>
     <ClCompile Include="Baz.cpp">
-      <Filter>Player\Weapon</Filter>
+      <Filter>02.PlayLevel\Player\Weapon</Filter>
     </ClCompile>
     <ClCompile Include="RollingStar.cpp">
       <Filter>01.LobbyLevel\StarSpawner</Filter>
@@ -189,10 +189,10 @@
       <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Player</Filter>
+      <Filter>02.PlayLevel\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState.cpp">
-      <Filter>Player</Filter>
+      <Filter>02.PlayLevel\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -229,14 +229,14 @@
     <Filter Include="02.PlayLevel\Map">
       <UniqueIdentifier>{cb029cd1-c9c5-4a4b-b214-bb019df3c8a7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Player">
-      <UniqueIdentifier>{4d283624-41dc-4e67-b4f1-9d3f973f8cf1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Player\Weapon">
-      <UniqueIdentifier>{c0fca085-c4b7-4fba-bd07-7ee15314afa2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.PlayLevel\BackGroundActor">
       <UniqueIdentifier>{5e393cdd-a522-42b7-90e4-81705b4a1547}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.PlayLevel\Player">
+      <UniqueIdentifier>{4d283624-41dc-4e67-b4f1-9d3f973f8cf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.PlayLevel\Player\Weapon">
+      <UniqueIdentifier>{c0fca085-c4b7-4fba-bd07-7ee15314afa2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
