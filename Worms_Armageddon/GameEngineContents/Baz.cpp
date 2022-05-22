@@ -76,12 +76,22 @@ bool Baz::WeaponUpdate()
 
 	int Color = GetGameMap()->GetColMap()->GetImagePixel({GetPosition()});
 
+	// 맵과 충돌처리
 	if (RGB(0, 0, 255) == Color)
 	{
+		// 이미지를 가져와서 땅이 파여있는 상태를 메모리에 보존?
+		// 바닥
+		GameEngineImage* tmpGroundMap = GetGameMap()->GetGround()->GetImage();
+		// 충돌
+		GameEngineImage* tmpColMap = GetGameMap()->GetColMap();
 		
-		// 파인땅을 그려야할 곳
-		GameEngine::WindowMainImage();
+		// tmpGoundMap, tmpColMap에 {255, 0, 255}의 원 그리기처리
+		// tmpGroundMap->TransCopy(마젠타 원 이미지, , , , { 255, 0, 255 });
+		// tmpColMap->TransCopy(원 이미지, , , ,{ 255, 0, 255 });
 
+		// {255, 0, 255}의 원이 그려진 tmpGoundMap를 메인버퍼에 transCopy?\
+		// 어차피 다음 프레임에는 업데이트 될테니 필요 없을수도?
+		// -> 이러면 결국 마젠타부분은 그려지지 않을테니 의미없는것 같기도...
 
 
 		Off();
@@ -89,6 +99,7 @@ bool Baz::WeaponUpdate()
 
 
 	}
+
 	// 동작
 	//  동작
 	//  동작
