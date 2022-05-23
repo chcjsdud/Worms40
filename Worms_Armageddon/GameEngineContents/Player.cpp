@@ -202,19 +202,49 @@ void Player::MoveCheck(float4 _MoveDir)
 
 	// TODO::컬리전맵 취득
 	// GetMapColImage();
+	float4 NextLeftPos = { GetPosition().x + CheckLength.x - PLAYER_SIZE_X / 2 , GetPosition().y + CheckLength.y - 5.0f};
+	float4 NextRightPos = { GetPosition().x + CheckLength.x + PLAYER_SIZE_X / 2 , GetPosition().y + CheckLength.y - 5.0f };
+	
+
+	int LeftColor = ColMapImage_->GetImagePixel(NextLeftPos);
+	int RightColor = ColMapImage_->GetImagePixel(NextRightPos);
+
+	float4 LeftUpPos = float4::UP;
+	float4 RightUpPos = float4::UP;
+
+	int LeftUpColor = ColMapImage_->GetImagePixel(GetPosition() + float4{ -12.0f, 0.0f } + LeftUpPos);
+	int RightUpColor = ColMapImage_->GetImagePixel(GetPosition() + float4{ 12.0f, 0.0f } + RightUpPos);
 
 
 	// TODO::맵과 충돌 판정
-	//float4 NextPos = GetPosition() + CheckLength;
-	//float4 CheckPos = SetCheckPos(NextPos);
 
-	//int Color = MapColImage_->GetImagePixel(CheckPos);
-
+	if (RGB(0, 0, 255) == LeftUpColor)
+	{
+		while (RGB(0, 0, 255) != LeftUpColor)
+		{
+			LeftUpPos += float4::UP;
+			//LeftUpColor = ColMapImage_->GetImagePixel(GetPosition() + LeftUpPos);
+		}
+		SetMove(LeftUpPos);
+	}
+	else if (RGB(0, 0, 255) == RightUpColor)
+	{
+		while (RGB(0, 0, 255) != RightUpColor)
+		{
+			RightUpPos += float4::UP;
+			//RightUpColor = ColMapImage_->GetImagePixel(GetPosition() + RightUpPos);
+		}
+		SetMove(RightUpPos);
+	}
 	// 이동
-	SetMove(MoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
 
-	// 임시데이터
-	//PlayerAnimationChange(ANIM_KEYWORD_PLAYER_IDLE);
+	if(RGB(0,0,255) != LeftColor &&
+		RGB(0,0,255)!=RightColor)
+	{
+
+		SetMove(MoveDir_* GameEngineTime::GetDeltaTime()* Speed_);
+	}
+
 }
 
 // 낙하중 충돌체크
@@ -222,7 +252,7 @@ void Player::MoveFall()
 {
 	float4 CheckLength = float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
 
-	float4 NextPos = GetPosition() + CheckLength;
+	float4 NextPos = { GetPosition().x + CheckLength.x , GetPosition().y + CheckLength.y + PLAYER_SIZE_Y / 2 };
 
 	int Color = ColMapImage_->GetImagePixel(NextPos);
 
@@ -254,6 +284,8 @@ void Player::MoveFall()
 
 
 }
+
+
 
 // 상태 변경
 void Player::StateChange(PlayerState _State)
