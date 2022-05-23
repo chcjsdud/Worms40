@@ -1,9 +1,11 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
+#include <string>
+#include "Button.h"
 
 // Ό³Έν :
 class GameEngineRenderer;
-class ReadyButton : public GameEngineActor
+class ReadyButton : public Button
 {
 public:
 	// constrcuter destructer
@@ -36,9 +38,14 @@ protected:
 	virtual void Update() override;
 
 private:
+	void OnClickButton() {};
+
 	void ButtonBorder();
+	void ButtonNameUpdate();
 
 private:
+	MOUSE_STATE MouseState_;
+
 	GameEngineRenderer* ButtonRenderer_;
 
 	bool IsMouseIn_;
