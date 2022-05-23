@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
 
+#include "Font.h"
 
 // Ό³Έν :
 class GameEngineActor;
@@ -37,6 +38,9 @@ private:
 	GameEngineActor* ReadyButton_;
 	GameEngineActor* StartButton_;
 	GameEngineActor* ExitButton_;
+
+	Font* FontTest_;
+
 
 };
 

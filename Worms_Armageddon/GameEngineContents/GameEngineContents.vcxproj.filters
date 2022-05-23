@@ -98,6 +98,9 @@
     <ClInclude Include="Player.h">
       <Filter>02.PlayLevel\Player</Filter>
     </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Global</Filter>
+    </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
     </ClInclude>
@@ -196,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="PlayerState.cpp">
       <Filter>02.PlayLevel\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>01.LobbyLevel\LobbyActor\Button</Filter>

@@ -29,6 +29,7 @@ enum class RenderOrder
 	Weapon,
 	Player,
 	UI,
+	Font,
 	Cursor,
 };
 

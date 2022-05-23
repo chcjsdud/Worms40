@@ -87,6 +87,9 @@ void Worms::GameInit()
 			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 		}
 
+		GameEngineImage* Font = GameEngineImageManager::GetInst()->Find("FontEdit.bmp");
+		Font->Cut({ 16, 16 });
+
 	}
 
 

@@ -21,6 +21,7 @@ LobbyLevel::LobbyLevel()
 	, ReadyButton_(nullptr)
 	, StartButton_(nullptr)
 	, ExitButton_(nullptr)
+	, FontTest_(nullptr)
 {
 }
 
@@ -47,6 +48,10 @@ void LobbyLevel::Loading()
 	ReadyButton_ = CreateActor<ReadyButton>(static_cast<int>(ActorGroup::UI));
 	StartButton_ = CreateActor<StartButton>(static_cast<int>(ActorGroup::UI));
 	ExitButton_ = CreateActor<ExitButton>(static_cast<int>(ActorGroup::UI));
+
+
+
+
 }
 
 void LobbyLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
@@ -66,6 +71,12 @@ void LobbyLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	ReadyButton_->SetPosition({ 19, 299 });
 	StartButton_->SetPosition({ 966, 814 });
 	ExitButton_->SetPosition({ 966, 892 });
+
+	//ÆùÆ®
+	FontTest_ = CreateActor<Font>(static_cast<int>(RenderOrder::Font));
+	FontTest_->SetPosition({ 0,100 });
+	std::string TestText = "dslilili      iiiiifsf";
+	FontTest_->GameContentCreateFont(TestText, float4({ 100,100 }));
 
 }
 
