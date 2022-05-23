@@ -29,6 +29,13 @@ protected:
 private:
 	// 속도
 	float Speed_;
+	// 낙하 속도
+	float FallSpeed_;
+	// 낙하 거리
+	float FallLength_;
+
+	int PlayerHp_;
+
 	// 플레이어는 마지막으로 보고 있던 방향의 정보를 가지고 있어야 함.
 	float4 MoveDir_;
 	// 카메라의 위치

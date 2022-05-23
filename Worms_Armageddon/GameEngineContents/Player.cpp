@@ -4,9 +4,12 @@
 #include <GameEngine/GameEngineImageManager.h>
 
 Player::Player()
-	: Speed_(50.0f)
+	: Speed_(PLAYER_SPEED)
+	, FallSpeed_(PLAYER_SPEED_FALL)
+	, FallLength_(0.0f)
 	, MoveDir_(float4::ZERO)
 	, PlayerRenderer_(nullptr)
+	, PlayerHp_(100)
 {
 }
 
@@ -217,7 +220,6 @@ void Player::MoveCheck(float4 _MoveDir)
 // 낙하중 충돌체크
 void Player::MoveFall()
 {
-
 	float4 CheckLength = float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
 
 	float4 NextPos = GetPosition() + CheckLength;
@@ -225,9 +227,32 @@ void Player::MoveFall()
 	int Color = ColMapImage_->GetImagePixel(NextPos);
 
 	if (RGB(0, 0, 255) != Color)
-	{
-		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_);
+	{		
+		FallLength_ += FallSpeed_ * GameEngineTime::GetDeltaTime();
+		FallSpeed_ += 50.0f * GameEngineTime::GetDeltaTime();
+
+		// 최대 낙하속도
+		if (FallSpeed_ >= PLAYER_SPEED_FALL_MAX)
+		{
+			FallSpeed_ = PLAYER_SPEED_FALL_MAX;
+		}
+
+		SetMove(float4::DOWN* GameEngineTime::GetDeltaTime()* FallSpeed_);
 	}
+	else
+	{
+		if (FallLength_ >= 200.0f)
+		{
+			// 데미지 처리
+			PlayerHp_ -= static_cast<int>(FallLength_ / 80.0f);
+		}
+
+		// TODO::낙하 상태에 따라서 다른 낙하처리
+		// X값이 존재하는 낙하의 경우에는 미끄러짐
+		// X값이 존재하지 않는 낙하의 경우에는 땅에 박힘
+	}
+
+
 }
 
 // 상태 변경
