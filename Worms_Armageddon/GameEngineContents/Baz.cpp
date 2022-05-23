@@ -4,6 +4,7 @@
 #include "PlayLevelTestMap.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineRenderer.h>
+#include <GameEngine/GameEngineImageManager.h>
 #include <GameEngine/GameEngineImage.h>
 #include <GameENgine/GameEngine.h>
 
@@ -84,14 +85,26 @@ bool Baz::WeaponUpdate()
 		GameEngineImage* tmpGroundMap = GetGameMap()->GetGround()->GetImage();
 		// 충돌
 		GameEngineImage* tmpColMap = GetGameMap()->GetColMap();
-		
-		// tmpGoundMap, tmpColMap에 {255, 0, 255}의 원 그리기처리
-		// tmpGroundMap->TransCopy(마젠타 원 이미지, , , , { 255, 0, 255 });
-		// tmpColMap->TransCopy(원 이미지, , , ,{ 255, 0, 255 });
+		GameEngineImage* tmpEffectImg = GameEngineImageManager::GetInst()->Find(IMG_EFFECT_BOOM);
 
-		// {255, 0, 255}의 원이 그려진 tmpGoundMap를 메인버퍼에 transCopy?\
-		// 어차피 다음 프레임에는 업데이트 될테니 필요 없을수도?
-		// -> 이러면 결국 마젠타부분은 그려지지 않을테니 의미없는것 같기도...
+		// {0, 255, 0}의 원이 그려진 tmpGoundMap를 메인버퍼에 transCopy
+		// tmpGoundMap에 {0, 255, 0}의 원 그리기처리
+		tmpGroundMap->TransCopy(tmpEffectImg, // _Other
+			{GetPosition().x - SCALE_EFFECT_BOOM_X / 2, GetPosition().y - SCALE_EFFECT_BOOM_Y / 2, }, // _CopyPos
+			tmpEffectImg->GetScale(), // _CopyScale
+			{0, 0}, // _OtherPivot
+			tmpEffectImg->GetScale(), // _OtherScale
+			RGB( 0, 255, 0 ) // TransColor
+		);
+
+		// tmpColMap에 {0, 255, 0}의 원 그리기처리
+		tmpColMap->TransCopy(tmpEffectImg, // _Other
+			{ GetPosition().x - SCALE_EFFECT_BOOM_X / 2, GetPosition().y - SCALE_EFFECT_BOOM_Y / 2, }, // _CopyPos
+			tmpEffectImg->GetScale(), // _CopyScale
+			{ 0, 0 }, // _OtherPivot
+			tmpEffectImg->GetScale(), // _OtherScale
+			RGB(0, 255, 0) // TransColor
+		);
 
 
 		Off();
