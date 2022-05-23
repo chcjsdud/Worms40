@@ -10,6 +10,7 @@ protected:
 	{
 		MOUSE_IN,
 		MOUSE_OUT,
+		MOUSE_CLICK,
 	};
 
 public:
@@ -40,6 +41,10 @@ protected:
 private:
 	void ChangeState(MOUSE_STATE _ButtonName);
 	void UpdateState();
+
+	void MouseInUpdate();
+
+	void MouseInOutCheck();
 
 private:
 	MOUSE_STATE State_;

@@ -38,7 +38,7 @@ protected:
 	virtual void Update() override;
 
 private:
-	void OnClickButton() {};
+	void OnClickButton();
 
 	void ButtonBorder();
 	void ButtonNameUpdate();

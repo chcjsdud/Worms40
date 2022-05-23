@@ -1,5 +1,7 @@
 #include "Button.h"
+#include <GameEngine/GameEngine.h>
 #include <GameEngine/GameEngineCollision.h>
+#include <GameEngineBase/GameEngineInput.h>
 #include <vector>
 
 Button::Button() 
@@ -25,6 +27,7 @@ void Button::ButtonInit(std::string _ButtonName, float4 _Size)
 
 void Button::ButtonUpdate()
 {
+	MouseInOutCheck();
 	UpdateState();
 }
 
@@ -35,6 +38,36 @@ void Button::UpdateState()
 		return;
 	}
 
+	switch (State_)
+	{
+	case Button::MOUSE_STATE::MOUSE_IN:
+		MouseInUpdate();
+		break;
+	case Button::MOUSE_STATE::MOUSE_OUT:
+		break;
+	case Button::MOUSE_STATE::MOUSE_CLICK:
+		break;
+	default:
+		break;
+	}
+
+}
+
+void Button::MouseInUpdate()
+{
+	if (true == GameEngineInput::GetInst()->IsDown(KEY_MOUSE_LEFT))
+	{
+		ChangeState(MOUSE_STATE::MOUSE_CLICK);
+	}
+
+	if (true == GameEngineInput::GetInst()->IsUp(KEY_MOUSE_LEFT))
+	{
+		ChangeState(MOUSE_STATE::MOUSE_IN);
+	}
+}
+
+void Button::MouseInOutCheck()
+{
 	// 付快胶客 面倒眉农
 	std::vector<GameEngineCollision*> MouseColCheck;
 
