@@ -39,6 +39,9 @@
 // 파일 확장자
 #define FILE_EXT_BMP "Bmp"
 
+// 플레이어 설정값
+#define PLAYER_SIZE_X 12.0f
+#define PLAYER_SIZE_Y 25.0f
 
 // 레벨
 #define LEVEL_TITLE_LEVEL "TitleLevel"
