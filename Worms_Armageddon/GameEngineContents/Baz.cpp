@@ -9,7 +9,6 @@
 #include <GameENgine/GameEngine.h>
 
 Baz::Baz()
-	: IsStart_(false)
 {
 }
 
@@ -24,11 +23,10 @@ void Baz::Start()
 	WeaponRender_ = CreateRenderer((int)RenderOrder::Weapon);
 	WeaponRender_->SetImage("BazSpin.bmp");
 	WeaponRender_->SetRotationFilter("BazSpinFilter.bmp");
-	BazDir_ += float4::UP * 100;
 }
 void Baz::Update()
 {
-
+	
 }
 void Baz::Render()
 {
@@ -37,21 +35,7 @@ void Baz::Render()
 
 bool Baz::WeaponUpdate()
 {
-	if (false == IsStart_)
-	{
-		if (float4::LEFT.CompareInt2D(GetWeaponDir()))
-		{
-			BazDir_ += float4::LEFT * 100;
-		}
-		else
-		{
-			BazDir_ += float4::RIGHT * 100;
-		}
-		IsStart_ = true;
-	}
-
-
-
+	ThrowStart(100);
 
 	// Å×½ºÆ®
 	if (true == GameEngineInput::GetInst()->IsDown(KEY_FIRE))
@@ -64,16 +48,16 @@ bool Baz::WeaponUpdate()
 	PlayLevel* Play = dynamic_cast<PlayLevel*>(GetLevel());
 	float4 Wind = Play->GetWindDir();
 
-	SetMove(BazDir_ * GameEngineTime::GetDeltaTime());
-	BazDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * 100;
-	BazDir_ += Wind * GameEngineTime::GetDeltaTime();
+	SetMove(BulletDir_ * GameEngineTime::GetDeltaTime());
+	BulletDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * 100;
+	BulletDir_ += Wind * GameEngineTime::GetDeltaTime();
 
 	float4 MyPos = GetPosition();
-	float4 GetNextPos = BazDir_ + GetPosition();
+	float4 GetNextPos = BulletDir_ + GetPosition();
 
 
-	//float Degree = float4::VectorXYtoDegree(GetPosition(), GetPosition() + BazDir_);
-	//WeaponRender_->SetRotationZ(Degree);
+	float Degree = float4::VectorXYtoDegree(GetPosition(), GetPosition() + BulletDir_);
+	WeaponRender_->SetRotationZ(Degree + 90);
 
 	int Color = GetGameMap()->GetColMap()->GetImagePixel({GetPosition()});
 

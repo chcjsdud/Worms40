@@ -27,8 +27,6 @@ protected:
 
 private:
 	GameEngineRenderer* WeaponRender_;
-	float4 BazDir_;
-	bool IsStart_;
 	PlayLevelTestMap* MapRender_;
 
 public:

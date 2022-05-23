@@ -35,30 +35,35 @@ public:
 
 private: 
 	// 무기 발사 방향
-	float4 WeaponDir_;
-	// TODO::무기가 발사 되는순간 최초 실행(임시)
-	bool IsThrow_;
+	float4 ShotDir_;
+	// TODO::무기가 발사 되는순간 최초 실행
+	bool Shot_;
 
 	// 레벨이 시작함과 동시에 초기화될 맵 정보
 	// static으로 설정하여 모든 무기가 공유하도록 함
 	static GameMapMaster* GameMap_;
 
-	static GameEngineImage* PixelTestImage_;
-	GameEngineRenderer* MapPixelTestRender_;
+	//static GameEngineImage* PixelTestImage_;
+	//GameEngineRenderer* MapPixelTestRender_;
 
 protected:
+	// 투사체의 방향
+	float4 BulletDir_;
+
 	void Start() override;
 	void Update() override;
 
-	inline float4 GetWeaponDir() const
+	void ThrowStart(float _ThrowForce);
+
+	inline float4 GetShotDir() const
 	{
-		return WeaponDir_;
+		return ShotDir_;
 	}
 
 public:
-	inline void SetWeaponDir(float4 _WeaponDir)
+	inline void SetShotDir(float4 _WeaponDir)
 	{
-		WeaponDir_ = _WeaponDir;
+		ShotDir_ = _WeaponDir;
 	}
 };
 
