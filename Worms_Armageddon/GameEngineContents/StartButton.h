@@ -1,9 +1,9 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
-
+#include "Button.h"
 // Ό³Έν :
 class GameEngineRenderer;
-class StartButton : public GameEngineActor
+class StartButton : public Button
 {
 public:
 	// constrcuter destructer
@@ -20,8 +20,8 @@ protected:
 	virtual void Start() override;
 	virtual void Update() override;
 
+	void OnClickButton() {};
 private:
-	GameEngineRenderer* ButtonRenderer_;
 
 };
 

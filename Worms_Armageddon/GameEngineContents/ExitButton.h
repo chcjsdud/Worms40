@@ -20,6 +20,8 @@ protected:
 	virtual void Start() override;
 	virtual void Update() override;
 
+	void OnClickButton() {};
+
 private:
 	GameEngineRenderer* ButtonRenderer_;
 };

@@ -144,3 +144,7 @@
 #define IMG_BAZ_OFF_LEFT "bazOffLeft.bmp"
 #define IMG_BAZ_OFF_RIGHT "bazOffRight.bmp"
 #define IMG_MISSILE "missile.bmp"
+
+// 콜리전 그룹
+#define COL_GROUP_BUTTON "Button"
+#define COL_GROUP_MOUSE "Mouse"

@@ -1,12 +1,12 @@
 #include "ReadyButton.h"
 #include "Enums.h"
 #include <GameEngine/GameEngineRenderer.h>
+#include <GameEngine/GameEngineCollision.h>
 
 
 ReadyButton::ReadyButton() 
 	: IsPlayerReady_(false)
 	, IsMouseIn_(false)
-	, ButtonRenderer_(nullptr)
 {
 }
 
@@ -16,13 +16,16 @@ ReadyButton::~ReadyButton()
 
 void ReadyButton::Start()
 {
-	ButtonRenderer_ = CreateRenderer("Btn_NotReady_Idle.bmp", (int)RenderOrder::UI);
-	ButtonRenderer_->SetScale({ 217, 154 });
-	ButtonRenderer_->SetPivot(ButtonRenderer_->GetScale().Half());
+	ButtonInit("NotReady", "Btn_NotReady_Idle.bmp");
 
-	// 콜리전 설정
-	ButtonInit("NotReady", ButtonRenderer_->GetScale());
+	GameEngineRenderer* ButtonRenderer = Button::GetRenderer();
+	GameEngineCollision* ButtonCollision = Button::GetCollision();
+	
+	ButtonRenderer->SetScale({ 217, 154 });
+	ButtonRenderer->SetPivot(ButtonRenderer->GetScale().Half());
 
+	ButtonCollision->SetScale(ButtonRenderer->GetScale());
+	ButtonCollision->SetPivot(ButtonRenderer->GetScale().Half());
 }
 
 void ReadyButton::Update()
@@ -33,7 +36,8 @@ void ReadyButton::Update()
 	MouseState_ = GetMouseState();
 
 	ButtonNameUpdate();
-	ButtonBorder();
+
+	// 클릭 시 기능
 	OnClickButton();
 }
 
@@ -45,20 +49,7 @@ void ReadyButton::OnClickButton()
 	}
 }
 
-void ReadyButton::ButtonBorder()
-{
-	if (MouseState_ == MOUSE_STATE::MOUSE_OUT)
-	{
-		ButtonRenderer_->SetImage("Btn_" + ButtonName_ + "_Idle.bmp");
-	}
-
-	// 마우스 들어옴
-	else if (MouseState_ == MOUSE_STATE::MOUSE_IN)
-	{
-		ButtonRenderer_->SetImage("Btn_" + ButtonName_ + "_MouseOver.bmp");
-	}
-}
-
+// 동일한 이미지, 다른 상태를 가진 버튼시 구현
 void ReadyButton::ButtonNameUpdate()
 {
 	if (false == IsPlayerReady_)

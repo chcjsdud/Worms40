@@ -1,8 +1,11 @@
 #include "Button.h"
 #include <GameEngine/GameEngine.h>
 #include <GameEngine/GameEngineCollision.h>
+#include <GameEngine/GameEngineRenderer.h>
 #include <GameEngineBase/GameEngineInput.h>
 #include <vector>
+
+#include "Enums.h"
 
 Button::Button() 
 {
@@ -12,23 +15,26 @@ Button::~Button()
 {
 }
 
-void Button::ButtonInit(std::string _ButtonName, float4 _Size)
+void Button::ButtonInit(const std::string _ButtonName, const std::string _ImageName)
 {
 	// 이름 설정
 	ButtonName_ = _ButtonName;
 
+	// 렌더러 설정
+	ButtonRenderer_ = CreateRenderer(_ImageName, static_cast<int>(RenderOrder::UI));
+
 	// 콜리전 설정
-	ButtonCol_ = CreateCollision("Button", _Size);
-	ButtonCol_->SetPivot(_Size.Half());
+	ButtonCol_ = CreateCollision(COL_GROUP_BUTTON, ButtonRenderer_->GetScale());
 
 	// 최초 상태
-	State_ = MOUSE_STATE::MOUSE_OUT;
+	MouseState_ = MOUSE_STATE::MOUSE_OUT;
 }
 
 void Button::ButtonUpdate()
 {
 	MouseInOutCheck();
 	UpdateState();
+	ButtonBorderEffect();
 }
 
 void Button::UpdateState()
@@ -38,7 +44,7 @@ void Button::UpdateState()
 		return;
 	}
 
-	switch (State_)
+	switch (MouseState_)
 	{
 	case Button::MOUSE_STATE::MOUSE_IN:
 		MouseInUpdate();
@@ -83,8 +89,21 @@ void Button::MouseInOutCheck()
 	MouseColCheck.clear();
 }
 
-void Button::ChangeState(MOUSE_STATE _State)
+void Button::ButtonBorderEffect()
 {
-	State_ = _State;
+	if (MouseState_ == MOUSE_STATE::MOUSE_OUT)
+	{
+		ButtonRenderer_->SetImage("Btn_" + ButtonName_ + "_Idle.bmp");
+	}
+
+	else if (MouseState_ == MOUSE_STATE::MOUSE_IN)
+	{
+		ButtonRenderer_->SetImage("Btn_" + ButtonName_ + "_MouseOver.bmp");
+	}
+}
+
+void Button::ChangeState(MOUSE_STATE _MouseState)
+{
+	MouseState_ = _MouseState;
 }
 

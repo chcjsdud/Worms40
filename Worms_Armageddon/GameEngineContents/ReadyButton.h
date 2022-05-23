@@ -39,14 +39,10 @@ protected:
 
 private:
 	void OnClickButton();
-
-	void ButtonBorder();
 	void ButtonNameUpdate();
 
 private:
 	MOUSE_STATE MouseState_;
-
-	GameEngineRenderer* ButtonRenderer_;
 
 	bool IsMouseIn_;
 	bool IsPlayerReady_;

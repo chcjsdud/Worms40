@@ -3,6 +3,8 @@
 #include <string>
 
 // 설명 :
+class GameEngineCollision;
+class GameEngineRenderer;
 class Button : public GameEngineActor
 {
 protected:
@@ -25,30 +27,43 @@ public:
 	Button& operator=(Button&& _Other) noexcept = delete;
 
 protected:
-	void ButtonInit(std::string _Name, float4 _Size);
+	void ButtonInit(const std::string _ButtonName, const std::string _ImageName);
 	void ButtonUpdate();
 
 	virtual void OnClickButton() = 0;
 
 	MOUSE_STATE GetMouseState()
 	{
-		return State_;
+		return MouseState_;
+	}
+
+	GameEngineRenderer* GetRenderer()
+	{
+		return ButtonRenderer_;
+	}
+
+	GameEngineCollision* GetCollision()
+	{
+		return ButtonCol_;
 	}
 
 protected:
 	std::string ButtonName_;
 
 private:
-	void ChangeState(MOUSE_STATE _ButtonName);
+	void ChangeState(MOUSE_STATE _MouseState);
 	void UpdateState();
 
 	void MouseInUpdate();
-
 	void MouseInOutCheck();
 
-private:
-	MOUSE_STATE State_;
+	// 버튼 테두리 활성화 기능
+	void ButtonBorderEffect();
 
-	class GameEngineCollision* ButtonCol_;
+private:
+	MOUSE_STATE MouseState_;
+
+	GameEngineCollision* ButtonCol_;
+	GameEngineRenderer* ButtonRenderer_;
 };
 
