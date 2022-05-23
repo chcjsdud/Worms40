@@ -34,6 +34,15 @@ void ReadyButton::Update()
 
 	ButtonNameUpdate();
 	ButtonBorder();
+	OnClickButton();
+}
+
+void ReadyButton::OnClickButton()
+{
+	if (MouseState_ == MOUSE_STATE::MOUSE_CLICK)
+	{
+		IsPlayerReady_ = !IsPlayerReady_;
+	}
 }
 
 void ReadyButton::ButtonBorder()
