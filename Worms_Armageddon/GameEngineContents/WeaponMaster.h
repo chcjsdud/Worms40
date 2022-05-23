@@ -43,8 +43,8 @@ private:
 	// static으로 설정하여 모든 무기가 공유하도록 함
 	static GameMapMaster* GameMap_;
 
-	//static GameEngineImage* PixelTestImage_;
-	//GameEngineRenderer* MapPixelTestRender_;
+	// 바람 정보
+	float4 WindInfo_;
 
 protected:
 	// 투사체의 방향
@@ -55,9 +55,9 @@ protected:
 
 	void ThrowStart(float _ThrowForce);
 
-	inline float4 GetShotDir() const
+	inline float4 GetWindInfo() const
 	{
-		return ShotDir_;
+		return WindInfo_;
 	}
 
 public:

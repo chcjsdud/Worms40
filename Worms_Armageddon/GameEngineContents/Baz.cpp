@@ -1,7 +1,5 @@
 #include "Baz.h"
 #include "Enums.h"
-#include "PlayLevel.h"
-#include "PlayLevelTestMap.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngine/GameEngineImageManager.h>
@@ -45,12 +43,9 @@ bool Baz::WeaponUpdate()
 		return false;
 	}
 
-	PlayLevel* Play = dynamic_cast<PlayLevel*>(GetLevel());
-	float4 Wind = Play->GetWindDir();
-
 	SetMove(BulletDir_ * GameEngineTime::GetDeltaTime());
 	BulletDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * 100;
-	BulletDir_ += Wind * GameEngineTime::GetDeltaTime();
+	BulletDir_ += GetWindInfo() * GameEngineTime::GetDeltaTime();
 
 	float4 MyPos = GetPosition();
 	float4 GetNextPos = BulletDir_ + GetPosition();

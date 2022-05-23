@@ -34,7 +34,48 @@ enum class RenderOrder
 
 enum class WeaponState
 {
-	Baz
+	//Throw 상태 별도 존재함
+
+	// F1
+	Baz,
+	Homing,
+	Mortar,
+
+	// F2
+	Grn,
+	
+	Axe,
+
+	// F3
+
+
+	Uzi,
+
+	// F4
+	FirePunch,
+
+	// F5
+
+
+	Sheep,
+
+	// F6
+	AirStrike,
+
+	// F7
+	BlowTorch,
+	Drill,
+	Grider
+
+	// F8
+
+	// F9
+
+	// F10
+
+	// F11
+
+	// F12
 };
 
 // 맵타입

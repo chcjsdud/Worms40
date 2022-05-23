@@ -1,5 +1,5 @@
 #include "WeaponMaster.h"
-#include "PlayLevelTestMap.h"
+#include "PlayLevel.h"
 #include <GameEngineBase/GameEngineCustomStringSet.h>
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngineBase/GameEngineTime.h>
@@ -8,6 +8,7 @@
 GameMapMaster* WeaponMaster::GameMap_ = nullptr;
 
 WeaponMaster::WeaponMaster() 
+	: Shot_ (false)
 {
 }
 
@@ -32,6 +33,9 @@ void WeaponMaster::ThrowStart(float _ThrowForce)
 	if (false == Shot_)
 	{
 		BulletDir_ += float4::UP * _ThrowForce;
+
+		PlayLevel* Play = dynamic_cast<PlayLevel*>(GetLevel());
+		WindInfo_ = Play->GetWindDir();
 
 		if (float4::LEFT.CompareInt2D(ShotDir_))
 		{
