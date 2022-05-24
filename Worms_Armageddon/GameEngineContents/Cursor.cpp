@@ -28,12 +28,14 @@ void Cursor::Start()
 	Renderer_ = CreateRenderer("Cursor.bmp", static_cast<int>(RenderOrder::Cursor));
 	Renderer_->SetScale(Renderer_->GetScale() * CursorImgScale);
 	Renderer_->SetPivot(float4{ CursorImgPivot_X, CursorImgPivot_Y });
+	Renderer_->CameraEffectOff();
 
 	// 마우스 충돌체
 	Collision_ = CreateCollision(COL_GROUP_MOUSE, {10, 10});
+	Collision_->CameraEffectOff();
 
 	// 기존 커서 감추기
-	ShowCursor(false);
+	//ShowCursor(false);
 
 	// 마우스 가운데 버튼
 	if (false == GameEngineInput::GetInst()->IsKey(KEY_MOUSE_MID))

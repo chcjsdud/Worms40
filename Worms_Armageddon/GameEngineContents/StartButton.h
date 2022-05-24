@@ -20,7 +20,7 @@ protected:
 	virtual void Start() override;
 	virtual void Update() override;
 
-	void OnClickButton() {};
+	virtual void OnClickButton() override;
 private:
 
 };

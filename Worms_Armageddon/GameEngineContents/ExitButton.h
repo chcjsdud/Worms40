@@ -1,9 +1,10 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
+#include "Button.h"
 
 // Ό³Έν :
 class GameEngineRenderer;
-class ExitButton : public GameEngineActor
+class ExitButton : public Button
 {
 public:
 	// constrcuter destructer
@@ -20,9 +21,9 @@ protected:
 	virtual void Start() override;
 	virtual void Update() override;
 
-	void OnClickButton() {};
+	virtual void OnClickButton() override;
 
 private:
-	GameEngineRenderer* ButtonRenderer_;
+
 };
 
