@@ -104,6 +104,12 @@
     <ClInclude Include="Button.h">
       <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
     </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>02.PlayLevel\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Foom.h">
+      <Filter>02.PlayLevel\Effects\FxObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
@@ -206,6 +212,12 @@
     <ClCompile Include="Button.cpp">
       <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
     </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>02.PlayLevel\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Foom.cpp">
+      <Filter>02.PlayLevel\Effects\FxObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="02.PlayLevel">
@@ -249,6 +261,12 @@
     </Filter>
     <Filter Include="02.PlayLevel\Player\Weapon">
       <UniqueIdentifier>{c0fca085-c4b7-4fba-bd07-7ee15314afa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.PlayLevel\Effects">
+      <UniqueIdentifier>{2f85ed52-2c77-40d6-89a6-b05b22d25d92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.PlayLevel\Effects\FxObjects">
+      <UniqueIdentifier>{f9b31f6f-64d3-4b01-baf9-9c8a95a22e3f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

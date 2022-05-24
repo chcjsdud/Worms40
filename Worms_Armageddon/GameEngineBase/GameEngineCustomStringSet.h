@@ -145,6 +145,13 @@
 #define IMG_BAZ_OFF_RIGHT "bazOffRight.bmp"
 #define IMG_MISSILE "missile.bmp"
 
+// 이펙트
+#define IMG_FX_EXFOOM "exfoom.bmp"
+
+// 이펙트 애니메이션
+#define ANIM_NAME_FX_EXFOOM "exfoomAnim"
+#define IMG_MISSILE "missile.bmp"
+
 // 콜리전 그룹
 #define COL_GROUP_BUTTON "Button"
 #define COL_GROUP_MOUSE "Mouse"

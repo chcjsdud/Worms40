@@ -181,11 +181,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ExitButton.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="Font.h" />
+    <ClInclude Include="Foom.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameMapMaster.h">
       <SubType>
       </SubType>
@@ -289,11 +297,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ExitButton.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameMapMaster.cpp">
       <SubType>
       </SubType>

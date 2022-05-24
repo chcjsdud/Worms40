@@ -69,6 +69,11 @@ void Worms::GameInit()
 			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 		}
 
+		{
+			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find(IMG_FX_EXFOOM);
+			Image->Cut({ 100,100 });
+		}
+
 	}
 
 
