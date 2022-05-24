@@ -16,8 +16,6 @@ Baz::~Baz()
 
 void Baz::Start()
 {
-	/*WeaponRender_ = CreateRenderer(IMG_MISSILE, (int)RenderOrder::Weapon);
-	WeaponRender_->SetIndex(0);*/
 	WeaponRender_ = CreateRenderer((int)RenderOrder::Weapon);
 	WeaponRender_->SetImage("BazSpin.bmp");
 	WeaponRender_->SetRotationFilter("BazSpinFilter.bmp");
@@ -33,8 +31,6 @@ void Baz::Render()
 
 bool Baz::WeaponUpdate()
 {
-	ThrowStart(100);
-
 	// 테스트
 	if (true == GameEngineInput::GetInst()->IsDown(KEY_FIRE))
 	{
@@ -43,59 +39,7 @@ bool Baz::WeaponUpdate()
 		return false;
 	}
 
-	SetMove(BulletDir_ * GameEngineTime::GetDeltaTime());
-	BulletDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * 100;
-	BulletDir_ += GetWindInfo() * GameEngineTime::GetDeltaTime();
-
-	float4 MyPos = GetPosition();
-	float4 GetNextPos = BulletDir_ + GetPosition();
-
-
-	float Degree = float4::VectorXYtoDegree(GetPosition(), GetPosition() + BulletDir_);
-	WeaponRender_->SetRotationZ(Degree + 90);
-
-	int Color = GetGameMap()->GetColMap()->GetImagePixel({GetPosition()});
-
-	// 맵과 충돌처리
-	if (RGB(0, 0, 255) == Color)
-	{
-		// 이미지를 가져와서 땅이 파여있는 상태를 메모리에 보존?
-		// 바닥
-		GameEngineImage* tmpGroundMap = GetGameMap()->GetGround()->GetImage();
-		// 충돌
-		GameEngineImage* tmpColMap = GetGameMap()->GetColMap();
-		GameEngineImage* tmpEffectImg = GameEngineImageManager::GetInst()->Find(IMG_EFFECT_BOOM);
-
-		// {0, 255, 0}의 원이 그려진 tmpGoundMap를 메인버퍼에 transCopy
-		// tmpGoundMap에 {0, 255, 0}의 원 그리기처리
-		tmpGroundMap->TransCopy(tmpEffectImg, // _Other
-			{GetPosition().x - SCALE_EFFECT_BOOM_X / 2, GetPosition().y - SCALE_EFFECT_BOOM_Y / 2, }, // _CopyPos
-			tmpEffectImg->GetScale(), // _CopyScale
-			{0, 0}, // _OtherPivot
-			tmpEffectImg->GetScale(), // _OtherScale
-			RGB( 0, 255, 0 ) // TransColor
-		);
-
-		// tmpColMap에 {0, 255, 0}의 원 그리기처리
-		tmpColMap->TransCopy(tmpEffectImg, // _Other
-			{ GetPosition().x - SCALE_EFFECT_BOOM_X / 2, GetPosition().y - SCALE_EFFECT_BOOM_Y / 2, }, // _CopyPos
-			tmpEffectImg->GetScale(), // _CopyScale
-			{ 0, 0 }, // _OtherPivot
-			tmpEffectImg->GetScale(), // _OtherScale
-			RGB(0, 255, 0) // TransColor
-		);
-
-
-		Off();
-		return false;
-
-
-	}
-
-	// 동작
-	//  동작
-	//  동작
-	//  동작
-	// 동작 중
-	return true;
+	ThrowStart(100); // 투사체를 던지고
+	BulletMove(100); // 그게 날아가서
+	BulletColEvent(); // 충돌하면 이벤트가 발생한다.
 }

@@ -5,6 +5,7 @@
 
 // 설명 : 
 class GameEngineImage;
+class GameEngineRenderer;
 class WeaponMaster :public GameEngineActor
 {
 public:
@@ -47,13 +48,23 @@ private:
 	float4 WindInfo_;
 
 protected:
+	// 무기 랜더
+	GameEngineRenderer* WeaponRender_;
+
 	// 투사체의 방향
 	float4 BulletDir_;
 
 	void Start() override;
 	void Update() override;
 
+	// 투사체 투척용 함수 : 포스값의 강도로 날림
 	void ThrowStart(float _ThrowForce);
+
+	// 투사체 움직임 연산 : 중력값만 넣어주면 포물선으로 날아감
+	void BulletMove(float _Gravity);
+
+	// 투사체 충돌 시 발생 이벤트
+	bool BulletColEvent();
 
 	inline float4 GetWindInfo() const
 	{

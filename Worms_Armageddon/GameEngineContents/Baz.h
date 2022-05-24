@@ -2,7 +2,6 @@
 #include "WeaponMaster.h"
 
 // Ό³Έν :
-class GameEngineRenderer;
 class PlayLevelTestMap;
 class Baz : public WeaponMaster
 {
@@ -26,7 +25,6 @@ protected:
 	float4 Baz_WindSpeed;
 
 private:
-	GameEngineRenderer* WeaponRender_;
 	PlayLevelTestMap* MapRender_;
 
 public:
