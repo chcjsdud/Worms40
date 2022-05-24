@@ -3,10 +3,6 @@
 #include <string>
 
 // 설명 :
-// 버튼 클래스를 상속 받을 시 기능
-// - 마우스 IN/OUT/CLICK을 체크
-// - ButtonBorderEffect 사용 가능
-
 class GameEngineCollision;
 class GameEngineRenderer;
 class Button : public GameEngineActor
@@ -30,16 +26,11 @@ public:
 	Button& operator=(const Button& _Other) = delete;
 	Button& operator=(Button&& _Other) noexcept = delete;
 
-	inline void SetActivate(bool _Value)
-	{
-		IsActivated_ = _Value;
-	}
-
 protected:
-	void ButtonInit(const std::string _ButtonName, float4 _ButtonScale, bool _IsBorderEffect = false);
+	void ButtonInit(const std::string _ButtonName, const std::string _ImageName);
 	void ButtonUpdate();
 
-	virtual void OnClickButton() {};
+	virtual void OnClickButton() = 0;
 
 	MOUSE_STATE GetMouseState()
 	{
@@ -74,9 +65,5 @@ private:
 
 	GameEngineCollision* ButtonCol_;
 	GameEngineRenderer* ButtonRenderer_;
-	float4 ButtonScale_;
-
-	bool IsBorderEffect_;
-	bool IsActivated_;
 };
 

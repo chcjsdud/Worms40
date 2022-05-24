@@ -6,7 +6,7 @@
 
 ReadyButton::ReadyButton() 
 	: IsPlayerReady_(false)
-	, MouseState_(MOUSE_STATE::MOUSE_OUT)
+	, IsMouseIn_(false)
 {
 }
 
@@ -16,16 +16,24 @@ ReadyButton::~ReadyButton()
 
 void ReadyButton::Start()
 {
-	Button::ButtonInit("NotReady", float4{ 217,154 }, true);
+	ButtonInit("NotReady", "Btn_NotReady_Idle.bmp");
+
+	GameEngineRenderer* ButtonRenderer = Button::GetRenderer();
+	GameEngineCollision* ButtonCollision = Button::GetCollision();
+	
+	ButtonRenderer->SetScale({ 217, 154 });
+	ButtonRenderer->SetPivot(ButtonRenderer->GetScale().Half());
+
+	ButtonCollision->SetScale(ButtonRenderer->GetScale());
+	ButtonCollision->SetPivot(ButtonRenderer->GetScale().Half());
 }
 
 void ReadyButton::Update()
 {
-	// 마우스 상태 확인 기능 + 경계선 활성화 기능
+	// Button 클래스 상속받았을 때
+	// 마우스의 상태 확인 가능
 	Button::ButtonUpdate();
-
-	// 마우스 상태 확인 기능
-	MouseState_ = Button::GetMouseState();
+	MouseState_ = GetMouseState();
 
 	ButtonNameUpdate();
 

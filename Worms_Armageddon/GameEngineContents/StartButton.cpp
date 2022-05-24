@@ -14,19 +14,15 @@ StartButton::~StartButton()
 
 void StartButton::Start()
 {
-	ButtonInit("Start", float4{295, 68}, true);
+	//ButtonRenderer_ = CreateRenderer("Btn_Start_Idle.bmp", (int)RenderOrder::UI);
+	//ButtonRenderer_->SetScale({ 295, 68 });
+	//ButtonRenderer_->SetAlpha(100);
+	//ButtonRenderer_->SetPivot(ButtonRenderer_->GetScale().Half());
 
-	GameEngineRenderer* ButtonRenderer = Button::GetRenderer();
-	ButtonRenderer->SetAlpha(100);
-
+	
 }
 
 void StartButton::Update()
-{
-	Button::ButtonUpdate();
-}
-
-void StartButton::OnClickButton()
 {
 }
 
