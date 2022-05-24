@@ -305,6 +305,8 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Font.cpp" />
+    <ClCompile Include="Foom.cpp" />
     <ClCompile Include="GameMapMaster.cpp">
       <SubType>
       </SubType>
