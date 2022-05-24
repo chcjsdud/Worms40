@@ -18,19 +18,24 @@ public:
 	ReadyButton& operator=(const ReadyButton& _Other) = delete;
 	ReadyButton& operator=(ReadyButton&& _Other) noexcept = delete;
 
-	inline void OnMouseEnter()
-	{
-		IsMouseIn_ = true;
-	}
-
-	inline void OnMouseExit()
-	{
-		IsMouseIn_ = false;
-	}
-
 	inline void SwitchPlayerReady()
 	{
 		IsPlayerReady_ = !IsPlayerReady_;
+	}
+
+	inline bool GetPlayerReady()
+	{
+		return IsPlayerReady_;
+	}
+
+	inline void SetReadyPossible()
+	{
+		IsReadyPossible_ = true;
+	}
+
+	inline void SetReadyImpossible()
+	{
+		IsReadyPossible_ = false;
 	}
 
 protected:
@@ -38,13 +43,12 @@ protected:
 	virtual void Update() override;
 
 private:
-	void OnClickButton();
 	void ButtonNameUpdate();
 
 private:
 	MOUSE_STATE MouseState_;
 
-	bool IsMouseIn_;
+	bool IsReadyPossible_;
 	bool IsPlayerReady_;
 };
 

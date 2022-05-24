@@ -23,6 +23,10 @@ protected:
 	void LevelChangeEnd(GameEngineLevel* _NextLevel);
 	void Loading() override;
 	void Update() override;
+
+private:
+	void PlayerBulbOnOff();
+
 private:
 	GameEngineActor* BackGround_;
 	GameEngineActor* PlayersBox_;

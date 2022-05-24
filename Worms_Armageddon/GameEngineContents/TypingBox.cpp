@@ -14,7 +14,7 @@ TypingBox::~TypingBox()
 
 void TypingBox::Start()
 {
-	BoxRenderer_ = CreateRenderer("MouseOver_Btn.bmp", static_cast<int>(RenderOrder::UI));
+	BoxRenderer_ = CreateRenderer("MouseOver_Btn.bmp", static_cast<int>(RenderOrder::BackGround_1));
 	BoxRenderer_->SetScale(float4{ 931, 32 });
 	BoxRenderer_->SetPivot(BoxRenderer_->GetScale().Half());
 }

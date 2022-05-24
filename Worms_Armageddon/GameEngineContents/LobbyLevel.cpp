@@ -8,6 +8,8 @@
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineInput.h>
 
+#include <GameEngineBase/GameEngineRandom.h>
+
 LobbyLevel::LobbyLevel()
 	: BackGround_(nullptr)
 	, PlayersBox_(nullptr)
@@ -84,10 +86,12 @@ void LobbyLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	// 테스트 플레이레벨로 넘겨주는 정보
 	GameOptions::PlayingOptions.SetPlayerName(0, "FirstPlayer");
-	GameOptions::PlayingOptions.SetPlayerColor(0, RGB(255,255,255));
+	GameOptions::PlayingOptions.SetPlayerColor(0, RGB(255, 255, 255));
 	GameOptions::PlayingOptions.SetTurnTime(45);
 	GameOptions::PlayingOptions.SetPlayerNum(3);
 	GameOptions::PlayingOptions.SetMapType(MapType::Books);
+
+	// TODO::체력 100, 200 중 세팅값 보내기
 
 }
 
@@ -100,5 +104,28 @@ void LobbyLevel::Update()
 		GameEngine::GetInst().ChangeLevel(LEVEL_PLAY_LEVEL);
 	}
 
+	// 준비 버튼 누루면 전구를 모두 껏다 킴
+	PlayerBulbOnOff();
+
+	// TODO::팀이 1개라도 있어야 준비버튼 클릭 가능
+
+
+}
+
+void LobbyLevel::PlayerBulbOnOff()
+{
+	ReadyButton* readyButton = dynamic_cast<ReadyButton*>(ReadyButton_);
+	bool PlayerReady = readyButton->GetPlayerReady();
+
+	PlayersBox* playersBox = dynamic_cast<PlayersBox*>(PlayersBox_);
+
+	if (true == PlayerReady)
+	{
+		playersBox->BulbOn();
+	}
+	else
+	{
+		playersBox->BulbOff();
+	}
 }
 

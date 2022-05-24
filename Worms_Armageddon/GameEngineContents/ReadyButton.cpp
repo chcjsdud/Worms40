@@ -6,7 +6,8 @@
 
 ReadyButton::ReadyButton() 
 	: IsPlayerReady_(false)
-	, IsMouseIn_(false)
+	, MouseState_(MOUSE_STATE::MOUSE_OUT)
+	, IsReadyPossible_(false)
 {
 }
 
@@ -43,7 +44,7 @@ void ReadyButton::Update()
 
 void ReadyButton::OnClickButton()
 {
-	if (MouseState_ == MOUSE_STATE::MOUSE_CLICK)
+	if (true == IsReadyPossible_ && MouseState_ == MOUSE_STATE::MOUSE_CLICK)
 	{
 		IsPlayerReady_ = !IsPlayerReady_;
 	}

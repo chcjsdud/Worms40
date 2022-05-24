@@ -19,7 +19,7 @@ TeamListBox::~TeamListBox()
 
 void TeamListBox::Start()
 {
-	BoxRenderer_ = CreateRenderer("6868.bmp", static_cast<int>(RenderOrder::UI));
+	BoxRenderer_ = CreateRenderer("6868.bmp", static_cast<int>(RenderOrder::BackGround_1));
 	BoxRenderer_->SetScale(float4{ 302, 230 });
 	BoxRenderer_->SetPivot(BoxRenderer_->GetScale().Half());
 }
