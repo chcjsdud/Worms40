@@ -95,7 +95,7 @@ void Button::MouseInOutCheck()
 {
 	std::vector<GameEngineCollision*> MouseColCheck;
 
-	if (true == ButtonCol_->CollisionResult("Mouse", MouseColCheck))
+	if (true == ButtonCol_->CollisionResult(COL_GROUP_MOUSE, MouseColCheck))
 	{
 		ChangeState(MOUSE_STATE::MOUSE_IN);
 	}
