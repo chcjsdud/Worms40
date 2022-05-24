@@ -35,6 +35,22 @@ void MapBooks::Start()
 	Ground_->SetPivot(GroundHalf);
 
 	ColMap_ = GameEngineImageManager::GetInst()->Find(IMG_MAPBOOKS_GROUND);
+
+	for (int i = 0; i < 8; i++)
+	{
+		float x = static_cast<float>(300 + i * 10);
+		float y = 300.0f;
+
+		ResponPosition_[i] = {x, y};
+	}
+
+	for (int i = 0; i < 8; i++)
+	{
+		float x = static_cast<float>(300 + i * 10);
+		float y = 300.0f;
+
+		ResponPosition_[i] = {x, y};
+	}
 	
 
 

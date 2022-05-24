@@ -26,6 +26,12 @@ protected:
 	void Update() override;
 	void Render() override;
 
+	// 게임 초기 설정
+public:
+	inline void SetPlayerHp(int _WormzHp)
+	{
+		PlayerHp_ = _WormzHp;
+	}
 private:
 	// 속도
 	float Speed_;
@@ -34,6 +40,7 @@ private:
 	// 낙하 거리
 	float FallLength_;
 
+	// 플레이어 Hp
 	int PlayerHp_;
 
 	// 플레이어는 마지막으로 보고 있던 방향의 정보를 가지고 있어야 함.
@@ -104,5 +111,6 @@ private:
 	void JumpUpdate();
 
 	void PlayerAnimationChange(std::string _Anim);
+	
 };
 

@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
+#include <GameEngineBase/GameEngineMath.h>
 
 // 설명 :
 class GameEngineImage;
@@ -31,6 +32,12 @@ public:
 	{
 		return Ground_;
 	}
+
+	inline float4 GetResponPosition(int i)
+	{
+		return ResponPosition_[i];
+	}
+
 protected:
 	void Start() override {};
 	void Update() override {};
@@ -43,5 +50,6 @@ protected:
 	// 맵에 사용될 충돌용 이미지
 	GameEngineImage* ColMap_;
 
+	float4 ResponPosition_[8];
 };
 

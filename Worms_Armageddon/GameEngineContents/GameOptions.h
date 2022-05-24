@@ -46,7 +46,7 @@ public:
 		PlayerNum_ = _Num;
 	}
 
-	inline int SetPlayerNum()
+	inline int GetPlayerNum()
 	{
 		return PlayerNum_;
 	}
@@ -61,6 +61,16 @@ public:
 		return MapType_;
 	}
 
+	inline void SetWormzHp(int _WormzHp)
+	{
+		WormzHp_ = _WormzHp;
+	}
+
+	inline int GetWormzHp()
+	{
+		return WormzHp_;
+	}
+
 private:
 	// 키 = 플레이어 번호, 값 = 이름
 	std::map<int, std::string> PlayerNames_;
@@ -73,5 +83,8 @@ private:
 	int PlayerNum_;
 	// 맵 종류
 	MapType MapType_;
+
+	// 웜즈의 Hp
+	int WormzHp_;
 };
 

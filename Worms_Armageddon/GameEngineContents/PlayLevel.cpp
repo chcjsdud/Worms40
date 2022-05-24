@@ -4,6 +4,7 @@
 #include "WeaponMaster.h"
 #include "Cursor.h"
 #include "MapBooks.h"
+#include "GameOptions.h"
 #include "GameEngineBase/GameEngineRandom.h"
 #include <GameEngineBase/GameEngineInput.h>
 
@@ -41,9 +42,6 @@ void PlayLevel::Loading()
 	WeaponMaster_->SetGameMap(GameMapInfo_);
 	// 테스트용 코드 끝
 
-	// TODO::플레이어가 여럿이 나오도록 수정
-	Player_ = CreateActor<Player>();
-
 	if (false == GameEngineInput::GetInst()->IsKey("TestClick"))
 	{
 		GameEngineInput::GetInst()->CreateKey("TestClick", VK_LBUTTON);
@@ -68,8 +66,16 @@ void PlayLevel::Update()
 
 void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
+	// TODO::플레이어가 여럿이 나오도록 수정
+	for (int i = 0; i < GameOptions::PlayingOptions.GetPlayerNum(); i++)
+	{
+		Player_[i] = CreateActor<Player>();
 
-
+		// TODO::로비레벨에서 넘어오도록 수정
+		// Player_->SetPlayerHp(GameOptions_->PlayingOptions.GetWormzHp());
+		Player_[i]->SetPlayerHp(100);
+		Player_[i]->SetPosition(GameMapInfo_->GetResponPosition(GameEngineRandom::MainRandom.RandomInt(0, PLAYER_MAX_NUMBER)));
+	}
 }
 
 void PlayLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)

@@ -45,6 +45,7 @@
 #define PLAYER_SPEED 50.0f
 #define PLAYER_SPEED_FALL 200.0f
 #define PLAYER_SPEED_FALL_MAX 300.0f
+#define PLAYER_MAX_NUMBER 8
 
 // ·¹º§
 #define LEVEL_TITLE_LEVEL "TitleLevel"

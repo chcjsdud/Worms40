@@ -22,7 +22,6 @@ void Player::Start()
 	//임시 DirName 초기값
 	DirName_ = ANIM_KEYWORD_DIR_LEFT;
 
-	this->SetPosition({ 300, 300 });
 	PlayerAnimationInit();
 	PlayerKeyInit();
 

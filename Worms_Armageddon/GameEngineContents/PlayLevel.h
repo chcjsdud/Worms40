@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
+#include <GameEngineBase/GameEngineCustomStringSet.h>
 #include "LargeCloud.h"
 #include "Cursor.h"
 #include "WindGauge.h"
@@ -39,14 +40,12 @@ private:
 
 	Water* WaterActor_;
 	WeaponMaster* WeaponMaster_;
-	Player* Player_;
+	Player* Player_[PLAYER_MAX_NUMBER];
 	Cursor* Mouse_;
 	WindGauge* WindGaugeActor_;
 
 	float4 WindDir_;
 	float WindSpeed_;
-
-
 
 private:
 	void CreateTestBullet();
