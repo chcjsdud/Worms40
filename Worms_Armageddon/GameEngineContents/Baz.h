@@ -21,16 +21,5 @@ public:
 protected:
 	void Start() override;
 	void Update() override;
-	void Render() override;
-	float4 Baz_WindSpeed;
-
-private:
-	PlayLevelTestMap* MapRender_;
-
-public:
-	inline void SetWindSpeed(float4 _windspeed)
-	{
-		Baz_WindSpeed = _windspeed;
-	}
 };
 

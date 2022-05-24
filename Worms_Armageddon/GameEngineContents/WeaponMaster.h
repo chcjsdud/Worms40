@@ -66,11 +66,6 @@ protected:
 	// 투사체 충돌 시 발생 이벤트
 	bool BulletColEvent();
 
-	inline float4 GetWindInfo() const
-	{
-		return WindInfo_;
-	}
-
 public:
 	inline void SetShotDir(float4 _WeaponDir)
 	{

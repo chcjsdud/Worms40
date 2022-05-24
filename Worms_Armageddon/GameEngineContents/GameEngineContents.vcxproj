@@ -202,6 +202,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Grenade.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MapBooks.h">
       <SubType>
       </SubType>
@@ -312,6 +316,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="GameOptions.cpp" />
+    <ClCompile Include="Grenade.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="MapBooks.cpp">
       <SubType>
       </SubType>

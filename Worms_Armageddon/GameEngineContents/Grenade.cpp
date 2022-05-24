@@ -1,28 +1,28 @@
-#include "Baz.h"
+#include "Grenade.h"
 #include "Enums.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineRenderer.h>
 
-Baz::Baz()
+Grenade::Grenade() 
 {
 }
 
-Baz::~Baz()
+Grenade::~Grenade() 
 {
 }
 
-void Baz::Start()
+void Grenade::Start()
 {
 	WeaponRender_ = CreateRenderer((int)RenderOrder::Weapon);
-	WeaponRender_->SetImage("BazSpin.bmp");
-	WeaponRender_->SetRotationFilter("BazSpinFilter.bmp");
+	WeaponRender_->SetImage("GrenadeSpin.bmp");
+	WeaponRender_->SetRotationFilter("GrenadeSpinFilter.bmp");
 }
-void Baz::Update()
+void Grenade::Update()
 {
-	
+
 }
 
-bool Baz::WeaponUpdate()
+bool Grenade::WeaponUpdate()
 {
 	// Å×½ºÆ®
 	if (true == GameEngineInput::GetInst()->IsDown(KEY_FIRE))

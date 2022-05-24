@@ -44,7 +44,7 @@ enum class WeaponState
 	Mortar,
 
 	// F2
-	Grn,
+	Grenade, // Grn
 	
 	Axe,
 
