@@ -1,10 +1,9 @@
 #include "ExitButton.h"
 #include "Enums.h"
-
-#include <GameEngine/GameEngineRenderer.h>
+#include <GameEngineBase/GameEngineWindow.h>
+#include <GameEngineBase/GameEngineInput.h>
 
 ExitButton::ExitButton() 
-	: ButtonRenderer_(nullptr)
 {
 }
 
@@ -14,12 +13,22 @@ ExitButton::~ExitButton()
 
 void ExitButton::Start()
 {
-	ButtonRenderer_ = CreateRenderer("Btn_Exit_Idle.bmp", (int)RenderOrder::UI);
-	ButtonRenderer_->SetScale({ 294, 46});
-	ButtonRenderer_->SetPivot(ButtonRenderer_->GetScale().Half());
+	Button::ButtonInit("Exit", float4{ 294, 46 }, true);
+
 }
 
 void ExitButton::Update()
 {
+	Button::ButtonUpdate();
+
+	OnClickButton();
+}
+
+void ExitButton::OnClickButton()
+{
+	if (true == GameEngineInput::GetInst()->IsDown(KEY_MOUSE_LEFT))
+	{
+		GameEngineWindow::GetInst().Off();
+	}
 }
 
