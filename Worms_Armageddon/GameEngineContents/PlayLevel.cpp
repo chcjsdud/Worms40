@@ -69,12 +69,29 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	// TODO::플레이어가 여럿이 나오도록 수정
 	for (int i = 0; i < GameOptions::PlayingOptions.GetPlayerNum(); i++)
 	{
+		int tmpRandom = GameEngineRandom::MainRandom.RandomInt(0, PLAYER_MAX_NUMBER);
+
+		for (;;)
+		{
+			// 이미 사용된 포지션이라면
+			if (true == GameMapInfo_->GetPosFlg(tmpRandom))
+			{
+				tmpRandom = GameEngineRandom::MainRandom.RandomInt(0, PLAYER_MAX_NUMBER);
+
+				continue;
+			}
+
+			// 사용된적이 없는 포지션이라면 탈출
+			break;
+		}
+
 		Player_[i] = CreateActor<Player>();
 
 		// TODO::로비레벨에서 넘어오도록 수정
 		// Player_->SetPlayerHp(GameOptions_->PlayingOptions.GetWormzHp());
 		Player_[i]->SetPlayerHp(100);
-		Player_[i]->SetPosition(GameMapInfo_->GetResponPosition(GameEngineRandom::MainRandom.RandomInt(0, PLAYER_MAX_NUMBER)));
+		Player_[i]->SetPosition(GameMapInfo_->GetResponPosition(tmpRandom));
+		GameMapInfo_->SetPosFlg(true, tmpRandom);
 	}
 }
 

@@ -1,4 +1,5 @@
 #pragma once
+#include <GameEngineBase/GameEngineCustomStringSet.h>
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineMath.h>
 
@@ -38,6 +39,16 @@ public:
 		return ResponPosition_[i];
 	}
 
+	inline void SetPosFlg(bool _Flg, int _ArrI)
+	{
+		PositionFlg_[_ArrI] = _Flg;
+	}
+
+	inline bool GetPosFlg(int _ArrI)
+	{
+		return PositionFlg_[_ArrI];
+	}
+
 protected:
 	void Start() override {};
 	void Update() override {};
@@ -50,6 +61,7 @@ protected:
 	// 맵에 사용될 충돌용 이미지
 	GameEngineImage* ColMap_;
 
-	float4 ResponPosition_[8];
+	float4 ResponPosition_[PLAYER_MAX_NUMBER];
+	bool PositionFlg_[PLAYER_MAX_NUMBER];
 };
 
