@@ -103,6 +103,7 @@
 #define IMG_PLAYER_WALK_LEFT "WalkLeft.bmp"
 #define IMG_PLAYER_WALK_RIGHT "WalkRight.bmp"
 
+
 // 애니메이션 키워드
 #define ANIM_KEYWORD_PLAYER_IDLE "idle"
 #define ANIM_KEYWORD_PLAYER_JUMPRDY "jumpReady"

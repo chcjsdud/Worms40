@@ -240,6 +240,11 @@ void Worms::GameInit()
 			Image->Cut({ 60, 60 });
 			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_WALK_RIGHT);
 			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_FLYLINK_LEFT);
+			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_FLYLINK_RIGHT);
+			Image->Cut({ 60, 60 });
+
 
 			//¹«±â
 			Image = GameEngineImageManager::GetInst()->Find(IMG_HOMING_AIM_RIGHT);

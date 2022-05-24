@@ -81,7 +81,8 @@ private:
 	// 이동중 충돌체크
 	void MoveCheck(float4 _MoveDir);
 	void MoveFall();
-
+	//오르막길 픽셀충돌체크
+	void CheckHillPixel();
 	// FSM
 public:
 	// 상태전환
@@ -95,10 +96,12 @@ private:
 	void IdleStart();
 	void MoveStart();
 	void ActionStart();
+	void JumpStart();
 
 	void IdleUpdate();
 	void MoveUpdate();
 	void ActionUpdate();
+	void JumpUpdate();
 
 	void PlayerAnimationChange(std::string _Anim);
 };

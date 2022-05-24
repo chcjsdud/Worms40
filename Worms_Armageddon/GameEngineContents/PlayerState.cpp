@@ -61,6 +61,10 @@ void Player::ActionUpdate()
 	}
 }
 
+void Player::JumpUpdate()
+{
+
+}
 
 void Player::IdleStart()
 {
@@ -82,4 +86,9 @@ void Player::ActionStart()
 	Weapon_ = GetLevel()->CreateActor<Baz>();
 	Weapon_->SetPosition(this->GetPosition());
 	Weapon_->SetShotDir(MoveDir_);
+}
+
+void Player::JumpStart()
+{
+
 }

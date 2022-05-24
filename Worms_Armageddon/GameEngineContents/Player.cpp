@@ -212,30 +212,13 @@ void Player::MoveCheck(float4 _MoveDir)
 	float4 LeftUpPos = float4::UP;
 	float4 RightUpPos = float4::UP;
 
-	int LeftUpColor = ColMapImage_->GetImagePixel(GetPosition() + float4{ -12.0f, 0.0f } + LeftUpPos);
-	int RightUpColor = ColMapImage_->GetImagePixel(GetPosition() + float4{ 12.0f, 0.0f } + RightUpPos);
+	int LeftUpColor = ColMapImage_->GetImagePixel(GetPosition() + float4{ -12.0f, 0.0f } + float4::DOWN * 7.0f);
+	int RightUpColor = ColMapImage_->GetImagePixel(GetPosition() + float4{ 12.0f, 0.0f } + float4::DOWN * 7.0f);
 
 
 	// TODO::맵과 충돌 판정
 
-	if (RGB(0, 0, 255) == LeftUpColor)
-	{
-		while (RGB(0, 0, 255) != LeftUpColor)
-		{
-			LeftUpPos += float4::UP;
-			//LeftUpColor = ColMapImage_->GetImagePixel(GetPosition() + LeftUpPos);
-		}
-		SetMove(LeftUpPos);
-	}
-	else if (RGB(0, 0, 255) == RightUpColor)
-	{
-		while (RGB(0, 0, 255) != RightUpColor)
-		{
-			RightUpPos += float4::UP;
-			//RightUpColor = ColMapImage_->GetImagePixel(GetPosition() + RightUpPos);
-		}
-		SetMove(RightUpPos);
-	}
+	CheckHillPixel();
 	// 이동
 
 	if(RGB(0,0,255) != LeftColor &&
@@ -252,7 +235,7 @@ void Player::MoveFall()
 {
 	float4 CheckLength = float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
 
-	float4 NextPos = { GetPosition().x + CheckLength.x , GetPosition().y + CheckLength.y + PLAYER_SIZE_Y / 2 };
+	float4 NextPos = { GetPosition().x + CheckLength.x , GetPosition().y + CheckLength.y + PLAYER_SIZE_Y / 2  };
 
 	int Color = ColMapImage_->GetImagePixel(NextPos);
 
@@ -276,13 +259,42 @@ void Player::MoveFall()
 			// 데미지 처리
 			PlayerHp_ -= static_cast<int>(FallLength_ / 80.0f);
 		}
-
+		FallSpeed_ = PLAYER_SPEED_FALL;
 		// TODO::낙하 상태에 따라서 다른 낙하처리
 		// X값이 존재하는 낙하의 경우에는 미끄러짐
 		// X값이 존재하지 않는 낙하의 경우에는 땅에 박힘
 	}
 
 
+}
+
+void Player::CheckHillPixel()
+{
+	float4 LeftUpPos = float4::UP;
+	float4 RightUpPos = float4::UP;
+
+	int LeftUpColor = ColMapImage_->GetImagePixel(GetPosition() + float4{ -12.0f, 0.0f } + float4::DOWN * 7.0f);
+	int RightUpColor = ColMapImage_->GetImagePixel(GetPosition() + float4{ 12.0f, 0.0f } + float4::DOWN * 7.0f);
+
+
+	// TODO::맵과 충돌 판정
+
+	if (RGB(0, 0, 255) == LeftUpColor)
+	{
+		while (RGB(0, 0, 255) != LeftUpColor)
+		{
+			LeftUpPos += float4::UP;
+		}
+		SetMove(LeftUpPos);
+	}
+	else if (RGB(0, 0, 255) == RightUpColor)
+	{
+		while (RGB(0, 0, 255) != RightUpColor)
+		{
+			RightUpPos += float4::UP;
+		}
+		SetMove(RightUpPos);
+	}
 }
 
 
