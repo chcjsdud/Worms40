@@ -39,6 +39,10 @@ private:
 	float FallSpeed_;
 	// 낙하 거리
 	float FallLength_;
+	//점프 속도
+	float JumpSpeed_;
+	//점프 거리
+	float JumpDelayTime_;
 
 	// 플레이어 Hp
 	int PlayerHp_;
@@ -84,6 +88,7 @@ private:
 	bool IsActionKeyDown();
 	bool IsActionKeyPress();
 	bool IsActionKeyUp();
+	bool IsJumpKeyDown();
 
 	// 이동중 충돌체크
 	void MoveCheck(float4 _MoveDir);

@@ -12,6 +12,7 @@ enum class PlayerState
 {
 	Idle,
 	Move,
+	Jump,
 	Action
 };
 

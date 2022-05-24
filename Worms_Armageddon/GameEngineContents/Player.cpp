@@ -10,6 +10,7 @@ Player::Player()
 	, MoveDir_(float4::ZERO)
 	, PlayerRenderer_(nullptr)
 	, PlayerHp_(100)
+	, JumpDelayTime_(0.5f)
 {
 }
 
@@ -54,6 +55,15 @@ void Player::PlayerAnimationInit()
 	// 좌우 걷는 애니메이션
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_WALK_LEFT, ANIM_NAME_PLAYER_WALKLEFT, 0, 14, 0.03f, true);
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_WALK_RIGHT, ANIM_NAME_PLAYER_WALKRIGHT, 0, 14, 0.03f, true);
+
+	//점프 전 준비동작 애니메이션
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_JUMPRDY_LEFT, ANIM_NAME_PLAYER_JUMPRDY_LEFT, 0, 9, 0.05f, false);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_JUMPRDY_RIGHT, ANIM_NAME_PLAYER_JUMPRDY_RIGHT, 0, 9, 0.05f, false);
+
+	//점프 애니메이션
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_FLYLINK_LEFT, ANIM_NAME_PLAYER_JUMPLEFT, 0, 6, 0.2f, false);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_FLYLINK_RIGHT, ANIM_NAME_PLAYER_JUMPRIGHT, 0, 6, 0.2f, false);
+
 
 	PlayerRenderer_->ChangeAnimation(ANIM_NAME_WEAPON_ON_RIGHT);
 }
@@ -117,6 +127,17 @@ bool Player::IsActionKeyDown()
 
 	return true;
 }
+
+bool Player::IsJumpKeyDown()
+{
+	if (false == GameEngineInput::GetInst()->IsDown(KEY_MOVE_JUMP))
+	{
+		return false;
+	}
+
+	return true;
+}
+
 
 // 액션키가 눌리고 있을 경우
 bool Player::IsActionKeyPress()
@@ -311,6 +332,9 @@ void Player::StateChange(PlayerState _State)
 		case PlayerState::Move:
 			MoveStart();
 			break;
+		case PlayerState::Jump:
+			JumpStart();
+			break;
 		case PlayerState::Action:
 			ActionStart();
 			break;
@@ -333,6 +357,9 @@ void Player::StateUpdate()
 		break;
 	case PlayerState::Move:
 		MoveUpdate();
+		break;
+	case PlayerState::Jump:
+		JumpUpdate();
 		break;
 	case PlayerState::Action:
 		ActionUpdate();
