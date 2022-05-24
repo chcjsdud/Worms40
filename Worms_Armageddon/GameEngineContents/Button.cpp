@@ -7,31 +7,50 @@
 
 #include "Enums.h"
 
-Button::Button() 
+Button::Button()
+	: ButtonCol_(nullptr)
+	, ButtonRenderer_(nullptr)
+	, IsBorderEffect_(false)
+	, MouseState_(MOUSE_STATE::MOUSE_OUT)
+	, IsActivated_(true)
 {
 }
 
-Button::~Button() 
+Button::~Button()
 {
 }
 
-void Button::ButtonInit(const std::string _ButtonName, const std::string _ImageName)
+void Button::ButtonInit(const std::string _ButtonName, float4 _ButtonScale, bool _IsBorderEffect)
 {
 	// 이름 설정
 	ButtonName_ = _ButtonName;
+	ButtonScale_ = _ButtonScale;
 
 	// 렌더러 설정
-	ButtonRenderer_ = CreateRenderer(_ImageName, static_cast<int>(RenderOrder::UI));
+	std::string ImageName = "Btn_" + _ButtonName + "_Idle.bmp";
+	ButtonRenderer_ = CreateRenderer(ImageName, static_cast<int>(RenderOrder::UI));
+	ButtonRenderer_->SetScale(ButtonScale_);
+	ButtonRenderer_->SetPivot(ButtonRenderer_->GetScale().Half());
 
 	// 콜리전 설정
 	ButtonCol_ = CreateCollision(COL_GROUP_BUTTON, ButtonRenderer_->GetScale());
+	ButtonCol_->SetScale(ButtonRenderer_->GetScale());
+	ButtonCol_->SetPivot(ButtonRenderer_->GetScale().Half());
 
 	// 최초 상태
 	MouseState_ = MOUSE_STATE::MOUSE_OUT;
+
+	// BorderEffect받는지의 여부
+	IsBorderEffect_ = _IsBorderEffect;
 }
 
 void Button::ButtonUpdate()
 {
+	if (false == IsActivated_)
+	{
+		return;
+	}
+
 	MouseInOutCheck();
 	UpdateState();
 	ButtonBorderEffect();
@@ -74,7 +93,6 @@ void Button::MouseInUpdate()
 
 void Button::MouseInOutCheck()
 {
-	// 마우스와 충돌체크
 	std::vector<GameEngineCollision*> MouseColCheck;
 
 	if (true == ButtonCol_->CollisionResult("Mouse", MouseColCheck))
@@ -89,16 +107,24 @@ void Button::MouseInOutCheck()
 	MouseColCheck.clear();
 }
 
+// BorderEffect기능이 있는 버튼의 파일 이름은
+// 'Btn_ButtonName_Idle.bmp' / 'Btn_ButtonName_MouseOver.bmp' 로 형식을 맞춰주어야 함
 void Button::ButtonBorderEffect()
 {
+	if (false == IsBorderEffect_)
+	{
+		return;
+	}
+
 	if (MouseState_ == MOUSE_STATE::MOUSE_OUT)
 	{
 		ButtonRenderer_->SetImage("Btn_" + ButtonName_ + "_Idle.bmp");
+		ButtonRenderer_->SetScale(ButtonScale_);
 	}
-
 	else if (MouseState_ == MOUSE_STATE::MOUSE_IN)
 	{
 		ButtonRenderer_->SetImage("Btn_" + ButtonName_ + "_MouseOver.bmp");
+		ButtonRenderer_->SetScale(ButtonScale_);
 	}
 }
 

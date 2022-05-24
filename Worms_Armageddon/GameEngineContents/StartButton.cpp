@@ -27,8 +27,4 @@ void StartButton::Update()
 	Button::ButtonUpdate();
 }
 
-void StartButton::OnClickButton()
-{
-
-}
 
