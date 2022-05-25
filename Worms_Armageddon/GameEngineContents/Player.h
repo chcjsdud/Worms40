@@ -43,6 +43,8 @@ private:
 	float JumpSpeed_;
 	//점프 거리
 	float JumpDelayTime_;
+	// 무기 상태
+	WeaponState WeaponState_;
 
 	// 플레이어 Hp
 	int PlayerHp_;

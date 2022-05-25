@@ -1,7 +1,12 @@
 #include "Player.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineImage.h>
+
+#pragma region Weapon
 #include "Baz.h"
+#include "Grenade.h"
+#pragma endregion
+
 
 void Player::IdleUpdate()
 {
@@ -22,6 +27,15 @@ void Player::IdleUpdate()
 	{
 		StateChange(PlayerState::Jump);
 		return;
+	}
+
+	if (GameEngineInput::GetInst()->IsPress(KEY_WEAPON_BAZ))
+	{
+		WeaponState_ = WeaponState::Baz;
+	}
+	if (GameEngineInput::GetInst()->IsPress(KEY_WEAPON_GRENADE))
+	{
+		WeaponState_ = WeaponState::Grenade;
 	}
 
 }
@@ -108,7 +122,40 @@ void Player::MoveStart()
 void Player::ActionStart()
 {
 	// 무기 액터 생성
-	Weapon_ = GetLevel()->CreateActor<Baz>();
+	switch (WeaponState_)
+	{
+	case WeaponState::Baz:
+		Weapon_ = GetLevel()->CreateActor<Baz>();
+		break;
+	case WeaponState::Homing:
+		break;
+	case WeaponState::Mortar:
+		break;
+	case WeaponState::Grenade:
+		Weapon_ = GetLevel()->CreateActor<Grenade>();
+		break;
+	case WeaponState::Axe:
+		break;
+	case WeaponState::Uzi:
+		break;
+	case WeaponState::FirePunch:
+		break;
+	case WeaponState::Sheep:
+		break;
+	case WeaponState::AirStrike:
+		break;
+	case WeaponState::BlowTorch:
+		break;
+	case WeaponState::Drill:
+		break;
+	case WeaponState::Grider:
+		break;
+	default:
+		// 기본값 바주카
+		Weapon_ = GetLevel()->CreateActor<Baz>();
+		break;
+	}
+
 	Weapon_->SetPosition(this->GetPosition());
 	Weapon_->SetShotDir(MoveDir_);
 }

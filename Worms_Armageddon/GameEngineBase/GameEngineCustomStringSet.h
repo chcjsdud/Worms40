@@ -64,6 +64,9 @@
 #define KEY_ANGLE_DOWN "AngleDown"
 #define KEY_FIRE "PlayerAction"
 
+#define KEY_WEAPON_BAZ "WeaponBaz"
+#define KEY_WEAPON_GRENADE "WeaponGrenade"
+
 // ¸¶¿ì½º
 #define KEY_MOUSE_LEFT "ClickLeft"
 #define KEY_MOUSE_MID "ClickMid"
