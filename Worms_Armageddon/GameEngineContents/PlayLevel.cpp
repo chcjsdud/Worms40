@@ -66,7 +66,7 @@ void PlayLevel::Update()
 
 void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	// TODO::플레이어가 여럿이 나오도록 수정
+	// 플레이어가 여럿이 나오도록 수정
 	for (int i = 0; i < GameOptions::PlayingOptions.GetPlayerNum(); i++)
 	{
 		int tmpRandom = GameEngineRandom::MainRandom.RandomInt(0, PLAYER_MAX_NUMBER);
@@ -92,6 +92,12 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		Player_[i]->SetPlayerHp(100);
 		Player_[i]->SetPosition(GameMapInfo_->GetResponPosition(tmpRandom));
 		GameMapInfo_->SetPosFlg(true, tmpRandom);
+
+
+		// 팀 = 색깔 -> 색이 같으면 같은 팀
+		// 각 팀 색깔의 배열에 랜덤으로 플레이어를 집어넣고 각 팀이 번갈아 가면서 턴을 가짐
+		// ex) R1, R2, B1이 있으면 턴 순서는  R1->B1->R2->B1->R1 .... 
+		// -> R1, R2중 누가 먼저 할 것인가는 랜덤
 	}
 }
 

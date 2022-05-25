@@ -11,24 +11,14 @@ public:
 	static GameOptions PlayingOptions;
 
 public:
-	inline void SetPlayerName(int _Num, std::string _Names)
+	inline void SetPlayerTeamSetting(TeamColor _TeamColor, std::string _Name, int _Num)
 	{
-		PlayerNames_.insert(std::pair<int, std::string>(_Num, _Names));
+		PlayerTeamSetting_[_TeamColor].insert(std::pair<std::string, int>(_Name, _Num));
 	}
 
-	inline std::map<int, std::string> GetPlayerName()
+	inline std::map<TeamColor, std::map<std::string, int>> GetPlayerTeamSetting()
 	{
-		return PlayerNames_;
-	}
-
-	inline void SetPlayerColor(int _Num, int _Color)
-	{
-		PlayerColors_.insert(std::pair<int, int>(_Num, _Color));
-	}
-
-	inline std::map<int, int> GetPlayerColor()
-	{
-		return PlayerColors_;
+		return PlayerTeamSetting_;
 	}
 
 	inline void SetTurnTime(int _Time)
@@ -72,10 +62,8 @@ public:
 	}
 
 private:
-	// 키 = 플레이어 번호, 값 = 이름
-	std::map<int, std::string> PlayerNames_;
-	// 키 = 플레이어 번호, 값 = 색깔
-	std::map<int, int> PlayerColors_;
+	// 키 = 팀 색깔, 값 = (키 : 팀 이름, 값 : 플레이어 숫자)
+	std::map<TeamColor, std::map<std::string, int>> PlayerTeamSetting_;
 
 	// 한 턴의 시간 값
 	int TurnTime_;

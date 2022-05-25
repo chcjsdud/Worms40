@@ -117,3 +117,13 @@ enum class LevelFSM
 	TurnEnd,	 // 바람이 바뀜, 보급이 내려오고, 기타등등
 	// -> Ready
 };
+
+enum class TeamColor
+{
+	Red,
+	Blue,
+	Green,
+	Yellow,
+	Pink,
+	Mint,
+};
