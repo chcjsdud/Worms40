@@ -29,9 +29,6 @@
     <ClInclude Include="TitleImage.h">
       <Filter>00.TitleLevel\TitleActor</Filter>
     </ClInclude>
-    <ClInclude Include="GameOptions.h">
-      <Filter>Global</Filter>
-    </ClInclude>
     <ClInclude Include="WindGauge.h">
       <Filter>02.PlayLevel\UI</Filter>
     </ClInclude>
@@ -83,16 +80,10 @@
     <ClInclude Include="PlayersBox.h">
       <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
     </ClInclude>
-    <ClInclude Include="TeamEditBox.h">
-      <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
-    </ClInclude>
     <ClInclude Include="TypingBox.h">
       <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
     </ClInclude>
     <ClInclude Include="TerrainBox.h">
-      <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
-    </ClInclude>
-    <ClInclude Include="TeamListBox.h">
       <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
@@ -109,6 +100,15 @@
     </ClInclude>
     <ClInclude Include="Foom.h">
       <Filter>02.PlayLevel\Effects\FxObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOptions.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="TeamEditBox.h">
+      <Filter>01.LobbyLevel\LobbyActor\Box\TeamEdit</Filter>
+    </ClInclude>
+    <ClInclude Include="TeamButton.h">
+      <Filter>01.LobbyLevel\LobbyActor\Box\TeamEdit</Filter>
     </ClInclude>
     <ClInclude Include="Grenade.h">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
@@ -194,12 +194,6 @@
     <ClCompile Include="PlayersBox.cpp">
       <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
     </ClCompile>
-    <ClCompile Include="TeamEditBox.cpp">
-      <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
-    </ClCompile>
-    <ClCompile Include="TeamListBox.cpp">
-      <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
-    </ClCompile>
     <ClCompile Include="TypingBox.cpp">
       <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
     </ClCompile>
@@ -223,6 +217,12 @@
     </ClCompile>
     <ClCompile Include="Font.cpp">
       <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="TeamEditBox.cpp">
+      <Filter>01.LobbyLevel\LobbyActor\Box\TeamEdit</Filter>
+    </ClCompile>
+    <ClCompile Include="TeamButton.cpp">
+      <Filter>01.LobbyLevel\LobbyActor\Box\TeamEdit</Filter>
     </ClCompile>
     <ClCompile Include="Grenade.cpp">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
@@ -256,9 +256,6 @@
     <Filter Include="01.LobbyLevel\StarSpawner">
       <UniqueIdentifier>{be5de983-1b2e-43f0-8ce9-e647ee3f8dde}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.LobbyLevel\LobbyActor\Button">
-      <UniqueIdentifier>{6184b198-e4ce-4492-81e1-d33be17f814d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01.LobbyLevel\LobbyActor\Box">
       <UniqueIdentifier>{0bb4f140-d2db-462b-853a-602c7dbc5184}</UniqueIdentifier>
     </Filter>
@@ -279,6 +276,12 @@
     </Filter>
     <Filter Include="02.PlayLevel\Effects\FxObjects">
       <UniqueIdentifier>{f9b31f6f-64d3-4b01-baf9-9c8a95a22e3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.LobbyLevel\LobbyActor\Box\TeamEdit">
+      <UniqueIdentifier>{e7c50cd5-c53f-4ed1-b33b-c70d70330bb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.LobbyLevel\LobbyActor\Button">
+      <UniqueIdentifier>{6184b198-e4ce-4492-81e1-d33be17f814d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

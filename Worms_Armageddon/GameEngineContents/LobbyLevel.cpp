@@ -37,7 +37,6 @@ void LobbyLevel::Loading()
 	CreateActor<Cursor>(static_cast<int>(ActorGroup::UI));
 	BackGround_ = CreateActor<LobbyBackGround>(static_cast<int>(ActorGroup::UI));
 	PlayersBox_ = CreateActor<PlayersBox>(static_cast<int>(ActorGroup::UI));
-	TeamListBox_ = CreateActor<TeamListBox>(static_cast<int>(ActorGroup::UI));
 	TeamEditBox_ = CreateActor<TeamEditBox>(static_cast<int>(ActorGroup::UI));
 	ChatBox_ = CreateActor<ChatBox>(static_cast<int>(ActorGroup::UI));
 	TypingBox_ = CreateActor<TypingBox>(static_cast<int>(ActorGroup::UI));
@@ -59,8 +58,7 @@ void LobbyLevel::Loading()
 void LobbyLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
 	PlayersBox_->SetPosition({ 16, 13 });
-	TeamListBox_->SetPosition({ 260, 13 });
-	TeamEditBox_->SetPosition({ 260, 296 });
+	TeamEditBox_->SetPosition({ 260, 16 });
 	ChatBox_->SetPosition({ 16, 477 });
 	TypingBox_->SetPosition({ 16, 814 });
 	RollingStar_->SetPosition({ 679, 100 });
@@ -86,13 +84,13 @@ void LobbyLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	// 테스트 플레이레벨로 넘겨주는 정보
 	//GameOptions::PlayingOptions.SetPlayerName(0, "FirstPlayer");
-	//GameOptions::PlayingOptions.SetPlayerTeamSetting(0, RGB(255, 255, 255));
+	GameOptions::PlayingOptions.SetPlayerColor(0, RGB(255, 255, 255));
 	GameOptions::PlayingOptions.SetTurnTime(45);
 	GameOptions::PlayingOptions.SetPlayerNum(3);
 	GameOptions::PlayingOptions.SetMapType(MapType::Books);
 
 	// TODO::체력 100, 200 중 세팅값 보내기
-
+	GameOptions::PlayingOptions.SetWormzHp(200);
 }
 
 

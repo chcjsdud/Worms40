@@ -2,7 +2,6 @@
 #include "LobbyLevel.h"
 #include "LobbyBackGround.h"
 #include "PlayersBox.h"
-#include "TeamListBox.h"
 #include "TeamEditBox.h"
 #include "ChatBox.h"
 #include "TypingBox.h"

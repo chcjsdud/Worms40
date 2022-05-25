@@ -27,7 +27,16 @@ void Button::ButtonInit(const std::string _ButtonName, float4 _ButtonScale, bool
 	ButtonScale_ = _ButtonScale;
 
 	// ·»´õ·¯ ¼³Á¤
-	std::string ImageName = "Btn_" + _ButtonName + "_Idle.bmp";
+	std::string ImageName;
+	if (true == _IsBorderEffect)
+	{
+		ImageName = "Btn_" + _ButtonName + "_Idle.bmp";
+	}
+	else
+	{
+		ImageName = "Btn_" + _ButtonName + ".bmp";
+	}
+
 	ButtonRenderer_ = CreateRenderer(ImageName, static_cast<int>(RenderOrder::UI));
 	ButtonRenderer_->SetScale(ButtonScale_);
 	ButtonRenderer_->SetPivot(ButtonRenderer_->GetScale().Half());

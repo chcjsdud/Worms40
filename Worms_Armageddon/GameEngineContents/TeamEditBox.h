@@ -3,6 +3,7 @@
 
 // Ό³Έν :
 class GameEngineRenderer;
+class TeamButton;
 class TeamEditBox : public GameEngineActor
 {
 public:
@@ -20,7 +21,17 @@ protected:
 	virtual void Start() override;
 	virtual void Update() override;
 private:
-	GameEngineRenderer* BoxRenderer_;
+	GameEngineRenderer* EditBoxRenderer_;
+	GameEngineRenderer* ListBoxRenderer_;
+
+	std::vector<TeamButton*> BtnTeams_;
+	std::vector<float4> UpPos_;
+	std::vector<float4> DownPos_;
+
+
+
+private:
+	void InitButtonPos();
 
 };
 
