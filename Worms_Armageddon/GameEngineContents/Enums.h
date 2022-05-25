@@ -130,7 +130,6 @@ enum class TeamColor
 	Pink,
 	Mint,
 };
-};
 
 enum class FxSwitch
 {
