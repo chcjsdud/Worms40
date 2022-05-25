@@ -157,9 +157,12 @@
 
 // 이펙트
 #define IMG_FX_EXFOOM "exfoom.bmp"
+#define IMG_FX_CIRCLE50 "circle50.bmp"
+#define IMG_FX_ELIPSE50 "elipse50.bmp"
 
 // 이펙트 애니메이션
 #define ANIM_NAME_FX_EXFOOM "exfoomAnim"
+#define ANIM_NAME_FX_CIRCLE50 "circle50Anim"
 #define IMG_MISSILE "missile.bmp"
 
 // 콜리전 그룹

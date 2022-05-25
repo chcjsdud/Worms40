@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineCustomStringSet.h>
+#include "Enums.h"
 
 // 설명 :
 class GameEngineRenderer;
@@ -18,7 +19,20 @@ public:
 	EffectManager& operator=(EffectManager&& _Other) noexcept = delete;
 
 protected:
-	std::map<std::string, GameEngineRenderer*> AllFxObject_;
+	//std::map<std::string, GameEngineRenderer*> AllFxObject_;
+
+	// 단일 이펙트 모음
+	std::vector< GameEngineRenderer*> AllFxObject_;
+
+	// 단일이펙트가 뜨는 순서
+	int FxOrder_;
+
+	// 이펙트 스타트
+	FxSwitch FxSwitch_;
+	bool IsStartFx_;
+
+	// 단일 이펙트 랜더
+	GameEngineRenderer* FxObject_;
 
 	void Start() override;
 	void Update() override;

@@ -28,8 +28,10 @@ enum class RenderOrder
 	// 맵
 	BackGround_3,
 
+	Back_Fx,
 	Weapon,
 	Player,
+	Front_Fx,
 	UI,
 	Font,
 	Cursor,
@@ -38,7 +40,7 @@ enum class RenderOrder
 enum class WeaponState
 {
 	//Throw 상태 별도 존재함
-
+	// 기모으는 것 끼리 붙여넣기 (숫자로 관리)
 	// F1
 	Baz,
 	Homing,
@@ -127,4 +129,12 @@ enum class TeamColor
 	Yellow,
 	Pink,
 	Mint,
+};
+};
+
+enum class FxSwitch
+{
+	READY,
+	START,
+	END
 };

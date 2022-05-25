@@ -1,5 +1,8 @@
 #include "WeaponMaster.h"
 #include "PlayLevel.h"
+#include "EffectManager.h"
+#include "Foom.h"
+#include "Circle50.h"
 #include <GameEngineBase/GameEngineCustomStringSet.h>
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngineBase/GameEngineTime.h>
@@ -10,6 +13,7 @@ GameMapMaster* WeaponMaster::GameMap_ = nullptr;
 
 WeaponMaster::WeaponMaster() 
 	: Shot_ (false)
+	, WeaponRender_(nullptr)
 {
 }
 
@@ -93,6 +97,11 @@ bool WeaponMaster::BulletColEvent()
 			tmpEffectImg->GetScale(), // _OtherScale
 			RGB(0, 255, 0) // TransColor
 		);
+
+		//EffectManager* Effect2 = GetLevel()->CreateActor<Circle50>();
+		//Effect2->SetPosition(GetPosition());
+		EffectManager* Effect = GetLevel()->CreateActor<Foom>();
+		Effect->SetPosition(GetPosition());
 
 		Off();
 		return false;

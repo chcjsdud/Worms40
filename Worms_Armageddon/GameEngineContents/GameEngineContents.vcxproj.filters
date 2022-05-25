@@ -113,6 +113,9 @@
     <ClInclude Include="Grenade.h">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
     </ClInclude>
+    <ClInclude Include="Circle50.h">
+      <Filter>02.PlayLevel\Effects\FxObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
@@ -223,6 +226,9 @@
     </ClCompile>
     <ClCompile Include="Grenade.cpp">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Circle50.cpp">
+      <Filter>02.PlayLevel\Effects\FxObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -181,6 +181,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Circle50.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EffectManager.h">
       <SubType>
       </SubType>
@@ -298,6 +302,10 @@
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ChatBox.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Circle50.cpp">
       <SubType>
       </SubType>
     </ClCompile>
