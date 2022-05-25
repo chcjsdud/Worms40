@@ -60,12 +60,14 @@ void Player::MoveUpdate()
 	if (true == GameEngineInput::GetInst()->IsPress(KEY_MOVE_RIGHT))
 	{
 		StateName_ = ANIM_KEYWORD_PLAYER_WALK;
+		CurDirName_ = PLAYER_DIR_RIGHT;
 		MoveCheck(float4::RIGHT);
 		
 	}
 	if (true == GameEngineInput::GetInst()->IsPress(KEY_MOVE_LEFT))
 	{
 		StateName_ = ANIM_KEYWORD_PLAYER_WALK;
+		CurDirName_ = PLAYER_DIR_LEFT;
 		MoveCheck(float4::LEFT);
 
 	}
@@ -91,9 +93,22 @@ void Player::JumpUpdate()
 		StateName_ = ANIM_KEYWORD_PLAYER_JUMP;
 		PlayerAnimationChange(StateName_);
 
+		if (CurDirName_ == PLAYER_DIR_RIGHT)
+		{
+			JumpMoveDir_ = float4::RIGHT * GameEngineTime::GetDeltaTime() * 100.0f;
+			SetMove(JumpMoveDir_);
+		}
+		else
+		{
+			JumpMoveDir_ = float4::LEFT * GameEngineTime::GetDeltaTime() * 100.0f;
+			SetMove(JumpMoveDir_);
+		}
+
+
 		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime());
 
 		MoveDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * FallSpeed_;
+		FallSpeed_ += 5.0f;
 
 		float4 DownPos = GetPosition() + float4{ 0.0f , PLAYER_SIZE_Y / 2 };
 		int Color = ColMapImage_->GetImagePixel(DownPos);

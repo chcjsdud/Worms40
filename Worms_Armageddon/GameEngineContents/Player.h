@@ -51,6 +51,7 @@ private:
 
 	// 플레이어는 마지막으로 보고 있던 방향의 정보를 가지고 있어야 함.
 	float4 MoveDir_;
+	float4 JumpMoveDir_;
 	// 카메라의 위치
 	float4 CameraPos_;
 	// 사운드 오브젝트
@@ -69,6 +70,7 @@ private:
 
 	std::string DirName_;
 	std::string StateName_;
+	std::string CurDirName_;
 
 	// 현재 레벨
 	inline std::string GetCurrentLevel()
