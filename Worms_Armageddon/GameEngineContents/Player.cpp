@@ -11,6 +11,8 @@ Player::Player()
 	, PlayerRenderer_(nullptr)
 	, PlayerHp_(100)
 	, JumpDelayTime_(0.5f)
+	, KeyCount_(0)
+	, KeyTimer_(0.5f)
 {
 }
 
@@ -33,8 +35,8 @@ void Player::Start()
 void Player::Update()
 {
 	UpdateCamera();
-	MoveFall();
 	StateUpdate();
+	MoveFall();
 }
 
 void Player::Render()
@@ -63,6 +65,10 @@ void Player::PlayerAnimationInit()
 	//점프 애니메이션
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_FLYLINK_LEFT, ANIM_NAME_PLAYER_JUMPLEFT, 0, 6, 0.2f, false);
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_FLYLINK_RIGHT, ANIM_NAME_PLAYER_JUMPRIGHT, 0, 6, 0.2f, false);
+
+	//백플립 애니메이션
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_BACKFLIP_LEFT, ANIM_NAME_PLAYER_BACKFLIP_LEFT, 0, 21, 0.1f, false);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_BACKFLIP_RIGHT, ANIM_NAME_PLAYER_BACKFLIP_RIGHT, 0, 21, 0.1f, false);
 
 
 	PlayerRenderer_->ChangeAnimation(ANIM_NAME_WEAPON_ON_RIGHT);
@@ -135,6 +141,26 @@ bool Player::IsActionKeyDown()
 bool Player::IsJumpKeyDown()
 {
 	if (false == GameEngineInput::GetInst()->IsDown(KEY_MOVE_JUMP))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool Player::IsBackFlipKeyDown()
+{
+	if (false == GameEngineInput::GetInst()->IsDown(KEY_MOVE_BACKFLIP))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool Player::IsBackFlipKeyFree()
+{
+	if (false == GameEngineInput::GetInst()->IsFree(KEY_MOVE_BACKFLIP))
 	{
 		return false;
 	}
@@ -339,6 +365,9 @@ void Player::StateChange(PlayerState _State)
 		case PlayerState::Jump:
 			JumpStart();
 			break;
+		case PlayerState::BackFlip:
+			BackFlipStart();
+			break;
 		case PlayerState::Action:
 			ActionStart();
 			break;
@@ -364,6 +393,9 @@ void Player::StateUpdate()
 		break;
 	case PlayerState::Jump:
 		JumpUpdate();
+		break;
+	case PlayerState::BackFlip:
+		BackFlipUpdate();
 		break;
 	case PlayerState::Action:
 		ActionUpdate();

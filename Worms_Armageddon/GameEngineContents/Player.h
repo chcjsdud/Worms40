@@ -65,6 +65,7 @@ private:
 
 	// 플레이어가 들고 있는 무기의 타입
 	int WeaponType_;
+
 	// 생성할 무기
 	WeaponMaster* Weapon_;
 
@@ -85,6 +86,10 @@ private:
 	// 카메라 업데이트
 	void UpdateCamera();
 
+	//키 입력 카운트
+	int KeyCount_;
+	float KeyTimer_;
+
 	// 키입력 관련 함수
 	bool IsMoveKeyDown();
 	bool IsMoveKeyPress();
@@ -93,6 +98,8 @@ private:
 	bool IsActionKeyPress();
 	bool IsActionKeyUp();
 	bool IsJumpKeyDown();
+	bool IsBackFlipKeyDown();
+	bool IsBackFlipKeyFree();
 
 	// 이동중 충돌체크
 	void MoveCheck(float4 _MoveDir);
@@ -108,16 +115,20 @@ public:
 private:
 	// 현재 상태
 	PlayerState CurrentState_;
+	// 이전 상태
+	PlayerState PrevState_;
 
 	void IdleStart();
 	void MoveStart();
 	void ActionStart();
 	void JumpStart();
+	void BackFlipStart();
 
 	void IdleUpdate();
 	void MoveUpdate();
 	void ActionUpdate();
 	void JumpUpdate();
+	void BackFlipUpdate();
 
 	void PlayerAnimationChange(std::string _Anim);
 	

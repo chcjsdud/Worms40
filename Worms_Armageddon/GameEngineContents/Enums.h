@@ -13,6 +13,7 @@ enum class PlayerState
 	Idle,
 	Move,
 	Jump,
+	BackFlip,
 	Action
 };
 
