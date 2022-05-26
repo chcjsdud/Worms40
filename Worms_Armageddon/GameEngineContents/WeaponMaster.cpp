@@ -65,7 +65,7 @@ void WeaponMaster::BulletMove(float _Gravity)
 	WeaponRender_->SetRotationZ(Degree + 90); // 방향에 따른 투사체 각도
 }
 
-bool WeaponMaster::BulletColEvent()
+void WeaponMaster::BulletColEvent()
 {
 	int Color = GetGameMap()->GetColMap()->GetImagePixel({ GetPosition() });
 
@@ -102,15 +102,7 @@ bool WeaponMaster::BulletColEvent()
 		//Effect2->SetPosition(GetPosition());
 		EffectManager* Effect = GetLevel()->CreateActor<Foom>();
 		Effect->SetPosition(GetPosition());
-
+		
 		Off();
-		return false;
 	}
-
-	// 동작
-	//  동작
-	//  동작
-	//  동작
-	// 동작 중
-	return true;
 }

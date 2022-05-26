@@ -22,13 +22,13 @@ protected:
 	//std::map<std::string, GameEngineRenderer*> AllFxObject_;
 
 	// 단일 이펙트 모음
-	std::vector< GameEngineRenderer*> AllFxObject_;
+	std::list< GameEngineRenderer*> AllFxObject_;
+	int FxOffCnt_;
 
 	// 단일이펙트가 뜨는 순서
 	int FxOrder_;
 
 	// 이펙트 스타트
-	FxSwitch FxSwitch_;
 	bool IsStartFx_;
 
 	// 단일 이펙트 랜더
@@ -37,9 +37,14 @@ protected:
 	void Start() override;
 	void Update() override;
 
+	void FxOff();
+
 private:
+	
 
 public:
 
+
+	//void PlayFx(FxPlayList _Fx);
 };
 

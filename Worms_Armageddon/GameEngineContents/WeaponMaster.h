@@ -64,7 +64,7 @@ protected:
 	void BulletMove(float _Gravity);
 
 	// 투사체 충돌 시 발생 이벤트
-	bool BulletColEvent();
+	void BulletColEvent();
 
 public:
 	inline void SetShotDir(float4 _WeaponDir)

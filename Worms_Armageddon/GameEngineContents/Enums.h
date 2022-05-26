@@ -130,9 +130,7 @@ enum class TeamColor
 	Max,
 };
 
-enum class FxSwitch
+enum class FxPlayList
 {
-	READY,
-	START,
-	END,
+	Foom
 };

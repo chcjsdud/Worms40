@@ -2,9 +2,9 @@
 #include <GameEngine/GameEngineRenderer.h>
 
 EffectManager::EffectManager() 
-	: FxOrder_(0)
+	: FxOffCnt_(0)
+	, FxOrder_(0)
 	, IsStartFx_(false)
-	, FxSwitch_(FxSwitch::READY)
 	, FxObject_ (nullptr)
 {
 }
@@ -21,3 +21,21 @@ void EffectManager::Start()
 void EffectManager::Update()
 {
 }
+
+
+void EffectManager::FxOff()
+{
+
+}
+
+//void EffectManager::PlayFx(FxPlayList _Fx)
+//{
+//	switch (_Fx)
+//	{
+//	case FxPlayList::Foom:
+//		void PlayFoom();
+//		break;
+//	default:
+//		break;
+//	}
+//}

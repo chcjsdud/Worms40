@@ -12,13 +12,19 @@ Foom::~Foom()
 
 void Foom::Start()
 {
-	
-
-	//AllFxObject_.insert(std::make_pair("testFx", FxObject));
 }
 
 void Foom::Update()
 {
+	for (GameEngineRenderer* FxOb : AllFxObject_)
+	{
+		if (true == FxOb->IsEndAnimation())
+		{
+			FxOb->Off();
+			++FxOffCnt_;
+		}
+	}
+
 	switch (FxOrder_)
 	{
 	case 0:
@@ -58,10 +64,26 @@ void Foom::Update()
 
 			IsStartFx_ = true;
 		}
+
+		if (1.f < GetAccTime())
+		{
+			if (true == IsStartFx_)
+			{
+				IsStartFx_ = false;
+				FxOrder_ += 1;
+			}
+		}
 	}
 		break;
-
 	default:
+		if (FxOffCnt_ == AllFxObject_.size())
+		{
+			for (GameEngineRenderer* FxOb : AllFxObject_)
+			{
+				FxOb->Death();
+			}
+			AllFxObject_.clear();
+		}
 		break;
 	}
 }
