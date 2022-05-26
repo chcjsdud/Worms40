@@ -43,7 +43,7 @@ void Player::Render()
 
 }
 
-bool Player::ControllUpdate()
+void Player::ControllUpdate()
 {
 	// 컨트롤되고 있는 플레이어 캐릭터는 카메라 이동 움직임등의 동작을 수행
 	UpdateCamera();

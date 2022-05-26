@@ -127,13 +127,12 @@ enum class TeamColor
 	Yellow,
 	Pink,
 	Mint,
+	Max,
 };
 
 enum class FxSwitch
 {
 	READY,
 	START,
-	END
-};
-	Max,
+	END,
 };

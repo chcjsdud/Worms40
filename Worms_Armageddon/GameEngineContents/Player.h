@@ -43,7 +43,7 @@ public:
 		return IsTurnEnd_;
 	}
 
-	bool ControllUpdate();
+	void ControllUpdate();
 	void UnControllUpdate();
 private:
 
