@@ -26,7 +26,7 @@ private:
 	int FxOffCnt_;
 
 protected:
-	// 단일이펙트가 뜨는 순서
+	// 이펙트 진행 순서
 	int FxPhase_;
 
 	// 이펙트 스타트
@@ -35,7 +35,7 @@ protected:
 	void Start() override;
 	void Update() override;
 
-	// 이펙트가 끝나면 해당 이펙트를 종료하는 기능
+	// 이펙트가 끝나면 해당 이펙트를 숨기는 기능
 	void FxOffUpdate();
 
 	// 지정 이펙트 재생하는 기능
@@ -50,10 +50,5 @@ protected:
 private:
 	void PlayFoom();
 	void PlayCircle50();
-
-public:
-
-
-	//void PlayFx(FxPlayList _Fx);
 };
 
