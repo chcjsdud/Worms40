@@ -32,7 +32,23 @@ public:
 	{
 		PlayerHp_ = _WormzHp;
 	}
+
+	inline bool GetIsDeath()
+	{
+		return IsDeath_;
+	}
+
+	inline bool GetIsTurnEnd()
+	{
+		return IsTurnEnd_;
+	}
+
+	bool ControllUpdate();
+	void UnControllUpdate();
 private:
+
+	bool IsTurnEnd_;
+
 	// 속도
 	float Speed_;
 	// 낙하 속도
@@ -48,6 +64,9 @@ private:
 
 	// 플레이어 Hp
 	int PlayerHp_;
+
+	// 플레이어 사망 플래그
+	bool IsDeath_;
 
 	// 플레이어는 마지막으로 보고 있던 방향의 정보를 가지고 있어야 함.
 	float4 MoveDir_;

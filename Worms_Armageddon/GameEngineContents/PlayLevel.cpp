@@ -8,8 +8,17 @@
 #include "GameEngineBase/GameEngineRandom.h"
 #include <GameEngineBase/GameEngineInput.h>
 
-PlayLevel::PlayLevel() 
+PlayLevel::PlayLevel()
+	: LevelPhase_(LevelFSM::Ready)
 {
+	// 플레이어 배열 초기화
+	for (int TeamColor = 0; TeamColor < PLAYER_MAX_TEAM; TeamColor++)
+	{
+		for (int PlayerNum = 0; PlayerNum < PLAYER_MAX_NUMBER; PlayerNum++)
+		{
+			Player_[TeamColor][PlayerNum] = nullptr;
+		}
+	}
 }
 
 PlayLevel::~PlayLevel() 
@@ -52,6 +61,109 @@ void PlayLevel::Loading()
 
 void PlayLevel::Update()
 {
+	if (DeathList_.size() != 0)
+	{
+		// 죽음처리
+
+		LevelPhase_ = LevelFSM::Death;
+	}
+
+	switch (LevelPhase_)
+	{
+	case LevelFSM::Ready:
+
+		// CurrentTeam.size() == 0
+
+		for (std::list<Player*>& Team : AllPlayer_)
+		{
+			PlayQueue_.push_back(std::list<Player*>());
+
+			for (Player* Player : Team)
+			{
+				if (Player->GetIsDeath())
+				{
+					continue;
+				}
+
+				PlayQueue_.back().push_back(Player);
+			}
+		}
+
+		AllPlayerIter_ = PlayQueue_.begin();
+
+		TargetPlayer_ = *AllPlayerIter_->begin();
+
+		// TODO::카메라이동 작성 후 추가
+		// LevelPhase_ = LevelFSM::CameraMove;
+		LevelPhase_ = LevelFSM::Move;
+
+		break;
+	case LevelFSM::Move:
+		{
+			std::list<Player*>& Teams = (*AllPlayerIter_);
+			Player* CurrentPlayer = Teams.front();
+
+			// 움직여
+
+
+			// 턴종료
+			if (CurrentPlayer->GetIsTurnEnd())
+			{
+				Teams.pop_front();
+			}
+			// TODO::턴바꿈용 임시코드
+			else if (true == GameEngineInput::GetInst()->IsUp("TestClick"))
+			{
+				Teams.pop_front();
+			}
+			else
+			{
+				CurrentPlayer->ControllUpdate();
+				return;
+			}
+
+			// 다음 팀를 정해야 하는데.
+
+			// 그 팀에 행동할 사람이 없다면
+			if (Teams.size() == 0)
+			{
+				// 그 팀은 파괴하고
+				AllPlayerIter_ = PlayQueue_.erase(AllPlayerIter_);
+
+				// 만약에 팀조차도 하나도 없다면
+				if (0 == PlayQueue_.size())
+				{
+					// 다시 팀을 정해주러 간다.
+					LevelPhase_ = LevelFSM::Ready;
+					return;
+				}
+			}
+			else
+			{
+				// 그냥 다음팀으로 간다.
+				++AllPlayerIter_;
+			}
+
+			if (AllPlayerIter_ == PlayQueue_.end())
+			{
+				AllPlayerIter_ = PlayQueue_.begin();
+			}
+
+		}
+		break;
+	case LevelFSM::CameraMove:
+
+		if (nullptr == TargetPlayer_)
+		{
+			LevelPhase_ = LevelFSM::Move;
+		}
+
+		// 카메라 로직을 실행하면된다.
+
+		break;
+	default:
+		break;
+	}
 
 	//임시방편
 	//마우스 클릭할때마다 바람세기 변경
@@ -66,38 +178,58 @@ void PlayLevel::Update()
 
 void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	// 플레이어가 여럿이 나오도록 수정
-	for (int i = 0; i < GameOptions::PlayingOptions.GetPlayerNum(); i++)
+	PlayerColorTeamSetting_ = GameOptions::PlayingOptions.GetPlayerTeamSetting();
+
+	// 팀 = 색깔 -> 색이 같으면 같은 팀
+	// 각 팀 색깔의 배열에 랜덤으로 플레이어를 집어넣고 각 팀이 번갈아 가면서 턴을 가짐
+	// ex) R1, R2, B1이 있으면 턴 순서는  R1->B1->R2->B1->R1 .... 
+	// -> R1, R2중 누가 먼저 할 것인가는 랜덤
+	// 플레이어가 색깔, 팀별로 생성되도록
+	for (int TeamSetNum = 0; TeamSetNum < (int)TeamColor::Max; TeamSetNum++)
 	{
-		int tmpRandom = GameEngineRandom::MainRandom.RandomInt(0, PLAYER_MAX_NUMBER);
+		std::list<Player*> Playerlist;
+		std::map<TeamColor, int>::iterator iTeamName 
+						= PlayerColorTeamSetting_.find((TeamColor)TeamSetNum);
 
-		for (;;)
+		// 색이 없을 경우 다음 색으로
+		if (iTeamName == PlayerColorTeamSetting_.end())
 		{
-			// 이미 사용된 포지션이라면
-			if (true == GameMapInfo_->GetPosFlg(tmpRandom))
-			{
-				tmpRandom = GameEngineRandom::MainRandom.RandomInt(0, PLAYER_MAX_NUMBER);
+			continue;
+		}
+		// 플레이어 생성
+		for (int PlayerNum = 0; PlayerNum < iTeamName->second; PlayerNum++)
+		{
+			int tmpRandom = GameEngineRandom::MainRandom.RandomInt(0, PLAYER_MAX_NUMBER);
 
-				continue;
+			for (;;)
+			{
+				// 이미 사용된 포지션이라면
+				if (true == GameMapInfo_->GetPosFlg(tmpRandom))
+				{
+					tmpRandom = GameEngineRandom::MainRandom.RandomInt(0, PLAYER_MAX_NUMBER);
+
+					continue;
+				}
+
+				// 사용된적이 없는 포지션이라면 탈출
+				break;
 			}
 
-			// 사용된적이 없는 포지션이라면 탈출
-			break;
+				
+			GameMapInfo_->SetPosFlg(true, tmpRandom);
+			Player_[TeamSetNum][PlayerNum] = CreateActor<Player>();
+			//// TODO::로비레벨에서 넘어오도록 수정
+			//// Player_->SetPlayerHp(GameOptions_->PlayingOptions.GetWormzHp());
+			Player_[TeamSetNum][PlayerNum]->SetPlayerHp(100);
+			Player_[TeamSetNum][PlayerNum]->SetPosition(GameMapInfo_->GetResponPosition(tmpRandom));
+
+			// 팀에 플레이어를 추가
+			Playerlist.push_back(Player_[TeamSetNum][PlayerNum]);
+
 		}
 
-		Player_[i] = CreateActor<Player>();
-
-		// TODO::로비레벨에서 넘어오도록 수정
-		// Player_->SetPlayerHp(GameOptions_->PlayingOptions.GetWormzHp());
-		Player_[i]->SetPlayerHp(100);
-		Player_[i]->SetPosition(GameMapInfo_->GetResponPosition(tmpRandom));
-		GameMapInfo_->SetPosFlg(true, tmpRandom);
-
-
-		// 팀 = 색깔 -> 색이 같으면 같은 팀
-		// 각 팀 색깔의 배열에 랜덤으로 플레이어를 집어넣고 각 팀이 번갈아 가면서 턴을 가짐
-		// ex) R1, R2, B1이 있으면 턴 순서는  R1->B1->R2->B1->R1 .... 
-		// -> R1, R2중 누가 먼저 할 것인가는 랜덤
+		// 팀을 전체 플레이어 리스트에 추가
+		AllPlayer_.push_back(Playerlist);
 	}
 }
 

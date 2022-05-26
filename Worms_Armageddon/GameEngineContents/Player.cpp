@@ -10,7 +10,9 @@ Player::Player()
 	, MoveDir_(float4::ZERO)
 	, PlayerRenderer_(nullptr)
 	, PlayerHp_(100)
+	, IsDeath_(false)
 	, JumpDelayTime_(0.5f)
+	, IsTurnEnd_(false)
 	, KeyCount_(0)
 	, KeyTimer_(0.5f)
 {
@@ -34,14 +36,27 @@ void Player::Start()
 
 void Player::Update()
 {
-	UpdateCamera();
-	StateUpdate();
-	MoveFall();
 }
 
 void Player::Render()
 {
 
+}
+
+bool Player::ControllUpdate()
+{
+	// 컨트롤되고 있는 플레이어 캐릭터는 카메라 이동 움직임등의 동작을 수행
+	UpdateCamera();
+	StateUpdate();
+	MoveFall();
+}
+
+void Player::UnControllUpdate()
+{
+	// 컨트롤되고 있지 않은 플레이어 캐릭터는 피격판정등의 동작만 수행
+	MoveFall();
+
+	// 컨트롤되고 있지 않은 캐릭터는 데미지를 받더라도 턴이 끝나지 않음
 }
 
 void Player::PlayerAnimationInit()

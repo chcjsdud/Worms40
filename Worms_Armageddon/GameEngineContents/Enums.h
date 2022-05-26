@@ -106,9 +106,7 @@ enum class LevelFSM
 				 //입력이 없을경우 자동으로 5초뒤에 다음 페이즈로 넘어감
 
 	Move,		 // 이동 단계, 이동, 조준, 무기 변경을 함
-	WeaponShoot, // 무기발사 페이즈, 플레이어 웜즈가 공격을 했을경우
-				 // 공격을 받은 웜즈의 움직임이 멈춘 후 5초뒤까지 이동이 가능?
-
+	CameraMove, 
 	Damage,		 // 데미지 계산,
 
 	// 반복
@@ -136,4 +134,6 @@ enum class FxSwitch
 	READY,
 	START,
 	END
+};
+	Max,
 };

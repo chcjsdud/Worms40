@@ -86,7 +86,10 @@ void LobbyLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	//GameOptions::PlayingOptions.SetPlayerName(0, "FirstPlayer");
 	//GameOptions::PlayingOptions.SetPlayerColor(0, RGB(255, 255, 255));
 	GameOptions::PlayingOptions.SetTurnTime(45);
-	GameOptions::PlayingOptions.SetPlayerNum(3);
+	// GameOptions::PlayingOptions.SetPlayerNum(3);
+	GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)0, 3);
+	GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)1, 3);
+	GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)2, 3);
 	GameOptions::PlayingOptions.SetMapType(MapType::Books);
 
 	// TODO::체력 100, 200 중 세팅값 보내기

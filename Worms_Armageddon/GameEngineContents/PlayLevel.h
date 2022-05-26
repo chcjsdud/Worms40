@@ -40,13 +40,22 @@ private:
 
 	Water* WaterActor_;
 	WeaponMaster* WeaponMaster_;
-	Player* Player_[PLAYER_MAX_NUMBER];
 	Cursor* Mouse_;
 	WindGauge* WindGaugeActor_;
 
 	float4 WindDir_;
 	float WindSpeed_;
 
+	Player* Player_[PLAYER_MAX_TEAM][PLAYER_MAX_NUMBER];
+	std::map<TeamColor, int> PlayerColorTeamSetting_;
+
+	std::list<std::list<Player*>>::iterator AllPlayerIter_;
+	std::list<std::list<Player*>> AllPlayer_;
+	std::list<std::list<Player*>> PlayQueue_;
+	std::list<Player*> DeathList_;
+	Player* TargetPlayer_;
+
+	LevelFSM LevelPhase_;
 private:
 	void CreateTestBullet();
 	void SetWindUI(int _WindDir);
