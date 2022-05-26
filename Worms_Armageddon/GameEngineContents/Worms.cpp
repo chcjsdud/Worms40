@@ -261,6 +261,8 @@ void Worms::GameInit()
 		{
 			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find(IMG_MISSILE);
 			Image->Cut({ 60,60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_FALL);
+			Image->Cut({ 60,60 });
 		}
 	}
 

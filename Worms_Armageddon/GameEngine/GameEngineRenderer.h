@@ -92,6 +92,7 @@ public:
 		}
 	}
 
+
 	void CameraEffectOff()
 	{
 		IsCameraEffect_ = false;
@@ -132,7 +133,7 @@ public:
 
 	void SetOrder(int _Order) override;
 
-
+	int GetCurrentFrame();
 protected:
 	// EngineImage의 TransCopy 로 이미지를 백버퍼에 그린다.
 	void Render();
@@ -143,7 +144,7 @@ private:
 	GameEngineImage* Image_;	
 	RenderPivot PivotType_;		// 센터 bot 등, 이미지 어느곳을 중심으로 출력할것인가
 	RenderScaleMode ScaleMode_;	// ENUM(Image, User), 엔진이 정의해준 기본값으로 쓸것인가, 프로그래머가 정의한 USER값으로 쓸것인가.
-
+	int CurFrame;
 	// 화면에서 출력할 좌표와 크기
 	float4 RenderPivot_;		// 그려질 DC의 시작점
 	float4 RenderScale_;		// 어느 크기로 그릴것인가.
@@ -226,6 +227,12 @@ private:
 		inline int LocalCurrentFrame() const
 		{
 			return StartFrame_ - CurrentFrame_;
+		}
+		
+		inline int GetCurrentFrame() const
+		{
+			
+			return CurrentFrame_;
 		}
 
 

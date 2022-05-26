@@ -109,6 +109,7 @@
 #define IMG_PLAYER_BACKFLIP_RIGHT "backflipRight.bmp"
 #define IMG_PLAYER_WALK_LEFT "WalkLeft.bmp"
 #define IMG_PLAYER_WALK_RIGHT "WalkRight.bmp"
+#define IMG_PLAYER_FALL "wtwang.bmp"
 
 
 // 애니메이션 키워드
@@ -119,6 +120,8 @@
 #define ANIM_KEYWORD_PLAYER_BACKFLIP "backflip"
 #define ANIM_KEYWORD_PLAYER_WALK "Walk"
 #define ANIM_KEYWORD_PLAYER_JUMP "Jump"
+#define ANIM_KEYWORD_PLAYER_FALL "Falled"
+
 
 #define ANIM_KEYWORD_DIR_LEFT "Left"
 #define ANIM_KEYWORD_DIR_RIGHT "Right"
@@ -138,6 +141,7 @@
 #define ANIM_NAME_PLAYER_WALKRIGHT "WalkRight"
 #define ANIM_NAME_PLAYER_JUMPRIGHT "JumpRight"
 #define ANIM_NAME_PLAYER_JUMPLEFT "JumpLeft"
+#define ANIM_NAME_PLAYER_FALL "Falled"
 
 
 #define ANIM_NAME_WEAPON_ON_LEFT "bazOnLeft"

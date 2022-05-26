@@ -424,6 +424,12 @@ void GameEngineRenderer::SetOrder(int _Order)
 	GetActor()->GetLevel()->ChangeRenderOrder(this, _Order);
 }
 
+int GameEngineRenderer::GetCurrentFrame()
+{
+
+	return CurrentAnimation_->GetCurrentFrame();
+}
+
 bool GameEngineRenderer::IsEndAnimation() 
 {
 	return CurrentAnimation_->IsEnd;

@@ -88,7 +88,11 @@ void Player::PlayerAnimationInit()
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_BACKFLIP_LEFT, ANIM_NAME_PLAYER_BACKFLIP_LEFT, 0, 21, 0.02f, false);
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_BACKFLIP_RIGHT, ANIM_NAME_PLAYER_BACKFLIP_RIGHT, 0, 21, 0.02f, false);
 
+	//낙하 애니메이션
+	//33번째 이미지때 올라가게
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_FALL, ANIM_NAME_PLAYER_FALL, 0, 48, 0.05, false);
 
+	
 	PlayerRenderer_->ChangeAnimation(ANIM_NAME_WEAPON_ON_RIGHT);
 }
 
@@ -371,6 +375,9 @@ void Player::StateChange(PlayerState _State)
 		case PlayerState::BackFlip:
 			BackFlipStart();
 			break;
+		case PlayerState::Falled:
+			FalledStart();
+			break;
 		case PlayerState::Action:
 			ActionStart();
 			break;
@@ -399,6 +406,9 @@ void Player::StateUpdate()
 		break;
 	case PlayerState::BackFlip:
 		BackFlipUpdate();
+		break;
+	case PlayerState::Falled:
+		FalledUpdate();
 		break;
 	case PlayerState::Action:
 		ActionUpdate();

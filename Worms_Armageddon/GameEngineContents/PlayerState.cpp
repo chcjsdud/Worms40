@@ -178,12 +178,21 @@ void Player::JumpUpdate()
 		float4 DownPos = { GetPosition().x, GetPosition().y + PLAYER_SIZE_Y / 2 };
 		int Color = ColMapImage_->GetImagePixel(DownPos);
 
+		
+
 
 		if (RGB(0, 0, 255) == Color)
 		{
 			MoveDir_ = float4::ZERO;
 			JumpMoveDir_ = float4::ZERO;
 
+			float a = FallSpeed_;
+			//낙하데미지
+			if (2000 <= FallSpeed_)
+			{
+				StateChange(PlayerState::Falled);
+				return;
+			}
 			do
 			{
 				SetMove(UpPos); 
@@ -217,12 +226,12 @@ void Player::BackFlipUpdate()
 
 		if (CurDirName_ == PLAYER_DIR_RIGHT)
 		{
-			JumpMoveDir_ = float4::LEFT * GameEngineTime::GetDeltaTime() * 50.0f;
+			JumpMoveDir_ = float4::LEFT * GameEngineTime::GetDeltaTime() * 20.0f;
 			SetMove(JumpMoveDir_);
 		}
 		else
 		{
-			JumpMoveDir_ = float4::RIGHT * GameEngineTime::GetDeltaTime() * 50.0f;
+			JumpMoveDir_ = float4::RIGHT * GameEngineTime::GetDeltaTime() * 20.0f;
 			SetMove(JumpMoveDir_);
 		}
 
@@ -240,6 +249,16 @@ void Player::BackFlipUpdate()
 
 		if (RGB(0, 0, 255) == Color)
 		{
+			MoveDir_ = float4::ZERO;
+			JumpMoveDir_ = float4::ZERO;
+
+			float a = FallSpeed_;
+			//낙하데미지
+			if (2000 <= FallSpeed_)
+			{
+				StateChange(PlayerState::Falled);
+				return;
+			}
 
 			do
 			{
@@ -249,8 +268,6 @@ void Player::BackFlipUpdate()
 			} while (RGB(0, 0, 255) == Color);
 
 
-			MoveDir_ = float4::ZERO;
-			JumpMoveDir_ = float4::ZERO;
 			//점프 도중에 키를 누르고있으면 바로 움직이게 만들어준다.
 			if (true == GameEngineInput::GetInst()->IsPress(KEY_MOVE_RIGHT) ||
 				true == GameEngineInput::GetInst()->IsPress(KEY_MOVE_LEFT))
@@ -265,6 +282,46 @@ void Player::BackFlipUpdate()
 		}
 	}
 }
+
+//TODO : 약간의 이상한점 수정
+void Player::FalledUpdate()
+{
+	if(32 <= PlayerRenderer_->GetCurrentFrame())
+	{
+		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime());
+
+		MoveDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * FallSpeed_;
+		FallSpeed_ += 30.0f;
+
+		float4 CheckLength = float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
+
+		float4 UpPos = float4::UP;
+		float4 DownPos = { GetPosition().x + CheckLength.x , GetPosition().y + CheckLength.y + PLAYER_SIZE_Y / 2 };
+		int Color = ColMapImage_->GetImagePixel(DownPos);
+
+		if (RGB(0, 0, 255) == Color)
+		{
+			MoveDir_ = float4::ZERO;
+			JumpMoveDir_ = float4::ZERO;
+
+
+			do
+			{
+				SetMove(UpPos);
+				DownPos = { GetPosition().x, GetPosition().y + PLAYER_SIZE_Y / 2 };
+				Color = ColMapImage_->GetImagePixel(DownPos);
+			} while (RGB(0, 0, 255) == Color);
+
+			
+		}
+		if (true == PlayerRenderer_->IsEndAnimation())
+		{
+			StateChange(PlayerState::Idle);
+		}
+	}
+}
+
+
 
 void Player::IdleStart()
 {
@@ -336,4 +393,13 @@ void Player::BackFlipStart()
 	MoveDir_ = float4::UP * JumpSpeed_;
 	StateName_ = ANIM_KEYWORD_PLAYER_JUMPRDY;
 	PlayerAnimationChange(StateName_);
+}
+
+void Player::FalledStart()
+{
+	StateName_ = ANIM_KEYWORD_PLAYER_FALL;
+	JumpSpeed_ = 50.0f;
+	MoveDir_ = float4::UP * JumpSpeed_;
+	PlayerRenderer_->ChangeAnimation(StateName_);
+	JumpDelayTime_ = 1.6f;
 }

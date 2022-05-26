@@ -142,12 +142,14 @@ private:
 	void ActionStart();
 	void JumpStart();
 	void BackFlipStart();
+	void FalledStart();
 
 	void IdleUpdate();
 	void MoveUpdate();
 	void ActionUpdate();
 	void JumpUpdate();
 	void BackFlipUpdate();
+	void FalledUpdate();
 
 	void PlayerAnimationChange(std::string _Anim);
 	

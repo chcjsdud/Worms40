@@ -14,6 +14,7 @@ enum class PlayerState
 	Move,
 	Jump,
 	BackFlip,
+	Falled,
 	Action
 };
 
