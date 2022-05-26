@@ -2,7 +2,6 @@
 #include "PlayLevel.h"
 #include "EffectManager.h"
 #include "Foom.h"
-#include "Circle50.h"
 #include <GameEngineBase/GameEngineCustomStringSet.h>
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngineBase/GameEngineTime.h>
@@ -98,8 +97,6 @@ void WeaponMaster::BulletColEvent()
 			RGB(0, 255, 0) // TransColor
 		);
 
-		//EffectManager* Effect2 = GetLevel()->CreateActor<Circle50>();
-		//Effect2->SetPosition(GetPosition());
 		EffectManager* Effect = GetLevel()->CreateActor<Foom>();
 		Effect->SetPosition(GetPosition());
 		

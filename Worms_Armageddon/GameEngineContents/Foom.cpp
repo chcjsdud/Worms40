@@ -16,74 +16,34 @@ void Foom::Start()
 
 void Foom::Update()
 {
-	for (GameEngineRenderer* FxOb : AllFxObject_)
-	{
-		if (true == FxOb->IsEndAnimation())
-		{
-			FxOb->Off();
-			++FxOffCnt_;
-		}
-	}
+	FxOffUpdate();
 
-	switch (FxOrder_)
+	switch (FxPhase_)
 	{
 	case 0:
 	{
 		if (false == IsStartFx_)
 		{
-			{
-				GameEngineRenderer* FxObject = CreateRenderer((int)RenderOrder::Front_Fx);
-				FxObject->CreateAnimation(IMG_FX_EXFOOM, ANIM_NAME_FX_EXFOOM, 0, 19, 0.1f, false);
-				FxObject->ChangeAnimation(ANIM_NAME_FX_EXFOOM);
-				AllFxObject_.push_back(FxObject);
-			}
-
+			FxPlay(FxPlayList::Foom);
 			IsStartFx_ = true;
 		}
 
-		if (1.f < GetAccTime())
-		{
-			if (true == IsStartFx_)
-			{
-				IsStartFx_ = false;
-				FxOrder_ += 1;
-			}
-		}
+		NextFxPhase(1.f);
 	}
 	break;
 	case 1:
 	{
 		if (false == IsStartFx_)
 		{
-			{
-				GameEngineRenderer* FxObject = CreateRenderer((int)RenderOrder::Front_Fx);
-				FxObject->CreateAnimation(IMG_FX_CIRCLE50, ANIM_NAME_FX_CIRCLE50, 0, 7, 0.1f, false);
-				FxObject->ChangeAnimation(ANIM_NAME_FX_CIRCLE50);
-				AllFxObject_.push_back(FxObject);
-			}
-
+			FxPlay(FxPlayList::Circle50);
 			IsStartFx_ = true;
 		}
 
-		if (1.f < GetAccTime())
-		{
-			if (true == IsStartFx_)
-			{
-				IsStartFx_ = false;
-				FxOrder_ += 1;
-			}
-		}
+		NextFxPhase(1.f);
 	}
 		break;
 	default:
-		if (FxOffCnt_ == AllFxObject_.size())
-		{
-			for (GameEngineRenderer* FxOb : AllFxObject_)
-			{
-				FxOb->Death();
-			}
-			AllFxObject_.clear();
-		}
+		EffectDeath();
 		break;
 	}
 }

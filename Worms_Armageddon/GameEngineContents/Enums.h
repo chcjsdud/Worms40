@@ -132,5 +132,6 @@ enum class TeamColor
 
 enum class FxPlayList
 {
-	Foom
+	Foom,
+	Circle50
 };

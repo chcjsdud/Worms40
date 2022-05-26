@@ -3,9 +3,8 @@
 
 EffectManager::EffectManager() 
 	: FxOffCnt_(0)
-	, FxOrder_(0)
+	, FxPhase_(0)
 	, IsStartFx_(false)
-	, FxObject_ (nullptr)
 {
 }
 
@@ -23,19 +22,55 @@ void EffectManager::Update()
 }
 
 
-void EffectManager::FxOff()
+void EffectManager::FxOffUpdate()
 {
-
+	for (GameEngineRenderer* FxOb : AllFxObject_)
+	{
+		if (true == FxOb->IsEndAnimation())
+		{
+			FxOb->Off();
+			++FxOffCnt_;
+		}
+	}
 }
 
-//void EffectManager::PlayFx(FxPlayList _Fx)
-//{
-//	switch (_Fx)
-//	{
-//	case FxPlayList::Foom:
-//		void PlayFoom();
-//		break;
-//	default:
-//		break;
-//	}
-//}
+void EffectManager::FxPlay(FxPlayList _Fx)
+{
+	switch (_Fx)
+	{
+	case FxPlayList::Foom:
+		PlayFoom();
+		break;
+
+	case FxPlayList::Circle50:
+		PlayCircle50();
+		break;
+
+	default:
+		break;
+	}
+}
+
+void EffectManager::NextFxPhase(float _Time)
+{
+	if (_Time < GetAccTime())
+	{
+		if (true == IsStartFx_)
+		{
+			IsStartFx_ = false;
+			FxPhase_ += 1;
+		}
+	}
+}
+
+void EffectManager::EffectDeath()
+{
+	if (FxOffCnt_ == AllFxObject_.size())
+	{
+		for (GameEngineRenderer* FxOb : AllFxObject_)
+		{
+			FxOb->Death();
+		}
+		AllFxObject_.clear();
+	}
+}
