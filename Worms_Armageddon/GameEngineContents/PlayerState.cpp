@@ -29,6 +29,8 @@ void Player::IdleUpdate()
 		return;
 	}
 
+
+	//백플립
 	if (true == IsBackFlipKeyDown())
 	{
 		KeyCount_++;
@@ -61,6 +63,8 @@ void Player::IdleUpdate()
 	{
 		WeaponState_ = WeaponState::Grenade;
 	}
+
+	MoveFall();
 
 }
 
@@ -103,7 +107,32 @@ void Player::MoveUpdate()
 		return;
 	}
 
+	//백플립
+	if (true == IsBackFlipKeyDown())
+	{
+		KeyCount_++;
+		if (2 <= KeyCount_)
+		{
+			KeyCount_ = 0;
+			StateChange(PlayerState::BackFlip);
+			return;
+		}
+	}
+	else if (true == IsBackFlipKeyFree())
+	{
+		KeyTimer_ -= GameEngineTime::GetDeltaTime();
+		if (0 >= KeyTimer_)
+		{
+			KeyTimer_ = 0.5f;
+			KeyCount_ = 0;
+		}
+		if (true == IsBackFlipKeyDown())
+		{
+			KeyCount_++;
+		}
+	}
 
+	MoveFall();
 	PlayerAnimationChange(StateName_);
 }
 
@@ -137,19 +166,29 @@ void Player::JumpUpdate()
 
 
 		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime());
-
 		MoveDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * FallSpeed_;
-		FallSpeed_ += 5.0f;
+		FallSpeed_ += 20.0f;
 
 		float4 CheckLength = float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
 
-		float4 DownPos = { GetPosition().x + CheckLength.x , GetPosition().y + CheckLength.y + PLAYER_SIZE_Y / 2 };
+		float4 UpPos = float4::UP;
+		float4 DownPos = { GetPosition().x, GetPosition().y + PLAYER_SIZE_Y / 2 };
 		int Color = ColMapImage_->GetImagePixel(DownPos);
+
 
 		if (RGB(0, 0, 255) == Color)
 		{
 			MoveDir_ = float4::ZERO;
 			JumpMoveDir_ = float4::ZERO;
+
+			do
+			{
+				SetMove(UpPos); 
+				DownPos = { GetPosition().x, GetPosition().y + PLAYER_SIZE_Y / 2 };
+				Color = ColMapImage_->GetImagePixel(DownPos);
+			} while (RGB(0, 0, 255) == Color);
+
+
 			//점프 도중에 키를 누르고있으면 바로 움직이게 만들어준다.
 			if (true == GameEngineInput::GetInst()->IsPress(KEY_MOVE_RIGHT) ||
 				true == GameEngineInput::GetInst()->IsPress(KEY_MOVE_LEFT))
@@ -188,15 +227,25 @@ void Player::BackFlipUpdate()
 		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime());
 
 		MoveDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * FallSpeed_;
-		FallSpeed_ += 5.0f;
+		FallSpeed_ += 30.0f;
 
 		float4 CheckLength = float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
 
+		float4 UpPos = float4::UP;
 		float4 DownPos = { GetPosition().x + CheckLength.x , GetPosition().y + CheckLength.y + PLAYER_SIZE_Y / 2 };
 		int Color = ColMapImage_->GetImagePixel(DownPos);
 
 		if (RGB(0, 0, 255) == Color)
 		{
+
+			do
+			{
+				SetMove(UpPos);
+				DownPos = { GetPosition().x, GetPosition().y + PLAYER_SIZE_Y / 2 };
+				Color = ColMapImage_->GetImagePixel(DownPos);
+			} while (RGB(0, 0, 255) == Color);
+
+
 			MoveDir_ = float4::ZERO;
 			JumpMoveDir_ = float4::ZERO;
 			//점프 도중에 키를 누르고있으면 바로 움직이게 만들어준다.
@@ -271,7 +320,7 @@ void Player::ActionStart()
 void Player::JumpStart()
 {
 	JumpDelayTime_ = 0.5f;
-	JumpSpeed_ = 400.0f;
+	JumpSpeed_ = 250.0f;
 	MoveDir_ = float4::UP * JumpSpeed_;
 	StateName_ = ANIM_KEYWORD_PLAYER_JUMPRDY;
 	PlayerAnimationChange(StateName_);
@@ -280,7 +329,7 @@ void Player::JumpStart()
 void Player::BackFlipStart()
 {
 	JumpDelayTime_ = 0.5f;
-	JumpSpeed_ = 500.0f;
+	JumpSpeed_ = 400.0f;
 	MoveDir_ = float4::UP * JumpSpeed_;
 	StateName_ = ANIM_KEYWORD_PLAYER_JUMPRDY;
 	PlayerAnimationChange(StateName_);
