@@ -43,11 +43,15 @@ void Player::Render()
 
 }
 
-void Player::ControllUpdate()
+bool Player::ControllUpdate()
 {
+	IsTurnEnd_ = false;
+
 	// 컨트롤되고 있는 플레이어 캐릭터는 카메라 이동 움직임등의 동작을 수행
 	UpdateCamera();
 	StateUpdate();
+
+	return IsTurnEnd_;
 }
 
 void Player::UnControllUpdate()

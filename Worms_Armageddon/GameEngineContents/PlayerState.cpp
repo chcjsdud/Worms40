@@ -142,6 +142,9 @@ void Player::ActionUpdate()
 	{
 		// TODO::동작이 끝날경우에 Idle로 전환
 		StateChange(PlayerState::Idle);
+
+		// TODO::몇초간 이동한 후에 턴 종료되도록 수정
+		IsTurnEnd_ = true;
 	}
 }
 

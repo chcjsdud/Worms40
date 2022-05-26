@@ -107,7 +107,7 @@ void PlayLevel::Update()
 
 
 			// ÅÏÁ¾·á
-			if (CurrentPlayer->GetIsTurnEnd())
+			if (true == CurrentPlayer->ControllUpdate())
 			{
 				Teams.pop_front();
 			}
@@ -118,7 +118,6 @@ void PlayLevel::Update()
 			}
 			else
 			{
-				CurrentPlayer->ControllUpdate();
 				return;
 			}
 
