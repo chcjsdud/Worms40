@@ -46,6 +46,10 @@ void EffectManager::FxPlay(FxPlayList _Fx)
 		PlayCircle50();
 		break;
 
+	case FxPlayList::Elipse50:
+		PlayElipse50();
+		break;
+
 	default:
 		break;
 	}

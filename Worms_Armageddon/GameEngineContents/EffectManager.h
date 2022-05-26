@@ -50,5 +50,6 @@ protected:
 private:
 	void PlayFoom();
 	void PlayCircle50();
+	void PlayElipse50();
 };
 

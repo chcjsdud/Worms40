@@ -158,7 +158,7 @@
 #define IMG_BAZ_ON_RIGHT "bazOnRight.bmp"
 #define IMG_BAZ_OFF_LEFT "bazOffLeft.bmp"
 #define IMG_BAZ_OFF_RIGHT "bazOffRight.bmp"
-#define IMG_MISSILE "missile.bmp"
+//#define IMG_MISSILE "missile.bmp"
 
 // 이펙트
 #define IMG_FX_EXFOOM "exfoom.bmp"
@@ -168,7 +168,7 @@
 // 이펙트 애니메이션
 #define ANIM_NAME_FX_EXFOOM "exfoomAnim"
 #define ANIM_NAME_FX_CIRCLE50 "circle50Anim"
-#define IMG_MISSILE "missile.bmp"
+#define ANIM_NAME_FX_ELIPSE50 "Elipse50Anim"
 
 // 콜리전 그룹
 #define COL_GROUP_BUTTON "Button"

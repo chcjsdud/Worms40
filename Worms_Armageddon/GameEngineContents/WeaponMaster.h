@@ -1,4 +1,5 @@
 #pragma once
+#include "Enums.h"
 #include "GameMapMaster.h"
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineCustomStringSet.h>

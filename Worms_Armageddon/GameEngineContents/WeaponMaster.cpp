@@ -1,6 +1,5 @@
 #include "WeaponMaster.h"
 #include "PlayLevel.h"
-#include "EffectManager.h"
 #include "Foom.h"
 #include <GameEngineBase/GameEngineCustomStringSet.h>
 #include <GameEngine/GameEngineRenderer.h>

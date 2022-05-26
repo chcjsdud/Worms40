@@ -25,23 +25,14 @@ void Foom::Update()
 		if (false == IsStartFx_)
 		{
 			FxPlay(FxPlayList::Foom);
+			FxPlay(FxPlayList::Circle50);
+			FxPlay(FxPlayList::Elipse50);
 			IsStartFx_ = true;
 		}
 
 		NextFxPhase(1.f);
 	}
 	break;
-	case 1:
-	{
-		if (false == IsStartFx_)
-		{
-			FxPlay(FxPlayList::Circle50);
-			IsStartFx_ = true;
-		}
-
-		NextFxPhase(1.f);
-	}
-		break;
 	default:
 		EffectDeath();
 		break;
