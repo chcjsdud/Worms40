@@ -48,7 +48,6 @@ void Player::ControllUpdate()
 	// 컨트롤되고 있는 플레이어 캐릭터는 카메라 이동 움직임등의 동작을 수행
 	UpdateCamera();
 	StateUpdate();
-	MoveFall();
 }
 
 void Player::UnControllUpdate()
@@ -78,12 +77,12 @@ void Player::PlayerAnimationInit()
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_JUMPRDY_RIGHT, ANIM_NAME_PLAYER_JUMPRDY_RIGHT, 0, 9, 0.05f, false);
 
 	//점프 애니메이션
-	PlayerRenderer_->CreateAnimation(IMG_PLAYER_FLYLINK_LEFT, ANIM_NAME_PLAYER_JUMPLEFT, 0, 6, 0.2f, false);
-	PlayerRenderer_->CreateAnimation(IMG_PLAYER_FLYLINK_RIGHT, ANIM_NAME_PLAYER_JUMPRIGHT, 0, 6, 0.2f, false);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_FLYLINK_LEFT, ANIM_NAME_PLAYER_JUMPLEFT, 0, 6, 0.1f, false);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_FLYLINK_RIGHT, ANIM_NAME_PLAYER_JUMPRIGHT, 0, 6, 0.1f, false);
 
 	//백플립 애니메이션
-	PlayerRenderer_->CreateAnimation(IMG_PLAYER_BACKFLIP_LEFT, ANIM_NAME_PLAYER_BACKFLIP_LEFT, 0, 21, 0.1f, false);
-	PlayerRenderer_->CreateAnimation(IMG_PLAYER_BACKFLIP_RIGHT, ANIM_NAME_PLAYER_BACKFLIP_RIGHT, 0, 21, 0.1f, false);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_BACKFLIP_LEFT, ANIM_NAME_PLAYER_BACKFLIP_LEFT, 0, 21, 0.02f, false);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_BACKFLIP_RIGHT, ANIM_NAME_PLAYER_BACKFLIP_RIGHT, 0, 21, 0.02f, false);
 
 
 	PlayerRenderer_->ChangeAnimation(ANIM_NAME_WEAPON_ON_RIGHT);
@@ -274,13 +273,6 @@ void Player::MoveCheck(float4 _MoveDir)
 	int LeftColor = ColMapImage_->GetImagePixel(NextLeftPos);
 	int RightColor = ColMapImage_->GetImagePixel(NextRightPos);
 
-	float4 LeftUpPos = float4::UP;
-	float4 RightUpPos = float4::UP;
-
-	int LeftUpColor = ColMapImage_->GetImagePixel(GetPosition() + float4{ -12.0f, 0.0f } + float4::DOWN * 7.0f);
-	int RightUpColor = ColMapImage_->GetImagePixel(GetPosition() + float4{ 12.0f, 0.0f } + float4::DOWN * 7.0f);
-
-
 	// TODO::맵과 충돌 판정
 
 	CheckHillPixel();
@@ -346,18 +338,10 @@ void Player::CheckHillPixel()
 
 	if (RGB(0, 0, 255) == LeftUpColor)
 	{
-		while (RGB(0, 0, 255) != LeftUpColor)
-		{
-			LeftUpPos += float4::UP;
-		}
 		SetMove(LeftUpPos);
 	}
 	else if (RGB(0, 0, 255) == RightUpColor)
 	{
-		while (RGB(0, 0, 255) != RightUpColor)
-		{
-			RightUpPos += float4::UP;
-		}
 		SetMove(RightUpPos);
 	}
 }

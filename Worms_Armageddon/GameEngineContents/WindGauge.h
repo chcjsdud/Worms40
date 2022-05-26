@@ -32,12 +32,12 @@ private:
 	GameEngineRenderer* WindRightHiderRenderer_;
 
 	float MaxWindFigure_;
-	int WindFigure_;
-	int HideWindFigure_;
-	int MyWindFigure_;
+	float WindFigure_;
+	float HideWindFigure_;
+	float MyWindFigure_;
 
-	int WindRightHider_x;
-	int WindLeftHider_x;
+	float WindRightHider_x;
+	float WindLeftHider_x;
 	WindType WindDir_;
 
 	bool IsEnd;
@@ -46,7 +46,7 @@ public:
 	inline void SetWind(WindType _WindDir,float _WindFigure)
 	{
 		WindDir_ = _WindDir;
-		WindFigure_ = static_cast<int>(_WindFigure);
+		WindFigure_ = _WindFigure;
 	}
 
 };

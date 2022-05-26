@@ -320,7 +320,7 @@ void Player::ActionStart()
 void Player::JumpStart()
 {
 	JumpDelayTime_ = 0.5f;
-	JumpSpeed_ = 250.0f;
+	JumpSpeed_ = 200.0f;
 	MoveDir_ = float4::UP * JumpSpeed_;
 	StateName_ = ANIM_KEYWORD_PLAYER_JUMPRDY;
 	PlayerAnimationChange(StateName_);
@@ -329,7 +329,7 @@ void Player::JumpStart()
 void Player::BackFlipStart()
 {
 	JumpDelayTime_ = 0.5f;
-	JumpSpeed_ = 400.0f;
+	JumpSpeed_ = 300.0f;
 	MoveDir_ = float4::UP * JumpSpeed_;
 	StateName_ = ANIM_KEYWORD_PLAYER_JUMPRDY;
 	PlayerAnimationChange(StateName_);

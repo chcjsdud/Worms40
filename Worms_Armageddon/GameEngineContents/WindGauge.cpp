@@ -47,19 +47,21 @@ void WindGauge::Start()
 	//WindDir_ = WindType::Left;
 	//WindRightHider_x = 0;
 
+
 }
 
 void WindGauge::Update()
 {
+
 	//hider_x = 88 이 최대크기
 	if (WindDir_ == WindType::Left)
 	{
 		//오른쪽바람게이지가 남아있으면
-		if (88 > WindRightHider_x)
+		if (88.0f > WindRightHider_x)
 		{
 			WindRightHider_x += 1;  //점점 없앤다
-			WindRightHiderRenderer_->SetScale({ static_cast<float>(WindRightHider_x), WindRightHiderRenderer_->GetImageScale().y });
-			HideWindFigure_ = 100;
+			WindRightHiderRenderer_->SetScale({ WindRightHider_x, WindRightHiderRenderer_->GetImageScale().y });
+			HideWindFigure_ = 100.0f;
 		}
 		else
 		{//오른쪽바람이 사라지면
@@ -82,17 +84,17 @@ void WindGauge::Update()
 			//이미지 갱신 
 			//자연스럽게 점점 줄어들게하기위해 이미지크기를 비율로 계산해서 변경
 			WindLeftHider_x = WindLeftHiderRenderer_->GetImageScale().x * HideWindFigure_ / MaxWindFigure_;
-			WindLeftHiderRenderer_->SetScale({ static_cast<float>(WindLeftHider_x), WindLeftHiderRenderer_->GetImageScale().y });
+			WindLeftHiderRenderer_->SetScale({WindLeftHider_x, WindLeftHiderRenderer_->GetImageScale().y });
 		}
 
 	}
 	else if (WindDir_ == WindType::Right)
 	{
-		if (88 > WindLeftHider_x)  //WindBarx크기가 88
+		if (88.0f > WindLeftHider_x)  //WindBarx크기가 88
 		{
 			WindLeftHider_x += 1;  //점점 없앤다 Hiderx의 수치가 높을수록 가려짐
-			WindLeftHiderRenderer_->SetScale({ static_cast<float>(WindLeftHider_x), WindLeftHiderRenderer_->GetImageScale().y });
-			HideWindFigure_ = 100;
+			WindLeftHiderRenderer_->SetScale({ WindLeftHider_x, WindLeftHiderRenderer_->GetImageScale().y });
+			HideWindFigure_ = 100.0f;
 		}
 		else
 		{//왼쪽바람이 사라지면
@@ -112,7 +114,7 @@ void WindGauge::Update()
 			}
 
 			WindRightHider_x = WindRightHiderRenderer_->GetImageScale().x * HideWindFigure_ / MaxWindFigure_;
-			WindRightHiderRenderer_->SetScale({ static_cast<float>(WindRightHider_x), WindRightHiderRenderer_->GetImageScale().y });
+			WindRightHiderRenderer_->SetScale({ WindRightHider_x, WindRightHiderRenderer_->GetImageScale().y });
 		}
 
 	}
