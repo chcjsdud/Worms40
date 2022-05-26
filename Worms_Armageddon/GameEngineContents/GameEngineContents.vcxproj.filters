@@ -104,14 +104,20 @@
     <ClInclude Include="GameOptions.h">
       <Filter>Global</Filter>
     </ClInclude>
-    <ClInclude Include="TeamEditBox.h">
-      <Filter>01.LobbyLevel\LobbyActor\Box\TeamEdit</Filter>
-    </ClInclude>
     <ClInclude Include="TeamButton.h">
       <Filter>01.LobbyLevel\LobbyActor\Box\TeamEdit</Filter>
     </ClInclude>
     <ClInclude Include="Grenade.h">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle50.h">
+      <Filter>02.PlayLevel\Effects\FxObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="TeamEditBox.h">
+      <Filter>01.LobbyLevel\LobbyActor\Box\TeamEdit</Filter>
+    </ClInclude>
+    <ClInclude Include="TeamColorButton.h">
+      <Filter>01.LobbyLevel\LobbyActor\Box\TeamEdit</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +232,9 @@
     </ClCompile>
     <ClCompile Include="EffectList.cpp">
       <Filter>02.PlayLevel\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="TeamColorButton.cpp">
+      <Filter>01.LobbyLevel\LobbyActor\Box\TeamEdit</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

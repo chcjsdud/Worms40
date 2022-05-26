@@ -1,5 +1,7 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
+#include <vector>
+#include <list>
 
 // Ό³Έν :
 class GameEngineRenderer;
@@ -24,14 +26,15 @@ private:
 	GameEngineRenderer* EditBoxRenderer_;
 	GameEngineRenderer* ListBoxRenderer_;
 
-	std::vector<TeamButton*> BtnTeams_;
 	std::vector<float4> UpPos_;
 	std::vector<float4> DownPos_;
 
-
+	std::list<TeamButton*> UnSelectedTeams_;
+	std::list<TeamButton*> SelectedTeams_;
 
 private:
 	void InitButtonPos();
-
+	void CheckSelectedTeam();
+	void ShowTeamsButton();
 };
 

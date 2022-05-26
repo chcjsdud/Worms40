@@ -31,7 +31,7 @@ void Cursor::Start()
 	Renderer_->CameraEffectOff();
 
 	// 마우스 충돌체
-	Collision_ = CreateCollision(COL_GROUP_MOUSE, {10, 10});
+	Collision_ = CreateCollision(COL_GROUP_MOUSE, {1, 1});
 	Collision_->CameraEffectOff();
 
 	// 기존 커서 감추기

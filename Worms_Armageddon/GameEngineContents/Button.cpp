@@ -20,7 +20,7 @@ Button::~Button()
 {
 }
 
-void Button::ButtonInit(const std::string _ButtonName, float4 _ButtonScale, bool _IsBorderEffect)
+Button& Button::ButtonInit(const std::string _ButtonName, float4 _ButtonScale, bool _IsBorderEffect)
 {
 	// 이름 설정
 	ButtonName_ = _ButtonName;
@@ -43,7 +43,7 @@ void Button::ButtonInit(const std::string _ButtonName, float4 _ButtonScale, bool
 
 	// 콜리전 설정
 	ButtonCol_ = CreateCollision(COL_GROUP_BUTTON, ButtonRenderer_->GetScale());
-	ButtonCol_->SetScale(ButtonRenderer_->GetScale());
+	ButtonCol_->SetScale(ButtonRenderer_->GetScale() - float4{5, 5});
 	ButtonCol_->SetPivot(ButtonRenderer_->GetScale().Half());
 
 	// 최초 상태
@@ -51,6 +51,8 @@ void Button::ButtonInit(const std::string _ButtonName, float4 _ButtonScale, bool
 
 	// BorderEffect받는지의 여부
 	IsBorderEffect_ = _IsBorderEffect;
+
+	return *this;
 }
 
 void Button::ButtonUpdate()

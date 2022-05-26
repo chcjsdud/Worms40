@@ -1,16 +1,7 @@
 #include "TeamButton.h"
+#include "TeamColorButton.h"
 
-//const float4 BTN1_UP_POS = float4{ 265, 20 };
-//const float4 BTN2_UP_POS = float4{ 265, 50 };
-//const float4 BTN3_UP_POS = float4{ 265, 80 };
-//const float4 BTN4_UP_POS = float4{ 265, 110 };
-//const float4 BTN5_UP_POS = float4{ 265, 140 };
-//
-//const float4 BTN1_DOWN_POS = float4{ 265, 300 };
-//const float4 BTN2_DOWN_POS = float4{ 265, 330 };
-//const float4 BTN3_DOWN_POS = float4{ 265, 360 };
-//const float4 BTN4_DOWN_POS = float4{ 265, 390 };
-//const float4 BTN5_DOWN_POS = float4{ 265, 420 };
+#include "Enums.h"
 
 TeamButton::TeamButton()
 	: IsSelected_(false)
@@ -23,19 +14,35 @@ TeamButton::~TeamButton()
 
 void TeamButton::SetButton(int _BtnNum)
 {
+	ButtonIndex_ = _BtnNum;
 	std::string BtnNum = std::to_string(_BtnNum);
 	ButtonInit(BtnNum + "-UP", float4{ 120, 32 });
+
+	// 선택된 팀 상태-> 오른쪽 버튼들 활성화
+	ColorButton_ = GetLevel()->CreateActor<TeamColorButton>(0);
+	ColorButton_->ButtonInit("RedTeam", { 40, 40 }, true);
+	ColorButton_->SetPosition(GetPosition());
+}
+
+void TeamButton::SetAllButtonPosition(const float4 _Value)
+{
+	SetPosition(_Value);
+	ColorButton_->SetPosition(_Value + float4{ 200, 0 });
 }
 
 void TeamButton::Start()
 {
 	ButtonInit("1-UP", float4{ 120 , 30 });
+
+	
 }
 
 void TeamButton::Update()
 {
 	Button::ButtonUpdate();
 	OnClickButton();
+
+
 }
 
 void TeamButton::OnClickButton()
@@ -45,5 +52,16 @@ void TeamButton::OnClickButton()
 	{
 		IsSelected_ = !IsSelected_;
 	}
+}
+
+void TeamButton::TeamSettingActivate()
+{
+	if (false == IsSelected_)
+	{
+		return;
+	}
+
+	// 버튼 옆에 세팅 을 활성화
+
 }
 

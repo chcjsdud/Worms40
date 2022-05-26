@@ -35,8 +35,8 @@ public:
 		IsActivated_ = _Value;
 	}
 
+	Button& ButtonInit(const std::string _ButtonName, float4 _ButtonScale, bool _IsBorderEffect = false);
 protected:
-	void ButtonInit(const std::string _ButtonName, float4 _ButtonScale, bool _IsBorderEffect = false);
 	void ButtonUpdate();
 
 	virtual void OnClickButton() {};
