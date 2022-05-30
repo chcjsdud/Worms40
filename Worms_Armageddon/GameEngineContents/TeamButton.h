@@ -1,9 +1,8 @@
 #pragma once
 #include "Button.h"
 #include <string>
-// 설명 :
 
-class TeamColorButton;
+// 설명 : 1-UP, 팀 색, 팀원 수 정하는 버튼들의 그룹
 class TeamButton : public Button
 {
 public:
@@ -41,8 +40,11 @@ private:
 
 private:
 	bool IsSelected_;
+	bool IsSwaping_;
 	int ButtonIndex_;
 
-	TeamColorButton* ColorButton_;
+	class TeamHandicapButton* HandicapButton_;
+	class TeamColorButton* ColorButton_;
+	class TeamNumButton* NumButton_;
 };
 

@@ -50,10 +50,7 @@ void TeamEditBox::Update()
 {
 	CheckSelectedTeam();
 
-	if (true == GameEngineInput::GetInst()->IsUp(KEY_MOUSE_LEFT))
-	{
-		ShowTeamsButton();
-	}
+	ShowTeamsButton();
 }
 
 void TeamEditBox::InitButtonPos()

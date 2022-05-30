@@ -16,7 +16,8 @@ protected:
 	{
 		MOUSE_IN,
 		MOUSE_OUT,
-		MOUSE_CLICK,
+		MOUSE_CLICK_LEFT,
+		MOUSE_CLICK_RIGHT,
 	};
 
 public:

@@ -48,8 +48,6 @@ private:
 	void ButtonNameUpdate();
 
 private:
-	MOUSE_STATE MouseState_;
-
 	bool IsReadyPossible_;
 	bool IsPlayerReady_;
 };

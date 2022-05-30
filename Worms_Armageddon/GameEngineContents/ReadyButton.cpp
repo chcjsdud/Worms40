@@ -6,7 +6,6 @@
 
 ReadyButton::ReadyButton()
 	: IsPlayerReady_(false)
-	, MouseState_(MOUSE_STATE::MOUSE_OUT)
 	, IsReadyPossible_(false)
 {
 }
@@ -25,9 +24,6 @@ void ReadyButton::Update()
 	// 마우스 상태 확인 기능 + 경계선 활성화 기능
 	Button::ButtonUpdate();
 
-	// 마우스 상태 확인 기능
-	MouseState_ = Button::GetMouseState();
-
 	ButtonNameUpdate();
 
 	// 클릭 시 기능
@@ -38,7 +34,7 @@ void ReadyButton::Update()
 
 void ReadyButton::OnClickButton()
 {
-	if (true == IsReadyPossible_ && MouseState_ == MOUSE_STATE::MOUSE_CLICK)
+	if (true == IsReadyPossible_ && MOUSE_STATE::MOUSE_CLICK_LEFT == Button::GetMouseState())
 	{
 		IsPlayerReady_ = !IsPlayerReady_;
 	}

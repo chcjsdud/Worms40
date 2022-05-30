@@ -19,6 +19,11 @@ public:
 	TeamEditBox& operator=(const TeamEditBox& _Other) = delete;
 	TeamEditBox& operator=(TeamEditBox&& _Other) noexcept = delete;
 
+	inline int GetSelectedTeamNum()
+	{
+		return static_cast<int>(SelectedTeams_.size());
+	}
+
 protected:
 	virtual void Start() override;
 	virtual void Update() override;

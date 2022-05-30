@@ -14,7 +14,7 @@ LobbySettings::~LobbySettings()
 
 void LobbySettings::Start()
 {
-	BoxRenderer_ = CreateRenderer("LobbySettings.bmp", (int)RenderOrder::UI);
+	BoxRenderer_ = CreateRenderer("LobbySettings.bmp", (int)RenderOrder::BackGround_1);
 	BoxRenderer_->SetScale({ 688, 208 });
 	BoxRenderer_->SetPivot(BoxRenderer_->GetScale().Half());
 }

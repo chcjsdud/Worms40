@@ -26,7 +26,7 @@ void ExitButton::Update()
 
 void ExitButton::OnClickButton()
 {
-	if (MOUSE_STATE::MOUSE_CLICK == Button::GetMouseState() && true == GameEngineInput::GetInst()->IsDown(KEY_MOUSE_LEFT))
+	if (MOUSE_STATE::MOUSE_CLICK_LEFT == Button::GetMouseState())
 	{
 		GameEngineWindow::GetInst().Off();
 	}

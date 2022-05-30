@@ -81,8 +81,6 @@ void Button::UpdateState()
 		break;
 	case Button::MOUSE_STATE::MOUSE_OUT:
 		break;
-	case Button::MOUSE_STATE::MOUSE_CLICK:
-		break;
 	default:
 		break;
 	}
@@ -93,10 +91,15 @@ void Button::MouseInUpdate()
 {
 	if (true == GameEngineInput::GetInst()->IsDown(KEY_MOUSE_LEFT))
 	{
-		ChangeState(MOUSE_STATE::MOUSE_CLICK);
+		ChangeState(MOUSE_STATE::MOUSE_CLICK_LEFT);
 	}
 
-	if (true == GameEngineInput::GetInst()->IsUp(KEY_MOUSE_LEFT))
+	if (true == GameEngineInput::GetInst()->IsDown(KEY_MOUSE_RIGHT))
+	{
+		ChangeState(MOUSE_STATE::MOUSE_CLICK_RIGHT);
+	}
+
+	if (true == GameEngineInput::GetInst()->IsFree(KEY_MOUSE_LEFT) && GameEngineInput::GetInst()->IsFree(KEY_MOUSE_RIGHT))
 	{
 		ChangeState(MOUSE_STATE::MOUSE_IN);
 	}
