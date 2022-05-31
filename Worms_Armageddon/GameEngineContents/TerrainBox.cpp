@@ -81,7 +81,7 @@ void TerrainBox::Update()
 			SelectMapBoxArrowRenderer_->SetImage("SelectMapArrow.bmp");
 		}
 
-		if (MouseLeftClick() == true )
+		if (MouseLeftClick() == true && MouseOver() == true)
 		{
 			StartIter_ = MapList_.begin();
 
