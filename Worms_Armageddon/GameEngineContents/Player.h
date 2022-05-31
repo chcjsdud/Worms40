@@ -43,6 +43,16 @@ public:
 		return IsTurnEnd_;
 	}
 
+	PlayerState GetPlayerState() const
+	{
+		return CurrentState_;
+	}
+
+	float4 GetWeaponPos() const
+	{
+		return WeaponPos_;
+	}
+
 	bool ControllUpdate();
 	void UnControllUpdate();
 private:
@@ -61,6 +71,8 @@ private:
 	float JumpDelayTime_;
 	// 무기 상태
 	WeaponState WeaponState_;
+	// 무기 위치
+	float4 WeaponPos_;
 
 	// 플레이어 Hp
 	int PlayerHp_;
@@ -71,8 +83,7 @@ private:
 	// 플레이어는 마지막으로 보고 있던 방향의 정보를 가지고 있어야 함.
 	float4 MoveDir_;
 	float4 JumpMoveDir_;
-	// 카메라의 위치
-	float4 CameraPos_;
+
 	// 사운드 오브젝트
 	GameEngineSound* SoundPlayer_;
 
@@ -102,8 +113,6 @@ private:
 	void PlayerAnimationInit();
 	// 키 초기화
 	void PlayerKeyInit();
-	// 카메라 업데이트
-	void UpdateCamera();
 
 	//키 입력 카운트
 	int KeyCount_;

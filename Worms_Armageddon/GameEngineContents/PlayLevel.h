@@ -56,8 +56,16 @@ private:
 	Player* TargetPlayer_;
 
 	LevelFSM LevelPhase_;
-private:
+
+
+	// 카메라 업데이트
+	void UpdateCamera(float4 _CameraPos);
+	// 카메라의 위치
+	float4 CameraPos_;
+
 	void CreateTestBullet();
+
+	// 바람 UI
 	void SetWindUI(int _WindDir);
 
 public:

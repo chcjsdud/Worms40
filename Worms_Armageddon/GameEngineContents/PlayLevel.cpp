@@ -7,6 +7,7 @@
 #include "GameOptions.h"
 #include "GameEngineBase/GameEngineRandom.h"
 #include <GameEngineBase/GameEngineInput.h>
+#include <GameEngineBase/GameEngineWindow.h>
 
 PlayLevel::PlayLevel()
 	: LevelPhase_(LevelFSM::Ready)
@@ -103,15 +104,23 @@ void PlayLevel::Update()
 			std::list<Player*>& Teams = (*AllPlayerIter_);
 			Player* CurrentPlayer = Teams.front();
 
+			// 카메라 위치 이동
+			if (CurrentPlayer->GetPlayerState() != PlayerState::Action)
+			{
+				UpdateCamera(CurrentPlayer->GetPosition());
+			}
+			else
+			{
+				UpdateCamera(CurrentPlayer->GetWeaponPos());
+			}
+
 			// 움직여
-
-
-			// 턴종료
 			if (true == CurrentPlayer->ControllUpdate())
 			{
 				Teams.pop_front();
 			}
 			// TODO::턴바꿈용 임시코드
+			// 턴종료
 			else if (true == GameEngineInput::GetInst()->IsUp("TestClick"))
 			{
 				Teams.pop_front();
@@ -241,6 +250,42 @@ void PlayLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 void PlayLevel::CreateTestBullet()
 {
 
+}
+
+void PlayLevel::UpdateCamera(float4 _CameraPos)
+{
+	float CurrentLevelH = 0.0f;
+	float CurrentLevelW = 0.0f;
+
+	// 테스트용 코드
+	CurrentLevelH = SCALE_MAPBOOKS_X;
+	CurrentLevelW = SCALE_MAPBOOKS_Y;
+	// 테스트용 코드
+
+	// TODO::포탄에 따라서 카메라 위치를 변경하거나
+	// TODO::플레이어의 위치에 맞춰서 카메라가 따라다니거나의 2가지 모드
+	CameraPos_ = _CameraPos - GameEngineWindow::GetInst().GetScale().Half();
+
+	// 카메라가 맵 범위를 벗어났을경우 재위치
+	if (CameraPos_.x <= 0)
+	{
+		CameraPos_.x = 0;
+	}
+	if (CameraPos_.x >= CurrentLevelW - GameEngineWindow::GetInst().GetScale().ix())
+	{
+		CameraPos_.x = CurrentLevelW - GameEngineWindow::GetInst().GetScale().ix();
+	}
+	if (CameraPos_.y <= 0)
+	{
+		CameraPos_.y = 0;
+	}
+	if (CameraPos_.y >= CurrentLevelH - GameEngineWindow::GetInst().GetScale().iy())
+	{
+		CameraPos_.y = CurrentLevelH - GameEngineWindow::GetInst().GetScale().iy();
+	}
+
+	// 카메라 위치 갱신
+	SetCameraPos(CameraPos_);
 }
 
 void PlayLevel::SetWindUI(int _WindDir)

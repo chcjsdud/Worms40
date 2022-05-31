@@ -146,6 +146,11 @@ void Player::ActionUpdate()
 		// TODO::몇초간 이동한 후에 턴 종료되도록 수정
 		IsTurnEnd_ = true;
 	}
+	else
+	{
+		// 카메라 위치 이동용 발사체 위치 반환
+		WeaponPos_ = Weapon_->GetPosition();
+	}
 }
 
 void Player::JumpUpdate()
