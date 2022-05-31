@@ -36,6 +36,11 @@ public:
 		IsActivated_ = _Value;
 	}
 
+	inline bool GetActivate()
+	{
+		return IsActivated_;
+	}
+
 	Button& ButtonInit(const std::string _ButtonName, float4 _ButtonScale, bool _IsBorderEffect = false);
 protected:
 	void ButtonUpdate();

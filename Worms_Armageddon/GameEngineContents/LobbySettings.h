@@ -22,5 +22,7 @@ protected:
 
 private:
 	GameEngineRenderer* BoxRenderer_;
+	class TurnTimeButton* TurnTimeButtonPtr_;
+	
 };
 

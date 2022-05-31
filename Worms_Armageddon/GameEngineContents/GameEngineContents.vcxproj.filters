@@ -125,6 +125,9 @@
     <ClInclude Include="MapList.h">
       <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
     </ClInclude>
+    <ClInclude Include="TurnTimeButton.h">
+      <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
@@ -250,6 +253,9 @@
     </ClCompile>
     <ClCompile Include="MapList.cpp">
       <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnTimeButton.cpp">
+      <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

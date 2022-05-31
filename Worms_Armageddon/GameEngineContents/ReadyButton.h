@@ -28,6 +28,11 @@ public:
 		return IsPlayerReady_;
 	}
 
+	inline void SetPlayerReady(bool _Value)
+	{
+		IsPlayerReady_ = _Value;
+	}
+
 	inline void SetReadyPossible()
 	{
 		IsReadyPossible_ = true;

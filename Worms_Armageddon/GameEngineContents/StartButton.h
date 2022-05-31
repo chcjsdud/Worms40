@@ -16,12 +16,22 @@ public:
 	StartButton& operator=(const StartButton& _Other) = delete;
 	StartButton& operator=(StartButton&& _Other) noexcept = delete;
 
+	inline bool IsGameStartAvailable()
+	{
+		return IsGameStart_;
+	}
+
 protected:
 	virtual void Start() override;
 	virtual void Update() override;
 
-	void OnClickButton() {};
+	void OnClickButton();
 private:
+	void ActivateCheck();
 
+private:
+	GameEngineRenderer* ButtonRenderer_;
+
+	bool IsGameStart_;
 };
 

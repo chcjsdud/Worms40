@@ -100,38 +100,57 @@ void LobbyLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 void LobbyLevel::Update()
 {
 	// 로비 -> 플레이 레벨로
+	// 디버깅용
 	if (true == GameEngineInput::GetInst()->IsDown(KEY_CHANGE_PLAYLEVEL))
+	{
+		GameEngine::GetInst().ChangeLevel(LEVEL_PLAY_LEVEL);
+	}
+	// 시작 버튼 누름
+	StartButton* StartButtonPtr = dynamic_cast<StartButton*>(StartButton_);
+	if (true == StartButtonPtr->IsGameStartAvailable())
 	{
 		GameEngine::GetInst().ChangeLevel(LEVEL_PLAY_LEVEL);
 	}
 
 	// 준비 버튼 누루면 전구를 모두 껏다 킴
-	PlayerBulbOnOff();
+	PlayerReadyCheck();
 
-	// TODO::팀이 1개라도 있어야 준비버튼 클릭 가능
 
 
 }
 
-void LobbyLevel::PlayerBulbOnOff()
+void LobbyLevel::PlayerReadyCheck()
 {
-	ReadyButton* readyButton = dynamic_cast<ReadyButton*>(ReadyButton_);
-	bool PlayerReady = readyButton->GetPlayerReady();
+	TeamEditBox* TeamEditBoxPtr = dynamic_cast<TeamEditBox*>(TeamEditBox_);
+	ReadyButton* ReadyButtonPtr = dynamic_cast<ReadyButton*>(ReadyButton_);
+	StartButton* StartButtonPtr = dynamic_cast<StartButton*>(StartButton_);
+	PlayersBox* PlayersBoxPtr = dynamic_cast<PlayersBox*>(PlayersBox_);
 
-	PlayersBox* playersBox = dynamic_cast<PlayersBox*>(PlayersBox_);
+	// 선택팀 1개 이상이어야 Ready 가능
+	if (1 > TeamEditBoxPtr->GetSelectedTeamNum())
+	{
+		ReadyButtonPtr->SetReadyImpossible();
+		ReadyButtonPtr->SetPlayerReady(false);
+		StartButtonPtr->SetActivate(false);
+		PlayersBoxPtr->BulbOff();
+		return;
+	}
+	ReadyButtonPtr->SetReadyPossible();
+	bool PlayerReady = ReadyButtonPtr->GetPlayerReady();
 
+	// 게임시작 버튼, 전구 On/Off
 	if (true == PlayerReady)
 	{
-		playersBox->BulbOn();
+		StartButtonPtr->SetActivate(true);
+		PlayersBoxPtr->BulbOn();
 	}
 	else
 	{
-		playersBox->BulbOff();
+		StartButtonPtr->SetActivate(false);
+		PlayersBoxPtr->BulbOff();
 	}
-	if (true == GameEngineInput::GetInst()->IsDown(DEBUG_KEY))
-	{
-		IsDebugModeSwitch();
-	}
+
+
 
 }
 

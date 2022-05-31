@@ -252,6 +252,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TurnTimeButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TypingBox.h">
       <SubType>
       </SubType>
@@ -376,6 +380,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="SmallCloud.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TurnTimeButton.cpp">
       <SubType>
       </SubType>
     </ClCompile>

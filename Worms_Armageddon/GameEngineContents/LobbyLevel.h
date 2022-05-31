@@ -25,7 +25,7 @@ protected:
 	void Update() override;
 
 private:
-	void PlayerBulbOnOff();
+	void PlayerReadyCheck();
 
 private:
 	GameEngineActor* BackGround_;
