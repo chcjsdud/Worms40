@@ -42,7 +42,7 @@ void TerrainBox::Start()
 	SelectMapBoxArrowRenderer_->SetPivot({ 300, 210 });
 
 	SelectMapBoxCollision_ = CreateCollision("SelectMapbox", {30, 28});
-	SelectMapBoxCollision_->SetPivot({ 480, 195 });
+	SelectMapBoxCollision_->SetPivot({ 465, 210 });
 
 	CreateMapList(MapType::Books);
 	CreateMapList(MapType::Birthday);
