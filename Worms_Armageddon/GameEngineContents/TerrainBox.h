@@ -37,10 +37,10 @@ private:
 
 	float MapListYMargin_;
 
-	GameEngineRenderer* BoxRenderer_;
-	GameEngineRenderer* SelectMapBarRenderer_;
-	GameEngineRenderer* SelectMapBoxRenderer_;
-	GameEngineRenderer* SelectMapBoxArrowRenderer_;
+	GameEngineRenderer* SelectMapBarRenderer_;			//맵 선택 바
+	GameEngineRenderer* SelectMapBoxRenderer_;			//맵 선택 박스
+	GameEngineRenderer* SelectMapBoxArrowRenderer_;		//맵 선택 버튼
+	GameEngineRenderer* SelectMapPreviewRenderer_;		//맵 프리뷰
 
 	MapList* SelectMap_;
 
@@ -54,22 +54,17 @@ private:
 
 	std::vector<GameEngineCollision*> MouseColCheck;
 
-
-
-
 private:
 	void CreateMapList(std::string _MapName);
 	void CreateMapList(MapType _MapType);
 	void SelectMap(MapType _MapType);
+	void InitSelectMap();
 
 	std::string MapTypeToString(MapType _MapType);
-	MapType MapTypeToEnum(const std::string _MapType); //되도록 안쓰는게 좋음
+	MapType MapTypeToEnum(const std::string _MapType); //되도록 안쓰는게 좋음.
 
 	bool MouseLeftClick();
-	bool MouseOver();
-
-
-
+	bool SelectMapBoxArrow();
 
 };
 

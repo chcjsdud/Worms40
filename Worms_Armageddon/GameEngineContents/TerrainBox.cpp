@@ -10,11 +10,11 @@ TerrainBox::TerrainBox()
 
 	  MapListYMargin_(0),
 	  SelectMap_(nullptr),
-	  BoxRenderer_(nullptr),
       SelectMapBarRenderer_(nullptr),
 	  SelectMapBoxArrowRenderer_(nullptr),
 	  SelectMapBoxRenderer_(nullptr),
 	  SelectMapBoxCollision_(nullptr),
+	  SelectMapPreviewRenderer_(nullptr),
 	  MouseColCheck(),
 	  MapSelectState_(MapSelectState::Wait)
 {
@@ -26,10 +26,9 @@ TerrainBox::~TerrainBox()
 
 void TerrainBox::Start()
 {
-	BoxRenderer_ = CreateRenderer("LobbyMap_MapCity.bmp", static_cast<int>(RenderOrder::UI));
-	BoxRenderer_->SetScale({481, 166});
-	BoxRenderer_->SetTransColor(RGB(0, 0, 0));
-	BoxRenderer_->SetPivot(BoxRenderer_->GetScale().Half());
+	SelectMapPreviewRenderer_ = CreateRenderer("LobbyMap_MapCity.bmp", static_cast<int>(RenderOrder::UI));
+	SelectMapPreviewRenderer_->SetScale({481, 166});
+	SelectMapPreviewRenderer_->SetPivot(SelectMapPreviewRenderer_->GetScale().Half());
 
 	SelectMapBarRenderer_ = CreateRenderer("SelectMap.bmp", static_cast<int>(RenderOrder::SelectBox));
 	SelectMapBarRenderer_->SetPivot({300, 210});
@@ -50,9 +49,9 @@ void TerrainBox::Start()
 	SelectMap_ = GetLevel()->CreateActor<MapList>();
 	SelectMap_->SetPosition({ 300 + 776, 255 - 24 });
 	SelectMap_->GetRenderer()->Off();
-	//SelectMap_->CreateMapList("Books");
-	SelectMap(MapType::Books);
 
+	//TODO:: 맵 선택해야만 플레이 레벨 넘어가야함. 초기에는 맵타입이 Other로 되어있음.
+	InitSelectMap();
 
 	std::map<std::string, MapList*>::iterator Start = MapList_.begin();
 	std::map<std::string, MapList*>::iterator End = MapList_.end();
@@ -71,17 +70,21 @@ void TerrainBox::Update()
 	{
 	case MapSelectState::Wait:
 
-		if (MouseOver() == true)
+		//마우스 오버
 		{
-			SelectMapBoxArrowRenderer_->SetImage("SelectMapArrow_MouseOver.bmp");
+			if (SelectMapBoxArrow() == true)
+			{
+				SelectMapBoxArrowRenderer_->SetImage("SelectMapArrow_MouseOver.bmp");
+			}
+
+			else
+			{
+				SelectMapBoxArrowRenderer_->SetImage("SelectMapArrow.bmp");
+			}
 		}
 
-		else
-		{
-			SelectMapBoxArrowRenderer_->SetImage("SelectMapArrow.bmp");
-		}
-
-		if (MouseLeftClick() == true && MouseOver() == true)
+		//선택
+		if (MouseLeftClick() == true && SelectMapBoxArrow() == true)
 		{
 			StartIter_ = MapList_.begin();
 
@@ -105,6 +108,8 @@ void TerrainBox::Update()
 
 			if (StartIter_->second->MouseLeftClick() == true && StartIter_->second->MouseOver() == true)
 			{
+
+				//맵 선택하고 정보 넣어주기
 				MapType MapType = StartIter_->second->GetMapType();
 				SelectMap(MapType);
 
@@ -163,6 +168,39 @@ void TerrainBox::SelectMap(MapType _MapType)
 	std::string MapName = MapTypeToString(_MapType);
 	SelectMap_->ChangeTypeAndFont(MapName, _MapType);
 	GameOptions::PlayingOptions.SetMapType(_MapType);
+
+	switch (_MapType)
+	{
+	case MapType::Birthday:
+
+		//TODO:: BirthDay 이미지 변경
+		SelectMapPreviewRenderer_ ->SetImage("MapCity.bmp");
+		SelectMapPreviewRenderer_->SetScale({ 481, 166 });
+		SelectMapPreviewRenderer_->SetPivot(SelectMapPreviewRenderer_->GetScale().Half());
+
+		break;
+	case MapType::Books:
+
+		SelectMapPreviewRenderer_->SetImage("MapBooks.bmp");
+		SelectMapPreviewRenderer_->SetScale({ 481, 166 });
+		SelectMapPreviewRenderer_->SetPivot(SelectMapPreviewRenderer_->GetScale().Half());
+		break;
+	case MapType::Other:
+		break;
+	default:
+		break;
+	}
+}
+
+void TerrainBox::InitSelectMap()
+{
+	SelectMap_->ChangeTypeAndFont(" ", MapType::Other);
+	GameOptions::PlayingOptions.SetMapType(MapType::Other);
+
+	SelectMapPreviewRenderer_->SetImage("LobbyMap_MapCity.bmp");
+	SelectMapPreviewRenderer_->SetScale({ 481, 166 });
+	SelectMapPreviewRenderer_->SetPivot(SelectMapPreviewRenderer_->GetScale().Half());
+
 }
 
 std::string TerrainBox::MapTypeToString(MapType _MapType)
@@ -196,12 +234,8 @@ MapType TerrainBox::MapTypeToEnum(const std::string _MapType)
 		return MapType::Birthday;
 	}
 
-	else
-
-	{
-		return MapType::Other;
-	}
-
+	return MapType::Other;
+	
 }
 
 bool TerrainBox::MouseLeftClick()
@@ -209,7 +243,7 @@ bool TerrainBox::MouseLeftClick()
 	return true == GameEngineInput::GetInst()->IsDown(KEY_MOUSE_LEFT);
 }
 
-bool TerrainBox::MouseOver()
+bool TerrainBox::SelectMapBoxArrow()
 {
 	return true == SelectMapBoxCollision_->CollisionResult("Mouse", MouseColCheck);
 }

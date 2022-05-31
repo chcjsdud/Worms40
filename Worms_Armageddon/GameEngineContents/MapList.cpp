@@ -43,7 +43,6 @@ void MapList::ChangeTypeAndFont(std::string _Name, MapType _MapType)
 	MapType_ = _MapType;
 	Font_->GameContentChangeFont(_Name, float4({ -20 , 0 }));
 	Font_->SetPosition({ this->GetPosition() });
-
 }
 void MapList::MapListAllUpdateOff()
 {
