@@ -35,6 +35,9 @@ void Water::Start()
 	WaterRenderer1_->CreateAnimation("Water_sprite.bmp", "WaterAni", 0, 9, 0.05f, true);
 	WaterRenderer1_->ChangeAnimation("WaterAni");
 	WaterRenderer1_->SetOrder((int)RenderOrder::BackGround_3);
+
+
+	// TODO::UnderWater ¸¸µé±â
 }
 
 void Water::Update()

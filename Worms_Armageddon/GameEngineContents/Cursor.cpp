@@ -25,7 +25,7 @@ Cursor::~Cursor()
 void Cursor::Start()
 {
 	// 마우스 이미지 설정
-	Renderer_ = CreateRenderer("Cursor.bmp", static_cast<int>(RenderOrder::Cursor));
+	Renderer_ = CreateRenderer(IMG_MOUSE_CURSOR, static_cast<int>(RenderOrder::Cursor));
 	Renderer_->SetScale(Renderer_->GetScale() * CursorImgScale);
 	Renderer_->SetPivot(float4{ CursorImgPivot_X, CursorImgPivot_Y });
 	Renderer_->CameraEffectOff();

@@ -50,6 +50,10 @@
 #define PLAYER_MAX_TEAM 6
 #define PLAYER_MAX_NUMBER 8
 
+// 카메라 설정값
+#define LEN_MAPBOOKS_X 3000.0f
+#define LEN_MAPBOOKS_Y 1500.0f
+
 // 레벨
 #define LEVEL_TITLE_LEVEL "TitleLevel"
 #define LEVEL_LOBBY_LEVEL "LobbyLevel"
@@ -72,6 +76,7 @@
 #define KEY_WEAPON_GRENADE "WeaponGrenade"
 
 // 마우스
+#define IMG_MOUSE_CURSOR "Cursor.bmp"
 #define KEY_MOUSE_LEFT "ClickLeft"
 #define KEY_MOUSE_MID "ClickMid"
 #define KEY_MOUSE_RIGHT "ClickRight"
@@ -87,12 +92,10 @@
 // 이미지 스케일
 #define SCALE_GRADIENT_X 1280.0f
 #define SCALE_GRADIENT_Y 720.0f
-#define SCALE_MAPBOOKS_X 3840.0f
-#define SCALE_MAPBOOKS_Y 1392.0f
-#define SCALE_MAPBOOKS_GROUND_X 3840.0f
-#define SCALE_MAPBOOKS_GROUND_Y 1392.0f
-#define SCALE_MAPBOOKS_LOBBY_X 3840.0f
-#define SCALE_MAPBOOKS_LOBBY_Y 1392.0f
+#define SCALE_MAPBOOKS_X 1536.0f
+#define SCALE_MAPBOOKS_Y 557.0f
+#define SCALE_MAPBOOKS_GROUND_X 1536.0f
+#define SCALE_MAPBOOKS_GROUND_Y 557.0f
 
 #define SCALE_EFFECT_BOOM_X 100.0f
 #define SCALE_EFFECT_BOOM_Y 100.0f

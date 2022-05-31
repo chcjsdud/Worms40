@@ -23,7 +23,8 @@ void MapBooks::Start()
 	BackGround_ = CreateRendererToScale(IMG_GRADIENT,{3840,1392}, (int)RenderOrder::BackGround_0);
 	GroundHalf = BackGround_->GetScale().Half();
 	BackGround_->SetPivot(GroundHalf);
-	//배경색은 카메라영향을 받지 않게.
+	
+	//배경색은 카메라영향을 받지 않게
 	BackGround_->CameraEffectOff();
 
 	ColMapRenderer_= CreateRenderer(IMG_MAPBOOKS_GROUND, (int)RenderOrder::BackGround_2);

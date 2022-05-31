@@ -44,8 +44,10 @@ void PlayLevel::Loading()
 	LargeCloudActor_->SetPosition({ 200.0f,200.0f});
 	SmallCloudActor_ = CreateActor<SmallCloud>();
 	SmallCloudActor_->SetPosition({ 250.0f,200.0f });
+
+	// TODO::맵에 따라서 X포지션 변경 필요
 	WaterActor_ = CreateActor<Water>();
-	WaterActor_->SetPosition({ 300.0f,300.0f });
+	WaterActor_->SetPosition({ SCALE_MAPBOOKS_X / 2, 610.0f });
 
 	// 무기 설정
 	WeaponMaster_ = CreateActor<WeaponMaster>();
@@ -258,8 +260,8 @@ void PlayLevel::UpdateCamera(float4 _CameraPos)
 	float CurrentLevelW = 0.0f;
 
 	// 테스트용 코드
-	CurrentLevelH = SCALE_MAPBOOKS_X;
-	CurrentLevelW = SCALE_MAPBOOKS_Y;
+	CurrentLevelH = LEN_MAPBOOKS_Y;
+	CurrentLevelW = LEN_MAPBOOKS_X;
 	// 테스트용 코드
 
 	// TODO::포탄에 따라서 카메라 위치를 변경하거나
@@ -267,21 +269,21 @@ void PlayLevel::UpdateCamera(float4 _CameraPos)
 	CameraPos_ = _CameraPos - GameEngineWindow::GetInst().GetScale().Half();
 
 	// 카메라가 맵 범위를 벗어났을경우 재위치
-	if (CameraPos_.x <= 0)
+	if (CameraPos_.x <= -CurrentLevelW / 2)
 	{
-		CameraPos_.x = 0;
+		CameraPos_.x = -CurrentLevelW / 2;
 	}
 	if (CameraPos_.x >= CurrentLevelW - GameEngineWindow::GetInst().GetScale().ix())
 	{
 		CameraPos_.x = CurrentLevelW - GameEngineWindow::GetInst().GetScale().ix();
 	}
-	if (CameraPos_.y <= 0)
+	if (CameraPos_.y <= -CurrentLevelH / 2)
 	{
 		CameraPos_.y = 0;
 	}
-	if (CameraPos_.y >= CurrentLevelH - GameEngineWindow::GetInst().GetScale().iy())
+	if (CameraPos_.y >= CurrentLevelH / 2 - GameEngineWindow::GetInst().GetScale().iy())
 	{
-		CameraPos_.y = CurrentLevelH - GameEngineWindow::GetInst().GetScale().iy();
+		CameraPos_.y = CurrentLevelH / 2 - GameEngineWindow::GetInst().GetScale().iy();
 	}
 
 	// 카메라 위치 갱신
