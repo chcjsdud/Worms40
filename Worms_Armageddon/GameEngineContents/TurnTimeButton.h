@@ -17,7 +17,7 @@ public:
 	TurnTimeButton& operator=(TurnTimeButton&& _Other) noexcept = delete;
 
 public:
-	inline int GetTurnTime()
+	inline int GetCurrentTurnTime()
 	{
 		return CurrentTurnTime_;
 	}

@@ -24,6 +24,11 @@ public:
 		return static_cast<int>(SelectedTeams_.size());
 	}
 
+	std::list<TeamButton*>& GetSelectedTeams()
+	{
+		return SelectedTeams_;
+	}
+
 protected:
 	virtual void Start() override;
 	virtual void Update() override;

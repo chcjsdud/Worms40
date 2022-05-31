@@ -3,6 +3,7 @@
 #include "GameOptions.h"
 #include "Enums.h"
 #include "LobbyHeaders.h"
+#include "TeamButton.h"
 
 #include <GameEngine/GameEngine.h>
 #include <GameEngine/GameEngineActor.h>
@@ -82,18 +83,28 @@ void LobbyLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 void LobbyLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-	// 테스트 플레이레벨로 넘겨주는 정보
-	//GameOptions::PlayingOptions.SetPlayerName(0, "FirstPlayer");
-	//GameOptions::PlayingOptions.SetPlayerColor(0, RGB(255, 255, 255));
-	GameOptions::PlayingOptions.SetTurnTime(45);
-	// GameOptions::PlayingOptions.SetPlayerNum(3);
-	GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)0, 3);
-	GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)1, 3);
-	GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)2, 3);
-	GameOptions::PlayingOptions.SetMapType(MapType::Books);
+	// 플레이 레벨로 넘겨주는 정보
+	{
+		TeamEditBox* TeamEditBoxPtr = dynamic_cast<TeamEditBox*>(TeamEditBox_);
+		LobbySettings* LobbySettingsPtr = dynamic_cast<LobbySettings*>(LobbySettings_);
+		// PlayerNum
+		int PlayerNum = TeamEditBoxPtr->GetSelectedTeamNum();
+		GameOptions::PlayingOptions.SetPlayerNum(PlayerNum);
 
-	// TODO::체력 100, 200 중 세팅값 보내기
-	GameOptions::PlayingOptions.SetWormzHp(200);
+		// TeamColor & TeamNum
+		std::list<TeamButton*> TeamButtons = TeamEditBoxPtr->GetSelectedTeams();
+		for (auto Button : TeamButtons)
+		{
+			TeamColor Color = Button->GetTeamColor();
+			int Num = Button->GetTeamNum();
+			GameOptions::PlayingOptions.SetPlayerTeamSetting(Color, Num);
+		}
+
+		// Turn Time
+		int TurnTime = LobbySettingsPtr->GetTurnTime();
+		GameOptions::PlayingOptions.SetTurnTime(TurnTime);
+	}
+
 }
 
 
@@ -105,6 +116,7 @@ void LobbyLevel::Update()
 	{
 		GameEngine::GetInst().ChangeLevel(LEVEL_PLAY_LEVEL);
 	}
+
 	// 시작 버튼 누름
 	StartButton* StartButtonPtr = dynamic_cast<StartButton*>(StartButton_);
 	if (true == StartButtonPtr->IsGameStartAvailable())
@@ -127,7 +139,8 @@ void LobbyLevel::PlayerReadyCheck()
 	PlayersBox* PlayersBoxPtr = dynamic_cast<PlayersBox*>(PlayersBox_);
 
 	// 선택팀 1개 이상이어야 Ready 가능
-	if (1 > TeamEditBoxPtr->GetSelectedTeamNum())
+	auto val = GameOptions::PlayingOptions.GetMapType();
+	if (1 > TeamEditBoxPtr->GetSelectedTeamNum() || MapType::Other == GameOptions::PlayingOptions.GetMapType())
 	{
 		ReadyButtonPtr->SetReadyImpossible();
 		ReadyButtonPtr->SetPlayerReady(false);

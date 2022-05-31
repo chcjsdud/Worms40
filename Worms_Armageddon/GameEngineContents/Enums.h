@@ -91,7 +91,6 @@ enum class MapType
 	Birthday,
 	Books,
 	Other,
-
 };
 
 

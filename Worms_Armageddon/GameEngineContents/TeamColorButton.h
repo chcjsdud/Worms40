@@ -22,6 +22,11 @@ public:
 		TeamColor_ = _Color;
 	}
 
+	inline TeamColor GetColor()
+	{
+		return TeamColor_;
+	}
+
 protected:
 	void Start() override;
 	void Update() override;

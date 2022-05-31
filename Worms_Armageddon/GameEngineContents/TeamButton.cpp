@@ -1,9 +1,5 @@
 #include "TeamButton.h"
-#include "TeamColorButton.h"
 #include "TeamHandicapButton.h"
-#include "TeamNumButton.h"
-
-#include "Enums.h"
 
 TeamButton::TeamButton()
 	: IsSelected_(false)

@@ -20,7 +20,7 @@ public:
 		TeamNum_ = _Number;
 	}
 
-	inline int GetTeamNumber()
+	inline int GetNum()
 	{
 		return TeamNum_;
 	}

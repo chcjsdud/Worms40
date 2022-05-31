@@ -1,5 +1,8 @@
 #pragma once
 #include "Button.h"
+#include "Enums.h"
+#include "TeamColorButton.h"
+#include "TeamNumButton.h"
 #include <string>
 
 // 설명 : 1-UP, 팀 색, 팀원 수 정하는 버튼들의 그룹
@@ -29,6 +32,17 @@ public:
 
 	void SetAllButtonPosition(const float4 _Value);
 
+	inline TeamColor GetTeamColor()
+	{
+		return ColorButton_->GetColor();
+	}
+
+	inline int GetTeamNum()
+	{
+		return NumButton_->GetNum();
+	}
+
+
 protected:
 	void Start() override;
 	void Update() override;
@@ -44,7 +58,7 @@ private:
 	int ButtonIndex_;
 
 	class TeamHandicapButton* HandicapButton_;
-	class TeamColorButton* ColorButton_;
-	class TeamNumButton* NumButton_;
+	TeamColorButton* ColorButton_;
+	TeamNumButton* NumButton_;
 };
 

@@ -46,7 +46,7 @@ public:
 		MapType_ = _MapType;
 	}
 
-	inline MapType SetMapType()
+	inline MapType GetMapType()
 	{
 		return MapType_;
 	}
