@@ -79,32 +79,41 @@ void LobbyLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	std::string TestText = "dslilili      iiiiifsf";
 	FontTest_->GameContentCreateFont(TestText, float4({ 100,100 }));
 
+
 }
 
 void LobbyLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
 	// 플레이 레벨로 넘겨주는 정보
+	TeamEditBox* TeamEditBoxPtr = dynamic_cast<TeamEditBox*>(TeamEditBox_);
+	LobbySettings* LobbySettingsPtr = dynamic_cast<LobbySettings*>(LobbySettings_);
+	// PlayerNum
+	int PlayerNum = TeamEditBoxPtr->GetSelectedTeamNum();
+	GameOptions::PlayingOptions.SetPlayerNum(PlayerNum);
+
+	// TeamColor & TeamNum
+	std::list<TeamButton*> TeamButtons = TeamEditBoxPtr->GetSelectedTeams();
+	for (auto Button : TeamButtons)
 	{
-		TeamEditBox* TeamEditBoxPtr = dynamic_cast<TeamEditBox*>(TeamEditBox_);
-		LobbySettings* LobbySettingsPtr = dynamic_cast<LobbySettings*>(LobbySettings_);
-		// PlayerNum
-		int PlayerNum = TeamEditBoxPtr->GetSelectedTeamNum();
-		GameOptions::PlayingOptions.SetPlayerNum(PlayerNum);
-
-		// TeamColor & TeamNum
-		std::list<TeamButton*> TeamButtons = TeamEditBoxPtr->GetSelectedTeams();
-		for (auto Button : TeamButtons)
-		{
-			TeamColor Color = Button->GetTeamColor();
-			int Num = Button->GetTeamNum();
-			GameOptions::PlayingOptions.SetPlayerTeamSetting(Color, Num);
-		}
-
-		// Turn Time
-		int TurnTime = LobbySettingsPtr->GetTurnTime();
-		GameOptions::PlayingOptions.SetTurnTime(TurnTime);
+		TeamColor Color = Button->GetTeamColor();
+		int Num = Button->GetTeamNum();
+		GameOptions::PlayingOptions.SetPlayerTeamSetting(Color, Num);
 	}
 
+	// Turn Time
+	int TurnTime = LobbySettingsPtr->GetTurnTime();
+	GameOptions::PlayingOptions.SetTurnTime(TurnTime);
+	
+	// 디버깅용 레벨 넘길 때
+	if (0 == PlayerNum && static_cast<int>(TeamButtons.size()) == 0 
+		&& TurnTime == 45 && MapType::Other == GameOptions::PlayingOptions.GetMapType())
+	{
+		GameOptions::PlayingOptions.SetTurnTime(45);
+		GameOptions::PlayingOptions.SetPlayerNum(3);
+		GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)0, 3);
+		GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)1, 3);
+		GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)2, 3);
+	}
 }
 
 
