@@ -222,6 +222,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="MapList.h" />
+    <ClInclude Include="PixelCollision.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="SmallCloud.h">
       <SubType>
       </SubType>
@@ -359,6 +363,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MapList.cpp" />
+    <ClCompile Include="PixelCollision.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ReadyButton.cpp">
       <SubType>
       </SubType>

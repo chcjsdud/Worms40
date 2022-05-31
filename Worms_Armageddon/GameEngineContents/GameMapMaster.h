@@ -29,6 +29,11 @@ public:
 		return BackGround_;
 	}
 
+	inline GameEngineRenderer* GetColMapRender()
+	{
+		return ColMapRenderer_;
+	}
+
 	inline GameEngineRenderer* GetGround()
 	{
 		return Ground_;
@@ -57,6 +62,8 @@ protected:
 	GameEngineRenderer* BackGround_;
 	// 바닥
 	GameEngineRenderer* Ground_;
+
+	GameEngineRenderer* ColMapRenderer_;
 
 	// 맵에 사용될 충돌용 이미지
 	GameEngineImage* ColMap_;

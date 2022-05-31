@@ -8,6 +8,7 @@
 
 // 설명 :
 class GameEngineImage;
+class PixelCollision;
 class Player : public GameEngineActor
 {
 public:
@@ -74,6 +75,7 @@ private:
 	// 무기 위치
 	float4 WeaponPos_;
 
+	PixelCollision* PixelCol_;
 	// 플레이어 Hp
 	int PlayerHp_;
 
@@ -135,6 +137,7 @@ private:
 	//오르막길 픽셀충돌체크
 	void CheckHillPixel();
 	// FSM
+	void CheckPixel(float4 MyPos_,float4 CheckPos_, GameEngineImage* ColMapImage_);
 public:
 	// 상태전환
 	void StateChange(PlayerState _State);

@@ -1,6 +1,7 @@
 #include "WeaponMaster.h"
 #include "PlayLevel.h"
 #include "Foom.h"
+#include "PixelCollision.h"
 #include <GameEngineBase/GameEngineCustomStringSet.h>
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngineBase/GameEngineTime.h>
@@ -104,6 +105,14 @@ void WeaponMaster::BulletMove(float _Gravity)
 void WeaponMaster::BulletColEvent()
 {
 	int Color = GetGameMap()->GetColMap()->GetImagePixel({ GetPosition() });
+
+	PixelCol_->CheckPixel(CheckType::WeaponGrenade, GetPosition(), WeaponRender_->GetScale(),GetGameMap()->GetColMap());
+
+	if (true == PixelCol_->bGrenade)
+	{
+		int a = 0;
+	}
+
 
 	// 맵과 충돌처리
 	if (RGB(0, 0, 255) == Color)

@@ -7,6 +7,7 @@
 // 설명 : 
 class GameEngineImage;
 class GameEngineRenderer;
+class PixelCollision;
 class WeaponMaster :public GameEngineActor
 {
 public:
@@ -54,6 +55,7 @@ protected:
 
 	// 무기 발사 방향
 	float4 ShotDir_;
+	PixelCollision* PixelCol_;
 	// 투사체의 방향
 	float4 BulletDir_;
 

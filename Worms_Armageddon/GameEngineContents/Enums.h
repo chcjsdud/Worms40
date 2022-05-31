@@ -145,3 +145,13 @@ enum class CreateEffect
 {
 	Foom
 };
+
+
+//픽셀충돌할 대상 타입
+enum class CheckType
+{
+	None,
+	Player,
+	WeaponMissile,
+	WeaponGrenade
+};

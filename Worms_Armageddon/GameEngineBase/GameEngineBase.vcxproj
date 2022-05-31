@@ -199,6 +199,8 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="GameEngineWriteFile.h" />
+    <None Include="..\..\..\HHS_Protfolio\API_Portfolio\APIPortfolio\GameEngineBase\ThirdParty\bin\fmod.dll" />
+    <None Include="..\..\..\HHS_Protfolio\API_Portfolio\APIPortfolio\GameEngineBase\ThirdParty\bin\fmodL.dll" />
     <None Include="ThirdParty\inc\fmod.h" />
     <None Include="ThirdParty\inc\fmod.hpp" />
   </ItemGroup>
@@ -244,20 +246,8 @@
     <ClCompile Include="GameEngineWriteFile.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="ThirdParty\bin\fmod.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="ThirdParty\bin\fmodL.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-  </ItemGroup>
-  <ItemGroup>
-    <CopyFileToFolders Include="ThirdParty\bin\fmodL_vc.lib">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="ThirdParty\bin\fmod_vc.lib">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
+    <Library Include="..\..\..\HHS_Protfolio\API_Portfolio\APIPortfolio\GameEngineBase\ThirdParty\bin\fmodL_vc.lib" />
+    <Library Include="..\..\..\HHS_Protfolio\API_Portfolio\APIPortfolio\GameEngineBase\ThirdParty\bin\fmod_vc.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

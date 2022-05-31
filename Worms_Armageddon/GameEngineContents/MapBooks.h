@@ -23,6 +23,5 @@ protected:
 
 private:
 	bool ShowColMap_;
-	GameEngineRenderer* ColMapRenderer_;
 };
 

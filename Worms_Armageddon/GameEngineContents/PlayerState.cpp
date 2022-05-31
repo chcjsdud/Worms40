@@ -197,12 +197,7 @@ void Player::JumpUpdate()
 			JumpMoveDir_ = float4::ZERO;
 
 			float a = FallSpeed_;
-			//낙하데미지
-			if (2000 <= FallSpeed_)
-			{
-				StateChange(PlayerState::Falled);
-				return;
-			}
+
 			do
 			{
 				SetMove(UpPos); 
@@ -210,6 +205,11 @@ void Player::JumpUpdate()
 				Color = ColMapImage_->GetImagePixel(DownPos);
 			} while (RGB(0, 0, 255) == Color);
 
+			if (1500 <= FallSpeed_)
+			{
+				StateChange(PlayerState::Falled);
+				return;
+			}
 
 			//점프 도중에 키를 누르고있으면 바로 움직이게 만들어준다.
 			if (true == GameEngineInput::GetInst()->IsPress(KEY_MOVE_RIGHT) ||
@@ -262,14 +262,6 @@ void Player::BackFlipUpdate()
 			MoveDir_ = float4::ZERO;
 			JumpMoveDir_ = float4::ZERO;
 
-			float a = FallSpeed_;
-			//낙하데미지
-			if (2000 <= FallSpeed_)
-			{
-				StateChange(PlayerState::Falled);
-				return;
-			}
-
 			do
 			{
 				SetMove(UpPos);
@@ -277,6 +269,12 @@ void Player::BackFlipUpdate()
 				Color = ColMapImage_->GetImagePixel(DownPos);
 			} while (RGB(0, 0, 255) == Color);
 
+			//낙하데미지
+			if (2000 <= FallSpeed_)
+			{
+				StateChange(PlayerState::Falled);
+				return;
+			}
 
 			//점프 도중에 키를 누르고있으면 바로 움직이게 만들어준다.
 			if (true == GameEngineInput::GetInst()->IsPress(KEY_MOVE_RIGHT) ||
@@ -301,7 +299,7 @@ void Player::FalledUpdate()
 		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime());
 
 		MoveDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * FallSpeed_;
-		FallSpeed_ += 30.0f;
+		FallSpeed_ += 10.0f;
 
 		float4 CheckLength = float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
 

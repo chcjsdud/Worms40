@@ -1,5 +1,6 @@
 #include "Baz.h"
 #include "Enums.h"
+#include "PixelCollision.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineRenderer.h>
 
@@ -13,6 +14,7 @@ Baz::~Baz()
 
 void Baz::Start()
 {
+	PixelCol_ = GetLevel()->CreateActor<PixelCollision>();
 	WeaponRender_ = CreateRenderer((int)RenderOrder::Weapon);
 	WeaponRender_->SetImage("BazSpin.bmp");
 	WeaponRender_->SetRotationFilter("BazSpinFilter.bmp");
