@@ -29,6 +29,8 @@ enum class RenderOrder
 	// ¸Ê
 	BackGround_3,
 
+	LobbyStar,
+
 	Back_Fx,
 	Weapon,
 	Player,

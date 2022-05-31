@@ -2,6 +2,7 @@
 #include <GameEngine/GameEngineLevel.h>
 
 #include "Font.h"
+#include "LobbyShootingStar.h"
 
 // Ό³Έν :
 class GameEngineActor;
@@ -43,7 +44,7 @@ private:
 	GameEngineActor* StartButton_;
 	GameEngineActor* ExitButton_;
 
-	Font* FontTest_;
+	LobbyShootingStar* LobbyShootingStar_;
 
 
 };
