@@ -215,6 +215,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MapList.h" />
     <ClInclude Include="SmallCloud.h">
       <SubType>
       </SubType>
@@ -341,6 +342,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MapList.cpp" />
     <ClCompile Include="ReadyButton.cpp">
       <SubType>
       </SubType>

@@ -128,5 +128,10 @@ void LobbyLevel::PlayerBulbOnOff()
 	{
 		playersBox->BulbOff();
 	}
+	if (true == GameEngineInput::GetInst()->IsDown(DEBUG_KEY))
+	{
+		IsDebugModeSwitch();
+	}
+
 }
 

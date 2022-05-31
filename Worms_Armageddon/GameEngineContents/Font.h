@@ -27,6 +27,7 @@ private:
 
 public:
 	void GameContentCreateFont(std::string _Text, float4 _Pos);
+	void GameContentChangeFont(std::string _Text, float4 _Pos);
 };
 
 enum class FONT_INDEX

@@ -34,6 +34,7 @@ enum class RenderOrder
 	Player,
 	Front_Fx,
 	UI,
+	SelectBox,
 	Font,
 	Cursor,
 };
@@ -89,6 +90,7 @@ enum class MapType
 {
 	Birthday,
 	Books,
+	Other,
 
 };
 
