@@ -172,6 +172,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AirStrike.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Button.h" />
     <ClInclude Include="ChatBox.h">
       <SubType>
@@ -313,6 +317,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AirStrike.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ChatBox.cpp">
       <SubType>

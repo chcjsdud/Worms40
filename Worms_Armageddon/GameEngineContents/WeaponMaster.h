@@ -36,9 +36,9 @@ public:
 	}
 
 private: 
-	// 무기 발사 방향
-	float4 ShotDir_;
-	// TODO::무기가 발사 되는순간 최초 실행
+	// 지정한 목표 좌표
+	float4 TargetPos_;
+	// 무기가 발사 되는순간 최초 실행
 	bool Shot_;
 
 	// 레벨이 시작함과 동시에 초기화될 맵 정보
@@ -52,6 +52,8 @@ protected:
 	// 무기 랜더
 	GameEngineRenderer* WeaponRender_;
 
+	// 무기 발사 방향
+	float4 ShotDir_;
 	// 투사체의 방향
 	float4 BulletDir_;
 
@@ -60,6 +62,8 @@ protected:
 
 	// 투사체 투척용 함수 : 포스값의 강도로 날림
 	void ThrowStart(float _ThrowForce);
+
+	void AirStart(float4 _FlyDir);
 
 	// 투사체 움직임 연산 : 중력값만 넣어주면 포물선으로 날아감
 	void BulletMove(float _Gravity);

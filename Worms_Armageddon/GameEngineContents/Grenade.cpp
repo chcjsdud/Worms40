@@ -37,5 +37,12 @@ bool Grenade::WeaponUpdate()
 	BulletColEvent(); // 충돌하면 이벤트가 발생한다.
 
 
-	return true;
+	if (false == IsUpdate()) // 웜즈가 체력이 깎인 후 false 리턴되도록 변경 예정
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }

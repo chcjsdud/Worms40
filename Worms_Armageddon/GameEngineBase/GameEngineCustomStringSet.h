@@ -74,6 +74,7 @@
 
 #define KEY_WEAPON_BAZ "WeaponBaz"
 #define KEY_WEAPON_GRENADE "WeaponGrenade"
+#define KEY_WEAPON_AIRSTRIKE "WeaponAirStrike"
 
 // 마우스
 #define IMG_MOUSE_CURSOR "Cursor.bmp"
@@ -163,6 +164,8 @@
 #define IMG_BAZ_OFF_LEFT "bazOffLeft.bmp"
 #define IMG_BAZ_OFF_RIGHT "bazOffRight.bmp"
 //#define IMG_MISSILE "missile.bmp"
+#define IMG_AIRJET_GREEN_LEFT "airjetg.bmp"
+#define IMG_AIRJET_GREEN_RIGHT "airjetgRight.bmp"
 
 // 이펙트
 #define IMG_FX_EXFOOM "exfoom.bmp"

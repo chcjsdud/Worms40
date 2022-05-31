@@ -5,6 +5,7 @@
 #pragma region Weapon
 #include "Baz.h"
 #include "Grenade.h"
+#include "AirStrike.h"
 #pragma endregion
 
 
@@ -62,6 +63,10 @@ void Player::IdleUpdate()
 	if (GameEngineInput::GetInst()->IsPress(KEY_WEAPON_GRENADE))
 	{
 		WeaponState_ = WeaponState::Grenade;
+	}
+	if (GameEngineInput::GetInst()->IsPress(KEY_WEAPON_AIRSTRIKE))
+	{
+		WeaponState_ = WeaponState::AirStrike;
 	}
 
 	MoveFall();
@@ -365,6 +370,7 @@ void Player::ActionStart()
 	case WeaponState::Sheep:
 		break;
 	case WeaponState::AirStrike:
+		Weapon_ = GetLevel()->CreateActor<AirStrike>();
 		break;
 	case WeaponState::BlowTorch:
 		break;

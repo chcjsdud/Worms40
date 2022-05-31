@@ -119,6 +119,7 @@ void Player::PlayerKeyInit()
 		// TODO::무기 선택용 더미 키 설정, 수정필요
 		GameEngineInput::GetInst()->CreateKey(KEY_WEAPON_BAZ, '1');
 		GameEngineInput::GetInst()->CreateKey(KEY_WEAPON_GRENADE, '2');
+		GameEngineInput::GetInst()->CreateKey(KEY_WEAPON_AIRSTRIKE, '3');
 	}
 }
 

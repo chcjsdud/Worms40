@@ -2,7 +2,6 @@
 #include "WeaponMaster.h"
 
 // Ό³Έν :
-class PlayLevelTestMap;
 class Baz : public WeaponMaster
 {
 public:
@@ -16,10 +15,9 @@ public:
 	Baz& operator=(const Baz& _Other) = delete;
 	Baz& operator=(Baz&& _Other) noexcept = delete;
 
-	bool WeaponUpdate() override;
-
 protected:
 	void Start() override;
 	void Update() override;
+	bool WeaponUpdate() override;
 };
 

@@ -128,6 +128,9 @@
     <ClInclude Include="TurnTimeButton.h">
       <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
     </ClInclude>
+    <ClInclude Include="AirStrike.h">
+      <Filter>02.PlayLevel\Player\Weapon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
@@ -256,6 +259,9 @@
     </ClCompile>
     <ClCompile Include="TurnTimeButton.cpp">
       <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="AirStrike.cpp">
+      <Filter>02.PlayLevel\Player\Weapon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

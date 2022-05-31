@@ -73,5 +73,10 @@ public:
 	{
 		return WindDir_;
 	}
+
+	Cursor* GetCursor()
+	{
+		return Mouse_;
+	}
 };
 

@@ -36,6 +36,10 @@ private:
 	POINT MousePos_;
 	float4 CursorPos_;
 
-
+public:
+	//inline float4 GetCursorPos()
+	//{
+	//	return CursorPos_;
+	//}
 };
 

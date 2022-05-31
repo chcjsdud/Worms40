@@ -10,7 +10,8 @@
 GameMapMaster* WeaponMaster::GameMap_ = nullptr;
 
 WeaponMaster::WeaponMaster() 
-	: Shot_ (false)
+	: TargetPos_(float4::ZERO)
+	, Shot_ (false)
 	, WeaponRender_(nullptr)
 {
 }
@@ -47,6 +48,43 @@ void WeaponMaster::ThrowStart(float _ThrowForce)
 			BulletDir_ += float4::RIGHT * 100;
 		}
 		Shot_ = true;
+	}
+}
+
+void WeaponMaster::AirStart(float4 _FlyDir)
+{
+	if (false == Shot_)
+	{
+		PlayLevel* Play = dynamic_cast<PlayLevel*>(GetLevel());
+		if (nullptr == Play->GetCursor())
+		{
+			return;
+		}
+
+		Cursor* WeaponCusor = Play->GetCursor();
+		//TargetPos_ = WeaponCusor->GetCursorPos(); // 커서 좌표 받음
+
+		WeaponRender_ = CreateRenderer((int)RenderOrder::Weapon);
+		float AirHight = 300;
+		float FlySpeed = 500;
+		if (float4::LEFT.CompareInt2D(_FlyDir))
+		{// ->
+			WeaponRender_->SetImage(IMG_AIRJET_GREEN_RIGHT);
+			SetPosition({ 300,AirHight });
+			BulletDir_ = float4::RIGHT * FlySpeed;
+		}
+		else
+		{// <-
+			WeaponRender_->SetImage(IMG_AIRJET_GREEN_LEFT);
+			SetPosition({ 300,AirHight });
+			BulletDir_ = float4::LEFT * FlySpeed;
+		}
+
+		Shot_ = true;
+	}
+	else
+	{
+		SetMove(BulletDir_ * GameEngineTime::GetDeltaTime());
 	}
 }
 
