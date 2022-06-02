@@ -13,6 +13,7 @@ class GameMapMaster;
 class Player;
 class GameEngineRenderer;
 class GameEngineImage;
+class UIMaster;
 class PlayLevel	:public GameEngineLevel
 {
 public:
@@ -42,6 +43,7 @@ private:
 	WeaponMaster* WeaponMaster_;
 	Cursor* Mouse_;
 	WindGauge* WindGaugeActor_;
+	UIMaster* Inventory_;
 
 	float4 WindDir_;
 	float WindSpeed_;
@@ -65,8 +67,11 @@ private:
 
 	void CreateTestBullet();
 
-	// 바람 UI
+
+	/// UI ///
+	// 바람
 	void SetWindUI(int _WindDir);
+
 
 public:
 	float4 GetWindDir()

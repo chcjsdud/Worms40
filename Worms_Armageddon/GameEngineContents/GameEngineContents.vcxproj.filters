@@ -140,6 +140,12 @@
     <ClInclude Include="PixelCollision.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="UIMaster.h">
+      <Filter>02.PlayLevel\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>02.PlayLevel\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
@@ -280,6 +286,12 @@
     </ClCompile>
     <ClCompile Include="LobbyShootingStarParticle.cpp">
       <Filter>01.LobbyLevel\LobbyActor</Filter>
+    </ClCompile>
+    <ClCompile Include="UIMaster.cpp">
+      <Filter>02.PlayLevel\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>02.PlayLevel\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

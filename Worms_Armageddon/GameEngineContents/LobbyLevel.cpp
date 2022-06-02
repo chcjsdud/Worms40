@@ -18,7 +18,6 @@ LobbyLevel::LobbyLevel()
 	, TeamListBox_(nullptr)
 	, ChatBox_(nullptr)
 	, TypingBox_(nullptr)
-	, RollingStar_(nullptr)
 	, TerrainBox_(nullptr)
 	, LobbySettings_(nullptr)
 	, ReadyButton_(nullptr)
@@ -41,7 +40,6 @@ void LobbyLevel::Loading()
 	TeamEditBox_ = CreateActor<TeamEditBox>(static_cast<int>(ActorGroup::UI));
 	ChatBox_ = CreateActor<ChatBox>(static_cast<int>(ActorGroup::UI));
 	TypingBox_ = CreateActor<TypingBox>(static_cast<int>(ActorGroup::UI));
-	RollingStar_ = CreateActor<RollingStar>(static_cast<int>(ActorGroup::UI));
 	TerrainBox_ = CreateActor<TerrainBox>(static_cast<int>(ActorGroup::UI));
 
 	LobbySettings_ = CreateActor<LobbySettings>(static_cast<int>(ActorGroup::UI));
@@ -61,7 +59,6 @@ void LobbyLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	TeamEditBox_->SetPosition({ 260, 16 });
 	ChatBox_->SetPosition({ 16, 477 });
 	TypingBox_->SetPosition({ 16, 814 });
-	RollingStar_->SetPosition({ 679, 100 });
 	TerrainBox_->SetPosition({ 785, 22 });
 
 	//TODO:: 지금은 통 이미지, 리소스 구하기

@@ -9,6 +9,7 @@
 const float CursorImgScale = 2.0f;
 const float CursorImgPivot_X = 16.0f;
 const float CursorImgPivot_Y = 16.0f;
+float4 Cursor::CursorPos_ = float4{ 0, 0 };
 
 Cursor::Cursor() 
 	: IsDebugMode_(false)
@@ -81,7 +82,6 @@ void Cursor::CursorDebugRender()
 
 	sprintf_s(szBuff, "Mouse X: %d, Y: %d", CursorPos_.ix(), CursorPos_.iy());
 	TextOut(GameEngine::GetInst().BackBufferDC(), CursorPos_.ix() + 20, CursorPos_.iy() - 20, szBuff, static_cast<int>(strlen(szBuff)));
-
 }
 
 void Cursor::DebugMode()

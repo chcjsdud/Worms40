@@ -2,6 +2,7 @@
 #include "PlayLevelTestMap.h"
 #include "Player.h"
 #include "WeaponMaster.h"
+#include "Inventory.h"
 #include "Cursor.h"
 #include "MapBooks.h"
 #include "GameOptions.h"
@@ -38,6 +39,8 @@ void PlayLevel::Loading()
 	//바람 게이지
 	WindGaugeActor_ = CreateActor<WindGauge>((int)RenderOrder::UI);
 	WindGaugeActor_->SetPosition({ 1150.0f,20.0f });
+	//인벤토리
+	Inventory_ = CreateActor<Inventory>((int)RenderOrder::UI);
 
 	// 배경 이미지
 	LargeCloudActor_ = CreateActor<LargeCloud>();
@@ -54,9 +57,10 @@ void PlayLevel::Loading()
 	WeaponMaster_->SetGameMap(GameMapInfo_);
 	// 테스트용 코드 끝
 
-	if (false == GameEngineInput::GetInst()->IsKey("TestClick"))
+	if (false == GameEngineInput::GetInst()->IsKey(KEY_MOUSE_LEFT))
 	{
-		GameEngineInput::GetInst()->CreateKey("TestClick", VK_LBUTTON);
+		GameEngineInput::GetInst()->CreateKey(KEY_MOUSE_LEFT, VK_LBUTTON);
+		GameEngineInput::GetInst()->CreateKey(KEY_MOUSE_RIGHT, VK_RBUTTON);
 	}
 
 	WindSpeed_ = 45.0f;
@@ -132,7 +136,7 @@ void PlayLevel::Update()
 			}
 			// TODO::턴바꿈용 임시코드
 			// 턴종료
-			else if (true == GameEngineInput::GetInst()->IsUp("TestClick"))
+			else if (true == GameEngineInput::GetInst()->IsUp(KEY_MOUSE_LEFT))
 			{
 				Teams.pop_front();
 			}
@@ -186,13 +190,14 @@ void PlayLevel::Update()
 
 	//임시방편
 	//마우스 클릭할때마다 바람세기 변경
-	if (GameEngineInput::GetInst()->IsDown("TestClick"))
-	{
-		GameEngineRandom Ran;
-		int WinInt = Ran.RandomInt(0, 1);
+	//if (GameEngineInput::GetInst()->IsDown(KEY_MOUSE_LEFT))
+	//{
+	//	GameEngineRandom Ran;
+	//	int WinInt = Ran.RandomInt(0, 1);
 
-		SetWindUI(WinInt);
-	}
+	//	SetWindUI(WinInt);
+	//}
+
 }
 
 void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)

@@ -5,7 +5,6 @@
 #include "TeamEditBox.h"
 #include "ChatBox.h"
 #include "TypingBox.h"
-#include "RollingStar.h"
 #include "TerrainBox.h"
 
 #include "LobbySettings.h"

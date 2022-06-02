@@ -6,6 +6,12 @@
 class Cursor : public GameEngineActor
 {
 public:
+	static float4 GetCursorPosition()
+	{
+		return CursorPos_;
+	}
+
+public:
 	// constrcuter destructer
 	Cursor();
 	~Cursor();
@@ -34,7 +40,7 @@ private:
 	bool IsDebugMode_;
 
 	POINT MousePos_;
-	float4 CursorPos_;
+	static float4 CursorPos_;
 
 public:
 	//inline float4 GetCursorPos()
