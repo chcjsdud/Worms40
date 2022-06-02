@@ -17,7 +17,6 @@ public:
 	bool bPlayer;
 
 public:
-	void CheckPixel(CheckType _MyType, float4 _MyPos,float4 _MyScale, GameEngineImage* _ColMapImage, float4 _BulletDir);
 	float4 Bounce(float4 _ActorPos, float4 _ActorScale, GameEngineImage* _ColMapImage, float4 _BulletDir);
 	float4 PlayerBounce(float4 _ActorPos, float4 _ActorScale, GameEngineImage* _ColMapImage, float4 _MoveDir);
 
@@ -32,7 +31,6 @@ protected:
 	void Update() override;
 	void Render() override;
 private:
-	bool CheckMissilePixelCollision();
 
 	GameEngineImage* ColMapImage_;
 	GameMapMaster* MapInfo_;

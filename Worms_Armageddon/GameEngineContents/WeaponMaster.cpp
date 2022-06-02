@@ -114,7 +114,7 @@ void WeaponMaster::BulletColEvent()
 		// 튕겼으면 감속
 		if (PixelCol_->GetBounceFlg() == true)
 		{
-			BulletDir_ *= 0.8f;
+			//BulletDir_ *= 0.8f;
 		}
 
 		// 너무 느려졌으면 속도를 0으로 설정

@@ -1,6 +1,7 @@
 #include "Player.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineImage.h>
+#include "PixelCollision.h"
 
 #pragma region Weapon
 #include "Baz.h"
@@ -165,6 +166,13 @@ void Player::JumpUpdate()
 	{
 		StateName_ = ANIM_KEYWORD_PLAYER_JUMP;
 		PlayerAnimationChange(StateName_);
+
+		if (!PixelCol_->GetBounceFlg())
+		{
+			JumpMoveDir_ = PixelCol_->PlayerBounce(GetPosition(), { PLAYER_SIZE_X,PLAYER_SIZE_Y }, ColMapImage_, JumpMoveDir_);
+			MoveDir_ = PixelCol_->PlayerBounce(GetPosition(), { PLAYER_SIZE_X,PLAYER_SIZE_Y }, ColMapImage_, MoveDir_);
+		}
+
 
 		if (CurDirName_ == PLAYER_DIR_RIGHT)
 		{
