@@ -220,6 +220,10 @@ std::string TerrainBox::MapTypeToString(MapType _MapType)
 	default:
 		break;
 	}
+
+
+	// 디폴트 반환
+	return "";
 }
 
 MapType TerrainBox::MapTypeToEnum(const std::string _MapType)

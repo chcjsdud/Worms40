@@ -113,7 +113,16 @@ void PlayLevel::Update()
 			}
 			else
 			{
-				UpdateCamera(CurrentPlayer->GetWeaponPos());
+				// 무기 발사시 첫 프레임에 WeaponPosition이 0,0을 가르키는 문제가 있음.
+				if (CurrentPlayer->GetWeaponPos().CompareInt2D(float4::ZERO))
+				{
+					UpdateCamera(CurrentPlayer->GetPosition());
+				}
+				// 첫 프레임이 지나면 카메라가 무기를 보도록
+				else
+				{
+					UpdateCamera(CurrentPlayer->GetWeaponPos());
+				}
 			}
 
 			// 움직여

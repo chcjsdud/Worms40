@@ -48,6 +48,7 @@ void Player::Render()
 
 bool Player::ControllUpdate()
 {
+	// State내부에서 턴종료 플래그를 세워주면 턴종료
 	IsTurnEnd_ = false;
 
 	StateUpdate();
