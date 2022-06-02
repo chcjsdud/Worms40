@@ -142,18 +142,18 @@
     <None Include="ThirdParty\inc\fmod.hpp">
       <Filter>ThirdParty\Inc</Filter>
     </None>
-    <None Include="..\..\..\HHS_Protfolio\API_Portfolio\APIPortfolio\GameEngineBase\ThirdParty\bin\fmodL.dll">
+    <None Include="ThirdParty\bin\fmodL.dll">
       <Filter>ThirdParty\bin</Filter>
     </None>
-    <None Include="..\..\..\HHS_Protfolio\API_Portfolio\APIPortfolio\GameEngineBase\ThirdParty\bin\fmod.dll">
+    <None Include="ThirdParty\bin\fmod.dll">
       <Filter>ThirdParty\bin</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\HHS_Protfolio\API_Portfolio\APIPortfolio\GameEngineBase\ThirdParty\bin\fmodL_vc.lib">
+    <Library Include="ThirdParty\bin\fmod_vc.lib">
       <Filter>ThirdParty\bin</Filter>
     </Library>
-    <Library Include="..\..\..\HHS_Protfolio\API_Portfolio\APIPortfolio\GameEngineBase\ThirdParty\bin\fmod_vc.lib">
+    <Library Include="ThirdParty\bin\fmodL_vc.lib">
       <Filter>ThirdParty\bin</Filter>
     </Library>
   </ItemGroup>
