@@ -14,6 +14,7 @@ Baz::~Baz()
 
 void Baz::Start()
 {
+	IsBounce_ = true;
 	PixelCol_ = GetLevel()->CreateActor<PixelCollision>();
 	WeaponRender_ = CreateRenderer((int)RenderOrder::Weapon);
 	WeaponRender_->SetImage("BazSpin.bmp");

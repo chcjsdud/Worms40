@@ -10,12 +10,22 @@ class GameEngineImage;
 class PixelCollision : public GameEngineActor
 {
 public:
+	PixelCollision();
+	~PixelCollision();
 	bool bMissile;
 	bool bGrenade;
 	bool bPlayer;
 
 public:
-	void CheckPixel(CheckType _MyType, float4 _MyPos,float4 _MyScale, GameEngineImage* _ColMapImage);
+	void CheckPixel(CheckType _MyType, float4 _MyPos,float4 _MyScale, GameEngineImage* _ColMapImage, float4 _BulletDir);
+	float4 Bounce(float4 _ActorPos, float4 _ActorScale, GameEngineImage* _ColMapImage, float4 _BulletDir);
+	float4 PlayerBounce(float4 _ActorPos, float4 _ActorScale, GameEngineImage* _ColMapImage, float4 _MoveDir);
+
+
+	inline bool GetBounceFlg() const
+	{
+		return BounceFlg_;
+	}
 
 protected:
 	void Start() override;
@@ -23,9 +33,17 @@ protected:
 	void Render() override;
 private:
 	bool CheckMissilePixelCollision();
-	bool Bounce(float4 _ActorPos, float4 _ActorScale, GameEngineImage* _ColMapImage);
 
 	GameEngineImage* ColMapImage_;
 	GameMapMaster* MapInfo_;
+
+	// 7  0  1
+	// 6     2
+	// 5  4  3
+	// 꼭짓점 충돌에 대한 플래그
+	bool ColorFlag_[8];
+
+	// 충돌 자체에 대한 플래그(감속용)
+	bool BounceFlg_;
 };
 

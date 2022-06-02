@@ -14,6 +14,7 @@ WeaponMaster::WeaponMaster()
 	: TargetPos_(float4::ZERO)
 	, Shot_ (false)
 	, WeaponRender_(nullptr)
+	, IsBounce_(false)
 {
 }
 
@@ -106,46 +107,58 @@ void WeaponMaster::BulletColEvent()
 {
 	int Color = GetGameMap()->GetColMap()->GetImagePixel({ GetPosition() });
 
-	PixelCol_->CheckPixel(CheckType::WeaponGrenade, GetPosition(), WeaponRender_->GetScale(),GetGameMap()->GetColMap());
-
-	if (true == PixelCol_->bGrenade)
+	if (IsBounce_ == true)
 	{
-		int a = 0;
+		BulletDir_ = PixelCol_->Bounce(GetPosition(), BAZ_COL_SIZE, GetGameMap()->GetColMap(), BulletDir_);
+
+		// 튕겼으면 감속
+		if (PixelCol_->GetBounceFlg() == true)
+		{
+			BulletDir_ *= 0.8f;
+		}
+
+		// 너무 느려졌으면 속도를 0으로 설정
+		if (BulletDir_.y < 1.0f && BulletDir_.y > -1.0f)
+		{
+			BulletDir_ *= float4{1.0f, 0.0f};
+		}
+	}
+	else
+	{
+		// 맵과 충돌처리
+		if (RGB(0, 0, 255) == Color)
+		{
+			// 이미지를 가져와서 땅이 파여있는 상태를 메모리에 보존?
+			// 바닥
+			GameEngineImage* tmpGroundMap = GetGameMap()->GetGround()->GetImage();
+			// 충돌
+			GameEngineImage* tmpColMap = GetGameMap()->GetColMap();
+			GameEngineImage* tmpEffectImg = GameEngineImageManager::GetInst()->Find(IMG_EFFECT_BOOM);
+
+			// {0, 255, 0}의 원이 그려진 tmpGoundMap를 메인버퍼에 transCopy
+			// tmpGoundMap에 {0, 255, 0}의 원 그리기처리
+			tmpGroundMap->TransCopy(tmpEffectImg, // _Other
+				{ GetPosition().x - SCALE_EFFECT_BOOM_X / 2, GetPosition().y - SCALE_EFFECT_BOOM_Y / 2, }, // _CopyPos
+				tmpEffectImg->GetScale(), // _CopyScale
+				{ 0, 0 }, // _OtherPivot
+				tmpEffectImg->GetScale(), // _OtherScale
+				RGB(0, 255, 0) // TransColor
+			);
+
+			// tmpColMap에 {0, 255, 0}의 원 그리기처리
+			tmpColMap->TransCopy(tmpEffectImg, // _Other
+				{ GetPosition().x - SCALE_EFFECT_BOOM_X / 2, GetPosition().y - SCALE_EFFECT_BOOM_Y / 2, }, // _CopyPos
+				tmpEffectImg->GetScale(), // _CopyScale
+				{ 0, 0 }, // _OtherPivot
+				tmpEffectImg->GetScale(), // _OtherScale
+				RGB(0, 255, 0) // TransColor
+			);
+
+			EffectManager* Effect = GetLevel()->CreateActor<Foom>();
+			Effect->SetPosition(GetPosition());
+
+			Off();
+		}
 	}
 
-
-	// 맵과 충돌처리
-	if (RGB(0, 0, 255) == Color)
-	{
-		// 이미지를 가져와서 땅이 파여있는 상태를 메모리에 보존?
-		// 바닥
-		GameEngineImage* tmpGroundMap = GetGameMap()->GetGround()->GetImage();
-		// 충돌
-		GameEngineImage* tmpColMap = GetGameMap()->GetColMap();
-		GameEngineImage* tmpEffectImg = GameEngineImageManager::GetInst()->Find(IMG_EFFECT_BOOM);
-
-		// {0, 255, 0}의 원이 그려진 tmpGoundMap를 메인버퍼에 transCopy
-		// tmpGoundMap에 {0, 255, 0}의 원 그리기처리
-		tmpGroundMap->TransCopy(tmpEffectImg, // _Other
-			{ GetPosition().x - SCALE_EFFECT_BOOM_X / 2, GetPosition().y - SCALE_EFFECT_BOOM_Y / 2, }, // _CopyPos
-			tmpEffectImg->GetScale(), // _CopyScale
-			{ 0, 0 }, // _OtherPivot
-			tmpEffectImg->GetScale(), // _OtherScale
-			RGB(0, 255, 0) // TransColor
-		);
-
-		// tmpColMap에 {0, 255, 0}의 원 그리기처리
-		tmpColMap->TransCopy(tmpEffectImg, // _Other
-			{ GetPosition().x - SCALE_EFFECT_BOOM_X / 2, GetPosition().y - SCALE_EFFECT_BOOM_Y / 2, }, // _CopyPos
-			tmpEffectImg->GetScale(), // _CopyScale
-			{ 0, 0 }, // _OtherPivot
-			tmpEffectImg->GetScale(), // _OtherScale
-			RGB(0, 255, 0) // TransColor
-		);
-
-		EffectManager* Effect = GetLevel()->CreateActor<Foom>();
-		Effect->SetPosition(GetPosition());
-		
-		Off();
-	}
 }

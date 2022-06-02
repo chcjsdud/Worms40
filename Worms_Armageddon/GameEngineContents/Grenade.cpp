@@ -1,5 +1,6 @@
 #include "Grenade.h"
 #include "Enums.h"
+#include "PixelCollision.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineRenderer.h>
 
@@ -13,6 +14,8 @@ Grenade::~Grenade()
 
 void Grenade::Start()
 {
+	IsBounce_ = true;
+	PixelCol_ = GetLevel()->CreateActor<PixelCollision>();
 	WeaponRender_ = CreateRenderer((int)RenderOrder::Weapon);
 	WeaponRender_->SetImage("GrenadeSpin.bmp");
 	WeaponRender_->SetRotationFilter("GrenadeSpinFilter.bmp");

@@ -41,7 +41,6 @@ private:
 	float4 TargetPos_;
 	// 무기가 발사 되는순간 최초 실행
 	bool Shot_;
-
 	// 레벨이 시작함과 동시에 초기화될 맵 정보
 	// static으로 설정하여 모든 무기가 공유하도록 함
 	static GameMapMaster* GameMap_;
@@ -52,7 +51,8 @@ private:
 protected:
 	// 무기 랜더
 	GameEngineRenderer* WeaponRender_;
-
+	//튕기는 무기인지 아닌지 체크해주는 변수
+	bool IsBounce_;
 	// 무기 발사 방향
 	float4 ShotDir_;
 	PixelCollision* PixelCol_;

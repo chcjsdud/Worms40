@@ -180,3 +180,7 @@
 // 콜리전 그룹
 #define COL_GROUP_BUTTON "Button"
 #define COL_GROUP_MOUSE "Mouse"
+
+
+//무기 사이즈
+#define BAZ_COL_SIZE {15.0f,15.0f}
