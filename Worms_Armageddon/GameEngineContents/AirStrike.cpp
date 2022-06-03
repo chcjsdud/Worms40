@@ -25,7 +25,7 @@ void AirStrike::Update()
 bool AirStrike::WeaponUpdate()
 {
 	// 테스트
-	if (true == GameEngineInput::GetInst()->IsDown(KEY_FIRE)) // L
+	if (true == GameEngineInput::GetInst()->IsDown(KEY_FIRE))
 	{
 		// 무기가 폭발하고 
 		// 동작 끝 - > 플레이어의 State가 변경, 턴종료
@@ -33,6 +33,10 @@ bool AirStrike::WeaponUpdate()
 	}
 	
 	AirStart(float4::LEFT); // 폭격기 출격
+	// 폭격기가 경로를 다 지나가야 다음 턴 넘어감
+
+	Bombing(WeaponState::AirStrike);
+
 
 	if (false == IsUpdate()) // 웜즈가 체력이 깎인 후 false 리턴되도록 변경 예정
 	{

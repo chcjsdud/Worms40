@@ -43,9 +43,9 @@ private:
 	static float4 CursorPos_;
 
 public:
-	//inline float4 GetCursorPos()
-	//{
-	//	return CursorPos_;
-	//}
+	inline float4 GetMouseCursorPos() const
+	{
+		return CursorPos_;
+	}
 };
 

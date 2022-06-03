@@ -166,6 +166,8 @@
 //#define IMG_MISSILE "missile.bmp"
 #define IMG_AIRJET_GREEN_LEFT "airjetg.bmp"
 #define IMG_AIRJET_GREEN_RIGHT "airjetgRight.bmp"
+#define IMG_AIRJET_AIRBOMB_SPIN "airBomb.bmp"
+#define IMG_AIRJET_AIRBOMB_FILTER "airBombFilter.bmp"
 
 // 이펙트
 #define IMG_FX_EXFOOM "exfoom.bmp"
@@ -184,3 +186,10 @@
 
 //무기 사이즈
 #define BAZ_COL_SIZE {15.0f,15.0f}
+#define COL_GROUP_MOUSE "Mouse"
+
+// 무기 설정값
+#define WEAPON_AIRFLY_HIGHT 0.0f
+#define WEAPON_AIRFLY_SPEED 500.0f
+#define WEAPON_AIRFLY_START_LEFT -500.0f
+#define WEAPON_AIRFLY_START_RIGHT 2100.0f

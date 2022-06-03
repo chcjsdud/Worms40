@@ -2,6 +2,7 @@
 #include "PlayLevel.h"
 #include "Foom.h"
 #include "PixelCollision.h"
+#include "AirBomb.h"
 #include <GameEngineBase/GameEngineCustomStringSet.h>
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngineBase/GameEngineTime.h>
@@ -12,9 +13,11 @@ GameMapMaster* WeaponMaster::GameMap_ = nullptr;
 
 WeaponMaster::WeaponMaster() 
 	: TargetPos_(float4::ZERO)
-	, Shot_ (false)
+	, IsShot_ (false)
+	, IsDrop_(true) // 초기화를 위해 임의로 true
 	, WeaponRender_(nullptr)
 	, IsBounce_(false)
+	, BombCnt_(0)
 {
 }
 
@@ -32,14 +35,43 @@ void WeaponMaster::Update()
 	
 }
 
+void WeaponMaster::Drop(WeaponState _Drop, float _Sec /*= 0*/)
+{
+	if (true == IsDrop_) // 투하 시간 간격 초기화
+	{
+		ReSetAccTime();
+		IsDrop_ = false;
+	}
+
+	switch (_Drop) // 투하 실행
+	{
+	case WeaponState::AirStrike:
+	{
+		if (false == IsDrop_)
+		{
+			if (_Sec < GetAccTime())
+			{
+				AirBomb* Bomb = GetLevel()->CreateActor<AirBomb>();
+				Bomb->SetPosition(GetPosition());
+				++BombCnt_;
+				IsDrop_ = true;
+			}
+		}
+	}
+		break;
+	default:
+		break;
+	}
+}
+
 void WeaponMaster::ThrowStart(float _ThrowForce)
 {
-	if (false == Shot_)
+	if (false == IsShot_)
 	{
 		BulletDir_ += float4::UP * _ThrowForce;
 
 		PlayLevel* Play = dynamic_cast<PlayLevel*>(GetLevel());
-		WindInfo_ = Play->GetWindDir();
+		WindInfo_ = Play->GetWindDir(); // 바람 방향 정보
 
 		if (float4::LEFT.CompareInt2D(ShotDir_))
 		{
@@ -49,13 +81,13 @@ void WeaponMaster::ThrowStart(float _ThrowForce)
 		{
 			BulletDir_ += float4::RIGHT * 100;
 		}
-		Shot_ = true;
+		IsShot_ = true;
 	}
 }
 
 void WeaponMaster::AirStart(float4 _FlyDir)
 {
-	if (false == Shot_)
+	if (false == IsShot_)
 	{
 		PlayLevel* Play = dynamic_cast<PlayLevel*>(GetLevel());
 		if (nullptr == Play->GetCursor())
@@ -64,29 +96,33 @@ void WeaponMaster::AirStart(float4 _FlyDir)
 		}
 
 		Cursor* WeaponCusor = Play->GetCursor();
-		//TargetPos_ = WeaponCusor->GetCursorPos(); // 커서 좌표 받음
+		TargetPos_ = WeaponCusor->GetMouseCursorPos(); // 커서 좌표 받음
 
 		WeaponRender_ = CreateRenderer((int)RenderOrder::Weapon);
-		float AirHight = 300;
-		float FlySpeed = 500;
 		if (float4::LEFT.CompareInt2D(_FlyDir))
 		{// ->
 			WeaponRender_->SetImage(IMG_AIRJET_GREEN_RIGHT);
-			SetPosition({ 300,AirHight });
-			BulletDir_ = float4::RIGHT * FlySpeed;
+			SetPosition({ WEAPON_AIRFLY_START_LEFT,WEAPON_AIRFLY_HIGHT });
+			BulletDir_ = float4::RIGHT * WEAPON_AIRFLY_SPEED;
 		}
 		else
 		{// <-
 			WeaponRender_->SetImage(IMG_AIRJET_GREEN_LEFT);
-			SetPosition({ 300,AirHight });
-			BulletDir_ = float4::LEFT * FlySpeed;
+			SetPosition({ WEAPON_AIRFLY_START_RIGHT,WEAPON_AIRFLY_HIGHT });
+			BulletDir_ = float4::LEFT * WEAPON_AIRFLY_SPEED;
 		}
 
-		Shot_ = true;
+		IsShot_ = true;
 	}
 	else
 	{
 		SetMove(BulletDir_ * GameEngineTime::GetDeltaTime());
+		
+		if (WEAPON_AIRFLY_START_LEFT > GetPosition().x || // 이 이상 이동하면 폭격기 없어짐
+			WEAPON_AIRFLY_START_RIGHT < GetPosition().x)
+		{
+			Off();
+		}
 	}
 }
 
@@ -101,6 +137,88 @@ void WeaponMaster::BulletMove(float _Gravity)
 
 	float Degree = float4::VectorXYtoDegree(GetPosition(), GetPosition() + BulletDir_);
 	WeaponRender_->SetRotationZ(Degree + 90); // 방향에 따른 투사체 각도
+}
+
+void WeaponMaster::Bombing(WeaponState _Bomb)
+{
+	float DropSec = 0.05f;
+
+	if (0 < BulletDir_.x)
+	{// ->
+		float BombingStartPosX = TargetPos_.x -500;
+
+		if (BombingStartPosX < GetPosition().x) // 투하 위치도달
+		{
+			switch (BombCnt_)
+			{
+			case 0:
+			{
+				Drop(_Bomb, DropSec);
+			}
+			break;
+			case 1:
+			{
+				Drop(_Bomb, DropSec);
+			}
+			break;
+			case 2:
+			{
+				Drop(_Bomb, DropSec);
+			}
+			break;
+			case 3:
+			{
+				Drop(_Bomb, DropSec);
+			}
+			break;
+			case 4:
+			{
+				Drop(_Bomb, DropSec);
+			}
+			break;
+			default:
+				break;
+			}
+		}
+	}
+	else
+	{// <-
+		float BombingStartPosX = TargetPos_.x + 500;
+
+		if (BombingStartPosX > GetPosition().x) // 투하 위치도달
+		{
+			switch (BombCnt_)
+			{
+			case 0:
+			{
+				Drop(_Bomb, DropSec);
+			}
+			break;
+			case 1:
+			{
+				Drop(_Bomb, DropSec);
+			}
+			break;
+			case 2:
+			{
+				Drop(_Bomb, DropSec);
+			}
+			break;
+			case 3:
+			{
+				Drop(_Bomb, DropSec);
+			}
+			break;
+			case 4:
+			{
+				Drop(_Bomb, DropSec);
+			}
+			break;
+			default:
+				break;
+			}
+		}
+	}
 }
 
 void WeaponMaster::BulletColEvent()
