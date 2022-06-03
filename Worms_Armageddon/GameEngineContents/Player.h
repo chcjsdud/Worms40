@@ -56,6 +56,8 @@ public:
 
 	bool ControllUpdate();
 	void UnControllUpdate();
+
+	bool DeathUpdate();
 private:
 
 	bool IsTurnEnd_;

@@ -71,13 +71,6 @@ void PlayLevel::Loading()
 
 void PlayLevel::Update()
 {
-	if (DeathList_.size() != 0)
-	{
-		// 죽음처리
-
-		LevelPhase_ = LevelFSM::Death;
-	}
-
 	switch (LevelPhase_)
 	{
 	case LevelFSM::Ready:
@@ -173,11 +166,12 @@ void PlayLevel::Update()
 		}
 		else
 		{
+			// 턴 종료 조건을 만족하지 못하면 리턴
+// PlayLevel->Update()에서 할 처리가 있다면 이 Return 위에서 작성할 것 ------------------------------------------------------------------------------------------------
 			return;
 		}
 
 		// 다음 팀를 정해야 하는데.
-
 		// 그 팀에 행동할 사람이 없다면
 		if (Teams.size() == 0)
 		{
@@ -232,6 +226,52 @@ void PlayLevel::Update()
 
 	}
 	break;
+	// 데미지 계산
+	case LevelFSM::Damage:
+	break;
+	// 사망처리
+	case LevelFSM::Death:
+	{
+		// TODO::PlayerHp가 없어서 테스트 불가능. 테스트 필요
+		static bool DeathUpdateFlg = false;
+
+		if (DeathList_.size() != 0)
+		{
+			for (std::list<Player*>& Team : AllPlayer_)
+			{
+
+				for (Player* Player : Team)
+				{
+					if (Player->GetIsDeath())
+					{
+						// IsDeath이면서 DeathUpdate가 끝나지 않은경우
+						DeathUpdateFlg = true;
+
+						// 죽음처리
+						if (true == Player->DeathUpdate())
+						{
+							DeathUpdateFlg = false;
+							break;
+						}
+					}
+				}
+
+				// 반복중에 죽음처리를 하고 있는 플레이어가 있으면 멈추기
+				if (true == DeathUpdateFlg)
+				{
+					// 반복문 탈출
+					break;
+				}
+			}
+		}
+		else
+		{
+			// 사망처리를 할 플레이어가 없으면 카메라 이동 페이즈로
+			LevelPhase_ = LevelFSM::CameraMove;
+		}
+	}
+	break;
+
 	default:
 		break;
 	}

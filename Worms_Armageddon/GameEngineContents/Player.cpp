@@ -64,6 +64,17 @@ void Player::UnControllUpdate()
 	// 컨트롤되고 있지 않은 캐릭터는 데미지를 받더라도 턴이 끝나지 않음
 }
 
+bool Player::DeathUpdate()
+{
+	if (true /* WeaponDeath */)
+	{
+		// TODO::죽음 처리가 끝나면 true리턴
+		return true;
+	}
+
+	return false;
+}
+
 void Player::PlayerAnimationInit()
 {
 	PlayerRenderer_ = CreateRenderer((int)RenderOrder::Player);
