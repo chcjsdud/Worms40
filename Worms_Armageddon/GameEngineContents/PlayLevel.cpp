@@ -12,6 +12,9 @@
 
 PlayLevel::PlayLevel()
 	: LevelPhase_(LevelFSM::Ready)
+	, LerpTimer_(0.0f)
+	, PrevPlayerPos_(float4::ZERO)
+	, NextPlayerPos_(float4::ZERO)
 {
 	// 플레이어 배열 초기화
 	for (int TeamColor = 0; TeamColor < PLAYER_MAX_TEAM; TeamColor++)
@@ -97,107 +100,141 @@ void PlayLevel::Update()
 		}
 
 		AllPlayerIter_ = PlayQueue_.begin();
-
 		TargetPlayer_ = *AllPlayerIter_->begin();
 
-		// TODO::카메라이동 작성 후 추가
-		// LevelPhase_ = LevelFSM::CameraMove;
-		LevelPhase_ = LevelFSM::Move;
+		// 첫 실행시 현재 플레이어의 위치 초기화
+		if (true == PrevPlayerPos_.IsZero2D())
+		{
+			PrevPlayerPos_ = TargetPlayer_->GetPosition();
+		}
+
+		// 플레이큐가 초기화 될때마다 다음 카메라 위치를 초기화
+		NextPlayerPos_ = TargetPlayer_->GetPosition();
+
+		// 카메라 이동 후 Move페이즈로 
+		LevelPhase_ = LevelFSM::CameraMove;
 
 		break;
 	case LevelFSM::Move:
-		{
-			std::list<Player*>& Teams = (*AllPlayerIter_);
-			Player* CurrentPlayer = Teams.front();
+	{
+		std::list<Player*>& Teams = (*AllPlayerIter_);
+		Player* CurrentPlayer = Teams.front();
 
-			// 카메라 위치 이동
-			if (CurrentPlayer->GetPlayerState() != PlayerState::Action)
+		// 카메라 위치 이동
+		// 무기를 발사하지 않았을경우 플레이어를 쫒아다님
+		if (CurrentPlayer->GetPlayerState() != PlayerState::Action)
+		{
+			UpdateCamera(CurrentPlayer->GetPosition());
+		}
+		// 무기를 발사했을 경우 발사체를 쫒아다님
+		else
+		{
+			// 무기 발사시 첫 프레임에 WeaponPosition이 0,0을 가르키는 문제가 있음.
+			// 0,0을 가르킬경우 플레이어 포지션을 보도록
+			if (CurrentPlayer->GetWeaponPos().CompareInt2D(float4::ZERO))
 			{
 				UpdateCamera(CurrentPlayer->GetPosition());
 			}
+			// 첫 프레임이 지나면 카메라가 무기를 보도록
 			else
 			{
-				// 무기 발사시 첫 프레임에 WeaponPosition이 0,0을 가르키는 문제가 있음.
-				if (CurrentPlayer->GetWeaponPos().CompareInt2D(float4::ZERO))
-				{
-					UpdateCamera(CurrentPlayer->GetPosition());
-				}
-				// 첫 프레임이 지나면 카메라가 무기를 보도록
-				else
-				{
-					UpdateCamera(CurrentPlayer->GetWeaponPos());
-				}
+				UpdateCamera(CurrentPlayer->GetWeaponPos());
 			}
+		}
 
-			// 움직여
-			if (true == CurrentPlayer->ControllUpdate())
+		// 움직임이 끝나면(true) 턴종료
+		if (true == CurrentPlayer->ControllUpdate())
+		{
+			Teams.pop_front();
+
+			if (Teams.size() != 0)
 			{
-				Teams.pop_front();
+				// 턴이 넘어갈때 Lerp처리 타이머를 초기화
+				LerpTimer_ = 0.0f;
+
+				// 카메라 이동 페이즈
+				LevelPhase_ = LevelFSM::CameraMove;
 			}
-			// TODO::턴바꿈용 임시코드
-			// 턴종료
-			else if (true == GameEngineInput::GetInst()->IsUp(KEY_MOUSE_LEFT))
+		}
+		// TODO::턴바꿈용 임시코드
+		// 턴종료
+		else if (true == GameEngineInput::GetInst()->IsUp(KEY_MOUSE_LEFT))
+		{
+			Teams.pop_front();
+
+			if (Teams.size() != 0)
 			{
-				Teams.pop_front();
+				// 턴이 넘어갈때 Lerp처리 타이머를 초기화
+				LerpTimer_ = 0.0f;
+
+				// 카메라 이동 페이즈
+				LevelPhase_ = LevelFSM::CameraMove;
 			}
-			else
+		}
+		else
+		{
+			return;
+		}
+
+		// 다음 팀를 정해야 하는데.
+
+		// 그 팀에 행동할 사람이 없다면
+		if (Teams.size() == 0)
+		{
+			// 그 팀은 파괴하고
+			AllPlayerIter_ = PlayQueue_.erase(AllPlayerIter_);
+
+			// 만약에 팀조차도 하나도 없다면
+			if (0 == PlayQueue_.size())
 			{
+				// 다시 팀을 정해주러 간다.
+				LevelPhase_ = LevelFSM::Ready;
 				return;
 			}
-
-			// 다음 팀를 정해야 하는데.
-
-			// 그 팀에 행동할 사람이 없다면
-			if (Teams.size() == 0)
-			{
-				// 그 팀은 파괴하고
-				AllPlayerIter_ = PlayQueue_.erase(AllPlayerIter_);
-
-				// 만약에 팀조차도 하나도 없다면
-				if (0 == PlayQueue_.size())
-				{
-					// 다시 팀을 정해주러 간다.
-					LevelPhase_ = LevelFSM::Ready;
-					return;
-				}
-			}
-			else
-			{
-				// 그냥 다음팀으로 간다.
-				++AllPlayerIter_;
-			}
-
-			if (AllPlayerIter_ == PlayQueue_.end())
-			{
-				AllPlayerIter_ = PlayQueue_.begin();
-			}
-
 		}
-		break;
-	case LevelFSM::CameraMove:
-
-		if (nullptr == TargetPlayer_)
+		else
 		{
+			// 그냥 다음팀으로 간다.
+			++AllPlayerIter_;
+		}
+
+		if (AllPlayerIter_ == PlayQueue_.end())
+		{
+			AllPlayerIter_ = PlayQueue_.begin();
+		}
+
+		// 이전 플레이어의 위치 취득
+		PrevPlayerPos_ = CurrentPlayer->GetPosition();
+		// 다음 플레이어의 위치 취득
+		NextPlayerPos_ = (*AllPlayerIter_).front()->GetPosition();
+
+	}
+	break;
+	case LevelFSM::CameraMove:
+	{
+		LerpTimer_ += GameEngineTime::GetDeltaTime();
+		float4 LerpCameraPos_ = float4::LerpLimit(PrevPlayerPos_, NextPlayerPos_, LerpTimer_);
+
+		// 카메라의 위치가 다음 플레이어의 위치와 같아지면 페이즈 종료
+		if (LerpCameraPos_.CompareInt2D(NextPlayerPos_))
+		{
+			// Move턴으로 변경될때 바람세기 조정
+			GameEngineRandom Ran;
+			int WinInt = Ran.RandomInt(0, 1);
+
+			SetWindUI(WinInt);
 			LevelPhase_ = LevelFSM::Move;
 		}
+		else
+		{
+			UpdateCamera(LerpCameraPos_);
+		}
 
-		// 카메라 로직을 실행하면된다.
-
-		break;
+	}
+	break;
 	default:
 		break;
 	}
-
-	//임시방편
-	//마우스 클릭할때마다 바람세기 변경
-	//if (GameEngineInput::GetInst()->IsDown(KEY_MOUSE_LEFT))
-	//{
-	//	GameEngineRandom Ran;
-	//	int WinInt = Ran.RandomInt(0, 1);
-
-	//	SetWindUI(WinInt);
-	//}
-
 }
 
 void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)

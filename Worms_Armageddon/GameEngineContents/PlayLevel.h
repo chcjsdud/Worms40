@@ -64,6 +64,12 @@ private:
 	void UpdateCamera(float4 _CameraPos);
 	// 카메라의 위치
 	float4 CameraPos_;
+	// 카메라 이동용 이전 플레이어 위치
+	float4 PrevPlayerPos_;
+	// 다음 플레이어 위치
+	float4 NextPlayerPos_;
+	// 보간처리용 타이머
+	float LerpTimer_;
 
 	void CreateTestBullet();
 

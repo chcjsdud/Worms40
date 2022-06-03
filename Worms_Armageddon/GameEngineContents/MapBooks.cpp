@@ -39,15 +39,7 @@ void MapBooks::Start()
 
 	for (int i = 0; i < 8; i++)
 	{
-		float x = static_cast<float>(300 + i * 10);
-		float y = 300.0f;
-
-		ResponPosition_[i] = {x, y};
-	}
-
-	for (int i = 0; i < 8; i++)
-	{
-		float x = static_cast<float>(300 + i * 10);
+		float x = static_cast<float>(300 + i * 50);
 		float y = 300.0f;
 
 		ResponPosition_[i] = {x, y};
