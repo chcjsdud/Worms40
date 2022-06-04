@@ -142,19 +142,19 @@
     <None Include="ThirdParty\inc\fmod.hpp">
       <Filter>ThirdParty\Inc</Filter>
     </None>
-    <None Include="ThirdParty\bin\fmodL.dll">
-      <Filter>ThirdParty\bin</Filter>
-    </None>
-    <None Include="ThirdParty\bin\fmod.dll">
-      <Filter>ThirdParty\bin</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="ThirdParty\bin\fmod_vc.lib">
+    <CopyFileToFolders Include="ThirdParty\bin\fmod.dll">
       <Filter>ThirdParty\bin</Filter>
-    </Library>
-    <Library Include="ThirdParty\bin\fmodL_vc.lib">
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\bin\fmod_vc.lib">
       <Filter>ThirdParty\bin</Filter>
-    </Library>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\bin\fmodL.dll">
+      <Filter>ThirdParty\bin</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\bin\fmodL_vc.lib">
+      <Filter>ThirdParty\bin</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>

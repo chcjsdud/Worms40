@@ -199,8 +199,12 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="GameEngineWriteFile.h" />
-    <None Include="ThirdParty\bin\fmod.dll" />
-    <None Include="ThirdParty\bin\fmodL.dll" />
+    <CopyFileToFolders Include="ThirdParty\bin\fmod.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\bin\fmodL.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
     <None Include="ThirdParty\inc\fmod.h" />
     <None Include="ThirdParty\inc\fmod.hpp" />
   </ItemGroup>
@@ -246,8 +250,12 @@
     <ClCompile Include="GameEngineWriteFile.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="ThirdParty\bin\fmodL_vc.lib" />
-    <Library Include="ThirdParty\bin\fmod_vc.lib" />
+    <CopyFileToFolders Include="ThirdParty\bin\fmodL_vc.lib">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\bin\fmod_vc.lib">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
