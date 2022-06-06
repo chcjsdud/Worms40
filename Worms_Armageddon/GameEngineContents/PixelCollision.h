@@ -26,6 +26,11 @@ public:
 		return BounceFlg_;
 	}
 
+	inline void SetBounceFlgFalse()
+	{
+		BounceFlg_ = false;
+	}
+
 protected:
 	void Start() override;
 	void Update() override;
@@ -43,5 +48,7 @@ private:
 
 	// 충돌 자체에 대한 플래그(감속용)
 	bool BounceFlg_;
+
+	float4 MoveDir_;
 };
 

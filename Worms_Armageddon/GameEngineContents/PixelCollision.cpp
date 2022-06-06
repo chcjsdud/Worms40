@@ -36,7 +36,7 @@ void PixelCollision::Render()
 
 
 //
-float4 PixelCollision::Bounce(float4 _ActorPos,float4 _ActorScale,GameEngineImage* _ColMapImage,float4 _BulletDir)
+float4 PixelCollision::Bounce(float4 _ActorPos, float4 _ActorScale, GameEngineImage* _ColMapImage, float4 _BulletDir)
 {
 	float4 TopLeft = { -_ActorScale.x / 2 , -_ActorScale.y / 2 };
 	float4 Top = { 0.0f , -_ActorScale.y / 2 };
@@ -73,7 +73,7 @@ float4 PixelCollision::Bounce(float4 _ActorPos,float4 _ActorScale,GameEngineImag
 
 	if (RGB(0, 0, 255) == TopColor && ColorFlag_[0] == false)
 	{
-		_BulletDir *= float4{1,-1};
+		_BulletDir *= float4{ 1,-1 };
 		ColorFlag_[0] = true;
 	}
 	else
@@ -144,7 +144,7 @@ float4 PixelCollision::PlayerBounce(float4 _ActorPos, float4 _ActorScale, GameEn
 
 	float4 Left = { -_ActorScale.x / 2 , 0.0f };
 
-
+	MoveDir_ = _MoveDir;
 	//좌상단
 	int TopLeftColor = _ColMapImage->GetImagePixel(_ActorPos + TopLeft);
 	//상단
@@ -162,6 +162,15 @@ float4 PixelCollision::PlayerBounce(float4 _ActorPos, float4 _ActorScale, GameEn
 	//좌측
 	int LeftColor = _ColMapImage->GetImagePixel(_ActorPos + Left);
 
+
+
+	for (int i = 0; i < 8; i++)
+	{
+		ColorFlag_[i] = false;
+	}
+
+
+	//위쪽이 충돌시
 	if (RGB(0, 0, 255) == TopColor && ColorFlag_[0] == false)
 	{
 		_MoveDir *= float4{ 1,-1 };
@@ -173,6 +182,7 @@ float4 PixelCollision::PlayerBounce(float4 _ActorPos, float4 _ActorScale, GameEn
 	}
 
 
+	//오른쪽이 충돌시
 	if (RGB(0, 0, 255) == RightColor && ColorFlag_[2] == false)
 	{
 		_MoveDir *= float4{ -1,1 };
@@ -183,6 +193,8 @@ float4 PixelCollision::PlayerBounce(float4 _ActorPos, float4 _ActorScale, GameEn
 		ColorFlag_[2] = false;
 	}
 
+
+	//왼쪽이 충돌시
 	if (RGB(0, 0, 255) == LeftColor && ColorFlag_[6] == false)
 	{
 		_MoveDir *= float4{ -1,1 };

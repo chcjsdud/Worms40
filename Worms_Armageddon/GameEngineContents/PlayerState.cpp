@@ -36,7 +36,7 @@ void Player::IdleUpdate()
 	if (true == IsBackFlipKeyDown())
 	{
 		KeyCount_++;
-		if (2 <=KeyCount_)
+		if (2 <= KeyCount_)
 		{
 			KeyCount_ = 0;
 			StateChange(PlayerState::BackFlip);
@@ -96,7 +96,7 @@ void Player::MoveUpdate()
 		StateName_ = ANIM_KEYWORD_PLAYER_WALK;
 		CurDirName_ = PLAYER_DIR_RIGHT;
 		MoveCheck(float4::RIGHT);
-		
+
 	}
 	if (true == GameEngineInput::GetInst()->IsPress(KEY_MOVE_LEFT))
 	{
@@ -162,41 +162,47 @@ void Player::ActionUpdate()
 void Player::JumpUpdate()
 {
 	JumpDelayTime_ -= GameEngineTime::GetDeltaTime();
+
+
 	if (0 >= JumpDelayTime_)
 	{
 		StateName_ = ANIM_KEYWORD_PLAYER_JUMP;
 		PlayerAnimationChange(StateName_);
 
+		//점프 중 충돌체크하여 방향을 반대로
 		if (!PixelCol_->GetBounceFlg())
 		{
+
+
+			if (CurDirName_ == PLAYER_DIR_RIGHT)
+			{
+				JumpMoveDir_ = float4::RIGHT * GameEngineTime::GetDeltaTime() * 100.0f;
+			}
+			else
+			{
+				JumpMoveDir_ = float4::LEFT * GameEngineTime::GetDeltaTime() * 100.0f;
+			}
+
 			JumpMoveDir_ = PixelCol_->PlayerBounce(GetPosition(), { PLAYER_SIZE_X,PLAYER_SIZE_Y }, ColMapImage_, JumpMoveDir_);
 			MoveDir_ = PixelCol_->PlayerBounce(GetPosition(), { PLAYER_SIZE_X,PLAYER_SIZE_Y }, ColMapImage_, MoveDir_);
 		}
 
 
-		if (CurDirName_ == PLAYER_DIR_RIGHT)
-		{
-			JumpMoveDir_ = float4::RIGHT * GameEngineTime::GetDeltaTime() * 100.0f;
-			SetMove(JumpMoveDir_);
-		}
-		else
-		{
-			JumpMoveDir_ = float4::LEFT * GameEngineTime::GetDeltaTime() * 100.0f;
-			SetMove(JumpMoveDir_);
-		}
-
-
+		SetMove(JumpMoveDir_);
 		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime());
+
 		MoveDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * FallSpeed_;
 		FallSpeed_ += 20.0f;
 
-		float4 CheckLength = float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
 
+
+
+		float4 CheckLength = float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
 		float4 UpPos = float4::UP;
 		float4 DownPos = { GetPosition().x, GetPosition().y + PLAYER_SIZE_Y / 2 };
 		int Color = ColMapImage_->GetImagePixel(DownPos);
 
-		
+
 
 
 		if (RGB(0, 0, 255) == Color)
@@ -208,10 +214,12 @@ void Player::JumpUpdate()
 
 			do
 			{
-				SetMove(UpPos); 
+				SetMove(UpPos);
 				DownPos = { GetPosition().x, GetPosition().y + PLAYER_SIZE_Y / 2 };
 				Color = ColMapImage_->GetImagePixel(DownPos);
 			} while (RGB(0, 0, 255) == Color);
+
+
 
 			if (1500 <= FallSpeed_)
 			{
@@ -302,7 +310,7 @@ void Player::BackFlipUpdate()
 //TODO : 약간의 이상한점 수정
 void Player::FalledUpdate()
 {
-	if(32 <= PlayerRenderer_->GetCurrentFrame())
+	if (32 <= PlayerRenderer_->GetCurrentFrame())
 	{
 		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime());
 
@@ -328,7 +336,7 @@ void Player::FalledUpdate()
 				Color = ColMapImage_->GetImagePixel(DownPos);
 			} while (RGB(0, 0, 255) == Color);
 
-			
+
 		}
 		if (true == PlayerRenderer_->IsEndAnimation())
 		{
@@ -401,6 +409,9 @@ void Player::JumpStart()
 	MoveDir_ = float4::UP * JumpSpeed_;
 	StateName_ = ANIM_KEYWORD_PLAYER_JUMPRDY;
 	PlayerAnimationChange(StateName_);
+	PixelCol_->SetBounceFlgFalse();
+
+
 }
 
 void Player::BackFlipStart()
