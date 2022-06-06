@@ -1,5 +1,4 @@
 #include "Inventory.h"
-#include "Enums.h"
 #include "Cursor.h"
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngineBase/GameEngineInput.h>
@@ -7,21 +6,23 @@
 
 const int InventoryHegiht = 11;
 const int InventoryWidth = 5;
-
+const float SlotPaddingX = 45.0f;
+const float SlotPaddingY = 16.0f;
 Inventory::Inventory() 
 	: IsOut_(false)
+	, ClickedWeapon_(WeaponState::None)
+	, GridRenderer_(nullptr)
 {
-	WeaponButtons_.resize(InventoryHegiht, std::vector<GameEngineCollision*>(InventoryWidth, nullptr));
+	WeaponButtons_.resize(InventoryHegiht, std::vector<InventoryButton>(InventoryWidth, InventoryButton()));
 }
 
-Inventory::~Inventory() 
+Inventory::~Inventory()
 {
-
 }
 
 void Inventory::Start()
 {
-	GridRenderer_ = CreateRenderer("WeaponSheet_Empty.bmp", (int)RenderOrder::UI);
+	GridRenderer_ = CreateRenderer("WeaponSheet_Full.bmp", (int)RenderOrder::UI);
 	GridRenderer_->SetPivot(GridRenderer_->GetScale().Half());
 	GridRenderer_->CameraEffectOff();
 
@@ -30,24 +31,37 @@ void Inventory::Start()
 	OutPos_ = GetPosition();
 	InPos_ = GetPosition() + float4{ -210, 0 };
 
-	// 5 x 11 아이템 목록
-	float ColPaddingX = 45.0f;
-	float ColPaddingY = 16.0f;
+	// 5 x 11 무기 목록 초기화
 	for (int y = 0; y < InventoryHegiht; y++)
 	{
 		for (int x = 0; x < InventoryWidth; x++)
 		{
-			GameEngineCollision* ptr = CreateCollision("Button", { 27, 27 }, { ColPaddingX + x * 29.0f, ColPaddingY + y * 29.0f });
-			ptr->CameraEffectOff();
-			WeaponButtons_[y][x] = ptr;
+			// Collision 세팅
+			{
+				WeaponButtons_[y][x].Col_ = CreateCollision("Button", { 27, 27 }, { SlotPaddingX + x * 29.0f, SlotPaddingY + y * 29.0f });
+				WeaponButtons_[y][x].Col_->CameraEffectOff();
+			}
+
+			// Renderer 세팅
+			{
+				WeaponButtons_[y][x].WeaponSelector_ = CreateRenderer("WeaponSelector.bmp", (int)RenderOrder::UI);
+				WeaponButtons_[y][x].WeaponSelector_->SetScale({ 27, 27 });
+				WeaponButtons_[y][x].WeaponSelector_->SetPivot({ SlotPaddingX + x * 29.0f, SlotPaddingY + y * 29.0f });
+				WeaponButtons_[y][x].WeaponSelector_->CameraEffectOff();
+				WeaponButtons_[y][x].WeaponSelector_->SetTransColor(RGB(0, 0, 0));
+				WeaponButtons_[y][x].WeaponSelector_->Off();
+			}
 		}
 	}
+
+	InventoryWeaponInit();
 }
 
 void Inventory::Update()
 {
 	UpdateState();
 	MoveInOut();
+	OnOffSelector();
 	ClickWeapon();
 }
 
@@ -74,23 +88,23 @@ void Inventory::MoveInOut()
 
 void Inventory::ClickWeapon()
 {
-	// 클릭 체크
+	// 좌클릭 체크
+	if (false == GameEngineInput::GetInst()->IsDown(KEY_MOUSE_LEFT))
 	{
-		if (false == GameEngineInput::GetInst()->IsDown(KEY_MOUSE_LEFT))
-		{
-			return;
-		}
+		ClickedWeapon_ = WeaponState::None;
+		return;
+	}
 
-		float4 CursorPos = Cursor::GetCursorPosition();
-		float4 LeftTop = InPos_;
-		float4 RightBottom = InPos_ + GridRenderer_->GetScale();
+	float4 CursorPos = Cursor::GetCursorPosition();
+	float4 LeftTop = InPos_;
+	float4 RightBottom = InPos_ + GridRenderer_->GetScale();
 
-		// 인벤토리UI 바깥 클릭
-		if (CursorPos.x < LeftTop.x && CursorPos.y < LeftTop.y ||
-			CursorPos.x > RightBottom.x && CursorPos.y > RightBottom.y)
-		{
-			return;
-		}
+	// 인벤토리UI 바깥 클릭
+	if (false == (CursorPos.x >= LeftTop.x && CursorPos.x <= RightBottom.x &&
+		CursorPos.y >= LeftTop.y && CursorPos.y <= RightBottom.y) )
+	{
+		ClickedWeapon_ = WeaponState::None;
+		return;
 	}
 
 	// 어느 무기인지 체크
@@ -100,14 +114,36 @@ void Inventory::ClickWeapon()
 	{
 		for (int x = 0; x < InventoryWidth; x++)
 		{
-			if (WeaponButtons_[y][x]->CollisionCheck(COL_GROUP_MOUSE))
+			if (WeaponButtons_[y][x].Col_->CollisionCheck(COL_GROUP_MOUSE))
 			{
-				IdxX = x;
-				IdxY = y;
+				ClickedWeapon_ = WeaponButtons_[y][x].Weapon_;
 				break;
 			}
 		}
 	}
+}
 
-	int a = 0;
+void Inventory::OnOffSelector()
+{
+	for (int y = 0; y < InventoryHegiht; y++)
+	{
+		for (int x = 0; x < InventoryWidth; x++)
+		{
+			if (false == WeaponButtons_[y][x].Col_->CollisionCheck(COL_GROUP_MOUSE))
+			{
+				WeaponButtons_[y][x].WeaponSelector_->Off();
+			}
+			else
+			{
+				WeaponButtons_[y][x].WeaponSelector_->On();
+			}
+		}
+	}
+}
+
+void Inventory::InventoryWeaponInit()
+{
+	WeaponButtons_[1][0].Weapon_ = WeaponState::Baz;
+	WeaponButtons_[2][0].Weapon_ = WeaponState::Grenade;
+	WeaponButtons_[5][0].Weapon_ = WeaponState::AirStrike;
 }

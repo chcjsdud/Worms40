@@ -38,9 +38,6 @@
     <ClInclude Include="Baz.h">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
     </ClInclude>
-    <ClInclude Include="RollingStar.h">
-      <Filter>01.LobbyLevel\StarSpawner</Filter>
-    </ClInclude>
     <ClInclude Include="ReadyButton.h">
       <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
     </ClInclude>
@@ -188,9 +185,6 @@
     <ClCompile Include="Baz.cpp">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
     </ClCompile>
-    <ClCompile Include="RollingStar.cpp">
-      <Filter>01.LobbyLevel\StarSpawner</Filter>
-    </ClCompile>
     <ClCompile Include="ReadyButton.cpp">
       <Filter>01.LobbyLevel\LobbyActor\Button</Filter>
     </ClCompile>
@@ -321,9 +315,6 @@
     </Filter>
     <Filter Include="02.PlayLevel\UI">
       <UniqueIdentifier>{c64655e0-e238-4f34-8871-e10fcd9e5199}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01.LobbyLevel\StarSpawner">
-      <UniqueIdentifier>{be5de983-1b2e-43f0-8ce9-e647ee3f8dde}</UniqueIdentifier>
     </Filter>
     <Filter Include="01.LobbyLevel\LobbyActor\Box">
       <UniqueIdentifier>{0bb4f140-d2db-462b-853a-602c7dbc5184}</UniqueIdentifier>

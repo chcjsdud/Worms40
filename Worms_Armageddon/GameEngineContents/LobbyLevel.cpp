@@ -1,8 +1,7 @@
-
+#include "LobbyHeaders.h"
 #include "Cursor.h"
 #include "GameOptions.h"
 #include "Enums.h"
-#include "LobbyHeaders.h"
 #include "TeamButton.h"
 
 #include <GameEngine/GameEngine.h>
@@ -61,7 +60,6 @@ void LobbyLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	TypingBox_->SetPosition({ 16, 814 });
 	TerrainBox_->SetPosition({ 785, 22 });
 
-	//TODO:: 지금은 통 이미지, 리소스 구하기
 	LobbySettings_->SetPosition({ 580, 260 });
 
 	// 버튼

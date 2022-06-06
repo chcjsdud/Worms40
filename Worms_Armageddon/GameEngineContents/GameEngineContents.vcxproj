@@ -242,10 +242,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="RollingStar.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="StartButton.h">
       <SubType>
       </SubType>
@@ -388,10 +384,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ReadyButton.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="RollingStar.cpp">
       <SubType>
       </SubType>
     </ClCompile>

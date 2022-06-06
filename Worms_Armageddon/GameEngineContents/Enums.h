@@ -74,7 +74,7 @@ enum class WeaponState
 	// F7
 	BlowTorch,
 	Drill,
-	Grider
+	Grider,
 
 	// F8
 
@@ -85,6 +85,9 @@ enum class WeaponState
 	// F11
 
 	// F12
+
+
+	None
 };
 
 // 맵타입
@@ -154,4 +157,9 @@ enum class CheckType
 	Player,
 	WeaponMissile,
 	WeaponGrenade
+};
+
+enum class InventoryWeapon
+{
+	// WeaponStat로? 아니면 InventoryWeapon으로
 };

@@ -35,7 +35,6 @@ private:
 	GameEngineActor* TeamEditBox_;
 	GameEngineActor* ChatBox_;
 	GameEngineActor* TypingBox_;
-	GameEngineActor* RollingStar_;
 	GameEngineActor* TerrainBox_;
 
 	GameEngineActor* LobbySettings_;
