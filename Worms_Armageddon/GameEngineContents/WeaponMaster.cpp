@@ -85,7 +85,7 @@ void WeaponMaster::ThrowStart(float _ThrowForce)
 	}
 }
 
-void WeaponMaster::AirStart(float4 _FlyDir)
+void WeaponMaster::AirStart(float4 _AirSpawn)
 {
 	if (false == IsShot_)
 	{
@@ -99,7 +99,7 @@ void WeaponMaster::AirStart(float4 _FlyDir)
 		TargetPos_ = WeaponCusor->GetMouseCursorPos(); // 커서 좌표 받음
 
 		WeaponRender_ = CreateRenderer((int)RenderOrder::Weapon);
-		if (float4::LEFT.CompareInt2D(_FlyDir))
+		if (float4::LEFT.CompareInt2D(_AirSpawn))
 		{// ->
 			WeaponRender_->SetImage(IMG_AIRJET_GREEN_RIGHT);
 			SetPosition({ WEAPON_AIRFLY_START_LEFT,WEAPON_AIRFLY_HIGHT });

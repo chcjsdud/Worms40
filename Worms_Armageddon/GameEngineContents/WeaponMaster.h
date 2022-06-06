@@ -73,7 +73,7 @@ protected:
 
 	// 투사체 투척용 함수 : 포스값의 강도로 날림
 	void ThrowStart(float _ThrowForce);
-	// 폭격기 출격 : 폭격기가 어느 방향으로 이동할지 지정
+	// 폭격기 출격 : 폭격기가 어디서 생성될지 지정
 	void AirStart(float4 _FlyDir);
 
 	// 투사체 움직임 연산 : 중력값만 넣어주면 포물선으로 날아감

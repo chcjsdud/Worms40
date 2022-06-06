@@ -1,6 +1,8 @@
 #include "EffectManager.h"
 #include <GameEngine/GameEngineRenderer.h>
 
+// 설명 : 단일 이펙트 애니메이션 리스트
+
 void EffectManager::PlayFoom()
 {
 	GameEngineRenderer* FxObject = CreateRenderer((int)RenderOrder::Front_Fx);
