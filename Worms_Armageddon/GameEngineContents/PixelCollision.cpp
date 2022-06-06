@@ -144,7 +144,9 @@ float4 PixelCollision::PlayerBounce(float4 _ActorPos, float4 _ActorScale, GameEn
 
 	float4 Left = { -_ActorScale.x / 2 , 0.0f };
 
+	//수치 체크용
 	MoveDir_ = _MoveDir;
+
 	//좌상단
 	int TopLeftColor = _ColMapImage->GetImagePixel(_ActorPos + TopLeft);
 	//상단
@@ -163,7 +165,9 @@ float4 PixelCollision::PlayerBounce(float4 _ActorPos, float4 _ActorScale, GameEn
 	int LeftColor = _ColMapImage->GetImagePixel(_ActorPos + Left);
 
 
-
+	//플레이어는 점프중 좌우이동 , 상하이동 두번을 하는데
+	//처음에 좌우이동을 체크한후 , ColorFlag가 true인것들을
+	//false로 초기화
 	for (int i = 0; i < 8; i++)
 	{
 		ColorFlag_[i] = false;
@@ -205,6 +209,7 @@ float4 PixelCollision::PlayerBounce(float4 _ActorPos, float4 _ActorScale, GameEn
 		ColorFlag_[6] = false;
 	}
 
+	//충돌한위치가 존재하면 bounceFlg == true
 	for (int i = 0; i < 8; i++)
 	{
 		if (ColorFlag_[i] == true)

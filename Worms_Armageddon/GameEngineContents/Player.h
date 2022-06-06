@@ -70,13 +70,13 @@ private:
 	float FallLength_;
 	//점프 속도
 	float JumpSpeed_;
-	//점프 거리
+	//점프사전준비동작 애니메이션 플레이타임
 	float JumpDelayTime_;
 	// 무기 상태
 	WeaponState WeaponState_;
 	// 무기 위치
 	float4 WeaponPos_;
-
+	// 픽셀 체크
 	PixelCollision* PixelCol_;
 	// 플레이어 Hp
 	int PlayerHp_;
@@ -86,6 +86,7 @@ private:
 
 	// 플레이어는 마지막으로 보고 있던 방향의 정보를 가지고 있어야 함.
 	float4 MoveDir_;
+	//점프중 좌우방향
 	float4 JumpMoveDir_;
 
 	// 사운드 오브젝트
@@ -103,6 +104,7 @@ private:
 	// 생성할 무기
 	WeaponMaster* Weapon_;
 
+	//애니메이션용 방향이름
 	std::string DirName_;
 	std::string StateName_;
 	std::string CurDirName_;
@@ -120,6 +122,7 @@ private:
 
 	//키 입력 카운트
 	int KeyCount_;
+	//키 입력 타이머 ,  더블클릭용
 	float KeyTimer_;
 
 	// 키입력 관련 함수
@@ -135,6 +138,7 @@ private:
 
 	// 이동중 충돌체크
 	void MoveCheck(float4 _MoveDir);
+	// 중력
 	void MoveFall();
 	//오르막길 픽셀충돌체크
 	void CheckHillPixel();

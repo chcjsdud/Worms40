@@ -173,7 +173,7 @@ void Player::JumpUpdate()
 		if (!PixelCol_->GetBounceFlg())
 		{
 
-
+			//충돌하기 전까지는 원래진행하던 방향으로 좌,우 이동
 			if (CurDirName_ == PLAYER_DIR_RIGHT)
 			{
 				JumpMoveDir_ = float4::RIGHT * GameEngineTime::GetDeltaTime() * 100.0f;
@@ -183,7 +183,10 @@ void Player::JumpUpdate()
 				JumpMoveDir_ = float4::LEFT * GameEngineTime::GetDeltaTime() * 100.0f;
 			}
 
+
+			//충돌시 좌 ,우 변경
 			JumpMoveDir_ = PixelCol_->PlayerBounce(GetPosition(), { PLAYER_SIZE_X,PLAYER_SIZE_Y }, ColMapImage_, JumpMoveDir_);
+			//충돌시 상 ,하 변경
 			MoveDir_ = PixelCol_->PlayerBounce(GetPosition(), { PLAYER_SIZE_X,PLAYER_SIZE_Y }, ColMapImage_, MoveDir_);
 		}
 
@@ -196,7 +199,7 @@ void Player::JumpUpdate()
 
 
 
-
+		//웜즈 밑부분픽셀 체크용 변수 선언
 		float4 CheckLength = float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
 		float4 UpPos = float4::UP;
 		float4 DownPos = { GetPosition().x, GetPosition().y + PLAYER_SIZE_Y / 2 };
@@ -204,14 +207,16 @@ void Player::JumpUpdate()
 
 
 
-
+		//웜즈의 밑부분이 파란색이면
 		if (RGB(0, 0, 255) == Color)
 		{
 			MoveDir_ = float4::ZERO;
 			JumpMoveDir_ = float4::ZERO;
 
+			//체크용 
 			float a = FallSpeed_;
 
+			//파란색이 아닐떄까지 올려준다.
 			do
 			{
 				SetMove(UpPos);
@@ -273,11 +278,14 @@ void Player::BackFlipUpdate()
 		float4 DownPos = { GetPosition().x + CheckLength.x , GetPosition().y + CheckLength.y + PLAYER_SIZE_Y / 2 };
 		int Color = ColMapImage_->GetImagePixel(DownPos);
 
+
+		//웜즈의 밑부분이 파란색이면
 		if (RGB(0, 0, 255) == Color)
 		{
 			MoveDir_ = float4::ZERO;
 			JumpMoveDir_ = float4::ZERO;
 
+			//파란색이 아닐때까지 올려준다.
 			do
 			{
 				SetMove(UpPos);
@@ -285,7 +293,7 @@ void Player::BackFlipUpdate()
 				Color = ColMapImage_->GetImagePixel(DownPos);
 			} while (RGB(0, 0, 255) == Color);
 
-			//낙하데미지
+			//낙하데미지 FallSpeed가일정속도 이상이면 낙뎀추가
 			if (2000 <= FallSpeed_)
 			{
 				StateChange(PlayerState::Falled);
@@ -323,12 +331,13 @@ void Player::FalledUpdate()
 		float4 DownPos = { GetPosition().x + CheckLength.x , GetPosition().y + CheckLength.y + PLAYER_SIZE_Y / 2 };
 		int Color = ColMapImage_->GetImagePixel(DownPos);
 
+		//웜즈의 밑부분이 파란색이면
 		if (RGB(0, 0, 255) == Color)
 		{
 			MoveDir_ = float4::ZERO;
 			JumpMoveDir_ = float4::ZERO;
 
-
+			//파란색이 아닐때까지 올려준다.
 			do
 			{
 				SetMove(UpPos);
@@ -338,6 +347,8 @@ void Player::FalledUpdate()
 
 
 		}
+
+		//애니메이션이 끝나면 IdleState로 변경
 		if (true == PlayerRenderer_->IsEndAnimation())
 		{
 			StateChange(PlayerState::Idle);
@@ -414,6 +425,7 @@ void Player::JumpStart()
 
 }
 
+//웜즈 백플립 State
 void Player::BackFlipStart()
 {
 	JumpDelayTime_ = 0.5f;
@@ -423,6 +435,7 @@ void Player::BackFlipStart()
 	PlayerAnimationChange(StateName_);
 }
 
+//웜즈가 너무높은곳에서 떨어졌을시 땅에 박히는 State
 void Player::FalledStart()
 {
 	StateName_ = ANIM_KEYWORD_PLAYER_FALL;
