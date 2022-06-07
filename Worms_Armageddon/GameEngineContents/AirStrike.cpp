@@ -15,7 +15,7 @@ AirStrike::~AirStrike()
 
 void AirStrike::Start()
 {
-	
+	IsBounce_ = false;
 }
 
 void AirStrike::Update()
@@ -33,7 +33,7 @@ bool AirStrike::WeaponUpdate()
 		return false;
 	}
 	
-	AirStart(float4::LEFT); // 폭격기 출격
+	AirStart(float4::RIGHT); // 폭격기 출격
 	// 폭격기가 경로를 다 지나가야 다음 턴 넘어감
 
 	IsBomb_ = Bombing(WeaponState::AirStrike);

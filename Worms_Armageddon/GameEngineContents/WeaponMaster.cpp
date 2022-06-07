@@ -18,6 +18,7 @@ WeaponMaster::WeaponMaster()
 	, IsDrop_(true) // 초기화를 위해 임의로 true
 	, WeaponRender_(nullptr)
 	, IsBounce_(false)
+	, BounceRotate_(0)
 	, IsBomb_(false)
 	, BombCnt_(0)
 {
@@ -129,14 +130,33 @@ void WeaponMaster::AirStart(float4 _AirSpawn)
 	}
 }
 
-void WeaponMaster::BulletMove(float _Gravity)
+void WeaponMaster::BulletMove(float _Gravity, bool _IsWind)
 {
 	SetMove(BulletDir_ * GameEngineTime::GetDeltaTime());
 	BulletDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * _Gravity; // 중력
-	BulletDir_ += WindInfo_ * GameEngineTime::GetDeltaTime(); // 바람영향
+
+	if (true == _IsWind)
+	{
+		BulletDir_ += WindInfo_ * GameEngineTime::GetDeltaTime(); // 바람영향
+	}
 
 	float4 MyPos = GetPosition(); // 현재 위치
 	float4 GetNextPos = BulletDir_ + GetPosition(); // 미래 위치
+
+	if (true == IsBounce_)
+	{
+		WeaponRender_->SetRotationZ(BounceRotate_);
+		if (MyPos.x < GetNextPos.x) // ->
+		{
+			BounceRotate_ += 0.1f * BulletDir_.x;
+		}
+		else if (MyPos.x > GetNextPos.x) // <-
+		{
+			BounceRotate_ += 0.1f * BulletDir_.x;
+		}
+
+		return;
+	}
 
 	float Degree = float4::VectorXYtoDegree(GetPosition(), GetPosition() + BulletDir_);
 	WeaponRender_->SetRotationZ(Degree + 90); // 방향에 따른 투사체 각도
@@ -148,7 +168,7 @@ bool WeaponMaster::Bombing(WeaponState _Bomb)
 
 	if (0 < BulletDir_.x)
 	{// ->
-		float BombingStartPosX = TargetPos_.x -500;
+		float BombingStartPosX = TargetPos_.x -300;
 
 		if (BombingStartPosX < GetPosition().x) // 투하 위치도달
 		{
@@ -187,7 +207,7 @@ bool WeaponMaster::Bombing(WeaponState _Bomb)
 	}
 	else
 	{// <-
-		float BombingStartPosX = TargetPos_.x + 500;
+		float BombingStartPosX = TargetPos_.x - 300;
 
 		if (BombingStartPosX > GetPosition().x) // 투하 위치도달
 		{
@@ -239,7 +259,7 @@ void WeaponMaster::BulletColEvent()
 		// 튕겼으면 감속
 		if (PixelCol_->GetBounceFlg() == true)
 		{
-			//BulletDir_ *= 0.8f;
+			BulletDir_ *= 0.8f;
 		}
 
 		// 너무 느려졌으면 속도를 0으로 설정

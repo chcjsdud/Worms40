@@ -49,6 +49,8 @@ private:
 	bool IsShot_;
 	// 투하하는 순간 최초 실행
 	bool IsDrop_;
+	// 바운스 투사체를 굴리기 위한 회전값
+	float BounceRotate_;
 	bool IsBomb_;
 
 	// 레벨이 시작함과 동시에 초기화될 맵 정보
@@ -84,10 +86,10 @@ protected:
 	// 투사체 투척용 함수 : 포스값의 강도로 날림
 	void ThrowStart(float _ThrowForce);
 	// 폭격기 출격 : 폭격기가 어디서 생성될지 지정
-	void AirStart(float4 _FlyDir);
+	void AirStart(float4 _AirSpawn);
 
 	// 투사체 움직임 연산 : 중력값만 넣어주면 포물선으로 날아감
-	void BulletMove(float _Gravity);
+	void BulletMove(float _Gravity, bool _IsWind);
 	// 폭격 폭탄 투하 : 어느 폭탄을 투하할지 지정
 	bool Bombing(WeaponState _Bomb);
 
