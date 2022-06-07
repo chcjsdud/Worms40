@@ -34,6 +34,11 @@ public:
 		PlayerHp_ = _WormzHp;
 	}
 
+	inline int GetPlayerHp()
+	{
+		return PlayerHp_;
+	}
+
 	inline bool GetIsDeath()
 	{
 		return IsDeath_;

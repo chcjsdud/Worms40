@@ -3,7 +3,7 @@
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineMath.h>
 
-// 설명 :
+// 설명 : UI의 기능을 모아둔 부모클래스
 class UIMaster : public GameEngineActor
 {
 public:
@@ -24,28 +24,24 @@ private:
 	void ChangeState(STATE _State);
 
 	void IdleUpdate();
-
-	void MovingStart();
 	void MovingUpdate();
 
 private:
 	STATE State_;
 
+	// 이동 관련
+	float DeltaTime_;
+	float Speed_;
 	float4 StartPos_;
 	float4 DestPos_;
 	float4 CurPos_;
 	float4 MoveDir_;
-	float Speed_;
 
-	float DeltaTime_;
 
 protected:
 	void Start() override;
 	void Update() override;
-	//virtual void Render() {}
 
-	//virtual void LevelChangeStart(GameEngineLevel* _PrevLevel) {}
-	//virtual void LevelChangeEnd(GameEngineLevel* _NextLevel) {}
 public:
 	// constrcuter destructer
 	UIMaster();

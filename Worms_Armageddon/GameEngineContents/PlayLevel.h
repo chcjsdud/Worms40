@@ -14,6 +14,7 @@ class Player;
 class GameEngineRenderer;
 class GameEngineImage;
 class UIMaster;
+class TeamHpBarList;
 class PlayLevel	:public GameEngineLevel
 {
 public:
@@ -43,7 +44,8 @@ private:
 	WeaponMaster* WeaponMaster_;
 	Cursor* Mouse_;
 	WindGauge* WindGaugeActor_;
-	UIMaster* Inventory_;
+	UIMaster* InventoryActor_;
+	TeamHpBarList* TeamHpBarListActor_;
 
 	// Lerp처리시 시작할 카메라 위치
 	float4 LerpStartCameraPos_;
@@ -82,7 +84,8 @@ private:
 	/// UI ///
 	// 바람
 	void SetWindUI(int _WindDir);
-
+	// 팀 체력바
+	bool UpdateTeamHpBarUI();
 
 public:
 	float4 GetWindDir()

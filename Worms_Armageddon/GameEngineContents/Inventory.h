@@ -3,7 +3,7 @@
 #include "Enums.h"
 #include <vector>
 
-// 설명 :
+// 설명 : 플레이어 인벤토리 
 class GameEngineRenderer;
 class GameEngineCollision;
 class Inventory : public UIMaster
@@ -55,6 +55,7 @@ private:
 	void OnOffSelector();
 
 private:
+	// 격자배경
 	GameEngineRenderer* GridRenderer_;
 
 	// UI In<->Out 관련

@@ -46,7 +46,6 @@ void UIMaster::ChangeState(STATE _State)
 		case UIMaster::STATE::IDLE:
 			break;
 		case UIMaster::STATE::MOVING:
-			MovingStart();
 			break;
 		default:
 			break;
@@ -59,10 +58,6 @@ void UIMaster::ChangeState(STATE _State)
 void UIMaster::IdleUpdate()
 {
 
-}
-
-void UIMaster::MovingStart()
-{
 }
 
 void UIMaster::MovingUpdate()

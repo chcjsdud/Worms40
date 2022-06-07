@@ -27,7 +27,7 @@ void Inventory::Start()
 	GridRenderer_->CameraEffectOff();
 
 	// In Out 위치 설정
-	SetPosition({ 1300.0f, 500.0f });
+	SetPosition({ 1300.0f, 590.0f });
 	OutPos_ = GetPosition();
 	InPos_ = GetPosition() + float4{ -210, 0 };
 
@@ -72,16 +72,16 @@ void Inventory::MoveInOut()
 	{
 		if (IsOut_ == false)
 		{
-			MoveSetting(OutPos_, InPos_, 800.0f);
+			UIMaster::MoveSetting(OutPos_, InPos_, 800.0f);
 			IsOut_ = !IsOut_;
 		}
 		else
 		{
-			MoveSetting(InPos_, OutPos_, 800.0f);
+			UIMaster::MoveSetting(InPos_, OutPos_, 800.0f);
 			IsOut_ = !IsOut_;
 		}
 
-		Move();
+		UIMaster::Move();
 
 	}
 }
@@ -123,6 +123,7 @@ void Inventory::ClickWeapon()
 	}
 }
 
+// 무기 위에 커서 올라가면 경계선 On/Off
 void Inventory::OnOffSelector()
 {
 	for (int y = 0; y < InventoryHegiht; y++)
@@ -141,6 +142,7 @@ void Inventory::OnOffSelector()
 	}
 }
 
+// 인벤토리 목록의 무기정보 초기화
 void Inventory::InventoryWeaponInit()
 {
 	WeaponButtons_[1][0].Weapon_ = WeaponState::Baz;

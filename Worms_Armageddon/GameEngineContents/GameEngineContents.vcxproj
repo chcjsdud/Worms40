@@ -263,6 +263,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TeamHpBar.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TeamHpBarList.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TeamNumButton.h">
       <SubType>
       </SubType>
@@ -409,6 +417,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TeamHandicapButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TeamHpBar.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TeamHpBarList.cpp">
       <SubType>
       </SubType>
     </ClCompile>

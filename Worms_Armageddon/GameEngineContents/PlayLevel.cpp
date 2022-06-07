@@ -5,6 +5,7 @@
 #include "Inventory.h"
 #include "Cursor.h"
 #include "MapBooks.h"
+#include "TeamHpBarList.h"
 #include "GameOptions.h"
 #include "GameEngineBase/GameEngineRandom.h"
 #include <GameEngineBase/GameEngineInput.h>
@@ -39,13 +40,15 @@ void PlayLevel::Loading()
 	//배경화면 액터
 	GameMapInfo_ = CreateActor<MapBooks>();
 
-	//마우스
+	// 마우스
 	Mouse_ = CreateActor<Cursor>((int)ActorGroup::UI);
-	//바람 게이지
+	// 바람 게이지
 	WindGaugeActor_ = CreateActor<WindGauge>((int)RenderOrder::UI);
-	WindGaugeActor_->SetPosition({ 1150.0f,20.0f });
-	//인벤토리
-	Inventory_ = CreateActor<Inventory>((int)RenderOrder::UI);
+	WindGaugeActor_->SetPosition({ 1180.0f, 940.0f });
+	// 인벤토리
+	InventoryActor_ = CreateActor<Inventory>((int)ActorGroup::UI);
+	// 팀 HP바
+	TeamHpBarListActor_ = CreateActor<TeamHpBarList>((int)ActorGroup::UI);
 
 	// 배경 이미지
 	LargeCloudActor_ = CreateActor<LargeCloud>();
@@ -73,6 +76,11 @@ void PlayLevel::Loading()
 
 void PlayLevel::Update()
 {
+	// 체력바 디버깅용
+	{
+		LevelPhase_ = LevelFSM::Damage;
+	}
+
 	switch (LevelPhase_)
 	{
 	case LevelFSM::Ready:
@@ -241,6 +249,13 @@ void PlayLevel::Update()
 	break;
 	// 데미지 계산
 	case LevelFSM::Damage:
+	{
+		// 플레이어 체력 계산
+
+
+		// 팀 체력 계산
+		UpdateTeamHpBarUI();
+	}
 	break;
 	// 사망처리
 	case LevelFSM::Death:
@@ -344,6 +359,9 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 		// 팀을 전체 플레이어 리스트에 추가
 		AllPlayer_.push_back(Playerlist);
+
+		// 팀 체력바 개수 설정
+		TeamHpBarListActor_->InitTeamSize(Playerlist.size());
 	}
 }
 
@@ -420,5 +438,30 @@ void PlayLevel::SetWindUI(int _WindDir)
 		LargeCloudActor_->SetLargeCloudDir(_WindDir,WindSpeed_);
 		SmallCloudActor_->SetSmallCloudDir(_WindDir, WindSpeed_);
 	}
+}
+
+// 팀 체력을 TeamHpBar에 전달
+bool PlayLevel::UpdateTeamHpBarUI()
+{
+	// 팀별 전체 체력 계산
+	std::vector<int> TeamsHp;
+	for (std::list<Player*>& Team : AllPlayer_)
+	{
+		int TeamHp = 0;
+		for (Player* Player : Team)
+		{
+			if (Player->GetIsDeath())
+			{
+				continue;
+			}
+
+			TeamHp += Player->GetPlayerHp();
+		}
+		TeamsHp.push_back(TeamHp);
+	}
+	
+	TeamHpBarListActor_->SetTeamsHpInfo(&TeamsHp);
+
+	return false;
 }
 
