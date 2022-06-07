@@ -140,11 +140,11 @@ void WeaponMaster::BulletMove(float _Gravity, bool _IsWind)
 		WeaponRender_->SetRotationZ(BounceRotate_);
 		if (MyPos.x < GetNextPos.x) // ->
 		{
-			BounceRotate_ += 0.1f * BulletDir_.x;
+			BounceRotate_ += 10.f * BulletDir_.x * GameEngineTime::GetDeltaTime();
 		}
 		else if (MyPos.x > GetNextPos.x) // <-
 		{
-			BounceRotate_ += 0.1f * BulletDir_.x;
+			BounceRotate_ += 10.f * BulletDir_.x * GameEngineTime::GetDeltaTime();
 		}
 
 		return;
