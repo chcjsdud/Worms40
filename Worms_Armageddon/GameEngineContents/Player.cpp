@@ -47,7 +47,7 @@ void Player::Update()
 	if (this->GetPlayerState() == PlayerState::Idle
 		|| this->GetPlayerState() == PlayerState::Move)
 	{
-		//MoveFall();
+		MoveFall();
 	}
 
 	// 컨트롤되고 있지 않은 캐릭터는 데미지를 받더라도 턴이 끝나지 않음

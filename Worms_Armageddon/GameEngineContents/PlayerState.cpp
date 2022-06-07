@@ -139,6 +139,8 @@ void Player::IdleUpdate()
 		break;
 	}
 
+	ShotAngle_.x = MoveDir_.x;
+
 }
 
 void Player::MoveUpdate()
