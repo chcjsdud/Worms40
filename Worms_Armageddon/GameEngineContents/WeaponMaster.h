@@ -36,6 +36,11 @@ public:
 		return GameMap_;
 	}
 
+	virtual float4 GetWeaponPosition()
+	{
+		return GetPosition();
+	}
+
 private: 
 	// 지정한 목표 좌표
 	float4 TargetPos_;
@@ -44,6 +49,7 @@ private:
 	bool IsShot_;
 	// 투하하는 순간 최초 실행
 	bool IsDrop_;
+	bool IsBomb_;
 
 	// 레벨이 시작함과 동시에 초기화될 맵 정보
 	// static으로 설정하여 모든 무기가 공유하도록 함
@@ -68,6 +74,10 @@ protected:
 	// 투사체의 방향
 	float4 BulletDir_;
 
+	// 카메라가 봐야할 무기의 위치
+	// 기본적으로는 GetPosition(), 폭격기등의 투사체가 많을경우에만 특수하게 설정
+	static float4 WeaponCameraPos_;
+
 	void Start() override;
 	void Update() override;
 
@@ -79,7 +89,7 @@ protected:
 	// 투사체 움직임 연산 : 중력값만 넣어주면 포물선으로 날아감
 	void BulletMove(float _Gravity);
 	// 폭격 폭탄 투하 : 어느 폭탄을 투하할지 지정
-	void Bombing(WeaponState _Bomb);
+	bool Bombing(WeaponState _Bomb);
 
 	// 투사체 충돌 시 발생 이벤트
 	void BulletColEvent();

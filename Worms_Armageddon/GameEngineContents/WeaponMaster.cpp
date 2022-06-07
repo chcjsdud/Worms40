@@ -10,6 +10,7 @@
 #include <GameEngine/GameEngineImageManager.h>
 
 GameMapMaster* WeaponMaster::GameMap_ = nullptr;
+float4 WeaponMaster::WeaponCameraPos_ = float4::ZERO;
 
 WeaponMaster::WeaponMaster() 
 	: TargetPos_(float4::ZERO)
@@ -17,6 +18,7 @@ WeaponMaster::WeaponMaster()
 	, IsDrop_(true) // 초기화를 위해 임의로 true
 	, WeaponRender_(nullptr)
 	, IsBounce_(false)
+	, IsBomb_(false)
 	, BombCnt_(0)
 {
 }
@@ -53,6 +55,7 @@ void WeaponMaster::Drop(WeaponState _Drop, float _Sec /*= 0*/)
 			{
 				AirBomb* Bomb = GetLevel()->CreateActor<AirBomb>();
 				Bomb->SetPosition(GetPosition());
+				Bomb->SetBombCount(BombCnt_);
 				++BombCnt_;
 				IsDrop_ = true;
 			}
@@ -139,7 +142,7 @@ void WeaponMaster::BulletMove(float _Gravity)
 	WeaponRender_->SetRotationZ(Degree + 90); // 방향에 따른 투사체 각도
 }
 
-void WeaponMaster::Bombing(WeaponState _Bomb)
+bool WeaponMaster::Bombing(WeaponState _Bomb)
 {
 	float DropSec = 0.05f;
 
@@ -164,6 +167,7 @@ void WeaponMaster::Bombing(WeaponState _Bomb)
 			case 2:
 			{
 				Drop(_Bomb, DropSec);
+				IsBomb_ = true;
 			}
 			break;
 			case 3:
@@ -202,6 +206,7 @@ void WeaponMaster::Bombing(WeaponState _Bomb)
 			case 2:
 			{
 				Drop(_Bomb, DropSec);
+				IsBomb_ = true;
 			}
 			break;
 			case 3:
@@ -219,6 +224,8 @@ void WeaponMaster::Bombing(WeaponState _Bomb)
 			}
 		}
 	}
+
+	return IsBomb_;
 }
 
 void WeaponMaster::BulletColEvent()

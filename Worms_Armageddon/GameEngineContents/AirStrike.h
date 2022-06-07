@@ -19,6 +19,9 @@ protected:
 	void Start() override;
 	void Update() override;
 	bool WeaponUpdate() override;
+	float4 GetWeaponPosition() override;
 
+private:
+	bool IsBomb_;
 };
 

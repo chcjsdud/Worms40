@@ -141,6 +141,9 @@ void Player::ActionUpdate()
 {
 	if (false == Weapon_->WeaponUpdate())
 	{
+		// 사용된 무기 삭제
+		Weapon_->Death();
+
 		// TODO::동작이 끝날경우에 Idle로 전환
 		StateChange(PlayerState::Idle);
 
@@ -150,7 +153,7 @@ void Player::ActionUpdate()
 	else
 	{
 		// 카메라 위치 이동용 발사체 위치 반환
-		WeaponPos_ = Weapon_->GetPosition();
+		WeaponPos_ = Weapon_->GetWeaponPosition();
 	}
 }
 

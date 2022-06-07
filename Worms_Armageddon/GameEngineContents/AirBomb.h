@@ -15,10 +15,18 @@ public:
 	AirBomb& operator=(const AirBomb& _Other) = delete;
 	AirBomb& operator=(AirBomb&& _Other) noexcept = delete;
 
+	inline void SetBombCount(int _BombCount)
+	{
+		BombCount_ = _BombCount;
+	}
+
 protected:
 	void Start() override;
 	void Update() override;
 	bool WeaponUpdate() override;
 
+private: 
+	// ³»°¡ ¸î¹øÂ° ÆøÅºÀÎ°¡
+	int BombCount_;
 };
 
