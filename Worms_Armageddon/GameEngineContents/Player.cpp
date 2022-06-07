@@ -39,11 +39,18 @@ void Player::Start()
 
 void Player::Update()
 {
+	// 컨트롤되고 있지 않은 플레이어 캐릭터는 피격판정등의 동작만 수행
+	if (this->GetPlayerState() == PlayerState::Idle
+		|| this->GetPlayerState() == PlayerState::Move)
+	{
+		MoveFall();
+	}
+
+	// 컨트롤되고 있지 않은 캐릭터는 데미지를 받더라도 턴이 끝나지 않음
 }
 
 void Player::Render()
-{
-
+{	
 }
 
 bool Player::ControllUpdate()
@@ -58,10 +65,7 @@ bool Player::ControllUpdate()
 
 void Player::UnControllUpdate()
 {
-	// 컨트롤되고 있지 않은 플레이어 캐릭터는 피격판정등의 동작만 수행
-	MoveFall();
 
-	// 컨트롤되고 있지 않은 캐릭터는 데미지를 받더라도 턴이 끝나지 않음
 }
 
 bool Player::DeathUpdate()

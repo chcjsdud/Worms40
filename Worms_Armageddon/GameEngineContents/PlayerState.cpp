@@ -69,9 +69,6 @@ void Player::IdleUpdate()
 	{
 		WeaponState_ = WeaponState::AirStrike;
 	}
-
-	MoveFall();
-
 }
 
 void Player::MoveUpdate()
@@ -137,8 +134,6 @@ void Player::MoveUpdate()
 			KeyCount_++;
 		}
 	}
-
-	MoveFall();
 	PlayerAnimationChange(StateName_);
 }
 
