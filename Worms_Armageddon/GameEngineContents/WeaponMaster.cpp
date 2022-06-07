@@ -72,19 +72,11 @@ void WeaponMaster::ThrowStart(float _ThrowForce)
 {
 	if (false == IsShot_)
 	{
-		BulletDir_ += float4::UP * _ThrowForce;
+		BulletDir_ += ShotAngle_ * _ThrowForce;
 
 		PlayLevel* Play = dynamic_cast<PlayLevel*>(GetLevel());
 		WindInfo_ = Play->GetWindDir(); // 바람 방향 정보
 
-		if (float4::LEFT.CompareInt2D(ShotDir_))
-		{
-			BulletDir_ += float4::LEFT * 100;
-		}
-		else
-		{
-			BulletDir_ += float4::RIGHT * 100;
-		}
 		IsShot_ = true;
 	}
 }

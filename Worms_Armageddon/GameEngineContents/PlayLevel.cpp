@@ -15,6 +15,8 @@ PlayLevel::PlayLevel()
 	, LerpTimer_(0.0f)
 	, PrevPlayerPos_(float4::ZERO)
 	, NextPlayerPos_(float4::ZERO)
+	, LerpStartCameraPos_(float4::ZERO)
+	, CurrentWeaponPos_(float4::ZERO)
 {
 	// 플레이어 배열 초기화
 	for (int TeamColor = 0; TeamColor < PLAYER_MAX_TEAM; TeamColor++)
@@ -131,7 +133,8 @@ void PlayLevel::Update()
 			// 첫 프레임이 지나면 카메라가 무기를 보도록
 			else
 			{
-				UpdateCamera(CurrentPlayer->GetWeaponPos());
+				CurrentWeaponPos_ = CurrentPlayer->GetWeaponPos();
+				UpdateCamera(CurrentWeaponPos_);
 			}
 		}
 
@@ -207,7 +210,17 @@ void PlayLevel::Update()
 	case LevelFSM::CameraMove:
 	{
 		LerpTimer_ += GameEngineTime::GetDeltaTime();
-		float4 LerpCameraPos_ = float4::LerpLimit(PrevPlayerPos_, NextPlayerPos_, LerpTimer_);
+
+		if (CurrentWeaponPos_.IsZero2D() == false)
+		{
+			LerpStartCameraPos_ = CurrentWeaponPos_;
+		}
+		else
+		{
+			LerpStartCameraPos_ = PrevPlayerPos_;
+		}
+
+		float4 LerpCameraPos_ = float4::LerpLimit(LerpStartCameraPos_, NextPlayerPos_, LerpTimer_);
 
 		// 카메라의 위치가 다음 플레이어의 위치와 같아지면 페이즈 종료
 		if (LerpCameraPos_.CompareInt2D(NextPlayerPos_))

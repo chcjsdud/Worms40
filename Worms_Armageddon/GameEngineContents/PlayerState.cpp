@@ -13,7 +13,7 @@
 void Player::IdleUpdate()
 {
 	// 액션은 이동보다 우선순위가 높음.
-	if (true == IsActionKeyDown())
+	if (true == IsActionKeyUp())
 	{
 		StateChange(PlayerState::Action);
 		return;
@@ -69,12 +69,82 @@ void Player::IdleUpdate()
 	{
 		WeaponState_ = WeaponState::AirStrike;
 	}
+
+
+	switch (WeaponState_)
+	{
+		// 각도가 필요한 무기에 대해서만 각도 조절
+	case WeaponState::Baz:
+		if (true == GameEngineInput::GetInst()->IsPress(KEY_ANGLE_DOWN))
+		{
+			ShotAngle_.y += 2.0f * GameEngineTime::GetDeltaTime();
+
+			if (ShotAngle_.y >= ShotAngleMin_.y)
+			{
+				ShotAngle_.y = ShotAngleMin_.y;
+			}
+
+			break;
+		}
+		if (true == GameEngineInput::GetInst()->IsPress(KEY_ANGLE_UP))
+		{
+			ShotAngle_.y -= 2.0f * GameEngineTime::GetDeltaTime();
+
+			if (ShotAngle_.y <= ShotAngleMax_.y)
+			{
+				ShotAngle_.y = ShotAngleMax_.y;
+			}
+			break;
+		}
+
+		if (true == IsActionKeyPress())
+		{
+			ShotPower_ += 10.0f;
+
+			if (ShotPower_ >= WEAPON_MAX_SHOT_POWER)
+			{
+				ShotPower_ = WEAPON_MAX_SHOT_POWER;
+
+				// 최대값을 넘어가면 자동으로 발사되도록
+				StateChange(PlayerState::Action);
+			}
+		}
+
+		break;
+	case WeaponState::Homing:
+		break;
+	case WeaponState::Mortar:
+		break;
+	case WeaponState::Grenade:
+		break;
+	case WeaponState::Axe:
+		break;
+	case WeaponState::Uzi:
+		break;
+	case WeaponState::FirePunch:
+		break;
+	case WeaponState::Sheep:
+		break;
+	case WeaponState::AirStrike:
+		break;
+	case WeaponState::BlowTorch:
+		break;
+	case WeaponState::Drill:
+		break;
+	case WeaponState::Grider:
+		break;
+	case WeaponState::None:
+		break;
+	default:
+		break;
+	}
+
 }
 
 void Player::MoveUpdate()
 {
 	// 액션은 이동보다 우선순위가 높음.
-	if (true == IsActionKeyDown())
+	if (true == IsActionKeyUp())
 	{
 		StateChange(PlayerState::Action);
 		return;
@@ -406,9 +476,14 @@ void Player::ActionStart()
 		Weapon_ = GetLevel()->CreateActor<Baz>();
 		break;
 	}
+	
+	// 발사각 정규화
+	ShotAngle_.Normal2D();
 
-	Weapon_->SetPosition(this->GetPosition());
+  	Weapon_->SetPosition(this->GetPosition());
 	Weapon_->SetShotDir(MoveDir_);
+	Weapon_->SetShotAngle(ShotAngle_);
+	Weapon_->SetShotPower(ShotPower_);
 }
 
 void Player::JumpStart()

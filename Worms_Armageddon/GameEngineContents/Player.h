@@ -81,6 +81,14 @@ private:
 	// 플레이어 Hp
 	int PlayerHp_;
 
+	// 무기 발사각도
+	float4 ShotAngle_;
+	float4 ShotAngleMax_;
+	float4 ShotAngleMin_;
+
+	// 무기 발사 힘
+	float ShotPower_;
+
 	// 플레이어 사망 플래그
 	bool IsDeath_;
 

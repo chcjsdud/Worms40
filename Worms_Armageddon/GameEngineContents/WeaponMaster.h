@@ -41,6 +41,16 @@ public:
 		return GetPosition();
 	}
 
+	inline void SetShotAngle(float4 _ShotAngle)
+	{
+		ShotAngle_ = _ShotAngle;
+	}
+
+	inline void SetShotPower(float _ShotPower)
+	{
+		ShotPower_ = _ShotPower;
+	}
+
 private: 
 	// 지정한 목표 좌표
 	float4 TargetPos_;
@@ -75,6 +85,10 @@ protected:
 	PixelCollision* PixelCol_;
 	// 투사체의 방향
 	float4 BulletDir_;
+	// 무기 발사각도
+	float4 ShotAngle_;
+	// 무기 발사 힘
+	float ShotPower_;
 
 	// 카메라가 봐야할 무기의 위치
 	// 기본적으로는 GetPosition(), 폭격기등의 투사체가 많을경우에만 특수하게 설정

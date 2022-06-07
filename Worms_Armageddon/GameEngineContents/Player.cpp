@@ -14,6 +14,10 @@ Player::Player()
 	, IsDeath_(false)
 	, JumpDelayTime_(0.5f)
 	, IsTurnEnd_(false)
+	, ShotAngle_(WEAPON_DEFAULT_SHOT_ANGLE)
+	, ShotAngleMin_(WEAPON_MIN_SHOT_ANGLE)
+	, ShotAngleMax_(WEAPON_MAX_SHOT_ANGLE)
+	, ShotPower_(WEAPON_DEFAULT_SHOT_POWER)
 	, KeyCount_(0)
 	, KeyTimer_(0.5f)
 {
@@ -43,7 +47,7 @@ void Player::Update()
 	if (this->GetPlayerState() == PlayerState::Idle
 		|| this->GetPlayerState() == PlayerState::Move)
 	{
-		MoveFall();
+		//MoveFall();
 	}
 
 	// 컨트롤되고 있지 않은 캐릭터는 데미지를 받더라도 턴이 끝나지 않음

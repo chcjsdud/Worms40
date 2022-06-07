@@ -45,6 +45,11 @@ private:
 	WindGauge* WindGaugeActor_;
 	UIMaster* Inventory_;
 
+	// Lerp처리시 시작할 카메라 위치
+	float4 LerpStartCameraPos_;
+	// 가장 최근의 무기의 위치
+	float4 CurrentWeaponPos_;
+
 	float4 WindDir_;
 	float WindSpeed_;
 
