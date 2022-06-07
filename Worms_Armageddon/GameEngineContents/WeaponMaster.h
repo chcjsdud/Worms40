@@ -95,6 +95,8 @@ protected:
 
 	// 투사체 충돌 시 발생 이벤트
 	void BulletColEvent();
+	// 폭발 (맵을 파고 폭발 이펙트생기고 투사체 제거)
+	void Explosion();
 
 public:
 	inline void SetShotDir(float4 _WeaponDir)

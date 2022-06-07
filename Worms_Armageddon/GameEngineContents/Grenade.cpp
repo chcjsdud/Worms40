@@ -35,6 +35,11 @@ bool Grenade::WeaponUpdate()
 		return false;
 	}
 
+	if (5.0f < GetAccTime()) // 5초 후 폭발
+	{
+		Explosion();
+	}
+
 	ThrowStart(100); // 투사체를 던지고
 	BulletMove(100, false); // 그게 날아가서
 	BulletColEvent(); // 충돌하면 이벤트가 발생한다.
