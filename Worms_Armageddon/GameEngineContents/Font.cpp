@@ -18,7 +18,7 @@ void Font::Update()
 {
 }
 
-void Font::GameContentCreateFont(std::string _Text, float4 _Pos)
+void Font::GameContentCreateFont(std::string _Text, float4 _Pivot)
 {
 	FontRenderer.reserve(_Text.size());
 	const int FontSize = _Text.size();
@@ -260,7 +260,7 @@ void Font::GameContentCreateFont(std::string _Text, float4 _Pos)
 			break;
 		}
 
-		FontRenderer.at(Count_)->SetPivot({ MarginX + _Pos.x , 0 + _Pos.y});
+		FontRenderer.at(Count_)->SetPivot({ MarginX + _Pivot.x , 0 + _Pivot.y});
 		MarginX += 10.f;
 
 	}
@@ -269,7 +269,7 @@ void Font::GameContentCreateFont(std::string _Text, float4 _Pos)
 
 }
 
-void Font::GameContentChangeFont(std::string _Text, float4 _Pos)
+void Font::GameContentChangeFont(std::string _Text, float4 _Pivot)
 {
 	std::vector<GameEngineRenderer*>::iterator Start = FontRenderer.begin();
 
@@ -524,12 +524,208 @@ void Font::GameContentChangeFont(std::string _Text, float4 _Pos)
 			break;
 		}
 
-		FontRenderer.at(Count_)->SetPivot({ MarginX + _Pos.x , 0 + _Pos.y });
+		FontRenderer.at(Count_)->SetPivot({ MarginX + _Pivot.x , 0 + _Pivot.y });
 		MarginX += 10.f;
 
 	}
 
 
+
+}
+
+void Font::GameContentCreateNumberFont(int _Num, float4 _Pivot, FONT_COLOR _FontColor)
+{
+	std::stringstream ssInt;
+	ssInt << _Num;
+
+	FontRenderer.reserve(ssInt.str().size());
+	const int FontSize = ssInt.str().size();
+
+	for (int i = 0; i < FontSize; ++i)
+	{
+		FontRenderer.push_back(CreateRenderer("HPnumber.bmp"));
+		FontRenderer.at(i)->CameraEffectOff();
+	}
+
+	int ColorIndex = 0;
+
+	switch (_FontColor)
+	{
+	case FONT_COLOR::White:
+		ColorIndex = 0;
+		break;
+	case FONT_COLOR::Gray:
+		ColorIndex = 10;
+		break;
+	case FONT_COLOR::Orange:
+		ColorIndex = 20;
+		break;
+	case FONT_COLOR::Blue:
+		ColorIndex = 30;
+		break;
+	case FONT_COLOR::Green:
+		ColorIndex = 40;
+		break;
+	case FONT_COLOR::Yellow:
+		ColorIndex = 50;
+		break;
+	case FONT_COLOR::SkyBlue:
+		ColorIndex = 60;
+		break;
+	case FONT_COLOR::Pink:
+		ColorIndex = 70;
+		break;
+	default:
+		break;
+	}
+
+
+	float MarginX = 0;
+	for (int Count_ = 0; Count_ < FontSize; ++Count_)
+	{
+		switch (ssInt.str().c_str()[Count_])
+		{
+
+		case '0':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::Zero) + ColorIndex);
+			break;
+		case '1':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::One) + ColorIndex);
+			break;
+		case '2':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::Two) + ColorIndex);
+			break;
+		case '3':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::Three) + ColorIndex);
+			break;
+		case '4':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::Four) + ColorIndex);
+			break;
+		case '5':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::Five) + ColorIndex);
+			break;
+		case '6':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::Six) + ColorIndex);
+			break;
+		case '7':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::Seven) + ColorIndex);
+			break;
+		case '8':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::Eight) + ColorIndex);
+			break;
+		case '9':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::Nine) + ColorIndex);
+			break;
+		}
+
+		FontRenderer.at(Count_)->SetPivot({ MarginX + _Pivot.x , 0 + _Pivot.y });
+		MarginX += 10.f;
+
+	}
+}
+
+void Font::GameContentChangeNumberFont(int _Num, float4 _Pivot, FONT_COLOR _FontColor)
+{
+
+	std::vector<GameEngineRenderer*>::iterator Start = FontRenderer.begin();
+
+	for (Start; Start != FontRenderer.end(); ++Start)
+	{
+		if ((*Start) != nullptr)
+		{
+			(*Start)->Death();
+		}
+	}
+
+	FontRenderer.clear();
+
+	std::stringstream ssInt;
+	ssInt << _Num;
+
+	FontRenderer.reserve(ssInt.str().size());
+	const int FontSize = ssInt.str().size();
+
+	for (int i = 0; i < FontSize; ++i)
+	{
+		FontRenderer.push_back(CreateRenderer("HPnumber.bmp"));
+		FontRenderer.at(i)->CameraEffectOff();
+	}
+
+	int ColorIndex = 0;
+
+	switch (_FontColor)
+	{
+	case FONT_COLOR::White:
+		ColorIndex = 0;
+		break;
+	case FONT_COLOR::Gray:
+		ColorIndex = 10;
+		break;
+	case FONT_COLOR::Orange:
+		ColorIndex = 20;
+		break;
+	case FONT_COLOR::Blue:
+		ColorIndex = 30;
+		break;
+	case FONT_COLOR::Green:
+		ColorIndex = 40;
+		break;
+	case FONT_COLOR::Yellow:
+		ColorIndex = 50;
+		break;
+	case FONT_COLOR::SkyBlue:
+		ColorIndex = 60;
+		break;
+	case FONT_COLOR::Pink:
+		ColorIndex = 70;
+		break;
+	default:
+		break;
+	}
+
+
+	float MarginX = 0;
+	for (int Count_ = 0; Count_ < FontSize; ++Count_)
+	{
+		switch (ssInt.str().c_str()[Count_])
+		{
+
+		case '0':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::Zero) + ColorIndex);
+			break;
+		case '1':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::One) + ColorIndex);
+			break;
+		case '2':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::Two) + ColorIndex);
+			break;
+		case '3':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::Three) + ColorIndex);
+			break;
+		case '4':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::Four) + ColorIndex);
+			break;
+		case '5':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::Five) + ColorIndex);
+			break;
+		case '6':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::Six) + ColorIndex);
+			break;
+		case '7':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::Seven) + ColorIndex);
+			break;
+		case '8':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::Eight) + ColorIndex);
+			break;
+		case '9':
+			FontRenderer.at(Count_)->SetIndex(static_cast<int>(NUMBER_FONT::Nine) + ColorIndex);
+			break;
+		}
+
+		FontRenderer.at(Count_)->SetPivot({ MarginX + _Pivot.x , 0 + _Pivot.y });
+		MarginX += 10.f;
+
+	}
 
 }
 

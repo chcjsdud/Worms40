@@ -214,6 +214,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="HpBar.h" />
     <ClInclude Include="Inventory.h">
       <SubType>
       </SubType>
@@ -368,6 +369,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="HpBar.cpp" />
     <ClCompile Include="Inventory.cpp">
       <SubType>
       </SubType>

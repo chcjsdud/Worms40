@@ -3,6 +3,19 @@
 #include <GameEngine/GameEngineRenderer.h>
 #include <vector>
 
+enum class FONT_COLOR
+{
+	White,
+	Gray,
+	Orange,
+	Blue,
+	Green,
+	Yellow,
+	SkyBlue,
+	Pink
+};
+
+
 // 설명 :
 class Font : public GameEngineActor
 {
@@ -26,8 +39,13 @@ private:
 
 
 public:
-	void GameContentCreateFont(std::string _Text, float4 _Pos);
-	void GameContentChangeFont(std::string _Text, float4 _Pos);
+	void GameContentCreateFont(std::string _Text, float4 _Pivot);
+	void GameContentChangeFont(std::string _Text, float4 _Pivot);
+
+	void GameContentCreateNumberFont(int _Num, float4 _Pivot, FONT_COLOR _FontColor);
+	void GameContentChangeNumberFont(int _Num, float4 _Pivot, FONT_COLOR _FontColor);
+
+
 };
 
 enum class FONT_INDEX
@@ -126,5 +144,24 @@ enum class FONT_INDEX
 	Question = 92,					//
 	Empty = 160,
 
+
+};
+
+
+
+
+enum class NUMBER_FONT
+{
+	//화이트
+	Zero,
+	One,
+	Two,
+	Three,
+	Four,
+	Five,
+	Six,
+	Seven,
+	Eight,
+	Nine,
 
 };

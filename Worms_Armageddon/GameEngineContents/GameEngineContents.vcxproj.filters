@@ -146,6 +146,9 @@
     <ClInclude Include="AirBomb.h">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
     </ClInclude>
+    <ClInclude Include="HpBar.h">
+      <Filter>02.PlayLevel\Player</Filter>
+    </ClInclude>
     <ClInclude Include="SuperSheep.h">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
     </ClInclude>
@@ -295,6 +298,9 @@
     </ClCompile>
     <ClCompile Include="AirBomb.cpp">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="HpBar.cpp">
+      <Filter>02.PlayLevel\Player</Filter>
     </ClCompile>
     <ClCompile Include="SuperSheep.cpp">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
