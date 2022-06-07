@@ -103,8 +103,8 @@ void Worms::GameInit()
 		GameEngineImage* Font = GameEngineImageManager::GetInst()->Find("FontEdit.bmp");
 		Font->Cut({ 16, 16 });
 
-		GameEngineImage* HPnumber = GameEngineImageManager::GetInst()->Find("HPnumber.bmp");
-		HPnumber->Cut({ 12, 12 });
+		//GameEngineImage* HPnumber = GameEngineImageManager::GetInst()->Find("HPnumber.bmp");
+		//HPnumber->Cut({ 12, 12 });
 
 	}
 

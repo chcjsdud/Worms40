@@ -299,9 +299,6 @@
     <ClCompile Include="AirBomb.cpp">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
     </ClCompile>
-    <ClCompile Include="HpBar.cpp">
-      <Filter>02.PlayLevel\Player</Filter>
-    </ClCompile>
     <ClCompile Include="SuperSheep.cpp">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
     </ClCompile>

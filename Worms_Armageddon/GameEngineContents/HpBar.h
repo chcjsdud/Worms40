@@ -2,7 +2,6 @@
 #include <Windows.h>
 #include <GameEngine/GameEngineActor.h>
 
-// 설명 :Test용 마우스기능 
 class HpBar : public GameEngineActor
 {
 public:
