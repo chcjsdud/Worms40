@@ -226,7 +226,7 @@ void Player::JumpUpdate()
 
 
 
-			if (1500 <= FallSpeed_)
+			if (1300 <= FallSpeed_)
 			{
 				StateChange(PlayerState::Falled);
 				return;
@@ -294,7 +294,7 @@ void Player::BackFlipUpdate()
 			} while (RGB(0, 0, 255) == Color);
 
 			//낙하데미지 FallSpeed가일정속도 이상이면 낙뎀추가
-			if (2000 <= FallSpeed_)
+			if (1800 <= FallSpeed_)
 			{
 				StateChange(PlayerState::Falled);
 				return;
