@@ -377,6 +377,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="HpBar.cpp" />
     <ClCompile Include="Inventory.cpp">
       <SubType>
       </SubType>

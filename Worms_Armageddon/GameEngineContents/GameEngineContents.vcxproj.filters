@@ -308,6 +308,9 @@
     <ClCompile Include="SuperSheep.cpp">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
     </ClCompile>
+    <ClCompile Include="HpBar.cpp">
+      <Filter>02.PlayLevel\Player</Filter>
+    </ClCompile>
     <ClCompile Include="TeamHpBar.cpp">
       <Filter>02.PlayLevel\UI</Filter>
     </ClCompile>
