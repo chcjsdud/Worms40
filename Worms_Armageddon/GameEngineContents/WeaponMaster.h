@@ -94,6 +94,8 @@ protected:
 	// 기본적으로는 GetPosition(), 폭격기등의 투사체가 많을경우에만 특수하게 설정
 	static float4 WeaponCameraPos_;
 
+	static bool WeaponStaticReturn_;
+
 	void Start() override;
 	void Update() override;
 
@@ -108,7 +110,7 @@ protected:
 	bool Bombing(WeaponState _Bomb);
 
 	// 투사체 충돌 시 발생 이벤트
-	void BulletColEvent();
+	bool BulletColEvent();
 	// 폭발 (맵을 파고 폭발 이펙트생기고 투사체 제거)
 	void Explosion();
 

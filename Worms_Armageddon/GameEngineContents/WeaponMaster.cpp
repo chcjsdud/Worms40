@@ -11,6 +11,7 @@
 
 GameMapMaster* WeaponMaster::GameMap_ = nullptr;
 float4 WeaponMaster::WeaponCameraPos_ = float4::ZERO;
+bool WeaponMaster::WeaponStaticReturn_ = true;
 
 WeaponMaster::WeaponMaster() 
 	: TargetPos_(float4::ZERO)
@@ -245,7 +246,7 @@ bool WeaponMaster::Bombing(WeaponState _Bomb)
 	return IsBomb_;
 }
 
-void WeaponMaster::BulletColEvent()
+bool WeaponMaster::BulletColEvent()
 {
 	int Color = GetGameMap()->GetColMap()->GetImagePixel({ GetPosition() });
 
@@ -271,9 +272,10 @@ void WeaponMaster::BulletColEvent()
 		if (RGB(0, 0, 255) == Color)
 		{
 			Explosion();
+			return false;
 		}
 	}
-
+	return true;
 }
 
 void WeaponMaster::Explosion()

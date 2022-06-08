@@ -39,9 +39,10 @@ bool AirStrike::WeaponUpdate()
 	IsBomb_ = Bombing(WeaponState::AirStrike);
 	
 
-	if (false == IsUpdate()) // 웜즈가 체력이 깎인 후 false 리턴되도록 변경 예정
+	if (false == WeaponStaticReturn_) // 웜즈가 체력이 깎인 후 false 리턴되도록 변경 예정
 	{
 		WeaponCameraPos_ = float4::ZERO;
+		WeaponStaticReturn_ = true;
 		return false;
 	}
 	else
@@ -58,7 +59,7 @@ float4 AirStrike::GetWeaponPosition()
 	}
 	if (IsBomb_ == true)
 	{
-		return WeaponCameraPos_;
+		return { WeaponCameraPos_.x,WeaponCameraPos_.y + 500 };
 	}
 
 	return GetPosition();
