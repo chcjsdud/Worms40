@@ -1,6 +1,7 @@
 #pragma once
 #include "Enums.h"
 #include "WeaponMaster.h"
+#include "HpBar.h"
 #include <GameEngineBase/GameEngineCustomStringSet.h>
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineSound.h>
@@ -33,6 +34,7 @@ public:
 	inline void SetPlayerHp(int _WormzHp)
 	{
 		PlayerHp_ = _WormzHp;
+
 	}
 
 	inline int GetPlayerHp()
@@ -58,6 +60,12 @@ public:
 	float4 GetWeaponPos() const
 	{
 		return WeaponPos_;
+	}
+
+	inline void SetMyTeamColor(TeamColor _Color)
+	{
+		MyTeamColor_ = _Color;
+		SetFontColor(static_cast<FONT_COLOR>(_Color));
 	}
 
 
@@ -88,6 +96,8 @@ private:
 	PixelCollision* PixelCol_;
 	// 플레이어 Hp
 	int PlayerHp_;
+	// 나의 팀 색깔 정보
+	TeamColor MyTeamColor_;
 
 	// 무기 발사각도
 	float4 ShotAngle_;
@@ -125,6 +135,9 @@ private:
 
 	// 생성할 무기
 	WeaponMaster* Weapon_;
+
+	// HpBar
+	HpBar* Hpbar_;
 
 	//애니메이션용 방향이름
 	std::string DirName_;
@@ -192,6 +205,13 @@ private:
 	void FalledUpdate();
 
 	void PlayerAnimationChange(std::string _Anim);
+
+	//HPBar
+	void SetFontColor(FONT_COLOR _Color);
+
+public:
+	void ChangeHpBarFont(int _Hp);			//폰트 체인지
+	void CreateHpBar(int _Hp, float4 _Pivot,  FONT_COLOR _Color);
 	
 };
 

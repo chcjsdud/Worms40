@@ -5,14 +5,14 @@
 
 enum class FONT_COLOR
 {
-	White,
-	Gray,
 	Orange,
 	Blue,
 	Green,
 	Yellow,
+	Pink,
 	SkyBlue,
-	Pink
+	White,
+	Gray,
 };
 
 

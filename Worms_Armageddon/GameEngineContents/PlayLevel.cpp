@@ -116,6 +116,7 @@ void PlayLevel::Update()
 	{
 		std::list<Player*>& Teams = (*AllPlayerIter_);
 		Player* CurrentPlayer = Teams.front();
+		CurrentPlayer->SetPlayerHp(50);
 
 		// 카메라 위치 이동
 		// 무기를 발사하지 않았을경우 플레이어를 쫒아다님
@@ -303,6 +304,7 @@ void PlayLevel::Update()
 
 void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
+	static int teamColor = static_cast<int>(TeamColor::Red);
 	PlayerColorTeamSetting_ = GameOptions::PlayingOptions.GetPlayerTeamSetting();
 
 	// 팀 = 색깔 -> 색이 같으면 같은 팀
@@ -346,13 +348,19 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 			//// TODO::로비레벨에서 넘어오도록 수정
 			//// Player_->SetPlayerHp(GameOptions_->PlayingOptions.GetWormzHp());
 			Player_[TeamSetNum][PlayerNum]->SetPlayerHp(100);
+			Player_[TeamSetNum][PlayerNum]->SetMyTeamColor(static_cast<TeamColor>(teamColor));
 			Player_[TeamSetNum][PlayerNum]->SetPosition(GameMapInfo_->GetResponPosition(tmpRandom));
 
+			//플레이어 색 지정
+			Player_[TeamSetNum][PlayerNum]->CreateHpBar(100, {0,0}, (static_cast<FONT_COLOR>(teamColor)));
+			
 			// 팀에 플레이어를 추가
 			Playerlist.push_back(Player_[TeamSetNum][PlayerNum]);
 
+
 		}
 
+		teamColor++;
 		// 팀을 전체 플레이어 리스트에 추가
 		AllPlayer_.push_back(Playerlist);
 

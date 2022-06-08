@@ -1,4 +1,5 @@
 #include "Font.h"
+#include "Enums.h"
 #include <string.h>
 #include <sstream>
 
@@ -25,7 +26,7 @@ void Font::GameContentCreateFont(std::string _Text, float4 _Pivot)
 
 	for (int i = 0; i < FontSize; ++i)
 	{
-		FontRenderer.push_back(CreateRenderer("FontEdit.bmp"));
+		FontRenderer.push_back(CreateRenderer("FontEdit.bmp", static_cast<int>(RenderOrder::Font)));
 		FontRenderer.at(i)->CameraEffectOff();
 	}
 
@@ -289,7 +290,7 @@ void Font::GameContentChangeFont(std::string _Text, float4 _Pivot)
 
 	for (int i = 0; i < FontSize; ++i)
 	{
-		FontRenderer.push_back(CreateRenderer("FontEdit.bmp"));
+		FontRenderer.push_back(CreateRenderer("FontEdit.bmp", static_cast<int>(RenderOrder::Font)));
 		FontRenderer.at(i)->CameraEffectOff();
 	}
 
@@ -528,9 +529,6 @@ void Font::GameContentChangeFont(std::string _Text, float4 _Pivot)
 		MarginX += 10.f;
 
 	}
-
-
-
 }
 
 void Font::GameContentCreateNumberFont(int _Num, float4 _Pivot, FONT_COLOR _FontColor)
@@ -543,7 +541,7 @@ void Font::GameContentCreateNumberFont(int _Num, float4 _Pivot, FONT_COLOR _Font
 
 	for (int i = 0; i < FontSize; ++i)
 	{
-		FontRenderer.push_back(CreateRenderer("HPnumber.bmp"));
+		FontRenderer.push_back(CreateRenderer("HPnumber.bmp", static_cast<int>(RenderOrder::Font)));
 		FontRenderer.at(i)->CameraEffectOff();
 	}
 
@@ -581,6 +579,16 @@ void Font::GameContentCreateNumberFont(int _Num, float4 _Pivot, FONT_COLOR _Font
 
 
 	float MarginX = 0;
+	if (FontSize == 3)
+	{
+		MarginX = -10.f;
+	}
+
+	if (FontSize == 2)
+	{
+		MarginX = -5.f;
+	}
+
 	for (int Count_ = 0; Count_ < FontSize; ++Count_)
 	{
 		switch (ssInt.str().c_str()[Count_])
@@ -619,6 +627,8 @@ void Font::GameContentCreateNumberFont(int _Num, float4 _Pivot, FONT_COLOR _Font
 		}
 
 		FontRenderer.at(Count_)->SetPivot({ MarginX + _Pivot.x , 0 + _Pivot.y });
+		//MiddleSortX -= 20.f;
+
 		MarginX += 10.f;
 
 	}
@@ -626,7 +636,6 @@ void Font::GameContentCreateNumberFont(int _Num, float4 _Pivot, FONT_COLOR _Font
 
 void Font::GameContentChangeNumberFont(int _Num, float4 _Pivot, FONT_COLOR _FontColor)
 {
-
 	std::vector<GameEngineRenderer*>::iterator Start = FontRenderer.begin();
 
 	for (Start; Start != FontRenderer.end(); ++Start)
@@ -647,7 +656,7 @@ void Font::GameContentChangeNumberFont(int _Num, float4 _Pivot, FONT_COLOR _Font
 
 	for (int i = 0; i < FontSize; ++i)
 	{
-		FontRenderer.push_back(CreateRenderer("HPnumber.bmp"));
+		FontRenderer.push_back(CreateRenderer("HPnumber.bmp", static_cast<int>(RenderOrder::Font)));
 		FontRenderer.at(i)->CameraEffectOff();
 	}
 
@@ -685,6 +694,16 @@ void Font::GameContentChangeNumberFont(int _Num, float4 _Pivot, FONT_COLOR _Font
 
 
 	float MarginX = 0;
+	if (FontSize == 3)
+	{
+		MarginX = -10.f;
+	}
+
+	if (FontSize == 2)
+	{
+		MarginX = -5.f;
+	}
+
 	for (int Count_ = 0; Count_ < FontSize; ++Count_)
 	{
 		switch (ssInt.str().c_str()[Count_])
@@ -723,9 +742,10 @@ void Font::GameContentChangeNumberFont(int _Num, float4 _Pivot, FONT_COLOR _Font
 		}
 
 		FontRenderer.at(Count_)->SetPivot({ MarginX + _Pivot.x , 0 + _Pivot.y });
+		//MiddleSortX -= 10.f;
+
 		MarginX += 10.f;
 
 	}
 
 }
-

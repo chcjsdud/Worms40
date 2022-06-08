@@ -38,6 +38,7 @@ enum class RenderOrder
 	Front_Fx,
 	UI,
 	SelectBox,
+	HpBar,
 	Font,
 	Cursor,
 };

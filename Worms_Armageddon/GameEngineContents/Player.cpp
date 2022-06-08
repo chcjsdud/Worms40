@@ -25,6 +25,7 @@ Player::Player()
 	, KeyTimer_(0.5f)
 	, IsJump_(false)
 	, IsSwitch(false)
+	, Hpbar_(nullptr)
 {
 }
 
@@ -55,6 +56,8 @@ void Player::Start()
 
 	// 테스트 임시 데이터
 	ColMapImage_ = GameEngineImageManager::GetInst()->Find(IMG_MAPBOOKS_GROUND);
+
+
 }
 
 void Player::Update()
@@ -65,6 +68,8 @@ void Player::Update()
 	{
 		MoveFall();
 	}
+
+	Hpbar_->HpBarSetPosition(this->GetPosition());
 
 	// 컨트롤되고 있지 않은 캐릭터는 데미지를 받더라도 턴이 끝나지 않음
 }
@@ -459,4 +464,26 @@ void Player::PlayerAnimationChange(std::string _Anim)
 	}
 
 	PlayerRenderer_->ChangeAnimation(_Anim + DirName_);
+}
+
+void Player::ChangeHpBarFont(int _Hp)
+{
+	Hpbar_->ChangeHpBarFont(_Hp, {0,0});
+}
+
+void Player::SetFontColor(FONT_COLOR _Color)
+{
+	if (Hpbar_ != nullptr)
+	{
+		Hpbar_->SetFontColor(_Color);
+	}
+}
+
+void Player::CreateHpBar(int _Hp, float4 _Pivot, FONT_COLOR _Color)
+{
+	// HpBar
+	Hpbar_ = GetLevel()->CreateActor<HpBar>();
+	Hpbar_->SetFontColor(_Color);
+	Hpbar_->ChangeHpBarFont(_Hp, _Pivot);
+
 }
