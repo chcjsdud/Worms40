@@ -53,14 +53,48 @@ void MapBooks::Start()
 
 
 	// 플레이어 포지션 설정
-	for (int i = 0; i < 8; i++)
-	{
-		float x = static_cast<float>(430 + i * 50);
-		float y = 920.0f;
 
-		ResponPosition_[i] = {x, y};
-	}
-	
+	ResponPosition_[0] = { 244, 1164 };
+	ResponPosition_[1] = { 250, 1050 };
+	ResponPosition_[2] = { 300, 1025 };
+	ResponPosition_[3] = { 330, 1000 };
+	ResponPosition_[4] = { 390, 960 };
+	ResponPosition_[5] = { 430, 950 };
+	ResponPosition_[6] = { 470, 930 };
+	ResponPosition_[7] = { 520, 910 };
+	ResponPosition_[8] = { 585, 930 };
+	ResponPosition_[9] = { 560, 1050 };
+	ResponPosition_[10] = { 620, 1060 };
+	ResponPosition_[11] = { 670, 960 };
+	ResponPosition_[12] = { 720, 930 };
+	ResponPosition_[13] = { 785, 903 };
+	ResponPosition_[14] = { 857, 970 };
+	ResponPosition_[15] = { 940, 940 };
+	ResponPosition_[16] = { 1000, 990 };
+	ResponPosition_[17] = { 1030, 1130 };
+	ResponPosition_[18] = { 1070, 1060 };
+	ResponPosition_[19] = { 1160, 910 };
+	ResponPosition_[20] = { 1200, 900 };
+	ResponPosition_[21] = { 1230, 900 };
+	ResponPosition_[22] = { 1260, 900 };
+	ResponPosition_[23] = { 1300, 890 };
+	ResponPosition_[24] = { 1330, 885 };
+	ResponPosition_[25] = { 1380, 885 };
+	ResponPosition_[26] = { 1145, 960 };
+	ResponPosition_[27] = { 1490, 1030 };
+	ResponPosition_[28] = { 1530, 980 };
+	ResponPosition_[29] = { 1580, 980 };
+	ResponPosition_[30] = { 1640, 980 };
+	ResponPosition_[31] = { 1670, 980 };
+	ResponPosition_[32] = { 1700, 970 };
+	ResponPosition_[33] = { 1730, 1040 };
+	ResponPosition_[34] = { 655, 1240 };
+	ResponPosition_[35] = { 700, 950 };
+	ResponPosition_[36] = { 1050, 1060 };
+	ResponPosition_[37] = { 1010, 1100 };
+	ResponPosition_[38] = { 360, 970 };
+	ResponPosition_[39] = { 1280, 900 };
+
 
 
 	GameEngineInput::GetInst()->CreateKey("ShowColMap", '0');
