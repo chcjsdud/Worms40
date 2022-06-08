@@ -130,7 +130,8 @@ float4 PixelCollision::Bounce(float4 _ActorPos, float4 _ActorScale, GameEngineIm
 
 }
 
-float4 PixelCollision::PlayerBounce(float4 _ActorPos, float4 _ActorScale, GameEngineImage* _ColMapImage, float4 _MoveDir)
+float4 PixelCollision::PlayerBounce(float4 _ActorPos, float4 _ActorScale,
+	GameEngineImage* _ColMapImage, float4 _MoveDir,float _JumpSpeed)
 {
 	float4 TopLeft = { -_ActorScale.x / 2 , -_ActorScale.y / 2 };
 	float4 Top = { 0.0f , -_ActorScale.y / 2 };
@@ -177,7 +178,6 @@ float4 PixelCollision::PlayerBounce(float4 _ActorPos, float4 _ActorScale, GameEn
 	//위쪽이 충돌시
 	if (RGB(0, 0, 255) == TopColor && ColorFlag_[0] == false)
 	{
-		_MoveDir *= float4{ 1,-1 };
 		ColorFlag_[0] = true;
 	}
 	else
@@ -186,11 +186,80 @@ float4 PixelCollision::PlayerBounce(float4 _ActorPos, float4 _ActorScale, GameEn
 	}
 
 
+	if (ColorFlag_[0] == true)
+	{
+		if (RGB(0, 0, 255) == TopLeftColor)
+		{
+			ColorFlag_[7] = true;
+		}
+		else
+		{
+			ColorFlag_[7] = false;
+		}
+
+		if (RGB(0, 0, 255) == TopRightColor)
+		{
+			ColorFlag_[1] = true;
+		}
+		else
+		{
+			ColorFlag_[1] = false;
+		}
+	}
+
+
+	//위쪽이 충돌시
+	if (ColorFlag_[0] == true && ColorFlag_[7] == true && ColorFlag_[1] == true)
+	{
+		float4 Dir = _ActorPos - (_ActorPos + Top);
+		Dir.Normal2D();
+		_MoveDir = float4{ Dir.x * (_JumpSpeed - 100.0f), Dir.y* _JumpSpeed};
+		return _MoveDir;
+	}
+	else if (ColorFlag_[0] == true && ColorFlag_[7] == true && ColorFlag_[1] == false) //상단, 좌상단 충돌시
+	{
+		if (RGB(0, 0, 255) == LeftColor) //왼쪽도 충돌하면 대각선으로
+		{
+			float4 Dir = _ActorPos - (_ActorPos + float4{ (Top.x + Left.x) / 2,(Top.y + Left.y) / 2 });
+			Dir.Normal2D();
+			_MoveDir = float4{ Dir.x * (_JumpSpeed - 100.0f), Dir.y * _JumpSpeed };
+			return _MoveDir;
+		}
+		else
+		{  //왼쪽 대각 / <-이각도
+			float4 Dir = _ActorPos - (_ActorPos + float4{(Top.x + TopLeft.x) / 2,(Top.y + TopLeft.y) / 2});
+			Dir.Normal2D();
+			_MoveDir = float4{ Dir.x * (_JumpSpeed - 100.0f), Dir.y * _JumpSpeed };
+			return _MoveDir;
+		}
+	}
+	else if (ColorFlag_[0] == true && ColorFlag_[7] == false && ColorFlag_[1] == true) //오른쪽
+	{
+		if (RGB(0, 0, 255) == RightColor)
+		{
+			float4 Dir = _ActorPos - (_ActorPos + float4{ (Top.x + Right.x) / 2,(Top.y + Right.y) / 2 });
+			Dir.Normal2D();
+			_MoveDir = float4{ Dir.x * (_JumpSpeed - 100.0f), Dir.y * _JumpSpeed };
+			return _MoveDir;
+		}
+		else
+		{
+			float4 Dir = _ActorPos - (_ActorPos + float4{ (Top.x + TopRight.x) / 2,(Top.y + TopRight.y) / 2 });
+			Dir.Normal2D();
+			_MoveDir = float4{ Dir.x * (_JumpSpeed - 100.0f), Dir.y * _JumpSpeed };
+			return _MoveDir;
+		}
+	}
+
+
 	//오른쪽이 충돌시
 	if (RGB(0, 0, 255) == RightColor && ColorFlag_[2] == false)
 	{
-		_MoveDir *= float4{ -1,1 };
 		ColorFlag_[2] = true;
+		float4 Dir = { _ActorPos.x - Right.x , _MoveDir.y };
+		Dir.Normal2D();
+		_MoveDir = float4{ Dir.x * (_JumpSpeed - 100.0f), Dir.y * _JumpSpeed };
+		return _MoveDir;
 	}
 	else
 	{
@@ -201,25 +270,28 @@ float4 PixelCollision::PlayerBounce(float4 _ActorPos, float4 _ActorScale, GameEn
 	//왼쪽이 충돌시
 	if (RGB(0, 0, 255) == LeftColor && ColorFlag_[6] == false)
 	{
-		_MoveDir *= float4{ -1,1 };
 		ColorFlag_[6] = true;
+		float4 Dir =  {_ActorPos.x - Left.x , _MoveDir.y};
+		Dir.Normal2D();
+		_MoveDir = float4{ Dir.x * (_JumpSpeed - 100.0f), Dir.y * _JumpSpeed };
+		return _MoveDir;
 	}
 	else
 	{
 		ColorFlag_[6] = false;
 	}
 
-	//충돌한위치가 존재하면 bounceFlg == true
-	for (int i = 0; i < 8; i++)
-	{
-		if (ColorFlag_[i] == true)
-		{
-			BounceFlg_ = true;
-			break;
-		}
+	////충돌한위치가 존재하면 bounceFlg == true
+	//for (int i = 0; i < 8; i++)
+	//{
+	//	if (ColorFlag_[i] == true)
+	//	{
+	//		BounceFlg_ = true;
+	//		break;
+	//	}
 
-		BounceFlg_ = false;
-	}
+	//	BounceFlg_ = false;
+	//}
 
 	return _MoveDir;
 

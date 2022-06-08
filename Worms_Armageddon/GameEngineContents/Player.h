@@ -97,6 +97,8 @@ private:
 	// 플레이어 사망 플래그
 	bool IsDeath_;
 
+	bool IsJump_;
+
 	// 플레이어는 마지막으로 보고 있던 방향의 정보를 가지고 있어야 함.
 	float4 MoveDir_;
 	//점프중 좌우방향
@@ -155,8 +157,6 @@ private:
 	void MoveFall();
 	//오르막길 픽셀충돌체크
 	void CheckHillPixel();
-	// FSM
-	void CheckPixel(float4 MyPos_,float4 CheckPos_, GameEngineImage* ColMapImage_);
 public:
 	// 상태전환
 	void StateChange(PlayerState _State);

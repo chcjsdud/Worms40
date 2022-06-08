@@ -234,69 +234,89 @@ void Player::JumpUpdate()
 	JumpDelayTime_ -= GameEngineTime::GetDeltaTime();
 
 
-	if (0 >= JumpDelayTime_)
+	if (0 >= JumpDelayTime_ && IsJump_ == false)
+	{
+		IsJump_ = true;
+		//충돌하기 전까지는 원래진행하던 방향으로 좌,우 이동
+		if (CurDirName_ == PLAYER_DIR_RIGHT)
+		{
+			JumpMoveDir_ = float4::RIGHT * (JumpSpeed_ - 100.0f);
+		}
+		else
+		{
+			JumpMoveDir_ = float4::LEFT * (JumpSpeed_ - 100.0f);
+		}
+
+		JumpMoveDir_ += float4::UP * JumpSpeed_;
+	}
+
+	if(IsJump_==true)
 	{
 		StateName_ = ANIM_KEYWORD_PLAYER_JUMP;
 		PlayerAnimationChange(StateName_);
 
-		//점프 중 충돌체크하여 방향을 반대로
-		if (!PixelCol_->GetBounceFlg())
-		{
-
-			//충돌하기 전까지는 원래진행하던 방향으로 좌,우 이동
-			if (CurDirName_ == PLAYER_DIR_RIGHT)
-			{
-				JumpMoveDir_ = float4::RIGHT * GameEngineTime::GetDeltaTime() * 100.0f;
-			}
-			else
-			{
-				JumpMoveDir_ = float4::LEFT * GameEngineTime::GetDeltaTime() * 100.0f;
-			}
 
 
-			//충돌시 좌 ,우 변경
-			JumpMoveDir_ = PixelCol_->PlayerBounce(GetPosition(), { PLAYER_SIZE_X,PLAYER_SIZE_Y }, ColMapImage_, JumpMoveDir_);
-			//충돌시 상 ,하 변경
-			MoveDir_ = PixelCol_->PlayerBounce(GetPosition(), { PLAYER_SIZE_X,PLAYER_SIZE_Y }, ColMapImage_, MoveDir_);
-		}
+		//충돌시 좌 ,우 변경
+		JumpMoveDir_ = PixelCol_->PlayerBounce(GetPosition(), { PLAYER_SIZE_X,PLAYER_SIZE_Y }, ColMapImage_, JumpMoveDir_,JumpSpeed_);
+			
+		
+		SetMove(JumpMoveDir_ * GameEngineTime::GetDeltaTime());
 
-
-		SetMove(JumpMoveDir_);
-		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime());
-
-		MoveDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * FallSpeed_;
+		JumpMoveDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * FallSpeed_;
 		FallSpeed_ += 20.0f;
 
 
 
 		//웜즈 밑부분픽셀 체크용 변수 선언
+		float4 LeftPosRight = float4::LEFT;
+		float4 RightPosLeft = float4::RIGHT;
+		float4 LeftPos = { GetPosition().x - PLAYER_SIZE_X, GetPosition().y };
+		int LeftColor = ColMapImage_->GetImagePixel(LeftPos);
+		float4 RightPos = { GetPosition().x + PLAYER_SIZE_X, GetPosition().y };
+		int RightColor = ColMapImage_->GetImagePixel(RightPos);
+
 		float4 CheckLength = float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
 		float4 UpPos = float4::UP;
 		float4 DownPos = { GetPosition().x, GetPosition().y + PLAYER_SIZE_Y / 2 };
-		int Color = ColMapImage_->GetImagePixel(DownPos);
+		int DownColor = ColMapImage_->GetImagePixel(DownPos);
 
 
 
 		//웜즈의 밑부분이 파란색이면
-		if (RGB(0, 0, 255) == Color)
+		if (RGB(0, 0, 255) == DownColor)
 		{
 			MoveDir_ = float4::ZERO;
 			JumpMoveDir_ = float4::ZERO;
 
 			//체크용 
 			float a = FallSpeed_;
+			
+			///*임시로 주석
+			//do
+			//{
+			//	SetMove(LeftPosRight);
+			//	RightPos = { GetPosition().x + PLAYER_SIZE_X, GetPosition().y };
+			//	RightColor = ColMapImage_->GetImagePixel(RightPos);
+			//} while (RGB(0, 0, 255) == RightColor);
+			//
+			//do
+			//{
+			//	SetMove(RightPosLeft);
+			//	LeftPos = { GetPosition().x - PLAYER_SIZE_X, GetPosition().y };
+			//	LeftColor = ColMapImage_->GetImagePixel(LeftPos);
+			//} while (RGB(0, 0, 255) == LeftColor);*/
+
 
 			//파란색이 아닐떄까지 올려준다.
 			do
 			{
 				SetMove(UpPos);
 				DownPos = { GetPosition().x, GetPosition().y + PLAYER_SIZE_Y / 2 };
-				Color = ColMapImage_->GetImagePixel(DownPos);
-			} while (RGB(0, 0, 255) == Color);
+				DownColor = ColMapImage_->GetImagePixel(DownPos);
+			} while (RGB(0, 0, 255) == DownColor);
 
-
-
-			if (1300 <= FallSpeed_)
+			if (3000 <= FallSpeed_)
 			{
 				StateChange(PlayerState::Falled);
 				return;
@@ -492,12 +512,13 @@ void Player::JumpStart()
 {
 	JumpDelayTime_ = 0.5f;
 	JumpSpeed_ = 200.0f;
-	MoveDir_ = float4::UP * JumpSpeed_;
+	IsJump_ = false;
+	//MoveDir_ = float4::UP * JumpSpeed_;
 	StateName_ = ANIM_KEYWORD_PLAYER_JUMPRDY;
 	PlayerAnimationChange(StateName_);
 	PixelCol_->SetBounceFlgFalse();
 
-
+	JumpMoveDir_ = float4::ZERO;
 }
 
 //웜즈 백플립 State

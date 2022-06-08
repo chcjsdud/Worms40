@@ -20,6 +20,7 @@ Player::Player()
 	, ShotPower_(WEAPON_DEFAULT_SHOT_POWER)
 	, KeyCount_(0)
 	, KeyTimer_(0.5f)
+	, IsJump_(false)
 {
 }
 
@@ -284,7 +285,6 @@ void Player::MoveFall()
 	float4 CheckLength = float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
 
 	float4 NextPos = { GetPosition().x + CheckLength.x , GetPosition().y + CheckLength.y + PLAYER_SIZE_Y / 2  };
-	//PixelCol_->CheckPixel(CheckType::Player,GetPosition(),GetScale() , ColMapImage_);
 	int Color = ColMapImage_->GetImagePixel(NextPos);
 
 	if (RGB(0, 0, 255) != Color)
@@ -308,6 +308,10 @@ void Player::MoveFall()
 			PlayerHp_ -= static_cast<int>(FallLength_ / 80.0f);
 		}
 		FallSpeed_ = PLAYER_SPEED_FALL;
+
+
+
+
 		// TODO::낙하 상태에 따라서 다른 낙하처리
 		// X값이 존재하는 낙하의 경우에는 미끄러짐
 		// X값이 존재하지 않는 낙하의 경우에는 땅에 박힘
@@ -338,45 +342,6 @@ void Player::CheckHillPixel()
 	}
 }
 
-void Player::CheckPixel(float4 MyPos_, float4 ActorScale_, GameEngineImage* ColMapImage_)
-{
-	float4 TopLeft = { -ActorScale_.x / 2 , -ActorScale_.y / 2 };
-	float4 Top = { 0.0f , -ActorScale_.y / 2 };
-	float4 TopRight = { ActorScale_.x / 2 , -ActorScale_.y / 2 };
-
-	float4 Right = { ActorScale_.x / 2 , 0.0f };
-
-	float4 BottomRight = { ActorScale_.x / 2 , ActorScale_.y / 2 };
-	float4 Bottom = { 0.0f , ActorScale_.y / 2 };
-	float4 BottomLeft = { -ActorScale_.x / 2 , ActorScale_.y / 2 };
-
-	float4 Left = { -ActorScale_.x / 2 , 0.0f };
-
-
-	//좌상단
-	int TopLeftColor = ColMapImage_->GetImagePixel(MyPos_ + TopLeft);
-	//상단
-	int TopColor = ColMapImage_->GetImagePixel(MyPos_ + Top);
-	//우상단
-	int TopRightColor = ColMapImage_->GetImagePixel(MyPos_ + TopRight);
-	//우측
-	int RightColor = ColMapImage_->GetImagePixel(MyPos_ + Right);
-	//우하단
-	int BottomRightColor = ColMapImage_->GetImagePixel(MyPos_ + BottomRight);
-	//하단
-	int BottomColor = ColMapImage_->GetImagePixel(MyPos_ + Bottom);
-	//좌하단
-	int BottomLeftColor = ColMapImage_->GetImagePixel(MyPos_ + BottomLeft);
-	//좌측
-	int LeftColor = ColMapImage_->GetImagePixel(MyPos_ + Left);
-
-
-
-
-
-
-
-}
 
 // 상태 변경
 void Player::StateChange(PlayerState _State)
