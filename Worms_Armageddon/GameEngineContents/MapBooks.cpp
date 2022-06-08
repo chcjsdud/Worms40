@@ -27,11 +27,11 @@ void MapBooks::Start()
 	//배경색은 카메라영향을 받지 않게
 	BackGround_->CameraEffectOff();
 
-	ColMapRenderer_= CreateRenderer(IMG_MAPBOOKS_GROUND, (int)RenderOrder::BackGround_2);
+	ColMapRenderer_= CreateRendererToScale(IMG_MAPBOOKS_GROUND, { 5000.0f * 0.4f, 3200.0 * 0.4f }, (int)RenderOrder::BackGround_2);
 	ColMapHalf = ColMapRenderer_->GetScale().Half();
 	ColMapRenderer_->SetPivot(ColMapHalf);
 
-	Ground_ = CreateRenderer(IMG_MAPBOOKS, (int)RenderOrder::BackGround_2);
+	Ground_ = CreateRendererToScale(IMG_MAPBOOKS, { SCALE_MAPBOOKS_X, SCALE_MAPBOOKS_Y }, (int)RenderOrder::BackGround_2);
 	GroundHalf = Ground_->GetScale().Half();
 	Ground_->SetPivot(GroundHalf);
 
@@ -39,8 +39,8 @@ void MapBooks::Start()
 
 	for (int i = 0; i < 8; i++)
 	{
-		float x = static_cast<float>(300 + i * 50);
-		float y = 300.0f;
+		float x = static_cast<float>(430 + i * 50);
+		float y = 920.0f;
 
 		ResponPosition_[i] = {x, y};
 	}

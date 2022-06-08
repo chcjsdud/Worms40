@@ -51,8 +51,6 @@
 #define PLAYER_MAX_NUMBER 8
 
 // 카메라 설정값
-#define LEN_MAPBOOKS_X 3000.0f
-#define LEN_MAPBOOKS_Y 1500.0f
 
 // 레벨
 #define LEVEL_TITLE_LEVEL "TitleLevel"
@@ -93,13 +91,18 @@
 // 이미지 스케일
 #define SCALE_GRADIENT_X 1280.0f
 #define SCALE_GRADIENT_Y 720.0f
-#define SCALE_MAPBOOKS_X 1536.0f
-#define SCALE_MAPBOOKS_Y 557.0f
-#define SCALE_MAPBOOKS_GROUND_X 1536.0f
-#define SCALE_MAPBOOKS_GROUND_Y 557.0f
+#define SCALE_MAPBOOKS_X 5000.0f * 0.4f
+#define SCALE_MAPBOOKS_Y 3200.0 * 0.4f
+#define SCALE_MAPBOOKS_GROUND_X 5000.0f * 0.4f
+#define SCALE_MAPBOOKS_GROUND_Y 3200.0 * 0.4f
 
+// 이펙트용 스케일
 #define SCALE_EFFECT_BOOM_X 100.0f
 #define SCALE_EFFECT_BOOM_Y 100.0f
+
+// 카메라용 스케일
+#define SCALE_CAMERA_MAPMOOKS_X 5000.0f * 0.4f
+#define SCALE_CAMERA_MAPMOOKS_Y 3200.0 * 0.4f + 50.0f
 
 // 플레이어 이미지
 #define IMG_PLAYER_IDLE_LEFT "idleLeft.bmp"
