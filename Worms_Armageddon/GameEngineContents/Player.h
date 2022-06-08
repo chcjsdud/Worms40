@@ -5,6 +5,7 @@
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineSound.h>
 #include <GameEngine/GameEngineRenderer.h>
+#include <GameEngineBase/GameEngineRandom.h>
 
 // 설명 :
 class GameEngineImage;
@@ -110,6 +111,8 @@ private:
 
 	// 사운드 오브젝트
 	GameEngineSound* SoundPlayer_;
+
+	static GameEngineRandom Ran;
 
 	// 플레이어 렌더러
 	GameEngineRenderer* PlayerRenderer_;

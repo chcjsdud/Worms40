@@ -5,6 +5,8 @@
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngineBase/GameEngineRandom.h>
 
+GameEngineRandom Player::Ran;
+
 Player::Player()
 	: Speed_(PLAYER_SPEED)
 	, FallSpeed_(PLAYER_SPEED_FALL)
@@ -40,7 +42,6 @@ void Player::Start()
 	PlayerAnimationInit();
 	PlayerKeyInit();
 
-	GameEngineRandom Ran;
 	int num = Ran.RandomInt(0, 1);
 	
 	if (num == 0)
@@ -117,6 +118,16 @@ void Player::PlayerAnimationInit()
 	PlayerRenderer_->CreateAnimation(IMG_GRN_OFF_LEFT, ANIM_NAME_GRN_OFF_LEFT, 0, 9, 0.03f, false);
 	PlayerRenderer_->CreateAnimation(IMG_GRN_OFF_RIGHT, ANIM_NAME_GRN_OFF_RIGHT, 0, 9, 0.03f, false);
 
+	//¿¡¾î½ºÆ®¶óÀÌÅ©
+	PlayerRenderer_->CreateAnimation(IMG_AIRSTRIKE_OFF_LEFT, ANIM_NAME_AIRSTRIKE_OFF_LEFT, 0, 9, 0.03f, false);
+	PlayerRenderer_->CreateAnimation(IMG_AIRSTRIKE_ON_LEFT, ANIM_NAME_AIRSTRIKE_ON_LEFT, 0, 9, 0.03f, false);
+	PlayerRenderer_->CreateAnimation(IMG_AIRSTRIKE_OFF_RIGHT, ANIM_NAME_AIRSTRIKE_OFF_RIGHT, 0, 9, 0.03f, false);
+	PlayerRenderer_->CreateAnimation(IMG_AIRSTRIKE_ON_RIGHT, ANIM_NAME_AIRSTRIKE_ON_RIGHT, 0, 9, 0.03f, false);
+	//¾çÆøÅº
+	PlayerRenderer_->CreateAnimation(IMG_SHEEP_OFF_LEFT, ANIM_NAME_SHEEP_OFF_LEFT, 0, 9, 0.03f, false);
+	PlayerRenderer_->CreateAnimation(IMG_SHEEP_ON_LEFT, ANIM_NAME_SHEEP_ON_LEFT, 0, 9, 0.03f, false);
+	PlayerRenderer_->CreateAnimation(IMG_SHEEP_OFF_RIGHT, ANIM_NAME_SHEEP_OFF_RIGHT, 0, 9, 0.03f, false);
+	PlayerRenderer_->CreateAnimation(IMG_SHEEP_ON_RIGHT, ANIM_NAME_SHEEP_ON_RIGHT, 0, 9, 0.03f, false);
 
 	// ÁÂ¿ì °È´Â ¾Ö´Ï¸ÞÀÌ¼Ç
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_WALK_LEFT, ANIM_NAME_PLAYER_WALKLEFT, 0, 14, 0.03f, true);

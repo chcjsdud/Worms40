@@ -241,6 +241,22 @@ void Worms::GameInit()
 			Image->Cut({ 60, 60 });
 			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_FLYLINK_LEFT);
 			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_ON_LEFT);
+			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_OFF_LEFT);
+			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_GRN_OFF_LEFT);
+			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_GRN_ON_LEFT);
+			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_AIRSTRIKE_OFF_LEFT);
+			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_AIRSTRIKE_ON_LEFT);
+			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_SHEEP_ON_LEFT);
+			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_SHEEP_OFF_LEFT);
+			Image->Cut({ 60, 60 });
 
 			//무기
 			Image = GameEngineImageManager::GetInst()->Find(IMG_HOMING_AIM_LEFT);
@@ -267,16 +283,7 @@ void Worms::GameInit()
 			Image->Cut({ 60, 60 });
 			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_FLYLINK_RIGHT);
 			Image->Cut({ 60, 60 });
-
-
-			//무기
-			Image = GameEngineImageManager::GetInst()->Find(IMG_HOMING_AIM_RIGHT);
-			Image->Cut({ 60, 60 });
 			Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_ON_RIGHT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_ON_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_OFF_LEFT);
 			Image->Cut({ 60, 60 });
 			Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_OFF_RIGHT);
 			Image->Cut({ 60, 60 });
@@ -284,9 +291,18 @@ void Worms::GameInit()
 			Image->Cut({ 60, 60 });
 			Image = GameEngineImageManager::GetInst()->Find(IMG_GRN_ON_RIGHT);
 			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_GRN_OFF_LEFT);
+			Image = GameEngineImageManager::GetInst()->Find(IMG_AIRSTRIKE_OFF_RIGHT);
 			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_GRN_ON_LEFT);
+			Image = GameEngineImageManager::GetInst()->Find(IMG_AIRSTRIKE_ON_RIGHT);
+			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_SHEEP_ON_RIGHT);
+			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_SHEEP_OFF_RIGHT);
+			Image->Cut({ 60, 60 });
+
+
+			//무기
+			Image = GameEngineImageManager::GetInst()->Find(IMG_HOMING_AIM_RIGHT);
 			Image->Cut({ 60, 60 });
 
 

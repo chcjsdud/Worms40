@@ -80,9 +80,10 @@ void Player::IdleUpdate()
 		WeaponState_ = WeaponState::AirStrike;
 		IsSwitch = true;
 	}
-	else if (GameEngineInput::GetInst()->IsPress(KEY_WEAPON_SUPERSHEEP))
+	else if (GameEngineInput::GetInst()->IsDown(KEY_WEAPON_SUPERSHEEP))
 	{
 		WeaponState_ = WeaponState::SuperSheep;
+		IsSwitch = true;
 	}
 
 	//IsSwitch가 true 이면 무기를 스왑한것.
@@ -147,6 +148,8 @@ void Player::IdleUpdate()
 		break;
 	case WeaponState::Sheep:
 		break;
+	case WeaponState::SuperSheep:
+		break;
 	case WeaponState::AirStrike:
 		break;
 	case WeaponState::BlowTorch:
@@ -190,7 +193,11 @@ void Player::ActionIdleUpdate()
 			break;
 		case WeaponState::Sheep:
 			break;
+		case WeaponState::SuperSheep:
+			StateName_ = ANIM_KEYWORD_PLAYER_SHEEPOFF;
+			break;
 		case WeaponState::AirStrike:
+			StateName_ = ANIM_KEYWORD_PLAYER_AIROFF;
 			break;
 		case WeaponState::BlowTorch:
 			break;
@@ -412,26 +419,33 @@ void Player::JumpUpdate()
 void Player::BackFlipUpdate()
 {
 	JumpDelayTime_ -= GameEngineTime::GetDeltaTime();
-	if (0 >= JumpDelayTime_)
+
+
+	if (0 >= JumpDelayTime_ && IsJump_ == false)
+	{
+		IsJump_ = true;
+		//충돌하기 전까지는 원래진행하던 방향으로 좌,우 이동
+		if (CurDirName_ == PLAYER_DIR_RIGHT)
+		{
+			JumpMoveDir_ = float4::LEFT * (JumpSpeed_ - 270.0f);
+		}
+		else
+		{
+			JumpMoveDir_ = float4::RIGHT * (JumpSpeed_ - 270.0f);
+		}
+
+		JumpMoveDir_ += float4::UP * JumpSpeed_;
+	}
+	if (IsJump_==true)
 	{
 		StateName_ = ANIM_KEYWORD_PLAYER_BACKFLIP;
 		PlayerAnimationChange(StateName_);
 
-		if (CurDirName_ == PLAYER_DIR_RIGHT)
-		{
-			JumpMoveDir_ = float4::LEFT * GameEngineTime::GetDeltaTime() * 20.0f;
-			SetMove(JumpMoveDir_);
-		}
-		else
-		{
-			JumpMoveDir_ = float4::RIGHT * GameEngineTime::GetDeltaTime() * 20.0f;
-			SetMove(JumpMoveDir_);
-		}
 
 
-		SetMove(MoveDir_ * GameEngineTime::GetDeltaTime());
+		SetMove(JumpMoveDir_ * GameEngineTime::GetDeltaTime());
 
-		MoveDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * FallSpeed_;
+		JumpMoveDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * FallSpeed_;
 		FallSpeed_ += 30.0f;
 
 		float4 CheckLength = float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
@@ -444,7 +458,6 @@ void Player::BackFlipUpdate()
 		//웜즈의 밑부분이 파란색이면
 		if (RGB(0, 0, 255) == Color)
 		{
-			MoveDir_ = float4::ZERO;
 			JumpMoveDir_ = float4::ZERO;
 
 			//파란색이 아닐때까지 올려준다.
@@ -530,6 +543,14 @@ void Player::IdleStart()
 	{
 		StateName_ = ANIM_KEYWORD_PLAYER_GRNON;
 	}
+	else if (WeaponState_ == WeaponState::AirStrike)
+	{
+		StateName_ = ANIM_KEYWORD_PLAYER_AIRON;
+	}
+	else if (WeaponState_ == WeaponState::SuperSheep)
+	{
+		StateName_ = ANIM_KEYWORD_PLAYER_SHEEPON;
+	}
 	else
 	{
 		StateName_ = ANIM_KEYWORD_PLAYER_IDLE;
@@ -609,7 +630,6 @@ void Player::JumpStart()
 	JumpDelayTime_ = 0.5f;
 	JumpSpeed_ = 200.0f;
 	IsJump_ = false;
-	//MoveDir_ = float4::UP * JumpSpeed_;
 	StateName_ = ANIM_KEYWORD_PLAYER_JUMPRDY;
 	PlayerAnimationChange(StateName_);
 	PixelCol_->SetBounceFlgFalse();
@@ -620,9 +640,9 @@ void Player::JumpStart()
 //웜즈 백플립 State
 void Player::BackFlipStart()
 {
+	IsJump_ = false;
 	JumpDelayTime_ = 0.5f;
 	JumpSpeed_ = 300.0f;
-	MoveDir_ = float4::UP * JumpSpeed_;
 	StateName_ = ANIM_KEYWORD_PLAYER_JUMPRDY;
 	PlayerAnimationChange(StateName_);
 }
