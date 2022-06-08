@@ -245,5 +245,5 @@
 #define WEAPON_AIRFLY_SPEED 1000.0f
 #define WEAPON_AIRFLY_START_LEFT -500.0f
 #define WEAPON_AIRFLY_START_RIGHT 2100.0f
-#define CorrectionPosX 100.f
+#define CorrectionPosX 550.f
 #define DropSec 0.02f

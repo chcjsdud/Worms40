@@ -55,8 +55,12 @@ void WeaponMaster::Drop(WeaponState _Drop, float _Sec /*= 0*/)
 		{
 			if (_Sec < GetAccTime())
 			{
+				float4 BombDir = float4::ZERO;
+				BombDir.x = BulletDir_.x / WEAPON_AIRFLY_SPEED;
+
 				AirBomb* Bomb = GetLevel()->CreateActor<AirBomb>();
 				Bomb->SetPosition(GetPosition());
+				Bomb->SetShotAngle(BombDir); // 폭격기가 날아가는 방향으로 투척
 				Bomb->SetBombCount(BombCnt_);
 				++BombCnt_;
 				IsDrop_ = true;
@@ -92,16 +96,8 @@ void WeaponMaster::AirStart(float4 _AirSpawn)
 			return;
 		}
 
-		float4 PlayerPos = GetPosition();
-		//PlayerPos.x -= SCALE_GRADIENT_X / 2;
-		//PlayerPos.y -= SCALE_GRADIENT_Y / 2; // 플레이어 카메라 LeftTop 위치 구함 
-
-		Cursor* WeaponCusor = Play->GetCursor();
-		float4 CursorPos = WeaponCusor->GetMouseCursorPos(); // 카메라좌표에서 커서 위치 받음
-
-		TargetPos_ = PlayerPos + CursorPos; // 커서로 지정한 월드좌표
-		TargetPos_ = PlayerPos;
-
+		TargetCursor();
+		
 		WeaponRender_ = CreateRenderer((int)RenderOrder::Weapon);
 		if (float4::LEFT.CompareInt2D(_AirSpawn))
 		{// ->
@@ -128,6 +124,17 @@ void WeaponMaster::AirStart(float4 _AirSpawn)
 			Off();
 		}
 	}
+}
+
+void WeaponMaster::TargetCursor()
+{
+	float4 PlayerPos = GetPosition();
+	PlayerPos.x -= SCALE_GRADIENT_X / 2;
+	PlayerPos.y -= SCALE_GRADIENT_Y / 2; // 플레이어 카메라 LeftTop 위치 구함 
+
+	float4 CursorPos = Cursor::GetCursorPosition(); // 카메라좌표에서 커서 위치 받음
+
+	TargetPos_ = PlayerPos + CursorPos; // 커서로 지정한 월드좌표
 }
 
 void WeaponMaster::BulletMove(float _Gravity, bool _IsWind)

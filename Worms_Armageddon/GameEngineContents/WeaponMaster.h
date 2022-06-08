@@ -103,6 +103,8 @@ protected:
 	void ThrowStart(float _ThrowForce);
 	// 폭격기 출격 : 폭격기가 어디서 생성될지 지정
 	void AirStart(float4 _AirSpawn);
+	// 목표 좌표 지정
+	void TargetCursor();
 
 	// 투사체 움직임 연산 : 중력값만 넣어주면 포물선으로 날아감
 	void BulletMove(float _Gravity, bool _IsWind);
