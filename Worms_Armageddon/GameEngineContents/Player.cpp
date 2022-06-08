@@ -48,10 +48,12 @@ void Player::Start()
 	if (num == 0)
 	{
 		PlayerRenderer_->ChangeAnimation(ANIM_NAME_PLAYER_IDLE_RIGHT);
+		MoveDir_ = float4::RIGHT;
 	}
 	else
 	{
 		PlayerRenderer_->ChangeAnimation(ANIM_NAME_PLAYER_IDLE_LEFT);
+		MoveDir_ = float4::LEFT;
 	}
 
 	// 테스트 임시 데이터
@@ -470,6 +472,47 @@ void Player::PlayerAnimationChange(std::string _Anim)
 	}
 
 	PlayerRenderer_->ChangeAnimation(_Anim + DirName_);
+}
+
+// 무기 각도 조절
+void Player::MoveWeaponAngle()
+{
+	if (true == GameEngineInput::GetInst()->IsPress(KEY_ANGLE_DOWN))
+	{
+		ShotAngle_.y += 2.0f * GameEngineTime::GetDeltaTime();
+
+		if (ShotAngle_.y >= ShotAngleMin_.y)
+		{
+			ShotAngle_.y = ShotAngleMin_.y;
+		}
+	}
+	if (true == GameEngineInput::GetInst()->IsPress(KEY_ANGLE_UP))
+	{
+		ShotAngle_.y -= 2.0f * GameEngineTime::GetDeltaTime();
+
+		if (ShotAngle_.y <= ShotAngleMax_.y)
+		{
+			ShotAngle_.y = ShotAngleMax_.y;
+		}
+	}
+}
+
+// 무기 파워 조절
+void Player::ChargingWeaponPower()
+{
+	if (true == IsActionKeyPress())
+	{
+		ShotPower_ += 10.0f;
+
+		if (ShotPower_ >= WEAPON_MAX_SHOT_POWER)
+		{
+			ShotPower_ = WEAPON_MAX_SHOT_POWER;
+
+			// 최대값을 넘어가면 자동으로 발사되도록
+			StateChange(PlayerState::Action);
+		}
+	}
+}
 }
 
 void Player::ChangeHpBarFont(int _Hp)

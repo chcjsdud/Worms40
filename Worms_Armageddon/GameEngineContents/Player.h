@@ -215,5 +215,7 @@ public:
 	void ChangeHpBarFont(int _Hp);			//폰트 체인지
 	void CreateHpBar(int _Hp, float4 _Pivot,  FONT_COLOR _Color);
 	
+	void MoveWeaponAngle();
+	void ChargingWeaponPower();
 };
 

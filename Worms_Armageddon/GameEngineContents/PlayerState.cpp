@@ -92,46 +92,18 @@ void Player::IdleUpdate()
 		StateChange(PlayerState::ActionIdle);
 	}
 
-
+	// 발사 방향을 플레이어가 바라보는 방향으로 조정
+	ShotAngle_.x = MoveDir_.x;
 
 	switch (WeaponState_)
 	{
 		// 각도가 필요한 무기에 대해서만 각도 조절
 	case WeaponState::Baz:
-		if (true == GameEngineInput::GetInst()->IsPress(KEY_ANGLE_DOWN))
-		{
-			ShotAngle_.y += 2.0f * GameEngineTime::GetDeltaTime();
 
-			if (ShotAngle_.y >= ShotAngleMin_.y)
-			{
-				ShotAngle_.y = ShotAngleMin_.y;
-			}
-
-			break;
-		}
-		if (true == GameEngineInput::GetInst()->IsPress(KEY_ANGLE_UP))
-		{
-			ShotAngle_.y -= 2.0f * GameEngineTime::GetDeltaTime();
-
-			if (ShotAngle_.y <= ShotAngleMax_.y)
-			{
-				ShotAngle_.y = ShotAngleMax_.y;
-			}
-			break;
-		}
-
-		if (true == IsActionKeyPress())
-		{
-			ShotPower_ += 10.0f;
-
-			if (ShotPower_ >= WEAPON_MAX_SHOT_POWER)
-			{
-				ShotPower_ = WEAPON_MAX_SHOT_POWER;
-
-				// 최대값을 넘어가면 자동으로 발사되도록
-				StateChange(PlayerState::Action);
-			}
-		}
+		// 무기 각도 조절
+		MoveWeaponAngle();
+		// 무기 파워 조절
+		ChargingWeaponPower();
 
 		break;
 	case WeaponState::Homing:
@@ -163,8 +135,6 @@ void Player::IdleUpdate()
 	default:
 		break;
 	}
-	ShotAngle_.x = MoveDir_.x;
-
 }
 
 void Player::ActionIdleUpdate()
@@ -377,7 +347,6 @@ void Player::JumpUpdate()
 		//웜즈의 밑부분이 파란색이면
 		if (RGB(0, 0, 255) == DownColor)
 		{
-			MoveDir_ = float4::ZERO;
 			JumpMoveDir_ = float4::ZERO;
 
 			//체크용 
@@ -521,9 +490,6 @@ void Player::FalledUpdate()
 		//웜즈의 밑부분이 파란색이면
 		if (RGB(0, 0, 255) == Color)
 		{
-			MoveDir_ = float4::ZERO;
-			JumpMoveDir_ = float4::ZERO;
-
 			//파란색이 아닐때까지 올려준다.
 			do
 			{
@@ -583,6 +549,9 @@ void Player::ActionIdleStart()
 void Player::MoveStart()
 {
 	// 이동을 시작함
+
+	// 무기 파워 초기화
+	ShotPower_ = 0.0f;
 }
 
 void Player::ActionStart()

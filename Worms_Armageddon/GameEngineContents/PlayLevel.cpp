@@ -496,4 +496,3 @@ bool PlayLevel::UpdateTeamHpBarUI()
 
 	return false;
 }
-
