@@ -2,6 +2,9 @@
 #include <GameEngineBase/GameEngineCustomStringSet.h>
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineMath.h>
+#include "LargeCloud.h"
+#include "SmallCloud.h"
+#include "Water.h"
 
 // 설명 :
 class GameEngineImage;
@@ -54,6 +57,17 @@ public:
 		return PositionFlg_[_ArrI];
 	}
 
+	inline void SetLargeCloudDir(int  _WindDir, float _CloudSpeed)
+	{
+		LargeCloudActor_->SetLargeCloudDir(_WindDir, _CloudSpeed);
+	}
+
+	inline void SetSmallCloudDir(int  _WindDir, float _CloudSpeed)
+	{
+		SmallCloudActor_->SetSmallCloudDir(_WindDir, _CloudSpeed);
+
+	}
+
 protected:
 	void Start() override {};
 	void Update() override {};
@@ -70,5 +84,12 @@ protected:
 
 	float4 ResponPosition_[PLAYER_MAX_NUMBER];
 	bool PositionFlg_[PLAYER_MAX_NUMBER];
+	
+	// 바닥부분 물 이미지
+	Water* WaterActor_;
+
+	// 구름 이미지
+	LargeCloud* LargeCloudActor_;
+	SmallCloud* SmallCloudActor_;
 };
 

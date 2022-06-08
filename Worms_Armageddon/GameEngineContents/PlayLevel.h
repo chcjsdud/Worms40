@@ -1,11 +1,9 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
 #include <GameEngineBase/GameEngineCustomStringSet.h>
-#include "LargeCloud.h"
+
 #include "Cursor.h"
 #include "WindGauge.h"
-#include "SmallCloud.h"
-#include "Water.h"
 
 // Ό³Έν :
 class WeaponMaster;
@@ -37,10 +35,7 @@ protected:
 
 private:
 	GameMapMaster* GameMapInfo_;
-	LargeCloud* LargeCloudActor_;
-	SmallCloud* SmallCloudActor_;
 
-	Water* WaterActor_;
 	WeaponMaster* WeaponMaster_;
 	Cursor* Mouse_;
 	WindGauge* WindGaugeActor_;

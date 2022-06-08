@@ -50,16 +50,6 @@ void PlayLevel::Loading()
 	// 팀 HP바
 	TeamHpBarListActor_ = CreateActor<TeamHpBarList>((int)ActorGroup::UI);
 
-	// 배경 이미지
-	LargeCloudActor_ = CreateActor<LargeCloud>();
-	LargeCloudActor_->SetPosition({ 200.0f,200.0f});
-	SmallCloudActor_ = CreateActor<SmallCloud>();
-	SmallCloudActor_->SetPosition({ 250.0f,200.0f });
-
-	// TODO::맵에 따라서 X포지션 변경 필요
-	WaterActor_ = CreateActor<Water>();
-	WaterActor_->SetPosition({ SCALE_MAPBOOKS_X / 2, 610.0f });
-
 	// 무기 설정
 	WeaponMaster_ = CreateActor<WeaponMaster>();
 	WeaponMaster_->SetGameMap(GameMapInfo_);
@@ -427,8 +417,8 @@ void PlayLevel::SetWindUI(int _WindDir)
 		WindGaugeActor_->SetWind(WindType::Left,WindSpeed_);
 		//구름Actor에도 넘겨준다
 
-		LargeCloudActor_->SetLargeCloudDir(_WindDir, WindSpeed_);
-		SmallCloudActor_->SetSmallCloudDir(_WindDir, WindSpeed_);
+		GameMapInfo_->SetLargeCloudDir(_WindDir, WindSpeed_);
+		GameMapInfo_->SetSmallCloudDir(_WindDir, WindSpeed_);
 	}
 	else
 	{
@@ -436,8 +426,8 @@ void PlayLevel::SetWindUI(int _WindDir)
 		WindSpeed_ = Ran.RandomFloat(0, 100.0f);
 		WindDir_ = float4::RIGHT * WindSpeed_;
 		WindGaugeActor_->SetWind(WindType::Right, WindSpeed_);
-		LargeCloudActor_->SetLargeCloudDir(_WindDir,WindSpeed_);
-		SmallCloudActor_->SetSmallCloudDir(_WindDir, WindSpeed_);
+		GameMapInfo_->SetLargeCloudDir(_WindDir,WindSpeed_);
+		GameMapInfo_->SetSmallCloudDir(_WindDir, WindSpeed_);
 	}
 }
 

@@ -102,7 +102,7 @@
 
 // 카메라용 스케일
 #define SCALE_CAMERA_MAPMOOKS_X 5000.0f * 0.4f
-#define SCALE_CAMERA_MAPMOOKS_Y 3200.0 * 0.4f + 50.0f
+#define SCALE_CAMERA_MAPMOOKS_Y 3200.0 * 0.4f + 100.0f
 
 // 플레이어 이미지
 #define IMG_PLAYER_IDLE_LEFT "idleLeft.bmp"
