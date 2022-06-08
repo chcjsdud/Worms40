@@ -80,6 +80,7 @@ private:
 	float JumpDelayTime_;
 	// 무기 상태
 	WeaponState WeaponState_;
+	WeaponState PrevWeaponState_;
 	// 무기 위치
 	float4 WeaponPos_;
 	// 픽셀 체크
@@ -99,6 +100,8 @@ private:
 	bool IsDeath_;
 
 	bool IsJump_;
+	//무기 바꾸는 애니메이션 체크용
+	bool IsSwitch;
 
 	// 플레이어는 마지막으로 보고 있던 방향의 정보를 가지고 있어야 함.
 	float4 MoveDir_;
@@ -170,6 +173,7 @@ private:
 	PlayerState PrevState_;
 
 	void IdleStart();
+	void ActionIdleStart();
 	void MoveStart();
 	void ActionStart();
 	void JumpStart();
@@ -177,6 +181,7 @@ private:
 	void FalledStart();
 
 	void IdleUpdate();
+	void ActionIdleUpdate();
 	void MoveUpdate();
 	void ActionUpdate();
 	void JumpUpdate();

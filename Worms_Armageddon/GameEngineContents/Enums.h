@@ -11,6 +11,7 @@ enum class ActorGroup
 enum class PlayerState
 {
 	Idle,
+	ActionIdle,
 	Move,
 	Jump,
 	BackFlip,

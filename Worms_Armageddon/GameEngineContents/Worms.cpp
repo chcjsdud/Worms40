@@ -274,8 +274,22 @@ void Worms::GameInit()
 			Image->Cut({ 60, 60 });
 			Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_ON_RIGHT);
 			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_ON_LEFT);
+			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_OFF_LEFT);
+			Image->Cut({ 60, 60 });
 			Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_OFF_RIGHT);
 			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_GRN_OFF_RIGHT);
+			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_GRN_ON_RIGHT);
+			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_GRN_OFF_LEFT);
+			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_GRN_ON_LEFT);
+			Image->Cut({ 60, 60 });
+
+
 		}
 		{
 			//GameEngineImage* Image = GameEngineImageManager::GetInst()->Find(IMG_MISSILE);

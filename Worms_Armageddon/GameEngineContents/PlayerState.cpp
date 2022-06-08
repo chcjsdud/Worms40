@@ -58,22 +58,39 @@ void Player::IdleUpdate()
 		}
 	}
 
-	if (GameEngineInput::GetInst()->IsPress(KEY_WEAPON_BAZ))
+	//IsSwitch가 false 일때만 이전상태를 받게함.
+	if (!IsSwitch)
+	{
+		PrevWeaponState_ = WeaponState_;
+	}
+
+
+	if (GameEngineInput::GetInst()->IsDown(KEY_WEAPON_BAZ))
 	{
 		WeaponState_ = WeaponState::Baz;
+		IsSwitch = true;
 	}
-	else if (GameEngineInput::GetInst()->IsPress(KEY_WEAPON_GRENADE))
+	if (GameEngineInput::GetInst()->IsDown(KEY_WEAPON_GRENADE))
 	{
 		WeaponState_ = WeaponState::Grenade;
+		IsSwitch = true;
 	}
-	else if (GameEngineInput::GetInst()->IsPress(KEY_WEAPON_AIRSTRIKE))
+	if (GameEngineInput::GetInst()->IsDown(KEY_WEAPON_AIRSTRIKE))
 	{
 		WeaponState_ = WeaponState::AirStrike;
+		IsSwitch = true;
 	}
 	else if (GameEngineInput::GetInst()->IsPress(KEY_WEAPON_SUPERSHEEP))
 	{
 		WeaponState_ = WeaponState::SuperSheep;
 	}
+
+	//IsSwitch가 true 이면 무기를 스왑한것.
+	if (IsSwitch == true)
+	{
+		StateChange(PlayerState::ActionIdle);
+	}
+
 
 
 	switch (WeaponState_)
@@ -143,10 +160,60 @@ void Player::IdleUpdate()
 	default:
 		break;
 	}
-
 	ShotAngle_.x = MoveDir_.x;
 
 }
+
+void Player::ActionIdleUpdate()
+{
+
+	if (IsSwitch == true)
+	{
+		switch (PrevWeaponState_)
+		{
+			// 각도가 필요한 무기에 대해서만 각도 조절
+		case WeaponState::Baz:
+			StateName_ = ANIM_KEYWORD_PLAYER_BAZOFF;
+			break;
+		case WeaponState::Homing:
+			break;
+		case WeaponState::Mortar:
+			break;
+		case WeaponState::Grenade:
+			StateName_ = ANIM_KEYWORD_PLAYER_GRNOFF;
+			break;
+		case WeaponState::Axe:
+			break;
+		case WeaponState::Uzi:
+			break;
+		case WeaponState::FirePunch:
+			break;
+		case WeaponState::Sheep:
+			break;
+		case WeaponState::AirStrike:
+			break;
+		case WeaponState::BlowTorch:
+			break;
+		case WeaponState::Drill:
+			break;
+		case WeaponState::Grider:
+			break;
+		case WeaponState::None:
+			break;
+		default:
+			break;
+		}
+
+		PlayerAnimationChange(StateName_);
+	}
+
+	if (PlayerRenderer_->IsEndAnimation())
+	{
+		StateChange(PlayerState::Idle);
+		IsSwitch = false;
+	}
+}
+
 
 void Player::MoveUpdate()
 {
@@ -455,10 +522,29 @@ void Player::FalledUpdate()
 
 void Player::IdleStart()
 {
-	StateName_ = ANIM_KEYWORD_PLAYER_IDLE;
+	if (WeaponState_ == WeaponState::Baz)
+	{
+		StateName_ = ANIM_KEYWORD_PLAYER_BAZON;
+	}
+	else if (WeaponState_ == WeaponState::Grenade)
+	{
+		StateName_ = ANIM_KEYWORD_PLAYER_GRNON;
+	}
+	else
+	{
+		StateName_ = ANIM_KEYWORD_PLAYER_IDLE;
+	}
 	// 아무것도 안함을 시작함
 	// TODO::현재 들고 있는 무기의 종류에 따라서 이미지를 변경?
 	PlayerAnimationChange(StateName_);
+
+	IsSwitch = false;
+
+}
+
+void Player::ActionIdleStart()
+{
+
 }
 
 void Player::MoveStart()
@@ -468,6 +554,8 @@ void Player::MoveStart()
 
 void Player::ActionStart()
 {
+	StateName_ = ANIM_KEYWORD_PLAYER_IDLE;
+	PlayerAnimationChange(StateName_);
 	// 무기 액터 생성
 	switch (WeaponState_)
 	{

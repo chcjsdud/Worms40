@@ -3,6 +3,7 @@
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineImageManager.h>
+#include <GameEngineBase/GameEngineRandom.h>
 
 Player::Player()
 	: Speed_(PLAYER_SPEED)
@@ -21,6 +22,7 @@ Player::Player()
 	, KeyCount_(0)
 	, KeyTimer_(0.5f)
 	, IsJump_(false)
+	, IsSwitch(false)
 {
 }
 
@@ -37,6 +39,18 @@ void Player::Start()
 
 	PlayerAnimationInit();
 	PlayerKeyInit();
+
+	GameEngineRandom Ran;
+	int num = Ran.RandomInt(0, 1);
+	
+	if (num == 0)
+	{
+		PlayerRenderer_->ChangeAnimation(ANIM_NAME_PLAYER_IDLE_RIGHT);
+	}
+	else
+	{
+		PlayerRenderer_->ChangeAnimation(ANIM_NAME_PLAYER_IDLE_LEFT);
+	}
 
 	// 테스트 임시 데이터
 	ColMapImage_ = GameEngineImageManager::GetInst()->Find(IMG_MAPBOOKS_GROUND);
@@ -91,8 +105,18 @@ void Player::PlayerAnimationInit()
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_IDLE_LEFT, ANIM_NAME_PLAYER_IDLE_LEFT, 0, 5, 0.1f, true);
 
 	// 웨폰 애니메이션
-	PlayerRenderer_->CreateAnimation(IMG_BAZ_ON_LEFT, ANIM_NAME_WEAPON_ON_LEFT, 0, 5, 0.1f, false);
-	PlayerRenderer_->CreateAnimation(IMG_BAZ_ON_RIGHT, ANIM_NAME_WEAPON_ON_RIGHT, 0, 5, 0.1f, false);
+	//바주카
+	PlayerRenderer_->CreateAnimation(IMG_BAZ_ON_LEFT, ANIM_NAME_BAZ_ON_LEFT, 0, 5, 0.03f, false);
+	PlayerRenderer_->CreateAnimation(IMG_BAZ_ON_RIGHT, ANIM_NAME_BAZ_ON_RIGHT, 0, 5, 0.03f, false);
+	PlayerRenderer_->CreateAnimation(IMG_BAZ_OFF_LEFT, ANIM_NAME_BAZ_OFF_LEFT, 0, 5, 0.03f, false);
+	PlayerRenderer_->CreateAnimation(IMG_BAZ_OFF_RIGHT, ANIM_NAME_BAZ_OFF_RIGHT, 0, 5, 0.03f, false);
+
+	//수류탄
+	PlayerRenderer_->CreateAnimation(IMG_GRN_ON_LEFT, ANIM_NAME_GRN_ON_LEFT, 0, 9, 0.03f, false);
+	PlayerRenderer_->CreateAnimation(IMG_GRN_ON_RIGHT, ANIM_NAME_GRN_ON_RIGHT, 0, 9, 0.03f, false);
+	PlayerRenderer_->CreateAnimation(IMG_GRN_OFF_LEFT, ANIM_NAME_GRN_OFF_LEFT, 0, 9, 0.03f, false);
+	PlayerRenderer_->CreateAnimation(IMG_GRN_OFF_RIGHT, ANIM_NAME_GRN_OFF_RIGHT, 0, 9, 0.03f, false);
+
 
 	// 좌우 걷는 애니메이션
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_WALK_LEFT, ANIM_NAME_PLAYER_WALKLEFT, 0, 14, 0.03f, true);
@@ -114,8 +138,6 @@ void Player::PlayerAnimationInit()
 	//33번째 이미지때 올라가게
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_FALL, ANIM_NAME_PLAYER_FALL, 0, 48, 0.05, false);
 
-	
-	PlayerRenderer_->ChangeAnimation(ANIM_NAME_WEAPON_ON_RIGHT);
 }
 
 void Player::PlayerKeyInit()
@@ -354,6 +376,9 @@ void Player::StateChange(PlayerState _State)
 		case PlayerState::Idle:
 			IdleStart();
 			break;
+		case PlayerState::ActionIdle:
+			ActionIdleStart();
+			break;
 		case PlayerState::Move:
 			MoveStart();
 			break;
@@ -385,6 +410,9 @@ void Player::StateUpdate()
 	{
 	case PlayerState::Idle:
 		IdleUpdate();
+		break;
+	case PlayerState::ActionIdle:
+		ActionIdleUpdate();
 		break;
 	case PlayerState::Move:
 		MoveUpdate();

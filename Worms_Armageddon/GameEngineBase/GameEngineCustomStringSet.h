@@ -134,6 +134,10 @@
 #define ANIM_KEYWORD_PLAYER_WALK "Walk"
 #define ANIM_KEYWORD_PLAYER_JUMP "Jump"
 #define ANIM_KEYWORD_PLAYER_FALL "Falled"
+#define ANIM_KEYWORD_PLAYER_BAZON "bazOn"
+#define ANIM_KEYWORD_PLAYER_BAZOFF "bazOff"
+#define ANIM_KEYWORD_PLAYER_GRNON "grnOn"
+#define ANIM_KEYWORD_PLAYER_GRNOFF "grnOff"
 
 
 #define ANIM_KEYWORD_DIR_LEFT "Left"
@@ -157,10 +161,14 @@
 #define ANIM_NAME_PLAYER_FALL "Falled"
 
 
-#define ANIM_NAME_WEAPON_ON_LEFT "bazOnLeft"
-#define ANIM_NAME_WEAPON_ON_RIGHT "bazOnRight"
-#define ANIM_NAME_WEAPON_OFF_LEFT "bazOffLeft"
-#define ANIM_NAME_WEAPON_OFF_RIGHT "bazOffRight"
+#define ANIM_NAME_BAZ_ON_LEFT "bazOnLeft"
+#define ANIM_NAME_BAZ_ON_RIGHT "bazOnRight"
+#define ANIM_NAME_BAZ_OFF_LEFT "bazOffLeft"
+#define ANIM_NAME_BAZ_OFF_RIGHT "bazOffRight"
+#define ANIM_NAME_GRN_ON_LEFT "grnOnLeft"
+#define ANIM_NAME_GRN_ON_RIGHT "grnOnRight"
+#define ANIM_NAME_GRN_OFF_LEFT "grnOffLeft"
+#define ANIM_NAME_GRN_OFF_RIGHT "grnOffRight"
 
 // 무기 이미지
 #define IMG_BAZ_AIM_LEFT "bazAimLeft.bmp"
@@ -171,6 +179,10 @@
 #define IMG_BAZ_ON_RIGHT "bazOnRight.bmp"
 #define IMG_BAZ_OFF_LEFT "bazOffLeft.bmp"
 #define IMG_BAZ_OFF_RIGHT "bazOffRight.bmp"
+#define IMG_GRN_ON_LEFT "grnOnLeft.bmp"
+#define IMG_GRN_ON_RIGHT "grnOnRight.bmp"
+#define IMG_GRN_OFF_LEFT "grnOffLeft.bmp"
+#define IMG_GRN_OFF_RIGHT "grnOffRight.bmp"
 //#define IMG_MISSILE "missile.bmp"
 #define IMG_AIRJET_GREEN_LEFT "airjetg.bmp"
 #define IMG_AIRJET_GREEN_RIGHT "airjetgRight.bmp"

@@ -213,7 +213,7 @@ float4 PixelCollision::PlayerBounce(float4 _ActorPos, float4 _ActorScale,
 	{
 		float4 Dir = _ActorPos - (_ActorPos + Top);
 		Dir.Normal2D();
-		_MoveDir = Dir * MoveDir_;
+		_MoveDir = float4{ Dir.x * (_JumpSpeed - 100.0f), Dir.y * _JumpSpeed};
 		return _MoveDir;
 	}
 	else if (ColorFlag_[0] == true && ColorFlag_[7] == true && ColorFlag_[1] == false) //상단, 좌상단 충돌시
@@ -222,7 +222,7 @@ float4 PixelCollision::PlayerBounce(float4 _ActorPos, float4 _ActorScale,
 		{
 			float4 Dir = _ActorPos - (_ActorPos + float4{ (Top.x + Left.x) / 2,(Top.y + Left.y) / 2 });
 			Dir.Normal2D();
-			_MoveDir = float4{ Dir.x * (_JumpSpeed - 100.0f), Dir.y * MoveDir_.y };
+			_MoveDir = float4{ Dir.x * (_JumpSpeed - 100.0f), Dir.y * _JumpSpeed };
 			return _MoveDir;
 		}
 		else
