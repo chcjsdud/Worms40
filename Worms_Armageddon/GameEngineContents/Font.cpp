@@ -261,7 +261,7 @@ void Font::GameContentCreateFont(std::string _Text, float4 _Pivot)
 			break;
 		}
 
-		FontRenderer.at(Count_)->SetPivot({ MarginX + _Pivot.x , 0 + _Pivot.y});
+		FontRenderer.at(Count_)->SetPivot({ MarginX + _Pivot.x , 0 + _Pivot.y });
 		MarginX += 10.f;
 
 	}

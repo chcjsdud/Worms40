@@ -49,13 +49,13 @@ enum class WeaponState
 	//Throw 상태 별도 존재함
 	// 기모으는 것 끼리 붙여넣기 (숫자로 관리)
 	// F1
-	Baz, // 완료
+	Baz,
 	Homing,
 	Mortar,
 
 	// F2
-	Grenade, // 완료
-	
+	Grenade, // Grn
+
 	Axe,
 
 	// F3
@@ -73,7 +73,7 @@ enum class WeaponState
 	SuperSheep,
 
 	// F6
-	AirStrike, // 완료
+	AirStrike,
 
 	// F7
 	BlowTorch,
@@ -116,18 +116,18 @@ enum class LevelFSM
 	Ready,		 // 입력전의 준비단계, 제한시간이 흐르지않음. 
 				 //입력이 없을경우 자동으로 5초뒤에 다음 페이즈로 넘어감
 
-	Move,		 // 이동 단계, 이동, 조준, 무기 변경을 함
-	CameraMove, 
-	Damage,		 // 데미지 계산,
+				 Move,		 // 이동 단계, 이동, 조준, 무기 변경을 함
+				 CameraMove,
+				 Damage,		 // 데미지 계산,
 
-	// 반복
-	Death,		 // 죽은 캐릭터가 있으면 카메라 이동 및 자폭공격
-	DeathDamage, // 자폭공격에 맞았으면 데미지 계산
-	// 반복
+				 // 반복
+				 Death,		 // 죽은 캐릭터가 있으면 카메라 이동 및 자폭공격
+				 DeathDamage, // 자폭공격에 맞았으면 데미지 계산
+				 // 반복
 
-	// 데미지 끝남
-	TurnEnd,	 // 바람이 바뀜, 보급이 내려오고, 기타등등
-	// -> Ready
+				 // 데미지 끝남
+				 TurnEnd,	 // 바람이 바뀜, 보급이 내려오고, 기타등등
+				 // -> Ready
 };
 
 enum class TeamColor

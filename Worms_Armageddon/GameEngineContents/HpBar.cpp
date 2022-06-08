@@ -18,7 +18,7 @@ void HpBar::Start()
 {
 	HpBar_ = CreateRenderer("WormHP.bmp", static_cast<int>(RenderOrder::HpBar));
 	HpFont_ = GetLevel()->CreateActor<Font>();
-	HpFont_->GameContentCreateNumberFont(0, {0,0}, FONT_COLOR::White);
+	HpFont_->GameContentCreateNumberFont(0, { 0,0 }, FONT_COLOR::White);
 }
 
 void HpBar::Update()
