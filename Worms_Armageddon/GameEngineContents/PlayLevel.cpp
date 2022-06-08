@@ -18,6 +18,7 @@ PlayLevel::PlayLevel()
 	, NextPlayerPos_(float4::ZERO)
 	, LerpStartCameraPos_(float4::ZERO)
 	, CurrentWeaponPos_(float4::ZERO)
+	, CameraControledByWASDFlg_(false)
 {
 	// 플레이어 배열 초기화
 	for (int TeamColor = 0; TeamColor < PLAYER_MAX_TEAM; TeamColor++)
@@ -104,6 +105,8 @@ void PlayLevel::Update()
 
 		// 플레이큐가 초기화 될때마다 다음 카메라 위치를 초기화
 		NextPlayerPos_ = TargetPlayer_->GetPosition();
+		// 카메라 키보드 조작용 변수 초기화
+		PrevCameraPos_ = NextPlayerPos_;
 
 		// 카메라 이동 후 Move페이즈로 
 		LevelPhase_ = LevelFSM::CameraMove;
@@ -229,6 +232,8 @@ void PlayLevel::Update()
 			int WinInt = Ran.RandomInt(0, 1);
 
 			SetWindUI(WinInt);
+			CameraControledByWASDFlg_ = false;
+			PrevCameraPos_ = LerpCameraPos_;
 			LevelPhase_ = LevelFSM::Move;
 		}
 		else
@@ -371,14 +376,42 @@ void PlayLevel::UpdateCamera(float4 _CameraPos)
 {
 	float CurrentLevelH = 0.0f;
 	float CurrentLevelW = 0.0f;
+	float4 CurMousePos = Mouse_->GetPosition();
 
-	// 테스트용 코드
+	// MAPBOOKS 화면에서의 설정
 	CurrentLevelH = SCALE_CAMERA_MAPMOOKS_Y;
 	CurrentLevelW = SCALE_CAMERA_MAPMOOKS_X;
-	// 테스트용 코드
 
-	// TODO::포탄에 따라서 카메라 위치를 변경하거나
-	// TODO::플레이어의 위치에 맞춰서 카메라가 따라다니거나의 2가지 모드
+	// 카메라가 마우스에 의해 이동중이면 받아온 Position을 사용하지 않음.
+	if (CameraControledByWASDFlg_ == true)
+	{
+		_CameraPos = PrevCameraPos_;
+	}
+
+	// 이전 위치의 마우스와 비교하여 이동했으면 카메라를 따라서 이동
+	if (true == GameEngineInput::GetInst()->IsPress(KEY_CAMERAMOVE_LEFT))
+	{
+		_CameraPos.x -= 10.0f;
+		CameraControledByWASDFlg_ = true;
+	}
+	if (true == GameEngineInput::GetInst()->IsPress(KEY_CAMERAMOVE_RIGHT))
+	{
+		_CameraPos.x += 10.0f;
+		CameraControledByWASDFlg_ = true;
+	}
+	if (true == GameEngineInput::GetInst()->IsPress(KEY_CAMERAMOVE_UP))
+	{
+		_CameraPos.y -= 10.0f;
+		CameraControledByWASDFlg_ = true;
+	}
+	if (true == GameEngineInput::GetInst()->IsPress(KEY_CAMERAMOVE_DOWN))
+	{
+		_CameraPos.y += 10.0f;
+		CameraControledByWASDFlg_ = true;
+	}
+
+	PrevCameraPos_ = _CameraPos;
+
 	CameraPos_ = _CameraPos - GameEngineWindow::GetInst().GetScale().Half();
 
 	// 카메라가 맵 범위를 벗어났을경우 재위치

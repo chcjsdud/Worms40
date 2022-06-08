@@ -59,6 +59,7 @@ public:
 		return WeaponPos_;
 	}
 
+
 	bool ControllUpdate();
 	void UnControllUpdate();
 

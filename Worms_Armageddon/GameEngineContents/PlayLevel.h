@@ -68,6 +68,11 @@ private:
 	float4 CameraPos_;
 	// 카메라 이동용 이전 플레이어 위치
 	float4 PrevPlayerPos_;
+	// 마우스로 카메라 조작용 이전 마우스 위치
+	float4 PrevCameraPos_;
+	// 마우스로 카메라를 이동하는 플래그
+	// false = 마우스로 조작하지 않음, true = 마우스로 조작함
+	bool CameraControledByWASDFlg_;
 	// 다음 플레이어 위치
 	float4 NextPlayerPos_;
 	// 보간처리용 타이머

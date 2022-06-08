@@ -33,6 +33,11 @@ void Worms::GameInit()
 	GameEngineInput::GetInst()->CreateKey(KEY_MOUSE_MID, VK_MBUTTON);
 	GameEngineInput::GetInst()->CreateKey(KEY_MOUSE_RIGHT, VK_RBUTTON);
 
+	GameEngineInput::GetInst()->CreateKey(KEY_CAMERAMOVE_UP, 'W');
+	GameEngineInput::GetInst()->CreateKey(KEY_CAMERAMOVE_DOWN, 'S');
+	GameEngineInput::GetInst()->CreateKey(KEY_CAMERAMOVE_LEFT, 'A');
+	GameEngineInput::GetInst()->CreateKey(KEY_CAMERAMOVE_RIGHT, 'D');
+
 
 	GameEngineInput::GetInst()->CreateKey(DEBUG_KEY, 'D');
 

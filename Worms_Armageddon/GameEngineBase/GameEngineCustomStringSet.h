@@ -58,6 +58,10 @@
 #define LEVEL_PLAY_LEVEL "PlayLevel"
 
 // Ű
+#define KEY_CAMERAMOVE_UP "CameraMoveUp"
+#define KEY_CAMERAMOVE_DOWN "CameraMoveDown"
+#define KEY_CAMERAMOVE_LEFT "CameraMoveLeft"
+#define KEY_CAMERAMOVE_RIGHT "CameraMoveRight"
 #define KEY_CHANGE_PLAYLEVEL "ChangePlayLevel"
 #define KEY_CHANGE_LOBBYLEVEL "ChangeLobbyLevel"
 #define KEY_CHANGE_PIXELMODE "ChangePixelMode"
