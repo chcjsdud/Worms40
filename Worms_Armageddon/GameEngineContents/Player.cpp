@@ -513,7 +513,6 @@ void Player::ChargingWeaponPower()
 		}
 	}
 }
-}
 
 void Player::ChangeHpBarFont(int _Hp)
 {
