@@ -274,7 +274,7 @@ void WeaponMaster::BulletColEvent()
 void WeaponMaster::Explosion()
 {
 	// 이미지를 가져와서 땅이 파여있는 상태를 메모리에 보존?
-			// 바닥
+	// 바닥
 	GameEngineImage* tmpGroundMap = GetGameMap()->GetGround()->GetImage();
 	// 충돌
 	GameEngineImage* tmpColMap = GetGameMap()->GetColMap();
