@@ -542,7 +542,7 @@ void Font::GameContentCreateNumberFont(int _Num, float4 _Pivot, FONT_COLOR _Font
 	for (int i = 0; i < FontSize; ++i)
 	{
 		FontRenderer.push_back(CreateRenderer("HPnumber.bmp", static_cast<int>(RenderOrder::Font)));
-		FontRenderer.at(i)->CameraEffectOff();
+		FontRenderer.at(i)->CameraEffectOn();
 	}
 
 	int ColorIndex = 0;
@@ -657,7 +657,7 @@ void Font::GameContentChangeNumberFont(int _Num, float4 _Pivot, FONT_COLOR _Font
 	for (int i = 0; i < FontSize; ++i)
 	{
 		FontRenderer.push_back(CreateRenderer("HPnumber.bmp", static_cast<int>(RenderOrder::Font)));
-		FontRenderer.at(i)->CameraEffectOff();
+		FontRenderer.at(i)->CameraEffectOn();
 	}
 
 	int ColorIndex = 0;
