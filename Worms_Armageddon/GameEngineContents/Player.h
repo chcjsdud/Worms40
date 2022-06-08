@@ -193,6 +193,7 @@ private:
 	void MoveStart();
 	void ActionStart();
 	void JumpStart();
+	void FlyStart();
 	void BackFlipStart();
 	void FalledStart();
 
@@ -201,6 +202,7 @@ private:
 	void MoveUpdate();
 	void ActionUpdate();
 	void JumpUpdate();
+	void FlyUpdate();
 	void BackFlipUpdate();
 	void FalledUpdate();
 

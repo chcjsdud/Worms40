@@ -14,6 +14,7 @@ enum class PlayerState
 	ActionIdle,
 	Move,
 	Jump,
+	Fly,
 	BackFlip,
 	Falled,
 	Action

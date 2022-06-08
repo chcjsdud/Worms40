@@ -401,6 +401,9 @@ void Player::StateChange(PlayerState _State)
 		case PlayerState::Jump:
 			JumpStart();
 			break;
+		case PlayerState::Fly:
+			FlyStart();
+			break;
 		case PlayerState::BackFlip:
 			BackFlipStart();
 			break;
@@ -435,6 +438,9 @@ void Player::StateUpdate()
 		break;
 	case PlayerState::Jump:
 		JumpUpdate();
+		break;
+	case PlayerState::Fly:
+		FlyUpdate();
 		break;
 	case PlayerState::BackFlip:
 		BackFlipUpdate();
