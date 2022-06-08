@@ -7,6 +7,7 @@
 #include "Baz.h"
 #include "Grenade.h"
 #include "AirStrike.h"
+#include "SuperSheep.h"
 #pragma endregion
 
 
@@ -61,13 +62,17 @@ void Player::IdleUpdate()
 	{
 		WeaponState_ = WeaponState::Baz;
 	}
-	if (GameEngineInput::GetInst()->IsPress(KEY_WEAPON_GRENADE))
+	else if (GameEngineInput::GetInst()->IsPress(KEY_WEAPON_GRENADE))
 	{
 		WeaponState_ = WeaponState::Grenade;
 	}
-	if (GameEngineInput::GetInst()->IsPress(KEY_WEAPON_AIRSTRIKE))
+	else if (GameEngineInput::GetInst()->IsPress(KEY_WEAPON_AIRSTRIKE))
 	{
 		WeaponState_ = WeaponState::AirStrike;
+	}
+	else if (GameEngineInput::GetInst()->IsPress(KEY_WEAPON_SUPERSHEEP))
+	{
+		WeaponState_ = WeaponState::SuperSheep;
 	}
 
 
@@ -483,6 +488,9 @@ void Player::ActionStart()
 	case WeaponState::FirePunch:
 		break;
 	case WeaponState::Sheep:
+		break;
+	case WeaponState::SuperSheep:
+		Weapon_ = GetLevel()->CreateActor<SuperSheep>();
 		break;
 	case WeaponState::AirStrike:
 		Weapon_ = GetLevel()->CreateActor<AirStrike>();

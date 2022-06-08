@@ -73,6 +73,7 @@
 #define KEY_WEAPON_BAZ "WeaponBaz"
 #define KEY_WEAPON_GRENADE "WeaponGrenade"
 #define KEY_WEAPON_AIRSTRIKE "WeaponAirStrike"
+#define KEY_WEAPON_SUPERSHEEP "WeaponSuperSheep"
 
 // 마우스
 #define IMG_MOUSE_CURSOR "Cursor.bmp"
@@ -171,6 +172,12 @@
 #define IMG_AIRJET_GREEN_RIGHT "airjetgRight.bmp"
 #define IMG_AIRJET_AIRBOMB_SPIN "airBomb.bmp"
 #define IMG_AIRJET_AIRBOMB_FILTER "airBombFilter.bmp"
+#define IMG_SHEEP_BULLET_LEFT "sheepwlkLeft.bmp"
+#define IMG_SHEEP_BULLET_RIGHT "sheepwlk.bmp"
+
+// 무기 애니메이션
+#define ANIM_NAME_SHEEP_LEFT "sheepwlkAnimLeft"
+#define ANIM_NAME_SHEEP_RIGHT "sheepwlkAnimRight"
 
 // 이펙트
 #define IMG_FX_EXFOOM "exfoom.bmp"

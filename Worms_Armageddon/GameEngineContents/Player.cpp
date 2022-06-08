@@ -144,6 +144,7 @@ void Player::PlayerKeyInit()
 		GameEngineInput::GetInst()->CreateKey(KEY_WEAPON_BAZ, '1');
 		GameEngineInput::GetInst()->CreateKey(KEY_WEAPON_GRENADE, '2');
 		GameEngineInput::GetInst()->CreateKey(KEY_WEAPON_AIRSTRIKE, '3');
+		GameEngineInput::GetInst()->CreateKey(KEY_WEAPON_SUPERSHEEP, '4');
 	}
 }
 

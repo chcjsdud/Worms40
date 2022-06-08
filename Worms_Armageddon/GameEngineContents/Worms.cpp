@@ -103,8 +103,8 @@ void Worms::GameInit()
 		GameEngineImage* Font = GameEngineImageManager::GetInst()->Find("FontEdit.bmp");
 		Font->Cut({ 16, 16 });
 
-		GameEngineImage* HPnumber = GameEngineImageManager::GetInst()->Find("HPnumber.bmp");
-		HPnumber->Cut({ 12, 12 });
+		//GameEngineImage* HPnumber = GameEngineImageManager::GetInst()->Find("HPnumber.bmp");
+		//HPnumber->Cut({ 12, 12 });
 
 	}
 
@@ -193,7 +193,14 @@ void Worms::GameInit()
 		{
 			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 		}
-
+		{ // LEFT 용 이미지
+			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find(IMG_SHEEP_BULLET_LEFT);
+			Image->Cut({ 60, 60 });
+		}
+		{ // RIGHT 용 이미지
+			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find(IMG_SHEEP_BULLET_RIGHT);
+			Image->Cut({ 60, 60 });
+		}
 	}
 
 

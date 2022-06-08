@@ -46,12 +46,12 @@ enum class WeaponState
 	//Throw 상태 별도 존재함
 	// 기모으는 것 끼리 붙여넣기 (숫자로 관리)
 	// F1
-	Baz,
+	Baz, // 완료
 	Homing,
 	Mortar,
 
 	// F2
-	Grenade, // Grn
+	Grenade, // 완료
 	
 	Axe,
 
@@ -67,9 +67,10 @@ enum class WeaponState
 
 
 	Sheep,
+	SuperSheep,
 
 	// F6
-	AirStrike,
+	AirStrike, // 완료
 
 	// F7
 	BlowTorch,
