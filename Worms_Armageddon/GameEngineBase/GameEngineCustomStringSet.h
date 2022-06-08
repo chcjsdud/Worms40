@@ -96,6 +96,7 @@
 // 이미지 스케일
 #define SCALE_GRADIENT_X 1280.0f
 #define SCALE_GRADIENT_Y 720.0f
+#define SCALE_GRADIENT_Half {640.f , 360.f}
 #define SCALE_MAPBOOKS_X 5000.0f * 0.4f
 #define SCALE_MAPBOOKS_Y 3200.0 * 0.4f
 #define SCALE_MAPBOOKS_GROUND_X 5000.0f * 0.4f
@@ -224,5 +225,5 @@
 #define WEAPON_AIRFLY_SPEED 1000.0f
 #define WEAPON_AIRFLY_START_LEFT -500.0f
 #define WEAPON_AIRFLY_START_RIGHT 2100.0f
-#define CorrectionPosX 200
+#define CorrectionPosX 100.f
 #define DropSec 0.02f
