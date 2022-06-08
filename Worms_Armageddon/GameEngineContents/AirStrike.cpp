@@ -33,7 +33,7 @@ bool AirStrike::WeaponUpdate()
 		return false;
 	}
 	
-	AirStart(float4::RIGHT); // 폭격기 출격
+	AirStart(float4::LEFT); // 폭격기 출격
 	// 폭격기가 경로를 다 지나가야 다음 턴 넘어감
 
 	IsBomb_ = Bombing(WeaponState::AirStrike);
@@ -54,7 +54,7 @@ float4 AirStrike::GetWeaponPosition()
 {
 	if (IsBomb_ == false || WeaponCameraPos_.IsZero2D())
 	{
-		return GetPosition();
+		return { GetPosition().x, GetPosition().y + 500 };
 	}
 	if (IsBomb_ == true)
 	{

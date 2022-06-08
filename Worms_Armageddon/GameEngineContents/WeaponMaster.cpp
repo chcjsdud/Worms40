@@ -156,11 +156,9 @@ void WeaponMaster::BulletMove(float _Gravity, bool _IsWind)
 
 bool WeaponMaster::Bombing(WeaponState _Bomb)
 {
-	float DropSec = 0.05f;
-
 	if (0 < BulletDir_.x)
 	{// ->
-		float BombingStartPosX = TargetPos_.x -300;
+		float BombingStartPosX = TargetPos_.x - CorrectionPosX;
 
 		if (BombingStartPosX < GetPosition().x) // 투하 위치도달
 		{
@@ -199,7 +197,7 @@ bool WeaponMaster::Bombing(WeaponState _Bomb)
 	}
 	else
 	{// <-
-		float BombingStartPosX = TargetPos_.x - 300;
+		float BombingStartPosX = TargetPos_.x + CorrectionPosX;
 
 		if (BombingStartPosX > GetPosition().x) // 투하 위치도달
 		{
