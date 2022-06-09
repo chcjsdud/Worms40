@@ -29,13 +29,13 @@ enum class RenderOrder
 	BackGround_1,
 	// ¸Ê
 	BackGround_2,
+	Weapon,
 	// ¸Ê
 	BackGround_3,
 
 	LobbyStar,
 
 	Back_Fx,
-	Weapon,
 	Player,
 	Front_Fx,
 	UI,

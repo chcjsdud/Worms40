@@ -41,11 +41,5 @@ private:
 
 	POINT MousePos_;
 	static float4 CursorPos_;
-
-public:
-	inline float4 GetMouseCursorPos() const
-	{
-		return CursorPos_;
-	}
 };
 

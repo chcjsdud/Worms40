@@ -40,7 +40,7 @@ bool Grenade::WeaponUpdate()
 		Explosion();
 	}
 
-	ThrowStart(100); // 투사체를 던지고
+	ThrowStart(ShotPower_); // 투사체를 던지고
 	BulletMove(100, false); // 그게 날아가서
 	BulletColEvent(); // 충돌하면 이벤트가 발생한다.
 

@@ -71,6 +71,12 @@ private:
 	// 무기의 폭발이 끝나는 플래그
 	bool IsExplodEnd_;
 
+	float SinAngle_;
+	float4 SheepMoveDir_;
+	float Speed_;
+	float FallLength_;
+	float FallSpeed_;
+
 	// 레벨이 시작함과 동시에 초기화될 맵 정보
 	// static으로 설정하여 모든 무기가 공유하도록 함
 	static GameMapMaster* GameMap_;
@@ -118,6 +124,8 @@ protected:
 	void BulletMove(float _Gravity, bool _IsWind);
 	// 폭격 폭탄 투하 : 어느 폭탄을 투하할지 지정
 	bool Bombing(WeaponState _Bomb);
+	//
+	void SheepMove();
 
 	// 투사체 충돌 시 발생 이벤트
 	bool BulletColEvent();
