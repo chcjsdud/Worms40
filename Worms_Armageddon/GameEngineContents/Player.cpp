@@ -7,6 +7,7 @@
 #include <GameEngineBase/GameEngineRandom.h>
 
 GameEngineRandom Player::Ran;
+WeaponMaster* Player::Weapon_ = nullptr;
 
 Player::Player()
 	: Speed_(PLAYER_SPEED)
@@ -69,6 +70,13 @@ void Player::Start()
 
 void Player::Update()
 {
+	//데미지를 입엇다면 , IsDamged==true , Damaged함수에서 처리.
+	if (IsDamaged_ == true)
+	{
+		FlyAwayUpdate();
+		return;
+	}
+
 	// 컨트롤되고 있지 않은 플레이어 캐릭터는 피격판정등의 동작만 수행
 	if (this->GetPlayerState() == PlayerState::Idle
 		|| this->GetPlayerState() == PlayerState::Move)
@@ -84,11 +92,6 @@ void Player::Update()
 		Damaged();
 	}
 
-	//데미지를 입엇다면 , IsDamged==true , Damaged함수에서 처리.
-	if (IsDamaged_ == true)
-	{
-		StateChange(PlayerState::Fly);
-	}
 
 	// 컨트롤되고 있지 않은 캐릭터는 데미지를 받더라도 턴이 끝나지 않음
 }
@@ -102,15 +105,17 @@ bool Player::ControllUpdate()
 	// State내부에서 턴종료 플래그를 세워주면 턴종료
 	IsTurnEnd_ = false;
 
+	if (IsDamaged_ == true)
+	{
+		return IsTurnEnd_;
+	}
+
 	StateUpdate();
+
 
 	return IsTurnEnd_;
 }
 
-void Player::UnControllUpdate()
-{
-
-}
 
 bool Player::DeathUpdate()
 {
@@ -410,6 +415,7 @@ void Player::Damaged()
 		PlayerHp_ -= 40;
 		AllDamage_ += 40;
 		IsDamaged_ = true;
+		FlyMoveDir_ = float4{ 300,-500 };
 	}
 }
 
@@ -433,9 +439,6 @@ void Player::StateChange(PlayerState _State)
 		case PlayerState::Jump:
 			JumpStart();
 			break;
-		case PlayerState::Fly:
-			FlyStart();
-			break;
 		case PlayerState::BackFlip:
 			BackFlipStart();
 			break;
@@ -445,6 +448,8 @@ void Player::StateChange(PlayerState _State)
 		case PlayerState::Action:
 			ActionStart();
 			break;
+		case PlayerState::FlyAway:
+			FlyAwayStart();
 		default:
 			break;
 		}
@@ -471,9 +476,6 @@ void Player::StateUpdate()
 	case PlayerState::Jump:
 		JumpUpdate();
 		break;
-	case PlayerState::Fly:
-		FlyUpdate();
-		break;
 	case PlayerState::BackFlip:
 		BackFlipUpdate();
 		break;
@@ -483,10 +485,48 @@ void Player::StateUpdate()
 	case PlayerState::Action:
 		ActionUpdate();
 		break;
+	case PlayerState::FlyAway:
+		FlyAwayUpdate();
+		break;
 	default:
 		break;
 	}
 
+}
+
+void Player::UnControlStateChange(PlayerUnControlState _State)
+{
+	if (UnControlState_ != _State)
+	{
+		switch (_State)
+		{
+		case PlayerUnControlState::UncontrolIdle:
+			UncontrolledStart();
+			break;
+		case PlayerUnControlState::FlyAway:
+			FlyAwayStart();
+			break;
+		default:
+			break;
+		}
+	}
+
+	UnControlState_ = _State;
+}
+
+void Player::UnControlStateUpdate()
+{
+	switch (UnControlState_)
+	{
+	case PlayerUnControlState::UncontrolIdle:
+		UncontrolledUpdate();
+		break;
+	case PlayerUnControlState::FlyAway:
+		FlyAwayUpdate();
+		break;
+	default:
+		break;
+	}
 }
 
 void Player::PlayerAnimationChange(std::string _Anim)

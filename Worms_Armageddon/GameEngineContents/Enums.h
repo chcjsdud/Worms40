@@ -14,12 +14,19 @@ enum class PlayerState
 	WeaponSwap,
 	Move,
 	Jump,
-	Fly,
 	BackFlip,
 	Falled,
 	Action,
-	Uncontrolled
+	FlyAway
 };
+
+enum class PlayerUnControlState
+{
+	UncontrolIdle,
+	FlyAway
+};
+
+
 
 enum class RenderOrder
 {

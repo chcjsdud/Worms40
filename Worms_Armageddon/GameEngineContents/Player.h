@@ -85,7 +85,6 @@ public:
 	}
 
 	bool ControllUpdate();
-	void UnControllUpdate();
 
 	bool DeathUpdate();
 private:
@@ -142,6 +141,8 @@ private:
 	float4 MoveDir_;
 	//점프중 좌우방향
 	float4 JumpMoveDir_;
+	//날라가는 방향
+	float4 FlyMoveDir_;
 
 	// 사운드 오브젝트
 	GameEngineSound* SoundPlayer_;
@@ -158,7 +159,7 @@ private:
 	int WeaponType_;
 
 	// 생성할 무기
-	WeaponMaster* Weapon_;
+	static WeaponMaster* Weapon_;
 
 	// HpBar
 	HpBar* Hpbar_;
@@ -211,21 +212,26 @@ public:
 	void StateChange(PlayerState _State);
 	// 상태 업데이트
 	void StateUpdate();
+	// 컨트롤 하지않는 플레이어 상태 전환
+	void UnControlStateChange(PlayerUnControlState _State);
+	void UnControlStateUpdate();
 private:
 	// 현재 상태
 	PlayerState CurrentState_;
 	// 이전 상태
 	PlayerState PrevState_;
 
+	//
+	PlayerUnControlState UnControlState_;
+
 	void IdleStart();
 	void WeaponSwapStart();
 	void MoveStart();
 	void ActionStart();
 	void JumpStart();
-	void FlyStart();
 	void BackFlipStart();
 	void FalledStart();
-	void UncontrolledStart();
+	void FlyAwayStart();
 
 
 	void IdleUpdate();
@@ -233,10 +239,15 @@ private:
 	void MoveUpdate();
 	void ActionUpdate();
 	void JumpUpdate();
-	void FlyUpdate();
 	void BackFlipUpdate();
 	void FalledUpdate();
+	void FlyAwayUpdate();
+	
+	void UncontrolledStart();
 	void UncontrolledUpdate();
+	
+	void UncontrolFlyAwayStart();
+	void UncontrolFlyAwayUpdate();
 
 	void PlayerAnimationChange(std::string _Anim);
 

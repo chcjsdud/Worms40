@@ -397,6 +397,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="PlayerUncontrolState.cpp" />
     <ClCompile Include="ReadyButton.cpp">
       <SubType>
       </SubType>
