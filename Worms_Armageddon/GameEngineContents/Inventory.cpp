@@ -8,6 +8,8 @@ const int InventoryHegiht = 11;
 const int InventoryWidth = 5;
 const float SlotPaddingX = 45.0f;
 const float SlotPaddingY = 16.0f;
+const float SlotSpeed = 3000.0f;
+
 Inventory::Inventory() 
 	: IsOut_(false)
 	, ClickedWeapon_(WeaponState::None)
@@ -72,12 +74,12 @@ void Inventory::MoveInOut()
 	{
 		if (IsOut_ == false)
 		{
-			UIMaster::MoveSetting(OutPos_, InPos_, 800.0f);
+			UIMaster::MoveSetting(OutPos_, InPos_, SlotSpeed);
 			IsOut_ = !IsOut_;
 		}
 		else
 		{
-			UIMaster::MoveSetting(InPos_, OutPos_, 800.0f);
+			UIMaster::MoveSetting(InPos_, OutPos_, SlotSpeed);
 			IsOut_ = !IsOut_;
 		}
 

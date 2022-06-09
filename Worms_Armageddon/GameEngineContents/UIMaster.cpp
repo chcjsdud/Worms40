@@ -75,6 +75,13 @@ void UIMaster::MovingUpdate()
 
 	float4 Pos = float4::LerpLimit(CurPos_, DestPos_, LerpDeltaTime_);
 	SetPosition(Pos);
+
+	if (CurPos_.x > DestPos_.x - 1.0f && CurPos_.x < DestPos_.x + 1.0f &&
+		CurPos_.y > DestPos_.y - 1.0f && CurPos_.y < DestPos_.y + 1.0f)
+	{
+		SetPosition(DestPos_);
+		ChangeState(STATE::IDLE);
+	}
 }
 
 void UIMaster::MoveSetting(float4 _StartPos, float4 _DestPos, float _Speed)

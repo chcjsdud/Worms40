@@ -252,9 +252,6 @@ void PlayLevel::Update()
 	// 데미지 계산
 	case LevelFSM::Damage:
 	{
-		// 플레이어 체력 계산
-		AllPlayer_;
-
 		// 팀별 전체 체력 계산
 		static bool IsTeamHpCalculated = false; // 계산 한번 하도록
 		if (false == IsTeamHpCalculated)
@@ -279,6 +276,7 @@ void PlayLevel::Update()
 			IsTeamHpCalculated = true;
 		}
 
+		// 다음 State로
 		if (true == TeamHpBarListActor_->IsAnimationEnd())
 		{
 			IsTeamHpCalculated = false;

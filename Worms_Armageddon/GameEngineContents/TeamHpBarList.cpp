@@ -108,7 +108,7 @@ void TeamHpBarList::SortBarStart()
 
 	for (int i = 0; i < (int)SortedTeamHpBars_.size(); i++)
 	{
-		// Sorted의 첫 번째 HpBar는 1순위
+		// Sorted의 첫 번째 HpBar는 1순위(제일 위로)
 		int HpBarIndex = SortedTeamHpBars_[i].Index_;
 
 		// HpBarPositions[0] 이동 위치 세팅
@@ -121,17 +121,6 @@ void TeamHpBarList::SortBarStart()
 		TeamHpBar->Move();
 	}
 
-	//for (int i = 0; i < (int)SortedTeamHpBars_.size(); i++)
-	//{
-	//	SortedTeamHpBars_[i]->SetPosition(HpBarPositions_[i]);
-	//}
-
-	//for (int i = 0; i < (int)SortedTeamHpBars_.size(); i++)
-	//{
-	//	// 여기 잘못됨
-	//	TeamHpBars_[i]->MoveSetting(TeamHpBars_[i]->GetPosition(), SortedTeamHpBars_[i]->GetPosition(), SORT_SPEED);
-	//	TeamHpBars_[i]->Move();
-	//}
 }
 
 void TeamHpBarList::DecreaseUpdate()
@@ -154,7 +143,7 @@ void TeamHpBarList::DecreaseUpdate()
 
 	if (true == IsAllEnd)
 	{
-		if (GetAccTime() >= 2.0f)
+		if (GetAccTime() >= 1.0f)
 		{
 			ChangeState(STATE::SortBar);
 		}
@@ -164,7 +153,7 @@ void TeamHpBarList::DecreaseUpdate()
 
 void TeamHpBarList::SortBarUpdate()
 {
-	// TeamHpBars_; 크기 비교 -> 크기 순으로 정렬 -> HpBarPosition_으로 UIMaster이동함수
+	// 모든 HP바 줄어듬 완료 확인
 	bool IsAllEnd = false;
 	int Flag = 0;
 	for (auto EndCheck : TeamHpBars_)
@@ -180,8 +169,6 @@ void TeamHpBarList::SortBarUpdate()
 	if (true == IsAllEnd)
 	{
 		ChangeState(STATE::End);
-
-		int a = 0;
 	}
 }
 
