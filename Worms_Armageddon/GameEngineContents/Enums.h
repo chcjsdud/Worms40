@@ -11,13 +11,14 @@ enum class ActorGroup
 enum class PlayerState
 {
 	Idle,
-	ActionIdle,
+	WeaponSwap,
 	Move,
 	Jump,
 	Fly,
 	BackFlip,
 	Falled,
-	Action
+	Action,
+	Uncontrolled
 };
 
 enum class RenderOrder

@@ -22,6 +22,7 @@ WeaponMaster::WeaponMaster()
 	, BounceRotate_(0)
 	, IsBomb_(false)
 	, BombCnt_(0)
+	, IsExplodEnd_(false)
 {
 }
 
@@ -278,10 +279,14 @@ bool WeaponMaster::BulletColEvent()
 		// 맵과 충돌처리
 		if (RGB(0, 0, 255) == Color)
 		{
+			// 무기 폭발 이펙트
 			Explosion();
+			// 무기가 폭발했음을 반환(데미지 처리용)
+			IsExplodEnd_ = true;
 			return false;
 		}
 	}
+	IsExplodEnd_ = false;
 	return true;
 }
 

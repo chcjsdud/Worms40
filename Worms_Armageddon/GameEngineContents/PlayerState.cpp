@@ -89,7 +89,7 @@ void Player::IdleUpdate()
 	//IsSwitch가 true 이면 무기를 스왑한것.
 	if (IsSwitch == true)
 	{
-		StateChange(PlayerState::ActionIdle);
+		StateChange(PlayerState::WeaponSwap);
 	}
 
 	// 발사 방향을 플레이어가 바라보는 방향으로 조정
@@ -137,7 +137,7 @@ void Player::IdleUpdate()
 	}
 }
 
-void Player::ActionIdleUpdate()
+void Player::WeaponSwapUpdate()
 {
 
 	if (IsSwitch == true)
@@ -191,6 +191,11 @@ void Player::ActionIdleUpdate()
 	}
 }
 
+
+void Player::UncontrolledUpdate()
+{
+
+}
 
 void Player::MoveUpdate()
 {
@@ -265,6 +270,7 @@ void Player::ActionUpdate()
 		// 사용된 무기 삭제
 		Weapon_->Death();
 
+		WeaponState_ = WeaponState::None;
 		// TODO::동작이 끝날경우에 Idle로 전환
 		StateChange(PlayerState::Idle);
 
@@ -287,6 +293,9 @@ void Player::FlyUpdate()
 	//폭탄의 방향 계산 .   //// 아래에서 터지면 위로날라가고 하기위해 필요
 	//폭탄데미지 + 낙하데미지 계산후 Damaged()함수에 전달 Damaged함수도 만들어야함
 	//플레이어 날라가는 애니메이션 & 옆으로 미끄러지는 애니메이션도 만들어야함.
+
+
+	
 }
 
 
@@ -541,7 +550,7 @@ void Player::IdleStart()
 
 }
 
-void Player::ActionIdleStart()
+void Player::WeaponSwapStart()
 {
 
 }
@@ -604,6 +613,11 @@ void Player::ActionStart()
 	Weapon_->SetShotDir(MoveDir_);
 	Weapon_->SetShotAngle(ShotAngle_);
 	Weapon_->SetShotPower(ShotPower_);
+}
+
+void Player::UncontrolledStart()
+{
+
 }
 
 void Player::FlyStart()

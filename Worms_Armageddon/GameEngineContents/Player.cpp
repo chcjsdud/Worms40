@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "PixelCollision.h"
+#include "WeaponMaster.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineImageManager.h>
@@ -26,6 +27,10 @@ Player::Player()
 	, IsJump_(false)
 	, IsSwitch(false)
 	, Hpbar_(nullptr)
+	, Len_(0.0f)
+	, ControlFlg_(false)
+	, AllDamage_(0)
+	, IsDamaged_(false)
 {
 }
 
@@ -72,6 +77,18 @@ void Player::Update()
 	}
 
 	Hpbar_->HpBarSetPosition(this->GetPosition());
+
+	//Weapon이 생성되고 땅에닿아 폭발했다면
+	if (Weapon_ != nullptr && Weapon_->GetExplodEndFlg() == true)
+	{
+		Damaged();
+	}
+
+	//데미지를 입엇다면 , IsDamged==true , Damaged함수에서 처리.
+	if (IsDamaged_ == true)
+	{
+		StateChange(PlayerState::Fly);
+	}
 
 	// 컨트롤되고 있지 않은 캐릭터는 데미지를 받더라도 턴이 끝나지 않음
 }
@@ -383,6 +400,19 @@ void Player::CheckHillPixel()
 	}
 }
 
+void Player::Damaged()
+{
+	float4 Length = GetPosition() - Weapon_->GetWeaponPosition();
+	Len_ = Length.Len2D();
+
+	if (Len_ <= 50)
+	{
+		PlayerHp_ -= 40;
+		AllDamage_ += 40;
+		IsDamaged_ = true;
+	}
+}
+
 
 // 상태 변경
 void Player::StateChange(PlayerState _State)
@@ -394,8 +424,8 @@ void Player::StateChange(PlayerState _State)
 		case PlayerState::Idle:
 			IdleStart();
 			break;
-		case PlayerState::ActionIdle:
-			ActionIdleStart();
+		case PlayerState::WeaponSwap:
+			WeaponSwapStart();
 			break;
 		case PlayerState::Move:
 			MoveStart();
@@ -432,8 +462,8 @@ void Player::StateUpdate()
 	case PlayerState::Idle:
 		IdleUpdate();
 		break;
-	case PlayerState::ActionIdle:
-		ActionIdleUpdate();
+	case PlayerState::WeaponSwap:
+		WeaponSwapUpdate();
 		break;
 	case PlayerState::Move:
 		MoveUpdate();

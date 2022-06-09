@@ -37,6 +37,16 @@ public:
 
 	}
 
+	inline bool GetIsDamaged() const
+	{
+		return IsDamaged_;
+	}
+
+	inline void SetIsDamaged(bool _IsDamaged)
+	{
+		IsDamaged_ = _IsDamaged;
+	}
+
 	inline int GetPlayerHp()
 	{
 		return PlayerHp_;
@@ -69,6 +79,11 @@ public:
 	}
 
 
+	inline void SetControlFlg(bool _ControlFlg)
+	{
+		ControlFlg_ = _ControlFlg;
+	}
+
 	bool ControllUpdate();
 	void UnControllUpdate();
 
@@ -76,7 +91,11 @@ public:
 private:
 
 	bool IsTurnEnd_;
-
+	
+	//데미지를 입었냐 안입었냐 확인하는 flag
+	bool IsDamaged_;
+	//모든 데미지의 총합
+	int AllDamage_;
 	// 속도
 	float Speed_;
 	// 낙하 속도
@@ -92,6 +111,8 @@ private:
 	WeaponState PrevWeaponState_;
 	// 무기 위치
 	float4 WeaponPos_;
+	// 폭발한 무기의 위치
+	float4 ExplodWeaponPos_;
 	// 픽셀 체크
 	PixelCollision* PixelCol_;
 	// 플레이어 Hp
@@ -106,6 +127,9 @@ private:
 
 	// 무기 발사 힘
 	float ShotPower_;
+
+	//무기와 플레이어 사이의 거리
+	float Len_;
 
 	// 플레이어 사망 플래그
 	bool IsDeath_;
@@ -150,10 +174,13 @@ private:
 		return GetLevel()->GetNameCopy();
 	}
 
+
 	// 애니메이션 초기화
 	void PlayerAnimationInit();
 	// 키 초기화
 	void PlayerKeyInit();
+
+	bool ControlFlg_;
 
 	//키 입력 카운트
 	int KeyCount_;
@@ -177,6 +204,8 @@ private:
 	void MoveFall();
 	//오르막길 픽셀충돌체크
 	void CheckHillPixel();
+	//데미지 체크
+	void Damaged();
 public:
 	// 상태전환
 	void StateChange(PlayerState _State);
@@ -189,22 +218,25 @@ private:
 	PlayerState PrevState_;
 
 	void IdleStart();
-	void ActionIdleStart();
+	void WeaponSwapStart();
 	void MoveStart();
 	void ActionStart();
 	void JumpStart();
 	void FlyStart();
 	void BackFlipStart();
 	void FalledStart();
+	void UncontrolledStart();
+
 
 	void IdleUpdate();
-	void ActionIdleUpdate();
+	void WeaponSwapUpdate();
 	void MoveUpdate();
 	void ActionUpdate();
 	void JumpUpdate();
 	void FlyUpdate();
 	void BackFlipUpdate();
 	void FalledUpdate();
+	void UncontrolledUpdate();
 
 	void PlayerAnimationChange(std::string _Anim);
 

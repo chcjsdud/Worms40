@@ -207,6 +207,7 @@ void PlayLevel::Update()
 		PrevPlayerPos_ = CurrentPlayer->GetPosition();
 		// 다음 플레이어의 위치 취득
 		NextPlayerPos_ = (*AllPlayerIter_).front()->GetPosition();
+		(*AllPlayerIter_).front()->SetControlFlg(true);
 
 	}
 	break;

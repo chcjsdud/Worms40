@@ -51,6 +51,11 @@ public:
 		ShotPower_ = _ShotPower;
 	}
 
+	inline bool GetExplodEndFlg() const
+	{
+		return IsExplodEnd_;
+	}
+
 private: 
 	// 지정한 목표 좌표
 	float4 TargetPos_;
@@ -62,6 +67,9 @@ private:
 	// 바운스 투사체를 굴리기 위한 회전값
 	float BounceRotate_;
 	bool IsBomb_;
+
+	// 무기의 폭발이 끝나는 플래그
+	bool IsExplodEnd_;
 
 	// 레벨이 시작함과 동시에 초기화될 맵 정보
 	// static으로 설정하여 모든 무기가 공유하도록 함
