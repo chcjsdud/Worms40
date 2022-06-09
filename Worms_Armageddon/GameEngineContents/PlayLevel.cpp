@@ -67,12 +67,16 @@ void PlayLevel::Loading()
 
 void PlayLevel::Update()
 {
-	// 체력바 디버깅용
-
-	//{
-	//	LevelPhase_ = LevelFSM::Damage;
-	//}
-
+	// TeamHpBar디버그용
+	{
+		if (true == GameEngineInput::GetInst()->IsDown(DEBUG_KEY))
+		{
+			TargetPlayer_->SetPlayerHp(20);
+			
+			LevelPhase_ = LevelFSM::Damage;
+		}
+	}
+	
 	switch (LevelPhase_)
 	{
 	case LevelFSM::Ready:
@@ -249,10 +253,38 @@ void PlayLevel::Update()
 	case LevelFSM::Damage:
 	{
 		// 플레이어 체력 계산
+		AllPlayer_;
 
+		// 팀별 전체 체력 계산
+		static bool IsTeamHpCalculated = false; // 계산 한번 하도록
+		if (false == IsTeamHpCalculated)
+		{
+			std::vector<int> TeamsHp;
+			for (std::list<Player*>& Team : AllPlayer_)
+			{
+				int TeamHp = 0;
+				for (Player* Player : Team)
+				{
+					if (Player->GetIsDeath())
+					{
+						continue;
+					}
 
-		// 팀 체력 계산
-		UpdateTeamHpBarUI();
+					TeamHp += Player->GetPlayerHp();
+				}
+				TeamsHp.push_back(TeamHp);
+			}
+
+			TeamHpBarListActor_->SetNewTeamsHp(TeamsHp);
+			IsTeamHpCalculated = true;
+		}
+
+		if (true == TeamHpBarListActor_->IsAnimationEnd())
+		{
+			IsTeamHpCalculated = false;
+			LevelPhase_ = LevelFSM::CameraMove;
+		}
+
 	}
 	break;
 	// 사망처리
@@ -365,9 +397,12 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		// 팀을 전체 플레이어 리스트에 추가
 		AllPlayer_.push_back(Playerlist);
 
-		// 팀 체력바 개수 설정
-		TeamHpBarListActor_->InitTeamSize(Playerlist.size());
+		// 팀 수, 팀원 수(UI) 설정
+		TeamHpBarListActor_->AddTeamHpBar(TeamSetNum, static_cast<int>(Playerlist.size()));
 	}
+
+	TeamHpBarListActor_->InitTeamsHpBar((int)AllPlayer_.size());
+	
 }
 
 void PlayLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
@@ -471,29 +506,4 @@ void PlayLevel::SetWindUI(int _WindDir)
 		GameMapInfo_->SetLargeCloudDir(_WindDir,WindSpeed_);
 		GameMapInfo_->SetSmallCloudDir(_WindDir, WindSpeed_);
 	}
-}
-
-// 팀 체력을 TeamHpBar에 전달
-bool PlayLevel::UpdateTeamHpBarUI()
-{
-	// 팀별 전체 체력 계산
-	std::vector<int> TeamsHp;
-	for (std::list<Player*>& Team : AllPlayer_)
-	{
-		int TeamHp = 0;
-		for (Player* Player : Team)
-		{
-			if (Player->GetIsDeath())
-			{
-				continue;
-			}
-
-			TeamHp += Player->GetPlayerHp();
-		}
-		TeamsHp.push_back(TeamHp);
-	}
-	
-	TeamHpBarListActor_->SetTeamsHpInfo(&TeamsHp);
-
-	return false;
 }

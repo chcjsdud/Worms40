@@ -15,7 +15,7 @@ UIMaster::~UIMaster()
 
 void UIMaster::Start()
 {
-	
+	ChangeState(STATE::IDLE);
 }
 
 void UIMaster::Update()
@@ -46,6 +46,7 @@ void UIMaster::ChangeState(STATE _State)
 		case UIMaster::STATE::IDLE:
 			break;
 		case UIMaster::STATE::MOVING:
+			MovingStart();
 			break;
 		default:
 			break;
@@ -53,6 +54,11 @@ void UIMaster::ChangeState(STATE _State)
 	}
 
 	State_ = _State;
+}
+
+void UIMaster::MovingStart()
+{
+	LerpDeltaTime_ = 0.0f;
 }
 
 void UIMaster::IdleUpdate()
@@ -63,20 +69,12 @@ void UIMaster::IdleUpdate()
 void UIMaster::MovingUpdate()
 {
 	DeltaTime_ = GameEngineTime::GetDeltaTime();
+	LerpDeltaTime_ += DeltaTime_;
+
 	CurPos_ = GetPosition();
 
-	MoveDir_ = DestPos_ - CurPos_;
-	MoveDir_.Normal2D();
-	SetMove(MoveDir_ * DeltaTime_ * Speed_);
-
-	// 다 움직이면 멈추기
-	if (CurPos_.x > DestPos_.x - 20.0f && CurPos_.x < DestPos_.x + 20.0f &&
-		CurPos_.y > DestPos_.y - 20.0f && CurPos_.y < DestPos_.y + 20.0f)
-	{
-		SetPosition(DestPos_);
-		ChangeState(STATE::IDLE);
-	}
-
+	float4 Pos = float4::LerpLimit(CurPos_, DestPos_, LerpDeltaTime_);
+	SetPosition(Pos);
 }
 
 void UIMaster::MoveSetting(float4 _StartPos, float4 _DestPos, float _Speed)
@@ -84,6 +82,8 @@ void UIMaster::MoveSetting(float4 _StartPos, float4 _DestPos, float _Speed)
 	StartPos_ = _StartPos;
 	DestPos_ = _DestPos;
 	Speed_ = _Speed;
+
+	LerpDeltaTime_ = 0.0f;
 }
 
 void UIMaster::Move()

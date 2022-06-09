@@ -9,6 +9,17 @@ class UIMaster : public GameEngineActor
 public:
 	void MoveSetting(float4 _StartPos, float4 _DestPos, float _Speed);
 	void Move();
+	bool IsMoveEnd()
+	{
+		if (STATE::IDLE == State_)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 private:
 	enum class STATE
@@ -23,6 +34,8 @@ protected:
 private:
 	void ChangeState(STATE _State);
 
+	void MovingStart();
+
 	void IdleUpdate();
 	void MovingUpdate();
 
@@ -31,6 +44,7 @@ private:
 
 	// 이동 관련
 	float DeltaTime_;
+	float LerpDeltaTime_;
 	float Speed_;
 	float4 StartPos_;
 	float4 DestPos_;

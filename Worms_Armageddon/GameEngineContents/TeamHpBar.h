@@ -2,13 +2,22 @@
 #include <GameEngine/GameEngineActor.h>
 #include <vector>
 #include <string>
+#include "UIMaster.h"
 
 // 설명 : 팀의 개수만큼 HP바 생성
 class GameEngineRenderer;
-class TeamHpBar : public GameEngineActor
+class TeamHpBar : public UIMaster
 {
 public:
-	void InitTeamHpBar(int _TeamIndex);
+	void InitTeamHpBar(int _TeamIndex, int _MemberNum);
+
+	void DecreaseInit(int _Damage);
+	bool Decrease();
+
+	inline float GetCurrentHp()
+	{
+		return CurrentHp_;
+	}
 
 public:
 	// constrcuter destructer
@@ -31,5 +40,10 @@ private:
 	GameEngineRenderer* TeamFlagRenderer_;
 	GameEngineRenderer* TeamHpBarRenderer_;
 
+	float TotalHp_;
+	float CurrentHp_;
+	float TargetHp_;
+	float BarWidth_;
+	float4 BarPivot_;
 };
 

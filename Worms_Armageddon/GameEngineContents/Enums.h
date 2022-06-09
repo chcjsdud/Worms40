@@ -46,6 +46,7 @@ enum class RenderOrder
 	Player,
 	Front_Fx,
 	UI,
+	UI_2,
 	SelectBox,
 	HpBar,
 	Font,

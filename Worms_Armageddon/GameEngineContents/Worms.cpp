@@ -39,7 +39,7 @@ void Worms::GameInit()
 	GameEngineInput::GetInst()->CreateKey(KEY_CAMERAMOVE_RIGHT, 'D');
 
 
-	GameEngineInput::GetInst()->CreateKey(DEBUG_KEY, 'D');
+	GameEngineInput::GetInst()->CreateKey(DEBUG_KEY, 'P');
 
 
 	//Image폴더내 파일 로드

@@ -84,8 +84,7 @@ private:
 	/// UI ///
 	// 바람
 	void SetWindUI(int _WindDir);
-	// 팀 체력바
-	bool UpdateTeamHpBarUI();
+
 
 public:
 	float4 GetWindDir()

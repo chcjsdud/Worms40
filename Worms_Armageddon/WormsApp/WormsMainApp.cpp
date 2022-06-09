@@ -13,7 +13,6 @@ int __stdcall WinMain(_In_ HINSTANCE hInstance,
     _In_ int       nCmdShow)
 {
  
-
     //leak È®ÀÎ¿ë
     new int();
 
