@@ -450,6 +450,8 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 			//플레이어 색 지정
 			Player_[TeamSetNum][PlayerNum]->CreateHpBar(100, {0,0}, (static_cast<FONT_COLOR>(teamColor)));
 			
+			//화살표
+			Player_[TeamSetNum][PlayerNum]->CreateControlArrow(static_cast<TeamColor>(teamColor));
 			// 팀에 플레이어를 추가
 			Playerlist.push_back(Player_[TeamSetNum][PlayerNum]);
 

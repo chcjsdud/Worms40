@@ -181,6 +181,24 @@ void Worms::GameInit()
 
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("stars.bmp");
 		Image->Cut({ 24, 24 });
+
+		GameEngineImage* ArrowBlue = GameEngineImageManager::GetInst()->Find("ArrowBlue.bmp");
+		ArrowBlue->Cut({ 60, 60 });
+
+		GameEngineImage* arrowGreen = GameEngineImageManager::GetInst()->Find("arrowGreen.bmp");
+		arrowGreen->Cut({ 60, 60 });
+
+		GameEngineImage* arrowMint = GameEngineImageManager::GetInst()->Find("arrowMint.bmp");
+		arrowMint->Cut({ 60, 60 });
+
+		GameEngineImage* arrowPink = GameEngineImageManager::GetInst()->Find("arrowPink.bmp");
+		arrowPink->Cut({ 60, 60 });
+
+		GameEngineImage* ArrowRed = GameEngineImageManager::GetInst()->Find("ArrowRed.bmp");
+		ArrowRed->Cut({ 60, 60 });
+
+		GameEngineImage* ArrowYellow = GameEngineImageManager::GetInst()->Find("ArrowYellow.bmp");
+		ArrowYellow->Cut({ 60, 60 });
 	}
 
 

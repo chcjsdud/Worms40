@@ -32,6 +32,7 @@ Player::Player()
 	, ControlFlg_(false)
 	, AllDamage_(0)
 	, IsDamaged_(false)
+	, ControlWorms_(nullptr)
 	, FlySpeed_(0.0f)
 
 {
@@ -68,13 +69,14 @@ void Player::Start()
 	ColMapImage_ = GameEngineImageManager::GetInst()->Find(IMG_MAPBOOKS_GROUND);
 
 
+
 }
 
 void Player::Update()
 {
-	//데미지를 입엇다면 , IsDamged==true , Damaged함수에서 처리.
-	Hpbar_->HpBarSetPosition(this->GetPosition());
+	Hpbar_->HpBarSetPosition({ this->GetPosition().x , this->GetPosition().y - 25.f});
 	
+	//데미지를 입엇다면 , IsDamged==true , Damaged함수에서 처리.
 	if (IsDamaged_ == true)
 	{
 		FlyAwayUpdate();
@@ -119,6 +121,16 @@ bool Player::ControllUpdate()
 	}
 
 	StateUpdate();
+
+	if (ControlWorms_ != nullptr)
+	{
+		ControlWorms_->On();
+	}
+
+	if (ControlWorms_ != nullptr && IsTurnEnd_ == true)
+	{
+		ControlWorms_->Off();
+	}
 
 
 	return IsTurnEnd_;
@@ -565,6 +577,42 @@ void Player::CreateHpBar(int _Hp, float4 _Pivot, FONT_COLOR _Color)
 	Hpbar_ = GetLevel()->CreateActor<HpBar>();
 	Hpbar_->SetFontColor(_Color);
 	Hpbar_->ChangeHpBarFont(_Hp, _Pivot);
+
+}
+
+void Player::CreateControlArrow(TeamColor _TeamColor)
+{
+	ControlWorms_ = CreateRenderer();
+	std::string Color;
+
+	switch (_TeamColor)
+	{
+	case TeamColor::Red:
+		Color = "ArrowRed.bmp";
+		break;
+	case TeamColor::Blue:
+		Color = "ArrowBlue.bmp";
+		break;
+	case TeamColor::Green:
+		Color = "arrowGreen.bmp";
+		break;
+	case TeamColor::Yellow:
+		Color = "ArrowYellow.bmp";
+		break;
+	case TeamColor::Pink:
+		Color = "arrowPink.bmp";
+		break;
+	case TeamColor::Mint:
+		Color = "arrowMint.bmp";
+		break;
+	default:
+		break;
+	}
+
+	ControlWorms_->CreateAnimation(Color,"ArrowUpdate", 0, 29, 0.04f, true);
+	ControlWorms_->ChangeAnimation("ArrowUpdate");
+	ControlWorms_->SetPivot({0, -90.f});
+	ControlWorms_->Off();
 
 }
 

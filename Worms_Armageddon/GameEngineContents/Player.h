@@ -118,6 +118,7 @@ private:
 	PixelCollision* PixelCol_;
 	// 플레이어 Hp
 	int PlayerHp_;
+
 	// 나의 팀 색깔 정보
 	TeamColor MyTeamColor_;
 
@@ -165,6 +166,9 @@ private:
 	// HpBar
 	HpBar* Hpbar_;
 
+	// 행동중 화살표 렌더러
+	GameEngineRenderer* ControlWorms_;
+
 	//애니메이션용 방향이름
 	std::string DirName_;
 	std::string StateName_;
@@ -186,6 +190,7 @@ private:
 
 	//키 입력 카운트
 	int KeyCount_;
+
 	//키 입력 타이머 ,  더블클릭용
 	float KeyTimer_;
 
@@ -256,6 +261,7 @@ private:
 public:
 	void ChangeHpBarFont(int _Hp);			//폰트 체인지
 	void CreateHpBar(int _Hp, float4 _Pivot,  FONT_COLOR _Color);
+	void CreateControlArrow(TeamColor _TeamColor);
 	
 	void MoveWeaponAngle();
 	void ChargingWeaponPower();
