@@ -32,6 +32,8 @@ Player::Player()
 	, ControlFlg_(false)
 	, AllDamage_(0)
 	, IsDamaged_(false)
+	, FlySpeed_(0.0f)
+
 {
 }
 
@@ -90,6 +92,11 @@ void Player::Update()
 	if (Weapon_ != nullptr && Weapon_->GetExplodEndFlg() == true)
 	{
 		Damaged();
+
+		if (IsDamaged_ == true)
+		{
+			FlyAwayStart();
+		}
 	}
 
 
@@ -405,19 +412,6 @@ void Player::CheckHillPixel()
 	}
 }
 
-void Player::Damaged()
-{
-	float4 Length = GetPosition() - Weapon_->GetWeaponPosition();
-	Len_ = Length.Len2D();
-
-	if (Len_ <= 50)
-	{
-		PlayerHp_ -= 40;
-		AllDamage_ += 40;
-		IsDamaged_ = true;
-		FlyMoveDir_ = float4{ 300,-500 };
-	}
-}
 
 
 // 상태 변경
@@ -603,5 +597,79 @@ void Player::CreateHpBar(int _Hp, float4 _Pivot, FONT_COLOR _Color)
 	Hpbar_ = GetLevel()->CreateActor<HpBar>();
 	Hpbar_->SetFontColor(_Color);
 	Hpbar_->ChangeHpBarFont(_Hp, _Pivot);
+
+}
+
+
+void Player::Damaged()
+{
+	float4 Length = GetPosition() - Weapon_->GetWeaponPosition();
+	//총알과 플레이어 사이의 거리
+	Len_ = Length.Len2D();
+
+	if (Len_ > 50.0f)
+	{
+		return;
+	}
+
+	//날라가는 방향만 구하기위해 normalize 
+	//계산은 FlyAway함수에서
+	Length.Normal2D();
+
+
+	//50이 폭발범위 최대거리
+	//끝자락에 맞으면 살짝밀린다.
+	if (40.0f < Len_ && Len_ <= 50.0f)
+	{
+
+		IsDamaged_ = true;
+		FlySpeed_ = 20.0f;
+		FlyMoveDir_ = Length * FlySpeed_;
+	}
+	else if (30.0f < Len_ && Len_ <= 40.0f)
+	{
+
+		IsDamaged_ = true;
+		FlySpeed_ = 100.0f;
+		FlyMoveDir_ = Length * FlySpeed_;
+	}
+	else if (20.0f < Len_ && Len_ <= 30.0f)
+	{
+
+		IsDamaged_ = true;
+		FlySpeed_ = 200.0f;
+		FlyMoveDir_ = Length * FlySpeed_;
+	}
+	else if (10.0f < Len_ && Len_ <= 20.0f)
+	{
+
+		IsDamaged_ = true;
+		FlySpeed_ = 400.0f;
+		FlyMoveDir_ = Length * FlySpeed_;
+	}
+	else if (0.0f < Len_ && Len_ <= 10.0f)
+	{
+		IsDamaged_ = true;
+		FlySpeed_ = 600.0f;
+		FlyMoveDir_ = Length * FlySpeed_;
+	}
+
+
+	//여기까지 왔는데도 IsDamaged가 false 라는건 맞지않았다는 뜻.
+	if (IsDamaged_ == false)
+	{
+		return;
+	}
+
+	//데미지계산
+	for (int Damage = 1; Damage <= 50; Damage++)
+	{
+		if (Damage == static_cast<int>(50 - Len_))
+		{
+			PlayerHp_ -= Damage;
+			AllDamage_ += Damage;
+		}
+	}
+
 
 }

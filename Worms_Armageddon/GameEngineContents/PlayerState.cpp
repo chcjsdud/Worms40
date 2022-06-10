@@ -635,17 +635,60 @@ void Player::FalledStart()
 
 void Player::FlyAwayStart()
 {
+	//PlayerRenderer_->SetImage(IMG_FLY_LEFT);
+	//PlayerRenderer_->SetRotationFilter(IMG_FLY_LFFT_FILTER);
 }
 
 
 void Player::FlyAwayUpdate()
 {
-
+	float Degree = float4::VectorXYtoDegree(GetPosition(), GetPosition() + FlyMoveDir_);
+//	PlayerRenderer_->SetRotationZ(Degree + 90); // 방향에 따른 투사체 각도
 
 	SetMove(FlyMoveDir_ * GameEngineTime::GetDeltaTime());
-	FlyMoveDir_.y += 50.0f;
+	FlyMoveDir_.y += 10.0f;
+
+	FlyMoveDir_ = PixelCol_->PlayerFlyBounce(GetPosition(), { PLAYER_SIZE_X,PLAYER_SIZE_Y }, ColMapImage_, FlyMoveDir_, FlySpeed_);
 
 
+	if (PixelCol_->GetBounceFlg())
+	{
+		FlySpeed_ *= 0.5f;
+	}
+
+
+	float4 DownPos = GetPosition() + float4{0,PLAYER_SIZE_Y / 2};
+	float4 DownLeftPos = GetPosition() + float4{ -PLAYER_SIZE_X/2,PLAYER_SIZE_Y / 2 };
+	float4 DownRightPos = GetPosition() + float4{ PLAYER_SIZE_X/2,PLAYER_SIZE_Y / 2 };
+
+	int DownColor = ColMapImage_->GetImagePixel(DownPos);
+	int DownLeftColor = ColMapImage_->GetImagePixel(DownLeftPos);
+	int DownRightColor = ColMapImage_->GetImagePixel(DownRightPos);
+
+	if (RGB(0, 0, 255) == DownColor &&
+		RGB(0,0,255)== DownLeftColor &&
+		RGB(0,0,255)==DownRightColor)
+	{
+
+		do
+		{
+			SetMove(float4::UP);
+			DownPos = { GetPosition().x, GetPosition().y + PLAYER_SIZE_Y / 2 };
+			DownColor = ColMapImage_->GetImagePixel(DownPos);
+		} while (RGB(0, 0, 255) == DownColor);
+
+
+		//너무높은곳에서 떨어지면
+		if (FlyMoveDir_.y >= 500.0f);
+		{
+			StateChange(PlayerState::Falled);
+			IsDamaged_ = false;
+			IsTurnEnd_ = true;
+		}
+
+
+
+	}
 
 	///마지막에 IsTrunEnd =true;
 	///IsDamaged = true;

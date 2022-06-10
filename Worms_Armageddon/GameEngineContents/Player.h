@@ -89,6 +89,8 @@ public:
 	bool DeathUpdate();
 private:
 
+	float FlySpeed_;
+
 	bool IsTurnEnd_;
 	
 	//데미지를 입었냐 안입었냐 확인하는 flag
@@ -157,7 +159,6 @@ private:
 
 	// 플레이어가 들고 있는 무기의 타입
 	int WeaponType_;
-
 	// 생성할 무기
 	static WeaponMaster* Weapon_;
 

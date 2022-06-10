@@ -140,6 +140,8 @@
 #define IMG_SHEEP_OFF_LEFT "sheepOffLeft.bmp"
 #define IMG_SHEEP_ON_RIGHT "sheepOnRight.bmp"
 #define IMG_SHEEP_OFF_RIGHT "sheepOffRight.bmp"
+#define IMG_FLY_LEFT "FlyLeft.bmp"
+#define IMG_FLY_LFFT_FILTER "FlyLeftFilter.bmp"
 
 
 // 애니메이션 키워드
