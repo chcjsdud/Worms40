@@ -32,6 +32,7 @@ Player::Player()
 	, ControlFlg_(false)
 	, AllDamage_(0)
 	, IsDamaged_(false)
+	, IsDamagedCam_(false)
 	, ControlWorms_(nullptr)
 	, FlySpeed_(0.0f)
 
@@ -633,12 +634,15 @@ void Player::Damaged()
 	Length.Normal2D();
 
 
+	/// IsDamaged_가 true가 될때 IsDamagedCam_도 함께 true가 되도록 설정해줄것
+
 	//50이 폭발범위 최대거리
 	//끝자락에 맞으면 살짝밀린다.
 	if (40.0f < Len_ && Len_ <= 50.0f)
 	{
 
 		IsDamaged_ = true;
+		IsDamagedCam_ = true;
 		FlySpeed_ = 20.0f;
 		FlyMoveDir_ = Length * FlySpeed_;
 	}
@@ -646,6 +650,7 @@ void Player::Damaged()
 	{
 
 		IsDamaged_ = true;
+		IsDamagedCam_ = true;
 		FlySpeed_ = 100.0f;
 		FlyMoveDir_ = Length * FlySpeed_;
 	}
@@ -653,6 +658,7 @@ void Player::Damaged()
 	{
 
 		IsDamaged_ = true;
+		IsDamagedCam_ = true;
 		FlySpeed_ = 200.0f;
 		FlyMoveDir_ = Length * FlySpeed_;
 	}
@@ -660,12 +666,14 @@ void Player::Damaged()
 	{
 
 		IsDamaged_ = true;
+		IsDamagedCam_ = true;
 		FlySpeed_ = 400.0f;
 		FlyMoveDir_ = Length * FlySpeed_;
 	}
 	else if (0.0f < Len_ && Len_ <= 10.0f)
 	{
 		IsDamaged_ = true;
+		IsDamagedCam_ = true;
 		FlySpeed_ = 600.0f;
 		FlyMoveDir_ = Length * FlySpeed_;
 	}

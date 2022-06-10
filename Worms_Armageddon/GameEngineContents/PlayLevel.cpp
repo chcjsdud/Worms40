@@ -116,7 +116,7 @@ void PlayLevel::Update()
 		PrevCameraPos_ = NextPlayerPos_;
 
 		// 카메라 이동 후 Move페이즈로 
-		LevelPhase_ = LevelFSM::CameraMove;
+		LevelPhase_ = LevelFSM::SetDamagePlayer;
 
 		break;
 	case LevelFSM::Move:
@@ -331,9 +331,9 @@ void PlayLevel::Update()
 				{
 					continue;
 				}
-				if (Player->GetIsDamaged() == true)
+				if (Player->GetIsDamagedCam() == true)
 				{
-					Player->SetIsDamaged(false);
+					Player->SetIsDamagedCam(false);
 					NextDamagedPlayerPos_ = Player->GetPosition();
 					tmpFlg = true;
 					break;

@@ -37,14 +37,14 @@ public:
 
 	}
 
-	inline bool GetIsDamaged() const
+	inline bool GetIsDamagedCam() const
 	{
-		return IsDamaged_;
+		return IsDamagedCam_;
 	}
 
-	inline void SetIsDamaged(bool _IsDamaged)
+	inline void SetIsDamagedCam(bool _IsDamagedCam)
 	{
-		IsDamaged_ = _IsDamaged;
+		IsDamagedCam_ = _IsDamagedCam;
 	}
 
 	inline int GetPlayerHp()
@@ -95,6 +95,7 @@ private:
 	
 	//데미지를 입었냐 안입었냐 확인하는 flag
 	bool IsDamaged_;
+	bool IsDamagedCam_;
 	//모든 데미지의 총합
 	int AllDamage_;
 	// 속도

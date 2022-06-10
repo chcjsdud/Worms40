@@ -103,7 +103,7 @@ void LobbyLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		GameOptions::PlayingOptions.SetPlayerNum(3);
 		GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)0, 1);
 		GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)2, 2);
-		GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)4, 3);
+		GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)4, 2);
 	}
 }
 
