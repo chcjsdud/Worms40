@@ -143,7 +143,7 @@ void TeamHpBarList::DecreaseUpdate()
 
 	if (true == IsAllEnd)
 	{
-		if (GetAccTime() >= 1.0f)
+		if (GetAccTime() >= 2.0f)
 		{
 			ChangeState(STATE::SortBar);
 		}

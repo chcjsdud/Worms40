@@ -159,7 +159,6 @@ void Worms::GameInit()
 
 		GameEngineImage* wind = GameEngineImageManager::GetInst()->Find("windBar.bmp");
 		wind->Cut({ 87, 13 });
-
 	}
 
 

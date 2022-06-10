@@ -69,6 +69,8 @@ void Player::Start()
 	// 테스트 임시 데이터
 	ColMapImage_ = GameEngineImageManager::GetInst()->Find(IMG_MAPBOOKS_GROUND);
 
+	// 크로스헤어
+	Crshair_ = GetLevel()->CreateActor<Crosshair>((int)ActorGroup::UI);
 
 
 }
@@ -540,6 +542,9 @@ void Player::MoveWeaponAngle()
 			ShotAngle_.y = ShotAngleMax_.y;
 		}
 	}
+
+	// 크로스헤어 : 3번째 인자는 크로스헤어 활성화 여부
+	Crshair_->UpdateCrosshairPos(GetPosition(), ShotAngle_, true);
 }
 
 // 무기 파워 조절

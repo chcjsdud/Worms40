@@ -189,6 +189,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Crosshair.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EffectManager.h">
       <SubType>
       </SubType>
@@ -355,6 +359,10 @@
     </ClCompile>
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ChatBox.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Crosshair.cpp">
       <SubType>
       </SubType>
     </ClCompile>

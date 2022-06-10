@@ -250,3 +250,7 @@
 #define WEAPON_AIRFLY_START_RIGHT 2100.0f
 #define CorrectionPosX 550.f
 #define DropSec 0.02f
+
+// 크로스헤어
+#define IMG_CRSHIR_RED "crshir.bmp"
+#define IMG_CRSHIR_FILTER "crshir_filter.bmp"

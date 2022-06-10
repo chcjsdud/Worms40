@@ -158,6 +158,9 @@
     <ClInclude Include="SuperSheep.h">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
     </ClInclude>
+    <ClInclude Include="Crosshair.h">
+      <Filter>02.PlayLevel\Player</Filter>
+    </ClInclude>
     <ClInclude Include="TimerActor.h">
       <Filter>Global</Filter>
     </ClInclude>
@@ -322,6 +325,9 @@
     </ClCompile>
     <ClCompile Include="TimerActor.cpp">
       <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Crosshair.cpp">
+      <Filter>02.PlayLevel\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

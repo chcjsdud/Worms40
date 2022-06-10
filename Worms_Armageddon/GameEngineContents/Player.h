@@ -2,6 +2,7 @@
 #include "Enums.h"
 #include "WeaponMaster.h"
 #include "HpBar.h"
+#include "Crosshair.h"
 #include <GameEngineBase/GameEngineCustomStringSet.h>
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineSound.h>
@@ -169,6 +170,9 @@ private:
 
 	// 행동중 화살표 렌더러
 	GameEngineRenderer* ControlWorms_;
+
+	// Crosshair
+	Crosshair* Crshair_;
 
 	//애니메이션용 방향이름
 	std::string DirName_;
