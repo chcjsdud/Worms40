@@ -86,7 +86,7 @@ void Player::Update()
 		MoveFall();
 	}
 
-	Hpbar_->HpBarSetPosition(this->GetPosition());
+	Hpbar_->HpBarSetPosition({ this->GetPosition().x, this->GetPosition().y - 25.f});
 
 	//WeaponÀÌ »ý¼ºµÇ°í ¶¥¿¡´ê¾Æ Æø¹ßÇß´Ù¸é
 	if (Weapon_ != nullptr && Weapon_->GetExplodEndFlg() == true)
