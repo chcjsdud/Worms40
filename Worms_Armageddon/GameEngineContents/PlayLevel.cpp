@@ -7,6 +7,7 @@
 #include "MapBooks.h"
 #include "TeamHpBarList.h"
 #include "GameOptions.h"
+#include "TimerActor.h"
 #include "GameEngineBase/GameEngineRandom.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineWindow.h>
@@ -40,6 +41,8 @@ void PlayLevel::Loading()
 	// 테스트용 코드, 맵 선택에 따라서 다른 액터 생성
 	//배경화면 액터
 	GameMapInfo_ = CreateActor<MapBooks>();
+	// 카메라 딜레이용 타이머 액터
+	DamagedCharCameraDelayTimer_ = CreateActor<TimerActor>();
 
 	// 마우스
 	Mouse_ = CreateActor<Cursor>((int)ActorGroup::UI);
@@ -156,7 +159,7 @@ void PlayLevel::Update()
 				LerpTimer_ = 0.0f;
 
 				// 카메라 이동 페이즈
-				LevelPhase_ = LevelFSM::CameraMove;
+				LevelPhase_ = LevelFSM::SetDamagePlayer;
 			}
 		}
 		// TODO::턴바꿈용 임시코드
@@ -171,7 +174,7 @@ void PlayLevel::Update()
 				LerpTimer_ = 0.0f;
 
 				// 카메라 이동 페이즈
-				LevelPhase_ = LevelFSM::CameraMove;
+				LevelPhase_ = LevelFSM::SetDamagePlayer;
 			}
 		}
 		else
@@ -252,37 +255,99 @@ void PlayLevel::Update()
 	// 데미지 계산
 	case LevelFSM::Damage:
 	{
-		// 팀별 전체 체력 계산
-		static bool IsTeamHpCalculated = false; // 계산 한번 하도록
-		if (false == IsTeamHpCalculated)
+		// 데미지를 받은 캐릭터가 없으면 체력 계산 후 턴종료
+		if (true == NextDamagedPlayerPos_.IsZero2D())
 		{
-			std::vector<int> TeamsHp;
-			for (std::list<Player*>& Team : AllPlayer_)
+			// 팀별 전체 체력 계산
+			static bool IsTeamHpCalculated = false; // 계산 한번 하도록
+			if (false == IsTeamHpCalculated)
 			{
-				int TeamHp = 0;
-				for (Player* Player : Team)
+				std::vector<int> TeamsHp;
+				for (std::list<Player*>& Team : AllPlayer_)
 				{
-					if (Player->GetIsDeath())
+					int TeamHp = 0;
+					for (Player* Player : Team)
 					{
-						continue;
-					}
+						if (Player->GetIsDeath())
+						{
+							continue;
+						}
 
-					TeamHp += Player->GetPlayerHp();
+						TeamHp += Player->GetPlayerHp();
+					}
+					TeamsHp.push_back(TeamHp);
 				}
-				TeamsHp.push_back(TeamHp);
+
+				TeamHpBarListActor_->SetNewTeamsHp(TeamsHp);
+				IsTeamHpCalculated = true;
 			}
 
-			TeamHpBarListActor_->SetNewTeamsHp(TeamsHp);
-			IsTeamHpCalculated = true;
-		}
+			// 다음 State로
+			if (true == TeamHpBarListActor_->IsAnimationEnd())
+			{
+				IsTeamHpCalculated = false;
+				LevelPhase_ = LevelFSM::CameraMove;
+			}
 
-		// 다음 State로
-		if (true == TeamHpBarListActor_->IsAnimationEnd())
+		}
+		else
 		{
-			IsTeamHpCalculated = false;
-			LevelPhase_ = LevelFSM::CameraMove;
+			if (DamagedCharCameraDelayTimer_->GetAccTime() >= 1.5f)
+			{
+				// 플레이어 체력 감소
+
+				// 카메라 이동
+				LerpTimer_ += GameEngineTime::GetDeltaTime();
+
+				LerpStartCameraPos_ = PrevPlayerPos_;
+
+				float4 LerpCameraPos_ = float4::LerpLimit(LerpStartCameraPos_, NextDamagedPlayerPos_, LerpTimer_);
+
+				// 카메라의 위치가 다음 플레이어의 위치와 같아지면 카메라 이동 종료
+				if (LerpCameraPos_.CompareInt2D(NextDamagedPlayerPos_))
+				{
+					// 직전 플레이어의 위치를 저장(카메라 이동용)
+					PrevPlayerPos_ = NextDamagedPlayerPos_;
+					// 대기시간 타이머 초기화
+					DamagedCharCameraDelayTimer_->ReSetAccTime();
+
+					// 페이즈 이동
+					LevelPhase_ = LevelFSM::SetDamagePlayer;
+				}
+			}
+		}
+	}
+	break;
+	case LevelFSM::SetDamagePlayer:
+	{
+		bool tmpFlg = false;
+		NextDamagedPlayerPos_ = float4::ZERO;
+
+		for (std::list<Player*>& Team : AllPlayer_)
+		{
+			for (Player* Player : Team)
+			{
+				if (Player->GetIsDeath())
+				{
+					continue;
+				}
+				if (Player->GetIsDamaged() == true)
+				{
+					Player->SetIsDamaged(false);
+					NextDamagedPlayerPos_ = Player->GetPosition();
+					tmpFlg = true;
+					break;
+				}
+			}
+
+			if (tmpFlg == false)
+			{
+				break;
+			}
 		}
 
+		LerpTimer_ = 0.0f;
+		LevelPhase_ = LevelFSM::Damage;
 	}
 	break;
 	// 사망처리

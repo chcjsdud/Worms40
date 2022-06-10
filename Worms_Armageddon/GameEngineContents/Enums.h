@@ -125,18 +125,16 @@ enum class LevelFSM
 	Ready,		 // 입력전의 준비단계, 제한시간이 흐르지않음. 
 				 //입력이 없을경우 자동으로 5초뒤에 다음 페이즈로 넘어감
 
-				 Move,		 // 이동 단계, 이동, 조준, 무기 변경을 함
-				 CameraMove,
-				 Damage,		 // 데미지 계산,
+	Move,		 // 이동 단계, 이동, 조준, 무기 변경을 함
+	CameraMove,	 // 턴종료후 다음 플레이어로 카메라 이동
 
-				 // 반복
-				 Death,		 // 죽은 캐릭터가 있으면 카메라 이동 및 자폭공격
-				 DeathDamage, // 자폭공격에 맞았으면 데미지 계산
-				 // 반복
+	Damage,		 // 데미지 계산,
+	SetDamagePlayer, // 데미지 받은 플레이어 설정, 카메라 이동 등
 
-				 // 데미지 끝남
-				 TurnEnd,	 // 바람이 바뀜, 보급이 내려오고, 기타등등
-				 // -> Ready
+	Death,		 // 죽은 캐릭터가 있으면 카메라 이동 및 자폭공격
+
+	TurnEnd,	 // 바람이 바뀜, 보급이 내려오고, 기타등등
+	// -> Ready
 };
 
 enum class TeamColor

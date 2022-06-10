@@ -13,6 +13,7 @@ class GameEngineRenderer;
 class GameEngineImage;
 class UIMaster;
 class TeamHpBarList;
+class TimerActor;
 class PlayLevel	:public GameEngineLevel
 {
 public:
@@ -47,6 +48,9 @@ private:
 	// 가장 최근의 무기의 위치
 	float4 CurrentWeaponPos_;
 
+	// 데미지 받은 캐릭터로 카메라가 이동할때 딜레이 타이머
+	TimerActor* DamagedCharCameraDelayTimer_;
+
 	float4 WindDir_;
 	float WindSpeed_;
 
@@ -75,6 +79,7 @@ private:
 	bool CameraControledByWASDFlg_;
 	// 다음 플레이어 위치
 	float4 NextPlayerPos_;
+	float4 NextDamagedPlayerPos_;
 	// 보간처리용 타이머
 	float LerpTimer_;
 

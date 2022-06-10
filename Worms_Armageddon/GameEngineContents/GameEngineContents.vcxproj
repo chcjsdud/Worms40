@@ -279,6 +279,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TimerActor.h" />
     <ClInclude Include="TurnTimeButton.h">
       <SubType>
       </SubType>
@@ -441,6 +442,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TimerActor.cpp" />
     <ClCompile Include="TurnTimeButton.cpp">
       <SubType>
       </SubType>

@@ -680,7 +680,7 @@ void Player::FlyAwayUpdate()
 
 
 		//너무높은곳에서 떨어지면
-		if (FlyMoveDir_.y >= 500.0f);
+		if (FlyMoveDir_.y >= 500.0f)
 		{
 			StateChange(PlayerState::Falled);
 			IsDamaged_ = false;
