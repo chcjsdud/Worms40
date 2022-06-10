@@ -73,6 +73,8 @@ void Player::Start()
 void Player::Update()
 {
 	//데미지를 입엇다면 , IsDamged==true , Damaged함수에서 처리.
+	Hpbar_->HpBarSetPosition(this->GetPosition());
+	
 	if (IsDamaged_ == true)
 	{
 		FlyAwayUpdate();
@@ -86,7 +88,6 @@ void Player::Update()
 		MoveFall();
 	}
 
-	Hpbar_->HpBarSetPosition({ this->GetPosition().x, this->GetPosition().y - 25.f});
 
 	//Weapon이 생성되고 땅에닿아 폭발했다면
 	if (Weapon_ != nullptr && Weapon_->GetExplodEndFlg() == true)
@@ -184,6 +185,8 @@ void Player::PlayerAnimationInit()
 	//낙하 애니메이션
 	//33번째 이미지때 올라가게
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_FALL, ANIM_NAME_PLAYER_FALL, 0, 48, 0.05, false);
+
+	PlayerRenderer_->CreateAnimation(IMG_FLY_LEFT, ANIM_NAME_PLAYER_FLY, 0, 0, 0, false);
 
 }
 
@@ -486,41 +489,6 @@ void Player::StateUpdate()
 		break;
 	}
 
-}
-
-void Player::UnControlStateChange(PlayerUnControlState _State)
-{
-	if (UnControlState_ != _State)
-	{
-		switch (_State)
-		{
-		case PlayerUnControlState::UncontrolIdle:
-			UncontrolledStart();
-			break;
-		case PlayerUnControlState::FlyAway:
-			FlyAwayStart();
-			break;
-		default:
-			break;
-		}
-	}
-
-	UnControlState_ = _State;
-}
-
-void Player::UnControlStateUpdate()
-{
-	switch (UnControlState_)
-	{
-	case PlayerUnControlState::UncontrolIdle:
-		UncontrolledUpdate();
-		break;
-	case PlayerUnControlState::FlyAway:
-		FlyAwayUpdate();
-		break;
-	default:
-		break;
-	}
 }
 
 void Player::PlayerAnimationChange(std::string _Anim)

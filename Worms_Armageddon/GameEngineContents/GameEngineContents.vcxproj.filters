@@ -317,9 +317,6 @@
     <ClCompile Include="TeamHpBarList.cpp">
       <Filter>02.PlayLevel\UI</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerUncontrolState.cpp">
-      <Filter>02.PlayLevel\Player</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="02.PlayLevel">

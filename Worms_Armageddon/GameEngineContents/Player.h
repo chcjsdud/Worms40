@@ -213,9 +213,7 @@ public:
 	void StateChange(PlayerState _State);
 	// 상태 업데이트
 	void StateUpdate();
-	// 컨트롤 하지않는 플레이어 상태 전환
-	void UnControlStateChange(PlayerUnControlState _State);
-	void UnControlStateUpdate();
+
 private:
 	// 현재 상태
 	PlayerState CurrentState_;

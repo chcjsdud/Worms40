@@ -269,6 +269,7 @@ void Player::ActionUpdate()
 
 		WeaponState_ = WeaponState::None;
 		// TODO::동작이 끝날경우에 Idle로 전환
+
 		StateChange(PlayerState::Idle);
 
 		// TODO::몇초간 이동한 후에 턴 종료되도록 수정
@@ -635,15 +636,15 @@ void Player::FalledStart()
 
 void Player::FlyAwayStart()
 {
-	//PlayerRenderer_->SetImage(IMG_FLY_LEFT);
-	//PlayerRenderer_->SetRotationFilter(IMG_FLY_LFFT_FILTER);
+	PlayerRenderer_->ChangeAnimation(ANIM_NAME_PLAYER_FLY);
+	PlayerRenderer_->SetRotationFilter(IMG_FLY_LFFT_FILTER);
 }
 
 
 void Player::FlyAwayUpdate()
 {
 	float Degree = float4::VectorXYtoDegree(GetPosition(), GetPosition() + FlyMoveDir_);
-//	PlayerRenderer_->SetRotationZ(Degree + 90); // 방향에 따른 투사체 각도
+	PlayerRenderer_->SetRotationZ(Degree + 180); // 방향에 따른 투사체 각도
 
 	SetMove(FlyMoveDir_ * GameEngineTime::GetDeltaTime());
 	FlyMoveDir_.y += 10.0f;
@@ -669,7 +670,7 @@ void Player::FlyAwayUpdate()
 		RGB(0,0,255)== DownLeftColor &&
 		RGB(0,0,255)==DownRightColor)
 	{
-
+		PlayerRenderer_->SetRotationZ(0);
 		do
 		{
 			SetMove(float4::UP);

@@ -182,6 +182,7 @@
 #define ANIM_NAME_PLAYER_JUMPRIGHT "JumpRight"
 #define ANIM_NAME_PLAYER_JUMPLEFT "JumpLeft"
 #define ANIM_NAME_PLAYER_FALL "Falled"
+#define ANIM_NAME_PLAYER_FLY "FlyLeft"
 
 
 #define ANIM_NAME_BAZ_ON_LEFT "bazOnLeft"
