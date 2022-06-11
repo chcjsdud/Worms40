@@ -31,7 +31,7 @@ PlayLevel::PlayLevel()
 	}
 }
 
-PlayLevel::~PlayLevel() 
+PlayLevel::~PlayLevel()
 {
 
 }
@@ -75,11 +75,11 @@ void PlayLevel::Update()
 		if (true == GameEngineInput::GetInst()->IsDown(DEBUG_KEY))
 		{
 			TargetPlayer_->SetPlayerHp(20);
-			
+
 			LevelPhase_ = LevelFSM::Damage;
 		}
 	}
-	
+
 	switch (LevelPhase_)
 	{
 	case LevelFSM::Ready:
@@ -164,19 +164,19 @@ void PlayLevel::Update()
 		}
 		// TODO::턴바꿈용 임시코드
 		// 턴종료
-		else if (true == GameEngineInput::GetInst()->IsUp(KEY_MOUSE_LEFT))
-		{
-			Teams.pop_front();
+		//else if (true == GameEngineInput::GetInst()->IsUp(KEY_MOUSE_LEFT))
+		//{
+		//	Teams.pop_front();
 
-			if (Teams.size() != 0)
-			{
-				// 턴이 넘어갈때 Lerp처리 타이머를 초기화
-				LerpTimer_ = 0.0f;
+		//	if (Teams.size() != 0)
+		//	{
+		//		// 턴이 넘어갈때 Lerp처리 타이머를 초기화
+		//		LerpTimer_ = 0.0f;
 
-				// 카메라 이동 페이즈
-				LevelPhase_ = LevelFSM::SetDamagePlayer;
-			}
-		}
+		//		// 카메라 이동 페이즈
+		//		LevelPhase_ = LevelFSM::SetDamagePlayer;
+		//	}
+		//}
 		else
 		{
 			// 턴 종료 조건을 만족하지 못하면 리턴
@@ -283,11 +283,8 @@ void PlayLevel::Update()
 			}
 
 			// 다음 State로
-			if (true == TeamHpBarListActor_->IsAnimationEnd())
-			{
-				IsTeamHpCalculated = false;
-				LevelPhase_ = LevelFSM::CameraMove;
-			}
+			IsTeamHpCalculated = false;
+			LevelPhase_ = LevelFSM::CameraMove;
 
 		}
 		else
@@ -411,8 +408,8 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	for (int TeamSetNum = 0; TeamSetNum < (int)TeamColor::Max; TeamSetNum++)
 	{
 		std::list<Player*> Playerlist;
-		std::map<TeamColor, int>::iterator iTeamName 
-						= PlayerColorTeamSetting_.find((TeamColor)TeamSetNum);
+		std::map<TeamColor, int>::iterator iTeamName
+			= PlayerColorTeamSetting_.find((TeamColor)TeamSetNum);
 
 		// 색이 없을 경우 다음 색으로
 		if (iTeamName == PlayerColorTeamSetting_.end())
@@ -420,7 +417,7 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 			continue;
 		}
 		// 플레이어 생성
-		for (int PlayerNum = 0; PlayerNum < iTeamName->second; PlayerNum++)
+		for (int PlayerNum = 0; PlayerNum <= iTeamName->second; PlayerNum++)
 		{
 			int tmpRandom = GameEngineRandom::MainRandom.RandomInt(0, PLAYER_MAX_NUMBER);
 
@@ -438,7 +435,7 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 				break;
 			}
 
-				
+
 			GameMapInfo_->SetPosFlg(true, tmpRandom);
 			Player_[TeamSetNum][PlayerNum] = CreateActor<Player>();
 			//// TODO::로비레벨에서 넘어오도록 수정
@@ -448,8 +445,8 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 			Player_[TeamSetNum][PlayerNum]->SetPosition(GameMapInfo_->GetResponPosition(tmpRandom));
 
 			//플레이어 색 지정
-			Player_[TeamSetNum][PlayerNum]->CreateHpBar(100, {0,0}, (static_cast<FONT_COLOR>(teamColor)));
-			
+			Player_[TeamSetNum][PlayerNum]->CreateHpBar(100, { 0,0 }, (static_cast<FONT_COLOR>(teamColor)));
+
 			//화살표
 			Player_[TeamSetNum][PlayerNum]->CreateControlArrow(static_cast<TeamColor>(teamColor));
 			// 팀에 플레이어를 추가
@@ -467,7 +464,7 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	}
 
 	TeamHpBarListActor_->InitTeamsHpBar((int)AllPlayer_.size());
-	
+
 }
 
 void PlayLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
@@ -556,7 +553,7 @@ void PlayLevel::SetWindUI(int _WindDir)
 		WindSpeed_ = Ran.RandomFloat(0, 100.0f);
 		//바람게이지UI에 바람방향과 속도를 넘겨준다
 		WindDir_ = float4::LEFT * WindSpeed_;
-		WindGaugeActor_->SetWind(WindType::Left,WindSpeed_);
+		WindGaugeActor_->SetWind(WindType::Left, WindSpeed_);
 		//구름Actor에도 넘겨준다
 
 		GameMapInfo_->SetLargeCloudDir(_WindDir, WindSpeed_);
@@ -568,7 +565,7 @@ void PlayLevel::SetWindUI(int _WindDir)
 		WindSpeed_ = Ran.RandomFloat(0, 100.0f);
 		WindDir_ = float4::RIGHT * WindSpeed_;
 		WindGaugeActor_->SetWind(WindType::Right, WindSpeed_);
-		GameMapInfo_->SetLargeCloudDir(_WindDir,WindSpeed_);
+		GameMapInfo_->SetLargeCloudDir(_WindDir, WindSpeed_);
 		GameMapInfo_->SetSmallCloudDir(_WindDir, WindSpeed_);
 	}
 }
