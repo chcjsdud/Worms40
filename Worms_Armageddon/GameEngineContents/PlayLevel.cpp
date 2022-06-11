@@ -230,7 +230,7 @@ void PlayLevel::Update()
 		{
 			LerpStartCameraPos_ = PrevPlayerPos_;
 		}
-
+		
 		float4 LerpCameraPos_ = float4::LerpLimit(LerpStartCameraPos_, NextPlayerPos_, LerpTimer_);
 
 		// 카메라의 위치가 다음 플레이어의 위치와 같아지면 페이즈 종료
@@ -337,7 +337,7 @@ void PlayLevel::Update()
 				}
 			}
 
-			if (tmpFlg == false)
+			if (tmpFlg == true)
 			{
 				break;
 			}
@@ -419,14 +419,14 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		// 플레이어 생성
 		for (int PlayerNum = 0; PlayerNum <= iTeamName->second; PlayerNum++)
 		{
-			int tmpRandom = GameEngineRandom::MainRandom.RandomInt(0, PLAYER_MAX_NUMBER);
+			int tmpRandom = GameEngineRandom::MainRandom.RandomInt(0, PLAYER_MAX_NUMBER - 1);
 
 			for (;;)
 			{
 				// 이미 사용된 포지션이라면
 				if (true == GameMapInfo_->GetPosFlg(tmpRandom))
 				{
-					tmpRandom = GameEngineRandom::MainRandom.RandomInt(0, PLAYER_MAX_NUMBER);
+					tmpRandom = GameEngineRandom::MainRandom.RandomInt(0, PLAYER_MAX_NUMBER - 1);
 
 					continue;
 				}

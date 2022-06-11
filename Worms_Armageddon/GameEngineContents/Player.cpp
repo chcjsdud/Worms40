@@ -120,6 +120,8 @@ bool Player::ControllUpdate()
 
 	if (IsDamaged_ == true)
 	{
+		IsTurnEnd_ = true;
+
 		return IsTurnEnd_;
 	}
 
