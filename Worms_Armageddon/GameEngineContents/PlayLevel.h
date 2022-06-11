@@ -63,7 +63,10 @@ private:
 	std::list<Player*> DeathList_;
 	Player* TargetPlayer_;
 
+	// 현재 페이즈
 	LevelFSM LevelPhase_;
+	// 직전 페이즈
+	LevelFSM PrevPhase_;
 
 
 	// 카메라 업데이트

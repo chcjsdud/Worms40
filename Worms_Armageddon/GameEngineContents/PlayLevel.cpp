@@ -216,6 +216,8 @@ void PlayLevel::Update()
 		NextPlayerPos_ = (*AllPlayerIter_).front()->GetPosition();
 		(*AllPlayerIter_).front()->SetControlFlg(true);
 
+		LevelPhase_ = LevelFSM::SetDamagePlayer;
+
 	}
 	break;
 	case LevelFSM::CameraMove:
@@ -393,6 +395,9 @@ void PlayLevel::Update()
 	default:
 		break;
 	}
+
+	// 직전 페이즈의 정보를 저장
+	PrevPhase_ = LevelPhase_;
 }
 
 void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
@@ -417,7 +422,7 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 			continue;
 		}
 		// 플레이어 생성
-		for (int PlayerNum = 0; PlayerNum <= iTeamName->second; PlayerNum++)
+		for (int PlayerNum = 0; PlayerNum < iTeamName->second; PlayerNum++)
 		{
 			int tmpRandom = GameEngineRandom::MainRandom.RandomInt(0, PLAYER_MAX_NUMBER - 1);
 
