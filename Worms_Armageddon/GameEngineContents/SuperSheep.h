@@ -18,7 +18,8 @@ public:
 protected:
 	void Start() override;
 	void Update() override;
-	bool WeaponUpdate() override;
 
+private:
+	void SuperFly();
 };
 

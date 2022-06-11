@@ -239,6 +239,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Sheep.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="SmallCloud.h">
       <SubType>
       </SubType>
@@ -407,6 +411,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ReadyButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sheep.cpp">
       <SubType>
       </SubType>
     </ClCompile>

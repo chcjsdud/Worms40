@@ -7,6 +7,7 @@
 #include "Baz.h"
 #include "Grenade.h"
 #include "AirStrike.h"
+#include "Sheep.h"
 #include "SuperSheep.h"
 #pragma endregion
 
@@ -575,7 +576,8 @@ void Player::ActionStart()
 	case WeaponState::Sheep:
 		break;
 	case WeaponState::SuperSheep:
-		Weapon_ = GetLevel()->CreateActor<SuperSheep>();
+		Weapon_ = GetLevel()->CreateActor<Sheep>();
+		Weapon_->SetWeaponState(WeaponState_);
 		break;
 	case WeaponState::AirStrike:
 		Weapon_ = GetLevel()->CreateActor<AirStrike>();

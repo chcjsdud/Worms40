@@ -56,6 +56,11 @@ public:
 		return IsExplodEnd_;
 	}
 
+	inline void SetWeaponState(WeaponState _State)
+	{
+		WState_ = _State;
+	}
+
 private: 
 	// 지정한 목표 좌표
 	float4 TargetPos_;
@@ -92,6 +97,8 @@ private:
 protected:
 	// 무기 랜더
 	GameEngineRenderer* WeaponRender_;
+	// 나는 무슨 무기인가
+	WeaponState WState_;
 	//튕기는 무기인지 아닌지 체크해주는 변수
 	bool IsBounce_;
 	// 무기 발사 방향
