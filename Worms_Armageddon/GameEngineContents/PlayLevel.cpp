@@ -584,6 +584,12 @@ void PlayLevel::PlayerDamagedCheck4AirStrike()
 	for (int i = 0; i < 5; i++)
 	{
 		AirBomb* tmpWeaponActor = dynamic_cast<AirBomb*>(WeaponMaster_->AirBombArr_[i]);
+		float4 tmpWeaponActorPos = float4::ZERO;
+
+		if (tmpWeaponActor != nullptr)
+		{
+			tmpWeaponActorPos = tmpWeaponActor->GetPosition();
+		}
 
 		if (tmpWeaponActor != nullptr && tmpWeaponActor->GetAirBombExplodEnd() == true)
 		{
@@ -596,11 +602,18 @@ void PlayLevel::PlayerDamagedCheck4AirStrike()
 						continue;
 					}
 
-					Player->Damaged(tmpWeaponActor->GetPosition());
-					WeaponMaster_->AirBombArr_[i]->Death();
-					WeaponMaster_->AirBombArr_[i] = nullptr;
+					// 플레이어에게 데미지 판정
+					Player->Damaged(tmpWeaponActorPos);
+
+					// 끝난 폭탄에 대한 Death, nullptr
+					if (WeaponMaster_->AirBombArr_[i] != nullptr)
+					{
+						WeaponMaster_->AirBombArr_[i]->Death();
+						WeaponMaster_->AirBombArr_[i] = nullptr;
+					}
 				}
 			}
 		}
+
 	}
 }
