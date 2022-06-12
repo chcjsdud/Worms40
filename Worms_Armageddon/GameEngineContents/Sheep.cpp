@@ -37,15 +37,6 @@ bool Sheep::WeaponUpdate()
 		return false;
 	}
 
-	if (WeaponState::SuperSheep == WState_) // 슈퍼양으로 변신
-	{
-		if (true == GameEngineInput::GetInst()->IsDown(KEY_FIRE))
-		{
-			SuperSheep* SS = GetLevel()->CreateActor<SuperSheep>();
-			SS->SetPosition(GetPosition());
-			Off();
-		}
-	}
 
 	if (1 == ShotDir_.x) // 양이 바라보는 방향이 오른쪽
 	{

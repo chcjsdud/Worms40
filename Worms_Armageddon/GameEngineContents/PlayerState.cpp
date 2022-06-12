@@ -575,8 +575,8 @@ void Player::ActionStart()
 		Weapon_ = GetLevel()->CreateActor<Sheep>();
 		break;
 	case WeaponState::SuperSheep:
-		Weapon_ = GetLevel()->CreateActor<Sheep>();
-		Weapon_->SetWeaponState(WeaponState_);
+		Weapon_ = GetLevel()->CreateActor<SuperSheep>();
+		//Weapon_->SetWeaponState(WeaponState_);
 		break;
 	case WeaponState::AirStrike:
 		Weapon_ = GetLevel()->CreateActor<AirStrike>();

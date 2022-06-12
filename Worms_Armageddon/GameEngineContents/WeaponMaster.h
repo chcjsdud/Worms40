@@ -61,11 +61,6 @@ public:
 		return IsExplodEnd_;
 	}
 
-	inline void SetWeaponState(WeaponState _State)
-	{
-		WState_ = _State;
-	}
-
 private: 
 	// 지정한 목표 좌표
 	float4 TargetPos_;
@@ -104,8 +99,6 @@ private:
 	// 투사체 투하 : 어떤 것을 투하할지 지정, 투하시간 간격
 	void Drop(WeaponState _Drop, float _Sec = 0);
 	//
-	void AnimalRun();
-	//
 	void AnimalFall();
 	//
 	void AnimalJump();
@@ -113,8 +106,6 @@ private:
 protected:
 	// 무기 랜더
 	GameEngineRenderer* WeaponRender_;
-	// 나는 무슨 무기인가
-	WeaponState WState_;
 	//튕기는 무기인지 아닌지 체크해주는 변수
 	bool IsBounce_;
 	// 무기 발사 방향
@@ -150,8 +141,10 @@ protected:
 	void BulletMove(float _Gravity, bool _IsWind);
 	// 폭격 폭탄 투하 : 어느 폭탄을 투하할지 지정
 	bool Bombing(WeaponState _Bomb);
+	//
+	void AnimalMoveCheck(float4 _Dir);
 	// 동물 무기의 움직임
-	void AnimalMove();
+	void AnimalMove(WeaponState _Animal = WeaponState::None);
 
 	// 투사체 충돌 시 발생 이벤트
 	bool BulletColEvent();

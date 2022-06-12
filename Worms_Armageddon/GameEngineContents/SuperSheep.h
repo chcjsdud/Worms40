@@ -18,8 +18,12 @@ public:
 protected:
 	void Start() override;
 	void Update() override;
+	bool WeaponUpdate() override;
 
 private:
+	bool IsSuper_;
+	int ModeCnt_;
+
 	void SuperFly();
 };
 

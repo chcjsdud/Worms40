@@ -32,7 +32,6 @@ WeaponMaster::WeaponMaster()
 	, JumpMoveDir_(float4::ZERO)
 	, WindDirInfo_(float4::ZERO)
 	, WeaponRender_(nullptr)
-	, WState_(WeaponState::None)
 	, IsBounce_(false)
 	, ShotDir_(float4::ZERO)
 	, PixelCol_(nullptr)
@@ -91,10 +90,10 @@ void WeaponMaster::Drop(WeaponState _Drop, float _Sec /*= 0*/)
 	}
 }
 
-void WeaponMaster::AnimalRun()
+void WeaponMaster::AnimalMoveCheck(float4 _Dir)
 {
 	// MoveDir은 오직 이동중에서만 갱신됨.
-	AnimalMoveDir_ = ShotDir_;
+	AnimalMoveDir_ = _Dir;
 	float4 CheckLength = AnimalMoveDir_ * GameEngineTime::GetDeltaTime() * Speed_;
 
 	// TODO::컬리전맵 취득
@@ -109,14 +108,13 @@ void WeaponMaster::AnimalRun()
 
 	// TODO::맵과 충돌 판정
 
-	{
+	{ // Hill Climb
 		float UpValue = 1.0f;
 		float4 LeftUpPos = float4::UP * UpValue;
 		float4 RightUpPos = float4::UP * UpValue;
 
 		int LeftUpColor = GetGameMap()->GetColMap()->GetImagePixel(GetPosition() + float4{ -12.0f, 0.0f } + float4::DOWN * 7.0f);
 		int RightUpColor = GetGameMap()->GetColMap()->GetImagePixel(GetPosition() + float4{ 12.0f, 0.0f } + float4::DOWN * 7.0f);
-
 
 		// TODO::맵과 충돌 판정
 
@@ -129,21 +127,12 @@ void WeaponMaster::AnimalRun()
 			SetMove(RightUpPos);
 		}
 	}
-	// 이동
 
+	// 이동
 	if (RGB(0, 0, 255) != LeftColor &&
 		RGB(0, 0, 255) != RightColor)
 	{
 		SetMove(AnimalMoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
-	}
-
-	if (false == IsJump_)
-	{
-		JumpSpeed_ = 200.0f;
-		IsJumpCol_ = false;
-		PixelCol_->SetBounceFlgFalse();
-		JumpMoveDir_ = float4::ZERO;
-		IsJump_ = true;
 	}
 }
 
@@ -405,11 +394,21 @@ bool WeaponMaster::Bombing(WeaponState _Bomb)
 	return IsBomb_;
 }
 
-void WeaponMaster::AnimalMove()
+void WeaponMaster::AnimalMove(WeaponState _Animal)
 {
 	if (false == IsJump_)
 	{
-		AnimalRun();
+		AnimalMoveCheck(ShotDir_);
+
+		if (false == IsJump_)
+		{
+			JumpSpeed_ = 200.0f;
+			IsJumpCol_ = false;
+			PixelCol_->SetBounceFlgFalse();
+			JumpMoveDir_ = float4::ZERO;
+			IsJump_ = true;
+		}
+
 		AnimalFall(); 
 	}
 	else

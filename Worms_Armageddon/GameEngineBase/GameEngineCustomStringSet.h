@@ -213,11 +213,51 @@
 #define IMG_AIRJET_AIRBOMB_FILTER "airBombFilter.bmp"
 #define IMG_SHEEP_BULLET_LEFT "sheepwlkLeft.bmp"
 #define IMG_SHEEP_BULLET_RIGHT "sheepwlk.bmp"
-#define IMG_SUPERSHEEP_FLY "spsheep1.bmp"
+#define IMG_SUPERSHEEP_FLY "spsheep.bmp"
 
 // 무기 애니메이션
 #define ANIM_NAME_SHEEP_LEFT "sheepwlkAnimLeft"
 #define ANIM_NAME_SHEEP_RIGHT "sheepwlkAnimRight"
+
+#define ANIM_NAME_SUPERSHEEP_90 "spsheepAngle90"
+
+#define ANIM_NAME_SUPERSHEEP_80 "spsheepAngle80"
+#define ANIM_NAME_SUPERSHEEP_70 "spsheepAngle70"
+#define ANIM_NAME_SUPERSHEEP_60 "spsheepAngle60"
+#define ANIM_NAME_SUPERSHEEP_50 "spsheepAngle50"
+#define ANIM_NAME_SUPERSHEEP_30 "spsheepAngle40"
+#define ANIM_NAME_SUPERSHEEP_20 "spsheepAngle20"
+#define ANIM_NAME_SUPERSHEEP_10 "spsheepAngle10"
+
+#define ANIM_NAME_SUPERSHEEP_0 "spsheepAngle0"
+
+#define ANIM_NAME_SUPERSHEEP_350 "spsheepAngle-350"
+#define ANIM_NAME_SUPERSHEEP_340 "spsheepAngle-340"
+#define ANIM_NAME_SUPERSHEEP_330 "spsheepAngle-330"
+#define ANIM_NAME_SUPERSHEEP_320 "spsheepAngle-320"
+#define ANIM_NAME_SUPERSHEEP_310 "spsheepAngle-310"
+#define ANIM_NAME_SUPERSHEEP_290 "spsheepAngle-290"
+#define ANIM_NAME_SUPERSHEEP_280 "spsheepAngle-280"
+
+#define ANIM_NAME_SUPERSHEEP_270 "spsheepAngle-270"
+
+#define ANIM_NAME_SUPERSHEEP_260 "spsheepAngle-260"
+#define ANIM_NAME_SUPERSHEEP_250 "spsheepAngle-250"
+#define ANIM_NAME_SUPERSHEEP_240 "spsheepAngle-240"
+#define ANIM_NAME_SUPERSHEEP_230 "spsheepAngle-230"
+#define ANIM_NAME_SUPERSHEEP_220 "spsheepAngle-220"
+#define ANIM_NAME_SUPERSHEEP_200 "spsheepAngle-200"
+#define ANIM_NAME_SUPERSHEEP_190 "spsheepAngle-190"
+
+#define ANIM_NAME_SUPERSHEEP_180 "spsheepAngle-180"
+
+#define ANIM_NAME_SUPERSHEEP_170 "spsheepAngle-170"
+#define ANIM_NAME_SUPERSHEEP_160 "spsheepAngle-160"
+#define ANIM_NAME_SUPERSHEEP_150 "spsheepAngle-150"
+#define ANIM_NAME_SUPERSHEEP_140 "spsheepAngle-140"
+#define ANIM_NAME_SUPERSHEEP_130 "spsheepAngle-130"
+#define ANIM_NAME_SUPERSHEEP_110 "spsheepAngle-110"
+#define ANIM_NAME_SUPERSHEEP_100 "spsheepAngle-100"
 
 // 이펙트
 #define IMG_FX_EXFOOM "exfoom.bmp"
