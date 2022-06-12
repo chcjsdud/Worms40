@@ -17,19 +17,27 @@ WeaponMaster::WeaponMaster()
 	: TargetPos_(float4::ZERO)
 	, IsShot_ (false)
 	, IsDrop_(true) // 초기화를 위해 임의로 true
-	, SinAngle_(-1)
+	, BombCnt_(0)
+	, BounceRotate_(0)
+	, IsBomb_(false)
+	, IsExplodEnd_(false)
+	, AnimalMoveDir_(float4::ZERO)
 	, Speed_(100)
 	, FallLength_(0)
 	, FallSpeed_(0)
-	, StartJumpSec_(0)
 	, IsJump_(false)
+	, IsJumpCol_(false)
+	, JumpSpeed_(0)
+	, JumpMoveDir_(float4::ZERO)
+	, WindDirInfo_(float4::ZERO)
 	, WeaponRender_(nullptr)
 	, WState_(WeaponState::None)
 	, IsBounce_(false)
-	, BounceRotate_(0)
-	, IsBomb_(false)
-	, BombCnt_(0)
-	, IsExplodEnd_(false)
+	, ShotDir_(float4::ZERO)
+	, PixelCol_(nullptr)
+	, BulletDir_(float4::ZERO)
+	, ShotAngle_(float4::ZERO)
+	, ShotPower_(0)
 {
 }
 
@@ -124,27 +132,16 @@ void WeaponMaster::AnimalRun()
 	if (RGB(0, 0, 255) != LeftColor &&
 		RGB(0, 0, 255) != RightColor)
 	{
-		//SinAngle_ += 0.03f;
-		//SetMove({ float4::RIGHT.x * GameEngineTime::GetDeltaTime() * 150.f, sinf(SinAngle_) * 5 });
-		
-
-		// 점프할 시간 카운트
-		//StartJumpSec_ -= GameEngineTime::GetInst()->GetDeltaTime();
-
-		if (0 >= StartJumpSec_)
-		{
-			if (false == IsJump_)
-			{
-				JumpSpeed_ = 200.0f;
-				IsJumpCol_ = false;
-				PixelCol_->SetBounceFlgFalse();
-				JumpMoveDir_ = float4::ZERO;
-				IsJump_ = true;
-			}
-			
-		}
-
 		SetMove(AnimalMoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
+	}
+
+	if (false == IsJump_)
+	{
+		JumpSpeed_ = 200.0f;
+		IsJumpCol_ = false;
+		PixelCol_->SetBounceFlgFalse();
+		JumpMoveDir_ = float4::ZERO;
+		IsJump_ = true;
 	}
 }
 
@@ -195,20 +192,13 @@ void WeaponMaster::AnimalJump()
 
 	if (IsJumpCol_ == true)
 	{
-		//StateName_ = ANIM_KEYWORD_PLAYER_JUMP;
-
-
-
 		//충돌시 좌 ,우 변경
 		JumpMoveDir_ = PixelCol_->PlayerBounce(GetPosition(), { PLAYER_SIZE_X,PLAYER_SIZE_Y }, GetGameMap()->GetColMap(), JumpMoveDir_, JumpSpeed_);
-
 
 		SetMove(JumpMoveDir_ * GameEngineTime::GetDeltaTime());
 
 		JumpMoveDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * FallSpeed_;
 		FallSpeed_ += 20.0f;
-
-
 
 		//웜즈 밑부분픽셀 체크용 변수 선언
 		float4 LeftPosRight = float4::LEFT;
@@ -223,53 +213,13 @@ void WeaponMaster::AnimalJump()
 		float4 DownPos = { GetPosition().x, GetPosition().y + PLAYER_SIZE_Y / 2 };
 		int DownColor = GetGameMap()->GetColMap()->GetImagePixel(DownPos);
 
-
-
 		//웜즈의 밑부분이 파란색이면
 		if (RGB(0, 0, 255) == DownColor)
 		{
 			JumpMoveDir_ = float4::ZERO;
-
-			//체크용 
-			float a = FallSpeed_;
-
-			///*임시로 주석
-			//do
-			//{
-			//	SetMove(LeftPosRight);
-			//	RightPos = { GetPosition().x + PLAYER_SIZE_X, GetPosition().y };
-			//	RightColor = GetGameMap()->GetColMap()->GetImagePixel(RightPos);
-			//} while (RGB(0, 0, 255) == RightColor);
-			//
-			//do
-			//{
-			//	SetMove(RightPosLeft);
-			//	LeftPos = { GetPosition().x - PLAYER_SIZE_X, GetPosition().y };
-			//	LeftColor = GetGameMap()->GetColMap()->GetImagePixel(LeftPos);
-			//} while (RGB(0, 0, 255) == LeftColor);*/
-
-
-			//파란색이 아닐떄까지 올려준다.
-			do
-			{
-				SetMove(UpPos);
-				DownPos = { GetPosition().x, GetPosition().y + PLAYER_SIZE_Y / 2 };
-				DownColor = GetGameMap()->GetColMap()->GetImagePixel(DownPos);
-			} while (RGB(0, 0, 255) == DownColor);
-
-			if (3000 <= FallSpeed_)
-			{
-				IsJump_ = false;
-				//StateChange(PlayerState::Falled);
-				//return;
-			}
+			IsJump_ = false;
 		}
 	}
-}
-
-void WeaponMaster::AnimalJumpUpdate()
-{
-
 }
 
 void WeaponMaster::ThrowStart(float _ThrowForce)
@@ -277,17 +227,12 @@ void WeaponMaster::ThrowStart(float _ThrowForce)
 	if (false == IsShot_)
 	{
 		BulletDir_ += ShotAngle_ * _ThrowForce;
+		AnimalMoveDir_ = ShotDir_; // 양이 이동할 방향 제공
 
 		PlayLevel* Play = dynamic_cast<PlayLevel*>(GetLevel());
-		WindInfo_ = Play->GetWindDir(); // 바람 방향 정보
+		WindDirInfo_ = Play->GetWindDir(); // 바람 방향 정보
 
 		IsShot_ = true;
-
-		if (true)
-		{
-
-		}
-		AnimalMoveDir_ = ShotDir_; // 양이 이동할 방향 제공
 	}
 }
 
@@ -349,7 +294,7 @@ void WeaponMaster::BulletMove(float _Gravity, bool _IsWind)
 
 	if (true == _IsWind)
 	{
-		BulletDir_ += WindInfo_ * GameEngineTime::GetDeltaTime(); // 바람영향
+		BulletDir_ += WindDirInfo_ * GameEngineTime::GetDeltaTime(); // 바람영향
 	}
 
 	float4 MyPos = GetPosition(); // 현재 위치
