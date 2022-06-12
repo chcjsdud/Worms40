@@ -625,9 +625,19 @@ void Player::CreateControlArrow(TeamColor _TeamColor)
 }
 
 
-void Player::Damaged()
+void Player::Damaged(float4 _WeaponPos /*= float4::ZERO */)
 {
-	float4 Length = GetPosition() - Weapon_->GetWeaponPosition();
+	float4 Length = float4::ZERO;
+
+	if (true == _WeaponPos.IsZero2D())
+	{
+		Length = GetPosition() - WeaponPos_;
+	}
+	else
+	{
+		Length = GetPosition() - _WeaponPos;
+	}
+
 	//총알과 플레이어 사이의 거리
 	Len_ = Length.Len2D();
 

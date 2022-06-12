@@ -88,6 +88,9 @@ public:
 	bool ControllUpdate();
 
 	bool DeathUpdate();
+
+	//데미지 체크
+	void Damaged(float4 _WeaponPos = float4::ZERO);
 private:
 
 	float FlySpeed_;
@@ -216,8 +219,6 @@ private:
 	void MoveFall();
 	//오르막길 픽셀충돌체크
 	void CheckHillPixel();
-	//데미지 체크
-	void Damaged();
 public:
 	// 상태전환
 	void StateChange(PlayerState _State);

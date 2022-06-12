@@ -20,6 +20,12 @@ public:
 		BombCount_ = _BombCount;
 	}
 
+	inline bool GetAirBombExplodEnd()
+	{
+		return AirBombExplodEnd_;
+	}
+
+	void ResgistBomb();
 protected:
 	void Start() override;
 	void Update() override;
@@ -28,5 +34,6 @@ protected:
 private: 
 	// ³»°¡ ¸î¹øÂ° ÆøÅºÀÎ°¡
 	int BombCount_;
+	bool AirBombExplodEnd_;
 };
 

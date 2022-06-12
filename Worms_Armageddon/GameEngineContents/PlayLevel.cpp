@@ -11,6 +11,8 @@
 #include "GameEngineBase/GameEngineRandom.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineWindow.h>
+#include <string>
+#include "AirBomb.h"
 
 PlayLevel::PlayLevel()
 	: LevelPhase_(LevelFSM::Ready)
@@ -70,6 +72,8 @@ void PlayLevel::Loading()
 
 void PlayLevel::Update()
 {
+	PlayerDamagedCheck4AirStrike();
+
 	// TeamHpBar디버그용
 	{
 		if (true == GameEngineInput::GetInst()->IsDown(DEBUG_KEY))
@@ -572,5 +576,31 @@ void PlayLevel::SetWindUI(int _WindDir)
 		WindGaugeActor_->SetWind(WindType::Right, WindSpeed_);
 		GameMapInfo_->SetLargeCloudDir(_WindDir, WindSpeed_);
 		GameMapInfo_->SetSmallCloudDir(_WindDir, WindSpeed_);
+	}
+}
+
+void PlayLevel::PlayerDamagedCheck4AirStrike()
+{
+	for (int i = 0; i < 5; i++)
+	{
+		AirBomb* tmpWeaponActor = dynamic_cast<AirBomb*>(WeaponMaster_->AirBombArr_[i]);
+
+		if (tmpWeaponActor != nullptr && tmpWeaponActor->GetAirBombExplodEnd() == true)
+		{
+			for (std::list<Player*>& Team : AllPlayer_)
+			{
+				for (Player* Player : Team)
+				{
+					if (Player->GetIsDeath())
+					{
+						continue;
+					}
+
+					Player->Damaged(tmpWeaponActor->GetPosition());
+					WeaponMaster_->AirBombArr_[i]->Death();
+					WeaponMaster_->AirBombArr_[i] = nullptr;
+				}
+			}
+		}
 	}
 }

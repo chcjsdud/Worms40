@@ -1,5 +1,6 @@
 #include "AirBomb.h"
 #include <GameEngine/GameEngineRenderer.h>
+#include <string>
 
 AirBomb::AirBomb() 
 	:BombCount_(0)
@@ -24,7 +25,7 @@ void AirBomb::Update()
 	ThrowStart(300); // 투사체를 던지고
 	BulletMove(500, false); // 그게 날아가서
 	IsExplosion = BulletColEvent(); // 충돌하면 이벤트가 발생한다.
-
+	AirBombExplodEnd_ = !IsExplosion;
 
 
 	if (BombCount_ == 2)
@@ -37,4 +38,9 @@ void AirBomb::Update()
 bool AirBomb::WeaponUpdate()
 {
 	return false;
+}
+
+void AirBomb::ResgistBomb()
+{
+	WeaponMaster::AirBombArr_[BombCount_] = this;
 }

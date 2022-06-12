@@ -269,11 +269,9 @@ void Player::ActionUpdate()
 		Weapon_->Death();
 
 		WeaponState_ = WeaponState::None;
-		// TODO::동작이 끝날경우에 Idle로 전환
 
 		StateChange(PlayerState::Idle);
 
-		// TODO::몇초간 이동한 후에 턴 종료되도록 수정
 		IsTurnEnd_ = true;
 	}
 	else
@@ -647,7 +645,8 @@ void Player::FlyAwayStart()
 void Player::FlyAwayUpdate()
 {
 	float Degree = float4::VectorXYtoDegree(GetPosition(), GetPosition() + FlyMoveDir_);
-	PlayerRenderer_->SetRotationZ(Degree + 180); // 방향에 따른 투사체 각도
+	// TODO:: ↓이거 뭔가 버그있음.
+	//PlayerRenderer_->SetRotationZ(Degree + 180); // 방향에 따른 투사체 각도
 
 	SetMove(FlyMoveDir_ * GameEngineTime::GetDeltaTime());
 	FlyMoveDir_.y += 10.0f;

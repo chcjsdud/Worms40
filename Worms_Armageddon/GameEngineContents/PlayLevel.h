@@ -88,6 +88,9 @@ private:
 
 	void CreateTestBullet();
 
+	// 에어스트라이크류 공격에 대한 공격처리
+	void PlayerDamagedCheck4AirStrike();
+
 
 	/// UI ///
 	// 바람
