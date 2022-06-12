@@ -157,5 +157,19 @@ protected:
 	bool BulletColEvent();
 	// 폭발 (맵을 파고 폭발 이펙트생기고 투사체 제거)
 	void Explosion();
+
+public:
+
+	// 투하한 폭탄의 정보
+	static GameEngineActor* AirBombArr_[5];
+	inline GameEngineActor* GetAirBomb_(int _Num)
+	{
+		if (AirBombArr_[_Num] != nullptr)
+		{
+			return AirBombArr_[_Num];
+		}
+
+		return nullptr;
+	}
 };
 

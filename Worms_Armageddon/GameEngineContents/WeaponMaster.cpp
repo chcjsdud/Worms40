@@ -12,6 +12,7 @@
 GameMapMaster* WeaponMaster::GameMap_ = nullptr;
 float4 WeaponMaster::WeaponCameraPos_ = float4::ZERO;
 bool WeaponMaster::WeaponStaticReturn_ = true;
+GameEngineActor* WeaponMaster::AirBombArr_[5] = { nullptr };
 
 WeaponMaster::WeaponMaster() 
 	: TargetPos_(float4::ZERO)
@@ -78,6 +79,7 @@ void WeaponMaster::Drop(WeaponState _Drop, float _Sec /*= 0*/)
 				Bomb->SetPosition(GetPosition());
 				Bomb->SetShotAngle(BombDir); // 폭격기가 날아가는 방향으로 투척
 				Bomb->SetBombCount(BombCnt_);
+				Bomb->ResgistBomb();
 				++BombCnt_;
 				IsDrop_ = true;
 			}
