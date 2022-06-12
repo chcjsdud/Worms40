@@ -158,17 +158,5 @@ public:
 	{
 		ShotDir_ = _WeaponDir;
 	}
-
-	// ≈ı«œ«— ∆¯≈∫¿« ¡§∫∏
-	static GameEngineActor* AirBombArr_[5];
-	inline GameEngineActor* GetAirBomb_(int _Num)
-	{
-		if (AirBombArr_[_Num] != nullptr)
-		{
-			return AirBombArr_[_Num];
-		}
-
-		return nullptr;
-	}
 };
 
