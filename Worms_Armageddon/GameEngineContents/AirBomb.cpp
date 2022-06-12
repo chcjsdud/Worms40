@@ -4,7 +4,6 @@
 AirBomb::AirBomb() 
 	:BombCount_(0)
 {
-	IsBounce_ = false;
 }
 
 AirBomb::~AirBomb() 

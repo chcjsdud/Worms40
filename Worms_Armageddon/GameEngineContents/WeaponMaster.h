@@ -77,10 +77,16 @@ private:
 	bool IsExplodEnd_;
 
 	float SinAngle_;
-	float4 SheepMoveDir_;
+	float4 AnimalMoveDir_;
 	float Speed_;
 	float FallLength_;
 	float FallSpeed_;
+
+	float StartJumpSec_;
+	bool IsJump_;
+	bool IsJumpCol_;
+	float JumpSpeed_;
+	float4 JumpMoveDir_;
 
 	// 레벨이 시작함과 동시에 초기화될 맵 정보
 	// static으로 설정하여 모든 무기가 공유하도록 함
@@ -93,6 +99,14 @@ private:
 
 	// 투사체 투하 : 어떤 것을 투하할지 지정, 투하시간 간격
 	void Drop(WeaponState _Drop, float _Sec = 0);
+	//
+	void AnimalRun();
+	//
+	void AnimalFall();
+	//
+	void AnimalJump();
+	//
+	void AnimalJumpUpdate();
 
 protected:
 	// 무기 랜더
@@ -127,12 +141,12 @@ protected:
 	// 목표 좌표 지정
 	void TargetCursor();
 
-	// 투사체 움직임 연산 : 중력값만 넣어주면 포물선으로 날아감
+	// 투사체 움직임 연산 : 중력값만 넣어주면 포물선으로 날아감, 바람 영향 받을지
 	void BulletMove(float _Gravity, bool _IsWind);
 	// 폭격 폭탄 투하 : 어느 폭탄을 투하할지 지정
 	bool Bombing(WeaponState _Bomb);
-	//
-	void SheepMove();
+	// 동물 무기의 움직임
+	void AnimalMove();
 
 	// 투사체 충돌 시 발생 이벤트
 	bool BulletColEvent();

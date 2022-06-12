@@ -15,7 +15,6 @@ AirStrike::~AirStrike()
 
 void AirStrike::Start()
 {
-	IsBounce_ = false;
 }
 
 void AirStrike::Update()

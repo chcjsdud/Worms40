@@ -574,6 +574,7 @@ void Player::ActionStart()
 	case WeaponState::FirePunch:
 		break;
 	case WeaponState::Sheep:
+		Weapon_ = GetLevel()->CreateActor<Sheep>();
 		break;
 	case WeaponState::SuperSheep:
 		Weapon_ = GetLevel()->CreateActor<Sheep>();

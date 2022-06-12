@@ -21,6 +21,8 @@ WeaponMaster::WeaponMaster()
 	, Speed_(100)
 	, FallLength_(0)
 	, FallSpeed_(0)
+	, StartJumpSec_(0)
+	, IsJump_(false)
 	, WeaponRender_(nullptr)
 	, WState_(WeaponState::None)
 	, IsBounce_(false)
@@ -79,6 +81,197 @@ void WeaponMaster::Drop(WeaponState _Drop, float _Sec /*= 0*/)
 	}
 }
 
+void WeaponMaster::AnimalRun()
+{
+	// MoveDir은 오직 이동중에서만 갱신됨.
+	AnimalMoveDir_ = ShotDir_;
+	float4 CheckLength = AnimalMoveDir_ * GameEngineTime::GetDeltaTime() * Speed_;
+
+	// TODO::컬리전맵 취득
+	// GetMapColImage();
+	float NextYValue = 5.0f;
+	float4 NextLeftPos = { GetPosition().x + CheckLength.x - PLAYER_SIZE_X / 2 , GetPosition().y + CheckLength.y - NextYValue };
+	float4 NextRightPos = { GetPosition().x + CheckLength.x + PLAYER_SIZE_X / 2 , GetPosition().y + CheckLength.y - NextYValue };
+
+
+	int LeftColor = GetGameMap()->GetColMap()->GetImagePixel(NextLeftPos);
+	int RightColor = GetGameMap()->GetColMap()->GetImagePixel(NextRightPos);
+
+	// TODO::맵과 충돌 판정
+
+	{
+		float UpValue = 1.0f;
+		float4 LeftUpPos = float4::UP * UpValue;
+		float4 RightUpPos = float4::UP * UpValue;
+
+		int LeftUpColor = GetGameMap()->GetColMap()->GetImagePixel(GetPosition() + float4{ -12.0f, 0.0f } + float4::DOWN * 7.0f);
+		int RightUpColor = GetGameMap()->GetColMap()->GetImagePixel(GetPosition() + float4{ 12.0f, 0.0f } + float4::DOWN * 7.0f);
+
+
+		// TODO::맵과 충돌 판정
+
+		if (RGB(0, 0, 255) == LeftUpColor)
+		{
+			SetMove(LeftUpPos);
+		}
+		else if (RGB(0, 0, 255) == RightUpColor)
+		{
+			SetMove(RightUpPos);
+		}
+	}
+	// 이동
+
+	if (RGB(0, 0, 255) != LeftColor &&
+		RGB(0, 0, 255) != RightColor)
+	{
+		//SinAngle_ += 0.03f;
+		//SetMove({ float4::RIGHT.x * GameEngineTime::GetDeltaTime() * 150.f, sinf(SinAngle_) * 5 });
+		
+
+		// 점프할 시간 카운트
+		//StartJumpSec_ -= GameEngineTime::GetInst()->GetDeltaTime();
+
+		if (0 >= StartJumpSec_)
+		{
+			if (false == IsJump_)
+			{
+				JumpSpeed_ = 200.0f;
+				IsJumpCol_ = false;
+				PixelCol_->SetBounceFlgFalse();
+				JumpMoveDir_ = float4::ZERO;
+				IsJump_ = true;
+			}
+			
+		}
+
+		SetMove(AnimalMoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
+	}
+}
+
+void WeaponMaster::AnimalFall()
+{
+	float4 CheckLength = float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
+
+	float4 NextPos = { GetPosition().x + CheckLength.x , GetPosition().y + CheckLength.y + PLAYER_SIZE_Y / 2 };
+	int Color = GetGameMap()->GetColMap()->GetImagePixel(NextPos);
+
+	if (RGB(0, 0, 255) != Color)
+	{
+		FallLength_ += FallSpeed_ * GameEngineTime::GetDeltaTime();
+		FallSpeed_ += 50.0f * GameEngineTime::GetDeltaTime();
+
+		// 최대 낙하속도
+		if (FallSpeed_ >= PLAYER_SPEED_FALL_MAX)
+		{
+			FallSpeed_ = PLAYER_SPEED_FALL_MAX;
+		}
+
+		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * FallSpeed_);
+	}
+	else
+	{
+		FallSpeed_ = PLAYER_SPEED_FALL;
+		IsJump_ = false;
+	}
+}
+
+void WeaponMaster::AnimalJump()
+{
+	if (IsJumpCol_ == false)
+	{
+		IsJumpCol_ = true;
+		//충돌하기 전까지는 원래진행하던 방향으로 좌,우 이동
+		if (1 == AnimalMoveDir_.x)
+		{
+			JumpMoveDir_ = float4::RIGHT * (JumpSpeed_ - 100.0f);
+		}
+		else
+		{
+			JumpMoveDir_ = float4::LEFT * (JumpSpeed_ - 100.0f);
+		}
+
+		JumpMoveDir_ += float4::UP * JumpSpeed_;
+	}
+
+	if (IsJumpCol_ == true)
+	{
+		//StateName_ = ANIM_KEYWORD_PLAYER_JUMP;
+
+
+
+		//충돌시 좌 ,우 변경
+		JumpMoveDir_ = PixelCol_->PlayerBounce(GetPosition(), { PLAYER_SIZE_X,PLAYER_SIZE_Y }, GetGameMap()->GetColMap(), JumpMoveDir_, JumpSpeed_);
+
+
+		SetMove(JumpMoveDir_ * GameEngineTime::GetDeltaTime());
+
+		JumpMoveDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * FallSpeed_;
+		FallSpeed_ += 20.0f;
+
+
+
+		//웜즈 밑부분픽셀 체크용 변수 선언
+		float4 LeftPosRight = float4::LEFT;
+		float4 RightPosLeft = float4::RIGHT;
+		float4 LeftPos = { GetPosition().x - PLAYER_SIZE_X, GetPosition().y };
+		int LeftColor = GetGameMap()->GetColMap()->GetImagePixel(LeftPos);
+		float4 RightPos = { GetPosition().x + PLAYER_SIZE_X, GetPosition().y };
+		int RightColor = GetGameMap()->GetColMap()->GetImagePixel(RightPos);
+
+		float4 CheckLength = float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
+		float4 UpPos = float4::UP;
+		float4 DownPos = { GetPosition().x, GetPosition().y + PLAYER_SIZE_Y / 2 };
+		int DownColor = GetGameMap()->GetColMap()->GetImagePixel(DownPos);
+
+
+
+		//웜즈의 밑부분이 파란색이면
+		if (RGB(0, 0, 255) == DownColor)
+		{
+			JumpMoveDir_ = float4::ZERO;
+
+			//체크용 
+			float a = FallSpeed_;
+
+			///*임시로 주석
+			//do
+			//{
+			//	SetMove(LeftPosRight);
+			//	RightPos = { GetPosition().x + PLAYER_SIZE_X, GetPosition().y };
+			//	RightColor = GetGameMap()->GetColMap()->GetImagePixel(RightPos);
+			//} while (RGB(0, 0, 255) == RightColor);
+			//
+			//do
+			//{
+			//	SetMove(RightPosLeft);
+			//	LeftPos = { GetPosition().x - PLAYER_SIZE_X, GetPosition().y };
+			//	LeftColor = GetGameMap()->GetColMap()->GetImagePixel(LeftPos);
+			//} while (RGB(0, 0, 255) == LeftColor);*/
+
+
+			//파란색이 아닐떄까지 올려준다.
+			do
+			{
+				SetMove(UpPos);
+				DownPos = { GetPosition().x, GetPosition().y + PLAYER_SIZE_Y / 2 };
+				DownColor = GetGameMap()->GetColMap()->GetImagePixel(DownPos);
+			} while (RGB(0, 0, 255) == DownColor);
+
+			if (3000 <= FallSpeed_)
+			{
+				IsJump_ = false;
+				//StateChange(PlayerState::Falled);
+				//return;
+			}
+		}
+	}
+}
+
+void WeaponMaster::AnimalJumpUpdate()
+{
+
+}
+
 void WeaponMaster::ThrowStart(float _ThrowForce)
 {
 	if (false == IsShot_)
@@ -94,7 +287,7 @@ void WeaponMaster::ThrowStart(float _ThrowForce)
 		{
 
 		}
-		SheepMoveDir_ = ShotDir_; // 양이 이동할 방향 제공
+		AnimalMoveDir_ = ShotDir_; // 양이 이동할 방향 제공
 	}
 }
 
@@ -265,81 +458,17 @@ bool WeaponMaster::Bombing(WeaponState _Bomb)
 	return IsBomb_;
 }
 
-void WeaponMaster::SheepMove()
+void WeaponMaster::AnimalMove()
 {
-	// MoveDir은 오직 이동중에서만 갱신됨.
-	SheepMoveDir_ = ShotDir_;
-	float4 CheckLength = SheepMoveDir_ * GameEngineTime::GetDeltaTime() * Speed_;
-
-	// TODO::컬리전맵 취득
-	// GetMapColImage();
-	float NextYValue = 5.0f;
-	float4 NextLeftPos = { GetPosition().x + CheckLength.x - PLAYER_SIZE_X / 2 , GetPosition().y + CheckLength.y - NextYValue };
-	float4 NextRightPos = { GetPosition().x + CheckLength.x + PLAYER_SIZE_X / 2 , GetPosition().y + CheckLength.y - NextYValue };
-
-
-	int LeftColor = GetGameMap()->GetColMap()->GetImagePixel(NextLeftPos);
-	int RightColor = GetGameMap()->GetColMap()->GetImagePixel(NextRightPos);
-
-	// TODO::맵과 충돌 판정
-
+	if (false == IsJump_)
 	{
-		float UpValue = 1.0f;
-		float4 LeftUpPos = float4::UP * UpValue;
-		float4 RightUpPos = float4::UP * UpValue;
-
-		int LeftUpColor = GetGameMap()->GetColMap()->GetImagePixel(GetPosition() + float4{ -12.0f, 0.0f } + float4::DOWN * 7.0f);
-		int RightUpColor = GetGameMap()->GetColMap()->GetImagePixel(GetPosition() + float4{ 12.0f, 0.0f } + float4::DOWN * 7.0f);
-
-
-		// TODO::맵과 충돌 판정
-
-		if (RGB(0, 0, 255) == LeftUpColor)
-		{
-			SetMove(LeftUpPos);
-		}
-		else if (RGB(0, 0, 255) == RightUpColor)
-		{
-			SetMove(RightUpPos);
-		}
+		AnimalRun();
+		AnimalFall();
 	}
-	// 이동
-
-	if (RGB(0, 0, 255) != LeftColor &&
-		RGB(0, 0, 255) != RightColor)
+	else
 	{
-		//SinAngle_ += 0.03f;
-		//SetMove({ float4::RIGHT.x * GameEngineTime::GetDeltaTime() * 150.f, sinf(SinAngle_) * 5 });
-		SetMove(SheepMoveDir_ * GameEngineTime::GetDeltaTime() * Speed_);
+		AnimalJump();
 	}
-
-	{ // Fall Gravity
-		float4 CheckLength = float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
-
-		float4 NextPos = { GetPosition().x + CheckLength.x , GetPosition().y + CheckLength.y + PLAYER_SIZE_Y / 2 };
-		int Color = GetGameMap()->GetColMap()->GetImagePixel(NextPos);
-
-		if (RGB(0, 0, 255) != Color)
-		{
-			FallLength_ += FallSpeed_ * GameEngineTime::GetDeltaTime();
-			FallSpeed_ += 50.0f * GameEngineTime::GetDeltaTime();
-
-			// 최대 낙하속도
-			if (FallSpeed_ >= PLAYER_SPEED_FALL_MAX)
-			{
-				FallSpeed_ = PLAYER_SPEED_FALL_MAX;
-			}
-
-			SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * FallSpeed_);
-		}
-		else
-		{
-
-			FallSpeed_ = PLAYER_SPEED_FALL;
-		}
-	}
-
-	
 }
 
 bool WeaponMaster::BulletColEvent()
