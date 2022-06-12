@@ -207,13 +207,13 @@
 #define IMG_BAZ_AIM_RIGHT "bazAimRight.bmp"
 #define IMG_HOMING_AIM_LEFT "homingAimLeft.bmp"
 #define IMG_HOMING_AIM_RIGHT "homingAimRight.bmp"
-//#define IMG_MISSILE "missile.bmp"
 #define IMG_AIRJET_GREEN_LEFT "airjetg.bmp"
 #define IMG_AIRJET_GREEN_RIGHT "airjetgRight.bmp"
 #define IMG_AIRJET_AIRBOMB_SPIN "airBomb.bmp"
 #define IMG_AIRJET_AIRBOMB_FILTER "airBombFilter.bmp"
 #define IMG_SHEEP_BULLET_LEFT "sheepwlkLeft.bmp"
 #define IMG_SHEEP_BULLET_RIGHT "sheepwlk.bmp"
+#define IMG_SUPERSHEEP_FLY "spsheep1.bmp"
 
 // 무기 애니메이션
 #define ANIM_NAME_SHEEP_LEFT "sheepwlkAnimLeft"

@@ -13,11 +13,9 @@ SuperSheep::~SuperSheep()
 
 void SuperSheep::Start()
 {
-	WState_ = WeaponState::SuperSheep;
 	WeaponRender_ = CreateRenderer((int)RenderOrder::Weapon);
-	WeaponRender_->CreateAnimation(IMG_SHEEP_BULLET_LEFT, ANIM_NAME_SHEEP_LEFT, 0, 7, 0.04f);
-	WeaponRender_->CreateAnimation(IMG_SHEEP_BULLET_RIGHT, ANIM_NAME_SHEEP_RIGHT, 0, 7, 0.04f);
-	WeaponRender_->ChangeAnimation(ANIM_NAME_SHEEP_LEFT);
+	WeaponRender_->SetImage(IMG_SUPERSHEEP_FLY);
+	WeaponRender_->SetIndex(0);
 }
 
 void SuperSheep::Update()

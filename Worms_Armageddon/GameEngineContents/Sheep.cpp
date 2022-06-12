@@ -1,4 +1,5 @@
 #include "Sheep.h"
+#include "SuperSheep.h"
 #include "PixelCollision.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineRenderer.h>
@@ -29,7 +30,7 @@ void Sheep::Update()
 bool Sheep::WeaponUpdate()
 {
 	// 테스트
-	if (true == GameEngineInput::GetInst()->IsDown(KEY_FIRE))
+	if (true == GameEngineInput::GetInst()->IsDown(KEY_MOVE_JUMP))
 	{
 		// 무기가 폭발하고 
 		// 동작 끝 - > 플레이어의 State가 변경, 턴종료
@@ -40,7 +41,9 @@ bool Sheep::WeaponUpdate()
 	{
 		if (true == GameEngineInput::GetInst()->IsDown(KEY_FIRE))
 		{
-			int a = 0;
+			SuperSheep* SS = GetLevel()->CreateActor<SuperSheep>();
+			SS->SetPosition(GetPosition());
+			Off();
 		}
 	}
 

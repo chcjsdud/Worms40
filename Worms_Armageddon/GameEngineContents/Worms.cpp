@@ -215,12 +215,12 @@ void Worms::GameInit()
 		{
 			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 		}
-		{ // LEFT 용 이미지
+		{
 			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find(IMG_SHEEP_BULLET_LEFT);
 			Image->Cut({ 60, 60 });
-		}
-		{ // RIGHT 용 이미지
-			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find(IMG_SHEEP_BULLET_RIGHT);
+			Image = GameEngineImageManager::GetInst()->Find(IMG_SHEEP_BULLET_RIGHT);
+			Image->Cut({ 60, 60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_SUPERSHEEP_FLY);
 			Image->Cut({ 60, 60 });
 		}
 	}
@@ -327,8 +327,6 @@ void Worms::GameInit()
 
 		}
 		{
-			//GameEngineImage* Image = GameEngineImageManager::GetInst()->Find(IMG_MISSILE);
-			//Image->Cut({ 60,60 });
 			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_FALL);
 			Image->Cut({ 60,60 });
 		}
