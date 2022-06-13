@@ -95,11 +95,11 @@ void Player::Update()
 	}
 
 
+
 	//WeaponÀÌ »ý¼ºµÇ°í ¶¥¿¡´ê¾Æ Æø¹ßÇß´Ù¸é
 	if (Weapon_ != nullptr && Weapon_->GetExplodEndFlg() == true)
 	{
-		Damaged();
-
+		Damaged(Weapon_->GetWeaponPosition());
 	}
 
 	if (IsDamaged_ == true)
@@ -126,9 +126,11 @@ bool Player::ControllUpdate()
 		return IsTurnEnd_;
 	}
 
+
 	StateUpdate();
 
-	if (ControlWorms_ != nullptr)
+
+	if (ControlWorms_ != nullptr && ControlFlg_ == true)
 	{
 		ControlWorms_->On();
 	}

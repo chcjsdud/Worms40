@@ -123,6 +123,8 @@
 #define IMG_PLAYER_BACKFLIP_RIGHT "backflipRight.bmp"
 #define IMG_PLAYER_WALK_LEFT "WalkLeft.bmp"
 #define IMG_PLAYER_WALK_RIGHT "WalkRight.bmp"
+#define IMG_PLAYER_DIE_LEFT "wdieLeft.bmp"
+#define IMG_PLAYER_DIE_RIGHT "wdieRight.bmp"
 #define IMG_PLAYER_FALL "wtwang.bmp"
 #define IMG_BAZ_ON_LEFT "bazOnLeft.bmp"
 #define IMG_BAZ_ON_RIGHT "bazOnRight.bmp"
@@ -161,6 +163,7 @@
 #define ANIM_KEYWORD_PLAYER_AIRON "AirStrikeOn"
 #define ANIM_KEYWORD_PLAYER_SHEEPOFF "sheepOff"
 #define ANIM_KEYWORD_PLAYER_SHEEPON "sheepOn"
+#define ANIM_KEYWORD_PLAYER_DEATH "wdie"
 
 
 #define ANIM_KEYWORD_DIR_LEFT "Left"
@@ -183,6 +186,8 @@
 #define ANIM_NAME_PLAYER_JUMPLEFT "JumpLeft"
 #define ANIM_NAME_PLAYER_FALL "Falled"
 #define ANIM_NAME_PLAYER_FLY "FlyLeft"
+#define ANIM_NAME_PLAYER_DEATH_LEFT "wdieLeft"
+#define ANIM_NAME_PLAYER_DEATH_RIGHT "wdieRight"
 
 
 #define ANIM_NAME_BAZ_ON_LEFT "bazOnLeft"
