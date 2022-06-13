@@ -81,6 +81,14 @@ void GrenadeTimerBox::SetBoxThin()
 
 }
 
+void GrenadeTimerBox::DeleteGrenadeBox()
+{
+	TimerFont_->Death();
+	TimerBox_->Death();
+	this->Death();
+
+}
+
 void GrenadeTimerBox::CreateGrenadeTimerBox(FONT_COLOR _FontColor)
 {
 

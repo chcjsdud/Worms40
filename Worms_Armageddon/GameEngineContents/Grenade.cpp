@@ -48,7 +48,7 @@ bool Grenade::WeaponUpdate()
 	if (5.0f < GetAccTime()) // 5ÃÊ ÈÄ Æø¹ß
 	{
 		Explosion();
-		GrenadeTimerBox_->Death();
+		GrenadeTimerBox_->DeleteGrenadeBox();
 		return false;
 	}
 

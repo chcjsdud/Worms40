@@ -43,6 +43,8 @@ public:
 	
 	void SetBoxBorder();
 	void SetBoxThin();
+
+	void DeleteGrenadeBox();
 	
 	void CreateGrenadeTimerBox(FONT_COLOR _FontColor);
 };
