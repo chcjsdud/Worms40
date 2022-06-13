@@ -222,6 +222,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GrenadeTimerBox.h" />
     <ClInclude Include="HpBar.h" />
     <ClInclude Include="Inventory.h">
       <SubType>
@@ -399,6 +400,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GrenadeTimerBox.cpp" />
     <ClCompile Include="HpBar.cpp" />
     <ClCompile Include="Inventory.cpp">
       <SubType>

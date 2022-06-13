@@ -31,10 +31,7 @@ public:
 	void ChangeHpBarFont(int _Num, float4 _Pivot);
 
 	void SetFontColor(FONT_COLOR _FontColor);
-	void SetHp(int _Hp);
 	void HpBarSetPosition(float4 _Pos);
-
-
 
 	FONT_COLOR GetFontColor()
 	{

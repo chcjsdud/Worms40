@@ -41,6 +41,9 @@ public:
 		return GetPosition();
 	}
 
+
+	virtual void CreateGrenadeTimerBox(TeamColor _Color);
+
 	inline void SetShotDir(float4 _WeaponDir)
 	{
 		ShotDir_ = _WeaponDir;

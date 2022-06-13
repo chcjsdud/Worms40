@@ -9,6 +9,7 @@
 #include "AirStrike.h"
 #include "Sheep.h"
 #include "SuperSheep.h"
+
 #pragma endregion
 
 
@@ -568,6 +569,7 @@ void Player::ActionStart()
 		break;
 	case WeaponState::Grenade:
 		Weapon_ = GetLevel()->CreateActor<Grenade>();
+		Weapon_->CreateGrenadeTimerBox(MyTeamColor_);
 		break;
 	case WeaponState::Axe:
 		break;
