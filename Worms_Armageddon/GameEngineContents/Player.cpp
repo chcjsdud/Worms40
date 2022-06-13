@@ -529,18 +529,59 @@ void Player::PlayerAnimationChange(std::string _Anim)
 // 무기 각도 조절
 void Player::MoveWeaponAngle(float _DeltaTime)
 {
-	static float angle = 0.0f;
+	static float angleDiff = 0.0f;
+	float DefaultAngle = 0.0f;
+	float AllAddAngle = 0.0f;
+
+	// 플레이어가 왼쪽을 보고 있을 경우 각도의 기본값이 왼쪽이 되도록
+	if (MoveDir_.CompareInt2D(float4::LEFT))
+	{
+		DefaultAngle = 180.0f;
+	}
 
 	if (true == GameEngineInput::GetInst()->IsPress(KEY_ANGLE_DOWN))
 	{
-		angle += 120 * _DeltaTime;
+		angleDiff += 120 * _DeltaTime;
 	}
 	if (true == GameEngineInput::GetInst()->IsPress(KEY_ANGLE_UP))
 	{
-		angle -= 120 * _DeltaTime;
+		angleDiff -= 120 * _DeltaTime;
 	}
 
-	ShotAngle_ = float4::DegreeToDirectionFloat4(angle);
+	if (MoveDir_.CompareInt2D(float4::LEFT))
+	{
+		AllAddAngle = DefaultAngle - angleDiff;
+
+		if (AllAddAngle >= 265.0f)
+		{
+			AllAddAngle = 265.0f;
+			angleDiff = -85.0f;
+		}
+		else if (AllAddAngle <= 95.0f)
+		{
+			AllAddAngle = 95.0f;
+			angleDiff = 85.0f;
+		}
+
+		ShotAngle_ = float4::DegreeToDirectionFloat4(AllAddAngle);
+	}
+	else
+	{
+		AllAddAngle = DefaultAngle + angleDiff;
+
+		if (AllAddAngle >= 85.0f)
+		{
+			AllAddAngle = 85.0f;
+			angleDiff = 85.0f;
+		}
+		else if (AllAddAngle <= -85.0f)
+		{
+			AllAddAngle = -85.0f;
+			angleDiff = -85.0f;
+		}
+
+		ShotAngle_ = float4::DegreeToDirectionFloat4(AllAddAngle);
+	}
 
 	// 크로스헤어 : 3번째 인자는 크로스헤어 활성화 여부
 	Crshair_->UpdateCrosshairPos(GetPosition(), ShotAngle_);

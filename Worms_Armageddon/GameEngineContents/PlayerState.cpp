@@ -654,7 +654,7 @@ void Player::FlyAwayStart()
 void Player::FlyAwayUpdate()
 {
 	float Degree = float4::VectorXYtoDegree(GetPosition(), GetPosition() + FlyMoveDir_);
-	// TODO:: ↓이거 뭔가 버그있음.
+
 	PlayerRenderer_->SetRotationZ(Degree + 180); // 방향에 따른 투사체 각도
 
 	SetMove(FlyMoveDir_ * GameEngineTime::GetDeltaTime());
