@@ -1,7 +1,7 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineRandom.h>
-#include "ShootingStarParticle.h"
+#include "ShootingParticle.h"
 
 
 // Ό³Έν :
@@ -29,7 +29,7 @@ private:
 	GameEngineRandom RandomPosY_;
 
 
-	ShootingStarParticle* ShootingStarParticle_;
+	ShootingParticle* ShootingParticle_;
 
 	float CreateTimer_;
 };

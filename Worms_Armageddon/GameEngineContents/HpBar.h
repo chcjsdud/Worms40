@@ -28,7 +28,7 @@ protected:
 
 
 public:
-	void ChangeHpBarFont(int _Num, float4 _Pivot);
+	void ChangeHpBarFont(int _Num, float4 _Pivot);  //hp 변경. pivot 변경 할 필요 없음
 
 	void SetFontColor(FONT_COLOR _FontColor);
 	void HpBarSetPosition(float4 _Pos);

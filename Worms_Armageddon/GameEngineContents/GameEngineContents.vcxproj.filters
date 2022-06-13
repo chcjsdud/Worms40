@@ -161,7 +161,7 @@
     <ClInclude Include="Sheep.h">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
     </ClInclude>
-    <ClInclude Include="ShootingStarParticle.h">
+    <ClInclude Include="ShootingParticle.h">
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="ChargeBlob.h">
@@ -341,7 +341,7 @@
     <ClCompile Include="Sheep.cpp">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
     </ClCompile>
-    <ClCompile Include="ShootingStarParticle.cpp">
+    <ClCompile Include="ShootingParticle.cpp">
       <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="LobbyShootingStar.cpp">

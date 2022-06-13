@@ -11,18 +11,18 @@ enum class CreateStar
 
 // Ό³Έν :
 class GameEngineRenderer;
-class ShootingStarParticle : public GameEngineActor
+class ShootingParticle : public GameEngineActor
 {
 public:
 	// constrcuter destructer
-	ShootingStarParticle();
-	~ShootingStarParticle();
+	ShootingParticle();
+	~ShootingParticle();
 
 	// delete Function
-	ShootingStarParticle(const ShootingStarParticle& _Other) = delete;
-	ShootingStarParticle(ShootingStarParticle&& _Other) noexcept = delete;
-	ShootingStarParticle& operator=(const ShootingStarParticle& _Other) = delete;
-	ShootingStarParticle& operator=(ShootingStarParticle&& _Other) noexcept = delete;
+	ShootingParticle(const ShootingParticle& _Other) = delete;
+	ShootingParticle(ShootingParticle&& _Other) noexcept = delete;
+	ShootingParticle& operator=(const ShootingParticle& _Other) = delete;
+	ShootingParticle& operator=(ShootingParticle&& _Other) noexcept = delete;
 
 protected:
 	virtual void Start() override;
@@ -36,6 +36,9 @@ private :
 	float LimitY_;
 	float Speed_;
 
+
+	bool StarUpdate_;
+
 	float4 MoveDirection_;
 
 public:
@@ -43,5 +46,13 @@ public:
 	void SetDeleteY(float _PosY);
 	void SetSpeed(float _SetSpeed);
 	
+	void SetStarAnimation();
+	void SetLeafAnimation();
+
+	void SetLeafCurve();
+
+private:
+	void StarUpdate();
+	void LeafUpdate();
 };
 

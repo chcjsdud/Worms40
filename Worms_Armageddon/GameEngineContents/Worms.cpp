@@ -161,6 +161,9 @@ void Worms::GameInit()
 
 		GameEngineImage* wind = GameEngineImageManager::GetInst()->Find("windBar.bmp");
 		wind->Cut({ 87, 13 });
+
+		GameEngineImage* ScatterLeaf = GameEngineImageManager::GetInst()->Find("ScatterLeaf.bmp");
+		ScatterLeaf->Cut({ 32, 32 });
 	}
 
 

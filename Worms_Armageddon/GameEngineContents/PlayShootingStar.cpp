@@ -11,7 +11,7 @@ PlayShootingStar::PlayShootingStar()
 	RandomPosX_(),
 	RandomPosY_(),
 
-	ShootingStarParticle_(nullptr),
+	ShootingParticle_(nullptr),
 	CreateStarState_(CreateStar::SetTimer)
 {
 }
@@ -31,7 +31,7 @@ void PlayShootingStar::Update()
 	{
 	case CreateStar::SetTimer:
 
-		CreateTimer_ = RandomCreateTimer_.RandomFloat(0.05f, 0.07f);
+		CreateTimer_ = RandomCreateTimer_.RandomFloat(0.09f, 0.13f);
 		CreateStarState_ = CreateStar::AddTime;
 
 		break;
@@ -47,10 +47,11 @@ void PlayShootingStar::Update()
 		break;
 	case CreateStar::Create:
 
-		ShootingStarParticle_ = (GetLevel()->CreateActor<ShootingStarParticle>(static_cast<int>(RenderOrder::LobbyStar)));
-		ShootingStarParticle_->SetPosition({ RandomPosX_.RandomFloat(-3840.f, 3840.f), RandomPosY_.RandomFloat(-1392.f, 0) });
-		ShootingStarParticle_->SetDeleteY(3840.f);
-		ShootingStarParticle_->SetSpeed(300.f);
+		ShootingParticle_ = (GetLevel()->CreateActor<ShootingParticle>(static_cast<int>(RenderOrder::LobbyStar)));
+		ShootingParticle_->SetPosition({ RandomPosX_.RandomFloat(-3840.f, 3840.f), RandomPosY_.RandomFloat(-100.f, 300.f) });
+		ShootingParticle_->SetDeleteY(3840.f);
+		ShootingParticle_->SetLeafAnimation();
+		ShootingParticle_->SetLeafCurve();
 
 		CreateStarState_ = CreateStar::SetTimer;
 
