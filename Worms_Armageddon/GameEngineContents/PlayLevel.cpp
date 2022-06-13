@@ -139,7 +139,7 @@ void PlayLevel::Update()
 	{
 		std::list<Player*>& Teams = (*AllPlayerIter_);
 		Player* CurrentPlayer = Teams.front();
-		CurrentPlayer->SetPlayerHp(50);
+		//CurrentPlayer->SetPlayerHp(50);
 		CurrentPlayer->SetControlFlg(true);
 
 		// 카메라 위치 이동

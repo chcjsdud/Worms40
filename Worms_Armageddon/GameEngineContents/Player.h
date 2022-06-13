@@ -124,6 +124,8 @@ private:
 	// 플레이어 Hp
 	int PlayerHp_;
 
+	bool IsGrave_;
+
 	// 나의 팀 색깔 정보
 	TeamColor MyTeamColor_;
 

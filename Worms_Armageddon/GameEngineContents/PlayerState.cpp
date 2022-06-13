@@ -721,9 +721,52 @@ void Player::FlyAwayUpdate()
 void Player::DeathStart()
 {
 	PlayerAnimationChange(ANIM_KEYWORD_PLAYER_DEATH);
+	PlayerHp_ = 0;
+	JumpSpeed_ = 100.0f;
+	JumpMoveDir_ = float4::UP;
+
+	Crshair_->Off();
+	CrgBlob_->RenderOff();
+	ControlWorms_->Off();
 }
 
 void Player::DeathUpdate()
 {
+
+	//플레이어가 무덤이되면
+	if (IsGrave_ == true)
+	{
+		//위로 조금 튀어올랏다가 떨어진다
+		SetMove(JumpMoveDir_ * GameEngineTime::GetDeltaTime() * JumpSpeed_);
+		JumpSpeed_ -= 10.0f;
+
+		float4 DownPos = GetPosition() + float4{ 0, 2.0f };
+		int DownColor = ColMapImage_->GetImagePixel(DownPos);
+
+		//땅에닿으면
+		if (RGB(0, 0, 255) == DownColor)
+		{
+			do
+			{
+				SetMove(float4::UP);
+				DownPos = { GetPosition().x, GetPosition().y + 2.0f };
+				DownColor = ColMapImage_->GetImagePixel(DownPos);
+			} while (RGB(0, 0, 255) == DownColor);
+
+			//State를 None으로변경
+			StateChange(PlayerState::None);
+			IsDeath_ = true;
+		}
+
+		return;
+	}
+
+	//자폭하는 애니메이션이끝나면 무덤으로 변경
+	if (PlayerRenderer_->IsEndAnimation() == true)
+	{
+		PlayerRenderer_->ChangeAnimation(ANIM_KEYWORD_PLAYER_GRAVE);
+		IsGrave_ = true;
+	}
+
 
 }

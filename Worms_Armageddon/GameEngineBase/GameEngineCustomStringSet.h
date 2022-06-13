@@ -91,7 +91,6 @@
 #define IMG_MAPBOOKS "MapBooks.bmp"
 #define IMG_MIDGROUND "Midground.bmp"
 #define IMG_MAPBOOKS_GROUND "MapBooks_Ground.bmp"
-
 #define IMG_EFFECT_BOOM "Boom.bmp"
 
 // 이미지 스케일
@@ -145,6 +144,7 @@
 #define IMG_SHEEP_OFF_RIGHT "sheepOffRight.bmp"
 #define IMG_FLY_LEFT "FlyLeft.bmp"
 #define IMG_FLY_LFFT_FILTER "FlyLeftFilter.bmp"
+#define IMG_PLAYER_GRAVE "grave3.bmp"
 
 
 // 애니메이션 키워드
@@ -165,6 +165,7 @@
 #define ANIM_KEYWORD_PLAYER_SHEEPOFF "sheepOff"
 #define ANIM_KEYWORD_PLAYER_SHEEPON "sheepOn"
 #define ANIM_KEYWORD_PLAYER_DEATH "wdie"
+#define ANIM_KEYWORD_PLAYER_GRAVE "grave3"
 
 
 #define ANIM_KEYWORD_DIR_LEFT "Left"
@@ -189,6 +190,7 @@
 #define ANIM_NAME_PLAYER_FLY "FlyLeft"
 #define ANIM_NAME_PLAYER_DEATH_LEFT "wdieLeft"
 #define ANIM_NAME_PLAYER_DEATH_RIGHT "wdieRight"
+#define ANIM_NAME_PLAYER_GRAVE "grave3"
 
 
 #define ANIM_NAME_BAZ_ON_LEFT "bazOnLeft"

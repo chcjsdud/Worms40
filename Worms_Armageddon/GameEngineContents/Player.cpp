@@ -36,6 +36,7 @@ Player::Player()
 	, ControlWorms_(nullptr)
 	, FlySpeed_(0.0f)
 	, IsFly_(false)
+	, IsGrave_(false)
 {
 }
 
@@ -77,6 +78,14 @@ void Player::Start()
 
 void Player::Update()
 {
+
+	//플레이어의 State가 None이면 이미 죽어서 무덤이되고 IsDeath_== true인 상태.
+	if (CurrentState_ == PlayerState::None)
+	{
+		return;
+	}
+
+
 	Hpbar_->HpBarSetPosition({ this->GetPosition().x , this->GetPosition().y - 25.f});
 	
 	//데미지를 입엇다면 , IsDamged==true , Damaged함수에서 처리.
@@ -126,10 +135,17 @@ bool Player::ControllUpdate()
 	// State내부에서 턴종료 플래그를 세워주면 턴종료
 	IsTurnEnd_ = false;
 
+	if (IsDeath_ == true)
+	{
+		IsTurnEnd_ = true;
+		ControlWorms_->Off();
+		return IsTurnEnd_;
+	}
+
 	if (IsDamaged_ == true)
 	{
 		IsTurnEnd_ = true;
-
+		ControlWorms_->Off();
 		return IsTurnEnd_;
 	}
 
@@ -206,6 +222,9 @@ void Player::PlayerAnimationInit()
 	//죽음 애니메이션
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_DIE_LEFT, ANIM_NAME_PLAYER_DEATH_LEFT, 0, 59, 0.02, false);
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_DIE_RIGHT, ANIM_NAME_PLAYER_DEATH_RIGHT, 0, 59, 0.02, false);
+
+	//묘비 애니메이션
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_GRAVE, ANIM_NAME_PLAYER_GRAVE, 0, 19, 0.04, true,true);
 
 	//날라가는 애니메이션
 	PlayerRenderer_->CreateAnimation(IMG_FLY_LEFT, ANIM_NAME_PLAYER_FLY, 0, 0, 0, false);
@@ -485,6 +504,9 @@ void Player::StateChange(PlayerState _State)
 		case PlayerState::Death:
 			DeathStart();
 			break;
+		case PlayerState::None:
+			CurrentState_ = _State;
+			return;
 		default:
 			break;
 		}
@@ -526,6 +548,8 @@ void Player::StateUpdate()
 	case PlayerState::Death:
 		DeathUpdate();
 		break;
+	case PlayerState::None:
+		return;
 	default:
 		break;
 	}
@@ -790,7 +814,7 @@ void Player::CheckDeath()
 	if (PlayerHp_ <= 0)
 	{
 		PlayerHp_ = 0;
-		IsDeath_ = true;
+	//	IsDeath_ = true;
 	}
 
 

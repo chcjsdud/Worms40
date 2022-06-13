@@ -18,7 +18,8 @@ enum class PlayerState
 	Falled,
 	Action,
 	FlyAway,
-	Death
+	Death,
+	None
 };
 
 enum class PlayerUnControlState
