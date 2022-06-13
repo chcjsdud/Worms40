@@ -151,6 +151,9 @@ protected:
 	// 폭발 (맵을 파고 폭발 이펙트생기고 투사체 제거)
 	void Explosion();
 
+	// 투사체 바닥 범위 넘어갔는지 체크
+	bool IsBulletOutofBound();
+
 public:
 
 	// 투하한 폭탄의 정보

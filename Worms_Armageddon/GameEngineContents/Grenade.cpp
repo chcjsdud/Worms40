@@ -27,6 +27,12 @@ void Grenade::Update()
 
 bool Grenade::WeaponUpdate()
 {
+	// ÃÑ¾Ë 
+	if (true == IsBulletOutofBound())
+	{
+		return false;
+	}
+
 	// Å×½ºÆ®
 	if (true == GameEngineInput::GetInst()->IsDown(KEY_FIRE))
 	{

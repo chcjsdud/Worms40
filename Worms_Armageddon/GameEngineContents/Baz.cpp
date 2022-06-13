@@ -26,6 +26,11 @@ void Baz::Update()
 
 bool Baz::WeaponUpdate()
 {
+	if (true == IsBulletOutofBound())
+	{
+		return false;
+	}
+
 	// Å×½ºÆ®
 	if (true == GameEngineInput::GetInst()->IsDown(KEY_FIRE))
 	{

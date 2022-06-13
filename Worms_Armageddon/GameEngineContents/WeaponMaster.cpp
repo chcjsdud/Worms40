@@ -486,3 +486,13 @@ void WeaponMaster::Explosion()
 
 	Off();
 }
+
+bool WeaponMaster::IsBulletOutofBound()
+{
+	if (GetPosition().y >= SCALE_MAPBOOKS_GROUND_Y)
+	{
+		return true;
+	}
+
+	return false;
+}

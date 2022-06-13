@@ -293,12 +293,8 @@ void PlayLevel::Update()
 				IsTeamHpCalculated = true;
 			}
 
-			// 정렬 끝나면 다음 State로
-			if (true == TeamHpBarListActor_->IsAnimationEnd())
-			{
-				IsTeamHpCalculated = false;
-				LevelPhase_ = LevelFSM::CameraMove;
-			}
+			IsTeamHpCalculated = false;
+			LevelPhase_ = LevelFSM::CameraMove;
 
 		}
 		else
