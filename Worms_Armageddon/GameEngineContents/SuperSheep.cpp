@@ -6,6 +6,8 @@
 SuperSheep::SuperSheep() 
 	: IsSuper_(false)
 	, ModeCnt_(0)
+	, SpDegree_(90.f)
+	, SheepFlyDir_(float4::UP)
 {
 }
 
@@ -20,6 +22,11 @@ void SuperSheep::Start()
 	WeaponRender_ = CreateRenderer((int)RenderOrder::Weapon);
 	WeaponRender_->CreateAnimation(IMG_SHEEP_BULLET_LEFT, ANIM_NAME_SHEEP_LEFT, 0, 7, 0.04f);
 	WeaponRender_->CreateAnimation(IMG_SHEEP_BULLET_RIGHT, ANIM_NAME_SHEEP_RIGHT, 0, 7, 0.04f);
+
+	for (size_t i = 0; i < 360; ++i)
+	{
+		int AnimAngle;
+	}
 
 	float AnimSpeed = 0.08f;
 	int AnimIndex = 0;
@@ -86,13 +93,29 @@ void SuperSheep::Start()
 	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_110, AnimIndex, AnimIndex + 1, AnimSpeed);
 	AnimIndex += 2;
 	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_100, AnimIndex, AnimIndex + 1, AnimSpeed);
-
+	
 	WeaponRender_->ChangeAnimation(ANIM_NAME_SHEEP_LEFT);
+
+	// 0 <= angle <= 359
+	// static_cast<int>(angle/10);
+	//WeaponRender_->ChangeAnimation("spsheepAngle-" + std::to_string(10));
 }
 
 void SuperSheep::Update()
 {
 
+}
+
+void SuperSheep::Render()
+{
+	if (IsSuper_)
+	{
+		int AnimAngle = (int)SpDegree_ % 360;
+
+		AnimAngle = AnimAngle / 11.25f;
+		
+		WeaponRender_->ChangeAnimation("spsheepAngle-" + std::to_string(AnimAngle));
+	}
 }
 
 bool SuperSheep::WeaponUpdate()
@@ -132,16 +155,41 @@ bool SuperSheep::WeaponUpdate()
 	else // 슈퍼양 모드
 	{
 		IsBounce_ = false;
-
 		float Speed = 3.0f;
-		if (true == GameEngineInput::GetInst()->IsPress(KEY_MOVE_LEFT))
+
+		if (false == GameEngineInput::GetInst()->IsPress(KEY_MOVE_LEFT) &&
+			false == GameEngineInput::GetInst()->IsPress(KEY_MOVE_RIGHT))
 		{
-			SetMove(float4::LEFT * Speed);
+			//IsAngleInit_ = false;
+		}
+
+		if (true == GameEngineInput::GetInst()->IsPress(KEY_MOVE_LEFT))
+		{ // - Angle_
+
+			SpDegree_ += SpDegree_ * GameEngineTime::GetDeltaTime() * 1.f;
+			float CalDegree = -1.f * SpDegree_;
+			SheepFlyDir_ = float4::DegreeToDirectionFloat4(CalDegree);
+
+			if (720.f < SpDegree_)
+			{
+				SpDegree_ = 360.f;
+			}
 		}
 		else if (true == GameEngineInput::GetInst()->IsPress(KEY_MOVE_RIGHT))
-		{
-			SetMove(float4::RIGHT * Speed);
+		{ // + Angle_
+
+
+			SpDegree_ += SpDegree_ * GameEngineTime::GetDeltaTime() * 1.f;
+			float CalDegree = 1.f * SpDegree_;
+			SheepFlyDir_ = float4::DegreeToDirectionFloat4(CalDegree);
+
+			if (720.f < SpDegree_)
+			{
+				SpDegree_ = 360.f;
+			}
 		}
+
+		SetMove(SheepFlyDir_ * Speed);
 
 		// 모드 전환
 		if (true == GameEngineInput::GetInst()->IsDown(KEY_FIRE))
@@ -164,7 +212,7 @@ bool SuperSheep::WeaponUpdate()
 	}
 }
 
-void SuperSheep::SuperFly()
+void SuperSheep::CycleFly()
 {
-
+	
 }

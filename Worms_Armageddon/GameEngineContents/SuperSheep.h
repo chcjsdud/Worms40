@@ -18,12 +18,15 @@ public:
 protected:
 	void Start() override;
 	void Update() override;
+	void Render() override;
 	bool WeaponUpdate() override;
 
 private:
 	bool IsSuper_;
 	int ModeCnt_;
+	float SpDegree_;
+	float4 SheepFlyDir_;
 
-	void SuperFly();
+	void CycleFly();
 };
 
