@@ -11,7 +11,7 @@ LobbyShootingStar::LobbyShootingStar()
 	RandomPosX_(),
 	RandomPosY_(),
 
-	LobbyShootingStarParticle_(nullptr),
+	ShootingStarParticle_(nullptr),
 	CreateStarState_(CreateStar::SetTimer)
 {
 }
@@ -47,8 +47,8 @@ void LobbyShootingStar::Update()
 		break;
 	case CreateStar::Create:
 
-		LobbyShootingStarParticle_ = (GetLevel()->CreateActor<LobbyShootingStarParticle>(static_cast<int>(RenderOrder::LobbyStar)));
-		LobbyShootingStarParticle_->SetPosition({ RandomPosX_.RandomFloat(-1280.f, 1280.f), RandomPosY_.RandomFloat(-600.f, 0) });
+		ShootingStarParticle_ = (GetLevel()->CreateActor<ShootingStarParticle>(static_cast<int>(RenderOrder::LobbyStar)));
+		ShootingStarParticle_->SetPosition({ RandomPosX_.RandomFloat(-1280.f, 1280.f), RandomPosY_.RandomFloat(-600.f, 0) });
 
 		CreateStarState_ = CreateStar::SetTimer;
 

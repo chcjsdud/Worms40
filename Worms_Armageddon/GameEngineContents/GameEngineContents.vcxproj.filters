@@ -128,12 +128,6 @@
     <ClInclude Include="AirStrike.h">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
     </ClInclude>
-    <ClInclude Include="LobbyShootingStar.h">
-      <Filter>01.LobbyLevel\LobbyActor</Filter>
-    </ClInclude>
-    <ClInclude Include="LobbyShootingStarParticle.h">
-      <Filter>01.LobbyLevel\LobbyActor</Filter>
-    </ClInclude>
     <ClInclude Include="PixelCollision.h">
       <Filter>Global</Filter>
     </ClInclude>
@@ -166,6 +160,12 @@
     </ClInclude>
     <ClInclude Include="Sheep.h">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootingStarParticle.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="LobbyShootingStar.h">
+      <Filter>01.LobbyLevel\LobbyActor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -299,12 +299,6 @@
     <ClCompile Include="AirStrike.cpp">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
     </ClCompile>
-    <ClCompile Include="LobbyShootingStar.cpp">
-      <Filter>01.LobbyLevel\LobbyActor</Filter>
-    </ClCompile>
-    <ClCompile Include="LobbyShootingStarParticle.cpp">
-      <Filter>01.LobbyLevel\LobbyActor</Filter>
-    </ClCompile>
     <ClCompile Include="UIMaster.cpp">
       <Filter>02.PlayLevel\UI</Filter>
     </ClCompile>
@@ -334,6 +328,12 @@
     </ClCompile>
     <ClCompile Include="Sheep.cpp">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="ShootingStarParticle.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="LobbyShootingStar.cpp">
+      <Filter>01.LobbyLevel\LobbyActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

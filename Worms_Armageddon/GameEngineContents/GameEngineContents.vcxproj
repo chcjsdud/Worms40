@@ -224,7 +224,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="LobbyShootingStar.h" />
-    <ClInclude Include="LobbyShootingStarParticle.h" />
+    <ClInclude Include="ShootingStarParticle.h" />
     <ClInclude Include="MapBooks.h">
       <SubType>
       </SubType>
@@ -396,7 +396,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="LobbyShootingStar.cpp" />
-    <ClCompile Include="LobbyShootingStarParticle.cpp" />
+    <ClCompile Include="ShootingStarParticle.cpp" />
     <ClCompile Include="MapBooks.cpp">
       <SubType>
       </SubType>

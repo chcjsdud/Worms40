@@ -1,7 +1,7 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineRandom.h>
-#include "LobbyShootingStarParticle.h"
+#include "ShootingStarParticle.h"
 
 enum class CreateStar
 {
@@ -35,7 +35,7 @@ private:
 	GameEngineRandom RandomPosY_;
 
 
-	LobbyShootingStarParticle* LobbyShootingStarParticle_;
+	ShootingStarParticle* ShootingStarParticle_;
 	
 	float CreateTimer_;
 };

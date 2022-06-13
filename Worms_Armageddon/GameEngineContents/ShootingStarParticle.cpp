@@ -1,10 +1,10 @@
-#include "LobbyShootingStarParticle.h"
+#include "ShootingStarParticle.h"
 #include "GameEngineBase/GameEngineWindow.h"
 #include "Enums.h"
 #include <GameEngineBase/GameEngineRandom.h>
 #include <math.h>
 
-LobbyShootingStarParticle::LobbyShootingStarParticle()
+ShootingStarParticle::ShootingStarParticle()
 	:
 	StarRenderer_(nullptr)
 {
@@ -12,11 +12,11 @@ LobbyShootingStarParticle::LobbyShootingStarParticle()
 	CosAngle_ = Random_.RandomFloat(0.0f, 1.0f);
 }
 
-LobbyShootingStarParticle::~LobbyShootingStarParticle()
+ShootingStarParticle::~ShootingStarParticle()
 {
 }
 
-void LobbyShootingStarParticle::Start()
+void ShootingStarParticle::Start()
 {
 	StarRenderer_ = CreateRenderer("stars.bmp", static_cast<int>(RenderOrder::LobbyStar));
 	StarRenderer_-> CreateAnimation("stars.bmp", "STAE_ANIMATION", 0, 128, 0.02f, true);
@@ -25,7 +25,7 @@ void LobbyShootingStarParticle::Start()
 	StarRenderer_->SetScale({35, 35});
 }
 
-void LobbyShootingStarParticle::Update()
+void ShootingStarParticle::Update()
 {
 	CosAngle_ += 0.005f;
 
