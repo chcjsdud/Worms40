@@ -38,6 +38,7 @@ bool Grenade::WeaponUpdate()
 	if (5.0f < GetAccTime()) // 5초 후 폭발
 	{
 		Explosion();
+		return false;
 	}
 
 	ThrowStart(ShotPower_); // 투사체를 던지고

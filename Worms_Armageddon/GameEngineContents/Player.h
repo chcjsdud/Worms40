@@ -196,6 +196,8 @@ private:
 
 	bool ControlFlg_;
 
+	bool IsFly_;
+
 	//키 입력 카운트
 	int KeyCount_;
 
@@ -224,7 +226,7 @@ public:
 	void StateChange(PlayerState _State);
 	// 상태 업데이트
 	void StateUpdate();
-
+	void FlyAwayStart();
 private:
 	// 현재 상태
 	PlayerState CurrentState_;
@@ -241,7 +243,7 @@ private:
 	void JumpStart();
 	void BackFlipStart();
 	void FalledStart();
-	void FlyAwayStart();
+
 
 
 	void IdleUpdate();

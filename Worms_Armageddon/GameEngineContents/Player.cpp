@@ -35,6 +35,7 @@ Player::Player()
 	, IsDamagedCam_(false)
 	, ControlWorms_(nullptr)
 	, FlySpeed_(0.0f)
+	, IsFly_(false)
 
 {
 }
@@ -80,7 +81,7 @@ void Player::Update()
 	Hpbar_->HpBarSetPosition({ this->GetPosition().x , this->GetPosition().y - 25.f});
 	
 	//데미지를 입엇다면 , IsDamged==true , Damaged함수에서 처리.
-	if (IsDamaged_ == true)
+	if (IsFly_ == true)
 	{
 		FlyAwayUpdate();
 		return;
@@ -99,12 +100,12 @@ void Player::Update()
 	{
 		Damaged();
 
-		if (IsDamaged_ == true)
-		{
-			FlyAwayStart();
-		}
 	}
 
+	if (IsDamaged_ == true)
+	{
+		FlyAwayStart();
+	}
 
 	// 컨트롤되고 있지 않은 캐릭터는 데미지를 받더라도 턴이 끝나지 않음
 }

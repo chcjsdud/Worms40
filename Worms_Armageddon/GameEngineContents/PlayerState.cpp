@@ -639,6 +639,7 @@ void Player::FlyAwayStart()
 {
 	PlayerRenderer_->ChangeAnimation(ANIM_NAME_PLAYER_FLY);
 	PlayerRenderer_->SetRotationFilter(IMG_FLY_LFFT_FILTER);
+	IsFly_ = true;
 }
 
 
@@ -646,7 +647,7 @@ void Player::FlyAwayUpdate()
 {
 	float Degree = float4::VectorXYtoDegree(GetPosition(), GetPosition() + FlyMoveDir_);
 	// TODO:: ↓이거 뭔가 버그있음.
-	//PlayerRenderer_->SetRotationZ(Degree + 180); // 방향에 따른 투사체 각도
+	PlayerRenderer_->SetRotationZ(Degree + 180); // 방향에 따른 투사체 각도
 
 	SetMove(FlyMoveDir_ * GameEngineTime::GetDeltaTime());
 	FlyMoveDir_.y += 10.0f;
@@ -686,7 +687,7 @@ void Player::FlyAwayUpdate()
 		{
 			StateChange(PlayerState::Falled);
 			IsDamaged_ = false;
-			IsTurnEnd_ = true;
+			IsFly_ = false;
 		}
 
 

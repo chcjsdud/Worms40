@@ -444,8 +444,8 @@ bool WeaponMaster::BulletColEvent()
 		{
 			// 무기 폭발 이펙트
 			Explosion();
-			// 무기가 폭발했음을 반환(데미지 처리용)
 			IsExplodEnd_ = true;
+			// 무기가 폭발했음을 반환(데미지 처리용)
 			return false;
 		}
 	}
@@ -455,6 +455,7 @@ bool WeaponMaster::BulletColEvent()
 
 void WeaponMaster::Explosion()
 {
+	IsExplodEnd_ = true;
 	// 이미지를 가져와서 땅이 파여있는 상태를 메모리에 보존?
 	// 바닥
 	GameEngineImage* tmpGroundMap = GetGameMap()->GetGround()->GetImage();
@@ -480,7 +481,6 @@ void WeaponMaster::Explosion()
 		tmpEffectImg->GetScale(), // _OtherScale
 		RGB(0, 255, 0) // TransColor
 	);
-
 	EffectManager* Effect = GetLevel()->CreateActor<Foom>();
 	Effect->SetPosition(GetPosition());
 

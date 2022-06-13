@@ -604,6 +604,7 @@ void PlayLevel::PlayerDamagedCheck4AirStrike()
 
 					// 플레이어에게 데미지 판정
 					Player->Damaged(tmpWeaponActorPos);
+					
 
 					// 끝난 폭탄에 대한 Death, nullptr
 					if (WeaponMaster_->AirBombArr_[i] != nullptr)
