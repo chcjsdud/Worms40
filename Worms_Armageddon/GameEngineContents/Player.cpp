@@ -612,7 +612,7 @@ void Player::ChargingWeaponPower()
 
 void Player::ChangeHpBarFont(int _Hp)
 {
-	Hpbar_->ChangeHpBarFont(_Hp, {0,0});
+	Hpbar_->ChangeHpBarFont(_Hp);
 }
 
 void Player::SetFontColor(FONT_COLOR _Color)
@@ -628,7 +628,7 @@ void Player::CreateHpBar(int _Hp, float4 _Pivot, FONT_COLOR _Color)
 	// HpBar
 	Hpbar_ = GetLevel()->CreateActor<HpBar>();
 	Hpbar_->SetFontColor(_Color);
-	Hpbar_->ChangeHpBarFont(_Hp, _Pivot);
+	Hpbar_->ChangeHpBarFont(_Hp);
 
 }
 

@@ -25,9 +25,9 @@ void HpBar::Update()
 {
 }
 
-void HpBar::ChangeHpBarFont(int _Num, float4 _Pivot)
+void HpBar::ChangeHpBarFont(int _Num)
 {
-	HpFont_->GameContentChangeNumberFont(_Num, _Pivot, FontColor_);
+	HpFont_->GameContentChangeNumberFont(_Num, {0,0}, FontColor_);
 }
 
 void HpBar::SetFontColor(FONT_COLOR _FontColor)
