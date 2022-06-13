@@ -73,6 +73,7 @@
 #define KEY_ANGLE_DOWN "AngleDown"
 #define KEY_FIRE "PlayerAction"
 #define DEBUG_KEY "Debug"
+#define KEY_PLAYER_DEATH "PlayerDeath"
 
 #define KEY_WEAPON_BAZ "WeaponBaz"
 #define KEY_WEAPON_GRENADE "WeaponGrenade"

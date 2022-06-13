@@ -29,9 +29,6 @@
     <ClInclude Include="TitleImage.h">
       <Filter>00.TitleLevel\TitleActor</Filter>
     </ClInclude>
-    <ClInclude Include="WindGauge.h">
-      <Filter>02.PlayLevel\UI</Filter>
-    </ClInclude>
     <ClInclude Include="WeaponMaster.h">
       <Filter>02.PlayLevel\Player\Weapon</Filter>
     </ClInclude>
@@ -173,17 +170,20 @@
     <ClInclude Include="PlayShootingStar.h">
       <Filter>02.PlayLevel\UI</Filter>
     </ClInclude>
+    <ClInclude Include="WindGauge.h">
+      <Filter>02.PlayLevel</Filter>
+    </ClInclude>
     <ClInclude Include="GrenadeTimerBox.h">
       <Filter>02.PlayLevel\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="WindGauge.h">
+      <Filter>02.PlayLevel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
     <ClCompile Include="TitleLevel.cpp">
       <Filter>00.TitleLevel</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayLevel.cpp">
-      <Filter>02.PlayLevel</Filter>
     </ClCompile>
     <ClCompile Include="LobbyLevel.cpp">
       <Filter>01.LobbyLevel</Filter>
@@ -352,6 +352,12 @@
     </ClCompile>
     <ClCompile Include="GrenadeTimerBox.cpp">
       <Filter>02.PlayLevel\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayLevel.cpp">
+      <Filter>02.PlayLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayLevel.cpp">
+      <Filter>02.PlayLevel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

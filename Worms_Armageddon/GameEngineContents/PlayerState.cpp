@@ -15,127 +15,136 @@
 
 void Player::IdleUpdate()
 {
-	// 액션은 이동보다 우선순위가 높음.
-	if (true == IsActionKeyUp())
+	if (ControlFlg_ == true)
 	{
-		StateChange(PlayerState::Action);
-		return;
-	}
-	// 이동키가 눌리면 이동
-	if (true == IsMoveKeyDown())
-	{
-		StateChange(PlayerState::Move);
-		return;
-	}
-	//점프키 눌리면 점프
-	if (true == IsJumpKeyDown())
-	{
-		StateChange(PlayerState::Jump);
-		return;
-	}
-
-
-	//백플립
-	if (true == IsBackFlipKeyDown())
-	{
-		KeyCount_++;
-		if (2 <= KeyCount_)
+		// 액션은 이동보다 우선순위가 높음.
+		if (true == IsActionKeyUp())
 		{
-			KeyCount_ = 0;
-			StateChange(PlayerState::BackFlip);
+			StateChange(PlayerState::Action);
 			return;
 		}
-	}
-	else if (true == IsBackFlipKeyFree())
-	{
-		KeyTimer_ -= GameEngineTime::GetDeltaTime();
-		if (0 >= KeyTimer_)
+		// 이동키가 눌리면 이동
+		if (true == IsMoveKeyDown())
 		{
-			KeyTimer_ = 0.5f;
-			KeyCount_ = 0;
+			StateChange(PlayerState::Move);
+			return;
 		}
+		//점프키 눌리면 점프
+		if (true == IsJumpKeyDown())
+		{
+			StateChange(PlayerState::Jump);
+			return;
+		}
+
+		if (true == IsPlayerDeathKeyDown())
+		{
+			StateChange(PlayerState::Death);
+			return;
+		}
+
+
+		//백플립
 		if (true == IsBackFlipKeyDown())
 		{
 			KeyCount_++;
+			if (2 <= KeyCount_)
+			{
+				KeyCount_ = 0;
+				StateChange(PlayerState::BackFlip);
+				return;
+			}
 		}
-	}
+		else if (true == IsBackFlipKeyFree())
+		{
+			KeyTimer_ -= GameEngineTime::GetDeltaTime();
+			if (0 >= KeyTimer_)
+			{
+				KeyTimer_ = 0.5f;
+				KeyCount_ = 0;
+			}
+			if (true == IsBackFlipKeyDown())
+			{
+				KeyCount_++;
+			}
+		}
 
-	//IsSwitch가 false 일때만 이전상태를 받게함.
-	if (!IsSwitch)
-	{
-		PrevWeaponState_ = WeaponState_;
-	}
+		//IsSwitch가 false 일때만 이전상태를 받게함.
+		if (!IsSwitch)
+		{
+			PrevWeaponState_ = WeaponState_;
+		}
 
 
-	if (GameEngineInput::GetInst()->IsDown(KEY_WEAPON_BAZ))
-	{
-		WeaponState_ = WeaponState::Baz;
-		IsSwitch = true;
-	}
-	if (GameEngineInput::GetInst()->IsDown(KEY_WEAPON_GRENADE))
-	{
-		WeaponState_ = WeaponState::Grenade;
-		IsSwitch = true;
-	}
-	if (GameEngineInput::GetInst()->IsDown(KEY_WEAPON_AIRSTRIKE))
-	{
-		WeaponState_ = WeaponState::AirStrike;
-		IsSwitch = true;
-	}
-	else if (GameEngineInput::GetInst()->IsDown(KEY_WEAPON_SUPERSHEEP))
-	{
-		WeaponState_ = WeaponState::SuperSheep;
-		IsSwitch = true;
-	}
+		if (GameEngineInput::GetInst()->IsDown(KEY_WEAPON_BAZ))
+		{
+			WeaponState_ = WeaponState::Baz;
+			IsSwitch = true;
+		}
+		if (GameEngineInput::GetInst()->IsDown(KEY_WEAPON_GRENADE))
+		{
+			WeaponState_ = WeaponState::Grenade;
+			IsSwitch = true;
+		}
+		if (GameEngineInput::GetInst()->IsDown(KEY_WEAPON_AIRSTRIKE))
+		{
+			WeaponState_ = WeaponState::AirStrike;
+			IsSwitch = true;
+		}
+		else if (GameEngineInput::GetInst()->IsDown(KEY_WEAPON_SUPERSHEEP))
+		{
+			WeaponState_ = WeaponState::SuperSheep;
+			IsSwitch = true;
+		}
 
-	//IsSwitch가 true 이면 무기를 스왑한것.
-	if (IsSwitch == true)
-	{
-		StateChange(PlayerState::WeaponSwap);
-	}
+		//IsSwitch가 true 이면 무기를 스왑한것.
+		if (IsSwitch == true)
+		{
+			StateChange(PlayerState::WeaponSwap);
+		}
 
-	// 발사 방향을 플레이어가 바라보는 방향으로 조정
-	ShotAngle_.x = MoveDir_.x;
+		// 발사 방향을 플레이어가 바라보는 방향으로 조정
+		ShotAngle_.x = MoveDir_.x;
 
-	switch (WeaponState_)
-	{
-		// 각도가 필요한 무기에 대해서만 각도 조절
-	case WeaponState::Baz:
+		switch (WeaponState_)
+		{
+			// 각도가 필요한 무기에 대해서만 각도 조절
+		case WeaponState::Baz:
 
-		// 무기 각도 조절
-		MoveWeaponAngle(GameEngineTime::GetDeltaTime());
-		// 무기 파워 조절
-		ChargingWeaponPower();
+			// 무기 각도 조절
+			MoveWeaponAngle(GameEngineTime::GetDeltaTime());
+			// 무기 파워 조절
+			ChargingWeaponPower();
 
-		break;
-	case WeaponState::Homing:
-		break;
-	case WeaponState::Mortar:
-		break;
-	case WeaponState::Grenade:
-		break;
-	case WeaponState::Axe:
-		break;
-	case WeaponState::Uzi:
-		break;
-	case WeaponState::FirePunch:
-		break;
-	case WeaponState::Sheep:
-		break;
-	case WeaponState::SuperSheep:
-		break;
-	case WeaponState::AirStrike:
-		break;
-	case WeaponState::BlowTorch:
-		break;
-	case WeaponState::Drill:
-		break;
-	case WeaponState::Grider:
-		break;
-	case WeaponState::None:
-		break;
-	default:
-		break;
+			break;
+		case WeaponState::Homing:
+			break;
+		case WeaponState::Mortar:
+			break;
+		case WeaponState::Grenade:
+			break;
+		case WeaponState::Axe:
+			break;
+		case WeaponState::Uzi:
+			break;
+		case WeaponState::FirePunch:
+			break;
+		case WeaponState::Sheep:
+			break;
+		case WeaponState::SuperSheep:
+			break;
+		case WeaponState::AirStrike:
+			break;
+		case WeaponState::BlowTorch:
+			break;
+		case WeaponState::Drill:
+			break;
+		case WeaponState::Grider:
+			break;
+		case WeaponState::None:
+			break;
+		default:
+			break;
+		}
 	}
 }
 
@@ -706,4 +715,15 @@ void Player::FlyAwayUpdate()
 
 	///마지막에 IsTrunEnd =true;
 	///IsDamaged = true;
+}
+
+
+void Player::DeathStart()
+{
+	PlayerAnimationChange(ANIM_KEYWORD_PLAYER_DEATH);
+}
+
+void Player::DeathUpdate()
+{
+
 }

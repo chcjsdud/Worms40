@@ -78,6 +78,14 @@ void PlayLevel::Update()
 {
 	PlayerDamagedCheck4AirStrike();
 
+	for (std::list<Player*>& Team : AllPlayer_)
+	{
+		for (Player* Player : Team)
+		{
+			Player->SetControlFlg(false);
+		}
+	}
+
 	// TeamHpBar디버그용
 	{
 		if (true == GameEngineInput::GetInst()->IsDown(DEBUG_KEY))
@@ -132,6 +140,7 @@ void PlayLevel::Update()
 		std::list<Player*>& Teams = (*AllPlayerIter_);
 		Player* CurrentPlayer = Teams.front();
 		CurrentPlayer->SetPlayerHp(50);
+		CurrentPlayer->SetControlFlg(true);
 
 		// 카메라 위치 이동
 		// 무기를 발사하지 않았을경우 플레이어를 쫒아다님
@@ -222,7 +231,7 @@ void PlayLevel::Update()
 		PrevPlayerPos_ = CurrentPlayer->GetPosition();
 		// 다음 플레이어의 위치 취득
 		NextPlayerPos_ = (*AllPlayerIter_).front()->GetPosition();
-		(*AllPlayerIter_).front()->SetControlFlg(true);
+		//(*AllPlayerIter_).front()->SetControlFlg(true);
 
 		LevelPhase_ = LevelFSM::SetDamagePlayer;
 
@@ -376,11 +385,11 @@ void PlayLevel::Update()
 						DeathUpdateFlg = true;
 
 						// 죽음처리
-						if (true == Player->DeathUpdate())
+					/*	if (true == Player->DeathUpdate())
 						{
 							DeathUpdateFlg = false;
 							break;
-						}
+						}*/
 					}
 				}
 

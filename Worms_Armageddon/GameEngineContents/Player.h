@@ -88,7 +88,6 @@ public:
 
 	bool ControllUpdate();
 
-	bool DeathUpdate();
 
 	//데미지 체크
 	void Damaged(float4 _WeaponPos = float4::ZERO);
@@ -197,6 +196,9 @@ private:
 	void PlayerAnimationInit();
 	// 키 초기화
 	void PlayerKeyInit();
+	//플레이어 죽음 처리함수
+	void CheckDeath();
+
 
 	bool ControlFlg_;
 
@@ -218,6 +220,9 @@ private:
 	bool IsJumpKeyDown();
 	bool IsBackFlipKeyDown();
 	bool IsBackFlipKeyFree();
+	bool IsPlayerDeathKeyDown();
+
+
 
 	// 이동중 충돌체크
 	void MoveCheck(float4 _MoveDir);
@@ -247,6 +252,7 @@ private:
 	void JumpStart();
 	void BackFlipStart();
 	void FalledStart();
+	void DeathStart();
 
 
 
@@ -258,12 +264,7 @@ private:
 	void BackFlipUpdate();
 	void FalledUpdate();
 	void FlyAwayUpdate();
-	
-	void UncontrolledStart();
-	void UncontrolledUpdate();
-	
-	void UncontrolFlyAwayStart();
-	void UncontrolFlyAwayUpdate();
+	void DeathUpdate();
 
 	void PlayerAnimationChange(std::string _Anim);
 

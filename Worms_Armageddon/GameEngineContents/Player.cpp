@@ -36,7 +36,6 @@ Player::Player()
 	, ControlWorms_(nullptr)
 	, FlySpeed_(0.0f)
 	, IsFly_(false)
-
 {
 }
 
@@ -87,14 +86,22 @@ void Player::Update()
 		return;
 	}
 
+	CheckDeath();
+
+	if (IsDeath_ == false)
+	{
+		StateUpdate();
+	}
+	else
+	{
+		DeathUpdate();
+	}
 	// 컨트롤되고 있지 않은 플레이어 캐릭터는 피격판정등의 동작만 수행
 	if (this->GetPlayerState() == PlayerState::Idle
 		|| this->GetPlayerState() == PlayerState::Move)
 	{
 		MoveFall();
 	}
-
-
 
 	//Weapon이 생성되고 땅에닿아 폭발했다면
 	if (Weapon_ != nullptr && Weapon_->GetExplodEndFlg() == true)
@@ -126,10 +133,6 @@ bool Player::ControllUpdate()
 		return IsTurnEnd_;
 	}
 
-
-	StateUpdate();
-
-
 	if (ControlWorms_ != nullptr && ControlFlg_ == true)
 	{
 		ControlWorms_->On();
@@ -147,16 +150,7 @@ bool Player::ControllUpdate()
 }
 
 
-bool Player::DeathUpdate()
-{
-	if (true /* WeaponDeath */)
-	{
-		// TODO::죽음 처리가 끝나면 true리턴
-		return true;
-	}
 
-	return false;
-}
 
 void Player::PlayerAnimationInit()
 {
@@ -208,6 +202,12 @@ void Player::PlayerAnimationInit()
 	//33번째 이미지때 올라가게
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_FALL, ANIM_NAME_PLAYER_FALL, 0, 48, 0.05, false);
 
+
+	//죽음 애니메이션
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_DIE_LEFT, ANIM_NAME_PLAYER_DEATH_LEFT, 0, 59, 0.02, false);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_DIE_RIGHT, ANIM_NAME_PLAYER_DEATH_RIGHT, 0, 59, 0.02, false);
+
+	//날라가는 애니메이션
 	PlayerRenderer_->CreateAnimation(IMG_FLY_LEFT, ANIM_NAME_PLAYER_FLY, 0, 0, 0, false);
 
 }
@@ -239,6 +239,8 @@ void Player::PlayerKeyInit()
 		GameEngineInput::GetInst()->CreateKey(KEY_WEAPON_GRENADE, '2');
 		GameEngineInput::GetInst()->CreateKey(KEY_WEAPON_AIRSTRIKE, '3');
 		GameEngineInput::GetInst()->CreateKey(KEY_WEAPON_SUPERSHEEP, '4');
+
+		GameEngineInput::GetInst()->CreateKey(KEY_PLAYER_DEATH, 'G');
 	}
 }
 
@@ -295,6 +297,16 @@ bool Player::IsBackFlipKeyDown()
 		return false;
 	}
 
+	return true;
+}
+
+bool Player::IsPlayerDeathKeyDown()
+{
+	if (false == GameEngineInput::GetInst()->IsDown(KEY_PLAYER_DEATH))
+	{
+		return false;
+	}
+	
 	return true;
 }
 
@@ -469,6 +481,10 @@ void Player::StateChange(PlayerState _State)
 			break;
 		case PlayerState::FlyAway:
 			FlyAwayStart();
+			break;
+		case PlayerState::Death:
+			DeathStart();
+			break;
 		default:
 			break;
 		}
@@ -506,6 +522,9 @@ void Player::StateUpdate()
 		break;
 	case PlayerState::FlyAway:
 		FlyAwayUpdate();
+		break;
+	case PlayerState::Death:
+		DeathUpdate();
 		break;
 	default:
 		break;
@@ -756,5 +775,28 @@ void Player::Damaged(float4 _WeaponPos /*= float4::ZERO */)
 		}
 	}
 
+
+}
+
+
+void Player::CheckDeath()
+{
+	if (GetPosition().y >= SCALE_MAPBOOKS_Y)
+	{
+		IsDeath_ = true;
+	}
+
+
+	if (PlayerHp_ <= 0)
+	{
+		PlayerHp_ = 0;
+		IsDeath_ = true;
+	}
+
+
+	if (IsDeath_ == false)
+	{
+		return;
+	}
 
 }
