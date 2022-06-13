@@ -22,6 +22,7 @@ PlayLevel::PlayLevel()
 	, LerpStartCameraPos_(float4::ZERO)
 	, CurrentWeaponPos_(float4::ZERO)
 	, CameraControledByWASDFlg_(false)
+	, PlayShootingStar_(nullptr)
 {
 	// 플레이어 배열 초기화
 	for (int TeamColor = 0; TeamColor < PLAYER_MAX_TEAM; TeamColor++)
@@ -59,8 +60,11 @@ void PlayLevel::Loading()
 	// 무기 설정
 	WeaponMaster_ = CreateActor<WeaponMaster>();
 	WeaponMaster_->SetGameMap(GameMapInfo_);
-	// 테스트용 코드 끝
 
+	//별떨어지기
+	PlayShootingStar_ = CreateActor<PlayShootingStar>(static_cast<int>(ActorGroup::UI));
+
+	// 테스트용 코드 끝
 	if (false == GameEngineInput::GetInst()->IsKey(KEY_MOUSE_LEFT))
 	{
 		GameEngineInput::GetInst()->CreateKey(KEY_MOUSE_LEFT, VK_LBUTTON);
@@ -473,6 +477,8 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	}
 
 	TeamHpBarListActor_->InitTeamsHpBar((int)AllPlayer_.size());
+
+	PlayShootingStar_->SetPosition({0,0});
 
 }
 

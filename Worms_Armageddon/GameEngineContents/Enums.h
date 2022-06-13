@@ -32,6 +32,9 @@ enum class RenderOrder
 {
 	// 배경
 	BackGround_0,
+
+	PlayStar,
+
 	// 물과 기타등등
 	BackGround_1,
 	// 맵

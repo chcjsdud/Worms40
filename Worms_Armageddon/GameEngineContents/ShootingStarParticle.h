@@ -2,7 +2,12 @@
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngine/GameEngineRenderer.h>
 
-
+enum class CreateStar
+{
+	SetTimer,
+	AddTime,
+	Create
+};
 
 // 설명 :
 class GameEngineRenderer;
@@ -24,8 +29,19 @@ protected:
 	virtual void Update() override;
 
 
-private:
+private :
 	GameEngineRenderer* StarRenderer_;
+
 	float CosAngle_;
+	float LimitY_;
+	float Speed_;
+
+	float4 MoveDirection_;
+
+public:
+	void SetDirectionLeft(float4 _Direction); // true 라면 오른쪽 , false 왼쪽
+	void SetDeleteY(float _PosY);
+	void SetSpeed(float _SetSpeed);
+	
 };
 

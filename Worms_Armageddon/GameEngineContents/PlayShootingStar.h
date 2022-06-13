@@ -4,20 +4,19 @@
 #include "ShootingStarParticle.h"
 
 
-
 // Ό³Έν :
-class LobbyShootingStar : public GameEngineActor
+class PlayShootingStar : public GameEngineActor
 {
 public:
 	// constrcuter destructer
-	LobbyShootingStar();
-	~LobbyShootingStar();
+	PlayShootingStar();
+	~PlayShootingStar();
 
 	// delete Function
-	LobbyShootingStar(const LobbyShootingStar& _Other) = delete;
-	LobbyShootingStar(LobbyShootingStar&& _Other) noexcept = delete;
-	LobbyShootingStar& operator=(const LobbyShootingStar& _Other) = delete;
-	LobbyShootingStar& operator=(LobbyShootingStar&& _Other) noexcept = delete;
+	PlayShootingStar(const PlayShootingStar& _Other) = delete;
+	PlayShootingStar(PlayShootingStar&& _Other) noexcept = delete;
+	PlayShootingStar& operator=(const PlayShootingStar& _Other) = delete;
+	PlayShootingStar& operator=(PlayShootingStar&& _Other) noexcept = delete;
 
 protected:
 	virtual void Start() override;
@@ -31,7 +30,7 @@ private:
 
 
 	ShootingStarParticle* ShootingStarParticle_;
-	
+
 	float CreateTimer_;
 };
 

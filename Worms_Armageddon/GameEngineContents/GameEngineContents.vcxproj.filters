@@ -167,6 +167,9 @@
     <ClInclude Include="LobbyShootingStar.h">
       <Filter>01.LobbyLevel\LobbyActor</Filter>
     </ClInclude>
+    <ClInclude Include="PlayShootingStar.h">
+      <Filter>02.PlayLevel\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
@@ -334,6 +337,9 @@
     </ClCompile>
     <ClCompile Include="LobbyShootingStar.cpp">
       <Filter>01.LobbyLevel\LobbyActor</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayShootingStar.cpp">
+      <Filter>02.PlayLevel\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

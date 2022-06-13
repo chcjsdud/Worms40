@@ -4,6 +4,7 @@
 
 #include "Cursor.h"
 #include "WindGauge.h"
+#include "PlayShootingStar.h"
 
 // 설명 :
 class WeaponMaster;
@@ -85,12 +86,13 @@ private:
 	float4 NextDamagedPlayerPos_;
 	// 보간처리용 타이머
 	float LerpTimer_;
+	//별
+	PlayShootingStar* PlayShootingStar_;
 
 	void CreateTestBullet();
 
 	// 에어스트라이크류 공격에 대한 공격처리
 	void PlayerDamagedCheck4AirStrike();
-
 
 	/// UI ///
 	// 바람
