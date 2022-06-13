@@ -5,7 +5,7 @@
 
 Crosshair::Crosshair()
 	: Renderer_(nullptr)
-	, Distance_(80.0f)
+	, Distance_(70.0f)
 {
 }
 

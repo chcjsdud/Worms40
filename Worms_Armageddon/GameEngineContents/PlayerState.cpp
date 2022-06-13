@@ -617,6 +617,8 @@ void Player::JumpStart()
 	PixelCol_->SetBounceFlgFalse();
 
 	JumpMoveDir_ = float4::ZERO;
+
+	Crshair_->Off();
 }
 
 //웜즈 백플립 State
@@ -627,6 +629,8 @@ void Player::BackFlipStart()
 	JumpSpeed_ = 300.0f;
 	StateName_ = ANIM_KEYWORD_PLAYER_JUMPRDY;
 	PlayerAnimationChange(StateName_);
+
+	Crshair_->Off();
 }
 
 //웜즈가 너무높은곳에서 떨어졌을시 땅에 박히는 State
