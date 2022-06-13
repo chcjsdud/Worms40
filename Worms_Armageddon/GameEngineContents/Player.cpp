@@ -55,7 +55,7 @@ void Player::Start()
 	PlayerKeyInit();
 
 	int num = Ran.RandomInt(0, 1);
-	
+
 	if (num == 0)
 	{
 		PlayerRenderer_->ChangeAnimation(ANIM_NAME_PLAYER_IDLE_RIGHT);
@@ -73,7 +73,7 @@ void Player::Start()
 	// 크로스헤어
 	Crshair_ = GetLevel()->CreateActor<Crosshair>((int)ActorGroup::UI);
 
-
+	CrgBlob_ = GetLevel()->CreateActor<ChargeBlob>((int)ActorGroup::UI);
 }
 
 void Player::Update()
@@ -136,6 +136,8 @@ bool Player::ControllUpdate()
 	if (ControlWorms_ != nullptr && IsTurnEnd_ == true)
 	{
 		ControlWorms_->Off();
+		Crshair_->Off();
+		CrgBlob_->RenderOff();
 	}
 
 
@@ -541,7 +543,7 @@ void Player::MoveWeaponAngle(float _DeltaTime)
 	ShotAngle_ = float4::DegreeToDirectionFloat4(angle);
 
 	// 크로스헤어 : 3번째 인자는 크로스헤어 활성화 여부
-	Crshair_->UpdateCrosshairPos(GetPosition(), ShotAngle_, true);
+	Crshair_->UpdateCrosshairPos(GetPosition(), ShotAngle_);
 }
 
 // 무기 파워 조절
@@ -550,10 +552,14 @@ void Player::ChargingWeaponPower()
 	if (true == IsActionKeyPress())
 	{
 		ShotPower_ += 10.0f;
+		CrgBlob_->SetChargePower(ShotPower_, GetPosition(), ShotAngle_);
 
 		if (ShotPower_ >= WEAPON_MAX_SHOT_POWER)
 		{
 			ShotPower_ = WEAPON_MAX_SHOT_POWER;
+
+			CrgBlob_->RenderOff();
+			Crshair_->Off();
 
 			// 최대값을 넘어가면 자동으로 발사되도록
 			StateChange(PlayerState::Action);

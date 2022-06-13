@@ -3,6 +3,7 @@
 #include "WeaponMaster.h"
 #include "HpBar.h"
 #include "Crosshair.h"
+#include "ChargeBlob.h"
 #include <GameEngineBase/GameEngineCustomStringSet.h>
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineSound.h>
@@ -176,6 +177,9 @@ private:
 
 	// Crosshair
 	Crosshair* Crshair_;
+
+	// ChargeBlob
+	ChargeBlob* CrgBlob_;
 
 	//애니메이션용 방향이름
 	std::string DirName_;

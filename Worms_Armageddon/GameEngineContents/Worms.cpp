@@ -85,6 +85,8 @@ void Worms::GameInit()
 			Image->Cut({ 100,100 });
 			Image = GameEngineImageManager::GetInst()->Find(IMG_FX_ELIPSE50);
 			Image->Cut({ 150,150 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_FX_BLOB);
+			Image->Cut({ 64, 64 });
 		}
 
 	}

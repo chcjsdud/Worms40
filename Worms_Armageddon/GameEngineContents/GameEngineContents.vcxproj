@@ -181,6 +181,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Button.h" />
+    <ClInclude Include="ChargeBlob.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ChatBox.h">
       <SubType>
       </SubType>
@@ -363,6 +367,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="ChargeBlob.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ChatBox.cpp">
       <SubType>
       </SubType>

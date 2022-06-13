@@ -164,6 +164,9 @@
     <ClInclude Include="ShootingStarParticle.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="ChargeBlob.h">
+      <Filter>02.PlayLevel\Player</Filter>
+    </ClInclude>
     <ClInclude Include="LobbyShootingStar.h">
       <Filter>01.LobbyLevel\LobbyActor</Filter>
     </ClInclude>
@@ -327,6 +330,9 @@
       <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="Crosshair.cpp">
+      <Filter>02.PlayLevel\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="ChargeBlob.cpp">
       <Filter>02.PlayLevel\Player</Filter>
     </ClCompile>
     <ClCompile Include="Sheep.cpp">

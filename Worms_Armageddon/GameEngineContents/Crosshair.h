@@ -17,8 +17,7 @@ public:
 	Crosshair& operator=(const Crosshair& _Other) = delete;
 	Crosshair& operator=(Crosshair&& _Other) noexcept = delete;
 public:
-	void UpdateCrosshairPos(float4 _PlayerPos, float4 _ShootVec, bool _Activate);
-
+	void UpdateCrosshairPos(float4 _PlayerPos, float4 _ShootVec);
 protected:
 	void Start() override;
 

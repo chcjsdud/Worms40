@@ -172,8 +172,3 @@ enum class CheckType
 	WeaponMissile,
 	WeaponGrenade
 };
-
-enum class InventoryWeapon
-{
-	// WeaponStat로? 아니면 InventoryWeapon으로
-};

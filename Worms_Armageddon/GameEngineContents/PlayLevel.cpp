@@ -288,13 +288,17 @@ void PlayLevel::Update()
 					TeamsHp.push_back(TeamHp);
 				}
 
+				// 체력바 줄어들기 & 체력 높은 순 정렬
 				TeamHpBarListActor_->SetNewTeamsHp(TeamsHp);
 				IsTeamHpCalculated = true;
 			}
 
-			// 다음 State로
-			IsTeamHpCalculated = false;
-			LevelPhase_ = LevelFSM::CameraMove;
+			// 정렬 끝나면 다음 State로
+			if (true == TeamHpBarListActor_->IsAnimationEnd())
+			{
+				IsTeamHpCalculated = false;
+				LevelPhase_ = LevelFSM::CameraMove;
+			}
 
 		}
 		else

@@ -507,6 +507,8 @@ void Player::FalledUpdate()
 
 void Player::IdleStart()
 {
+	Crshair_->On();
+
 	if (WeaponState_ == WeaponState::Baz)
 	{
 		StateName_ = ANIM_KEYWORD_PLAYER_BAZON;
@@ -532,7 +534,6 @@ void Player::IdleStart()
 	PlayerAnimationChange(StateName_);
 
 	IsSwitch = false;
-
 }
 
 void Player::WeaponSwapStart()
@@ -546,6 +547,9 @@ void Player::MoveStart()
 
 	// 무기 파워 초기화
 	ShotPower_ = 0.0f;
+
+	// 크로스헤어 안보이게
+	Crshair_->Off();
 }
 
 void Player::ActionStart()
