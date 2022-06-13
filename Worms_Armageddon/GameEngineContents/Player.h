@@ -271,7 +271,7 @@ public:
 	void CreateHpBar(int _Hp, float4 _Pivot,  FONT_COLOR _Color);
 	void CreateControlArrow(TeamColor _TeamColor);
 	
-	void MoveWeaponAngle();
+	void MoveWeaponAngle(float _DeltaTime);
 	void ChargingWeaponPower();
 };
 

@@ -102,7 +102,7 @@ void Player::IdleUpdate()
 	case WeaponState::Baz:
 
 		// 무기 각도 조절
-		MoveWeaponAngle();
+		MoveWeaponAngle(GameEngineTime::GetDeltaTime());
 		// 무기 파워 조절
 		ChargingWeaponPower();
 

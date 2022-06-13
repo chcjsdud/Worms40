@@ -525,26 +525,20 @@ void Player::PlayerAnimationChange(std::string _Anim)
 }
 
 // 무기 각도 조절
-void Player::MoveWeaponAngle()
+void Player::MoveWeaponAngle(float _DeltaTime)
 {
+	static float angle = 0.0f;
+
 	if (true == GameEngineInput::GetInst()->IsPress(KEY_ANGLE_DOWN))
 	{
-		ShotAngle_.y += 2.0f * GameEngineTime::GetDeltaTime();
-
-		if (ShotAngle_.y >= ShotAngleMin_.y)
-		{
-			ShotAngle_.y = ShotAngleMin_.y;
-		}
+		angle += 120 * _DeltaTime;
 	}
 	if (true == GameEngineInput::GetInst()->IsPress(KEY_ANGLE_UP))
 	{
-		ShotAngle_.y -= 2.0f * GameEngineTime::GetDeltaTime();
-
-		if (ShotAngle_.y <= ShotAngleMax_.y)
-		{
-			ShotAngle_.y = ShotAngleMax_.y;
-		}
+		angle -= 120 * _DeltaTime;
 	}
+
+	ShotAngle_ = float4::DegreeToDirectionFloat4(angle);
 
 	// 크로스헤어 : 3번째 인자는 크로스헤어 활성화 여부
 	Crshair_->UpdateCrosshairPos(GetPosition(), ShotAngle_, true);
