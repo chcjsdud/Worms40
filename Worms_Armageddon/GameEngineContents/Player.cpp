@@ -123,7 +123,7 @@ void Player::Update()
 
 	if (IsDamaged_ == true)
 	{
-		FlyAwayStart();
+		StateChange(PlayerState::FlyAway);
 	}
 	// 컨트롤되고 있지 않은 캐릭터는 데미지를 받더라도 턴이 끝나지 않음
 }
@@ -439,7 +439,7 @@ void Player::MoveFall()
 		if (FallLength_ >= 200.0f)
 		{
 			// 데미지 처리
-			PlayerHp_ -= static_cast<int>(FallLength_ / 80.0f);
+			//PlayerHp_ -= static_cast<int>(FallLength_ / 80.0f);
 		}
 		FallSpeed_ = PLAYER_SPEED_FALL;
 
@@ -654,6 +654,7 @@ void Player::ChargingWeaponPower()
 
 			CrgBlob_->RenderOff();
 			Crshair_->Off();
+			ShotPower_ = WEAPON_DEFAULT_SHOT_POWER;
 
 			// 최대값을 넘어가면 자동으로 발사되도록
 			StateChange(PlayerState::Action);
@@ -805,6 +806,12 @@ void Player::Damaged(float4 _WeaponPos /*= float4::ZERO */)
 		{
 			PlayerHp_ -= Damage;
 			AllDamage_ += Damage;
+
+			//Hp가 0보다 작으면 0으로
+			if (PlayerHp_ <= 0)
+			{
+				PlayerHp_ = 0;
+			}
 		}
 	}
 
@@ -821,9 +828,9 @@ void Player::CheckDeath()
 	}
 
 
-	if (PlayerHp_ <= 0)
+	if (PlayerHp_ == 0)
 	{
-		PlayerHp_ = 0;
+		StateChange(PlayerState::Death);
 	//	IsDeath_ = true;
 	}
 

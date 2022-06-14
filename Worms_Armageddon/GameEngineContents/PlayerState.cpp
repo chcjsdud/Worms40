@@ -291,7 +291,7 @@ void Player::ActionUpdate()
 	{
 		// 사용된 무기 삭제
 		Weapon_->Death();
-
+		ShotPower_ = WEAPON_DEFAULT_SHOT_POWER;
 		WeaponState_ = WeaponState::None;
 
 		StateChange(PlayerState::Idle);
@@ -701,10 +701,10 @@ void Player::FlyAwayUpdate()
 	FlyMoveDir_ = PixelCol_->PlayerFlyBounce(GetPosition(), { PLAYER_SIZE_X,PLAYER_SIZE_Y }, ColMapImage_, FlyMoveDir_, FlySpeed_);
 
 
-	if (PixelCol_->GetBounceFlg())
-	{
-		FlySpeed_ *= 0.5f;
-	}
+	//if (PixelCol_->GetBounceFlg())
+	//{
+	//	FlySpeed_ *= 0.5f;
+	//}
 
 
 	float4 DownPos = GetPosition() + float4{0,PLAYER_SIZE_Y / 2};
@@ -715,14 +715,14 @@ void Player::FlyAwayUpdate()
 	int DownLeftColor = ColMapImage_->GetImagePixel(DownLeftPos);
 	int DownRightColor = ColMapImage_->GetImagePixel(DownRightPos);
 
-	if (RGB(0, 0, 255) == DownColor &&
-		RGB(0,0,255)== DownLeftColor &&
+	if (RGB(0, 0, 255) == DownColor ||
+		RGB(0,0,255)== DownLeftColor ||
 		RGB(0,0,255)==DownRightColor)
 	{
 		PlayerRenderer_->SetRotationZ(0);
 		do
 		{
-			SetMove(float4::UP);
+ 			SetMove(float4::UP);
 			DownPos = { GetPosition().x, GetPosition().y + PLAYER_SIZE_Y / 2 };
 			DownColor = ColMapImage_->GetImagePixel(DownPos);
 		} while (RGB(0, 0, 255) == DownColor);
@@ -732,6 +732,14 @@ void Player::FlyAwayUpdate()
 		if (FlyMoveDir_.y >= 500.0f)
 		{
 			StateChange(PlayerState::Falled);
+			PlayerHp_ -= 10;
+			Hpbar_->ChangeHpBarFont(PlayerHp_);
+			IsDamaged_ = false;
+			IsFly_ = false;
+		}
+		else
+		{
+			StateChange(PlayerState::Idle);
 			IsDamaged_ = false;
 			IsFly_ = false;
 		}
