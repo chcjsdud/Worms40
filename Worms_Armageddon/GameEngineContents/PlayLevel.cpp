@@ -26,6 +26,16 @@ PlayLevel::PlayLevel()
 	, CurrentWeaponPos_(float4::ZERO)
 	, CameraControledByWASDFlg_(false)
 	, PlayShootingStar_(nullptr)
+	, DamagedCharCameraDelayTimer_(nullptr)
+	, GameMapInfo_(nullptr)
+	, InventoryActor_(nullptr)
+	, Mouse_ (nullptr)
+	, PrevPhase_(LevelFSM::Ready)
+	, TargetPlayer_(nullptr)
+	, TeamHpBarListActor_(nullptr)
+	, WeaponMaster_(nullptr)
+	, WindGaugeActor_(nullptr)
+	, WindSpeed_(0.f)
 {
 	// 플레이어 배열 초기화
 	for (int TeamColor = 0; TeamColor < PLAYER_MAX_TEAM; TeamColor++)
@@ -505,8 +515,8 @@ void PlayLevel::UpdateCamera(float4 _CameraPos)
 	float4 CurMousePos = Mouse_->GetPosition();
 
 	// MAPBOOKS 화면에서의 설정
-	CurrentLevelH = SCALE_CAMERA_MAPMOOKS_Y;
-	CurrentLevelW = SCALE_CAMERA_MAPMOOKS_X;
+	CurrentLevelH = static_cast<float>(SCALE_CAMERA_MAPMOOKS_Y);
+	CurrentLevelW = static_cast<float>(SCALE_CAMERA_MAPMOOKS_X);
 
 	// 카메라가 마우스에 의해 이동중이면 받아온 Position을 사용하지 않음.
 	if (CameraControledByWASDFlg_ == true)

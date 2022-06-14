@@ -7,8 +7,12 @@
 // 설명 : 게임옵션을 관리하는 클래스. 항상 static으로 사용할것
 class GameOptions
 {
+
 public:
 	static GameOptions PlayingOptions;
+
+	GameOptions();
+	~GameOptions();
 
 public:
 	inline void SetPlayerTeamSetting(TeamColor _TeamColor,int _Num)

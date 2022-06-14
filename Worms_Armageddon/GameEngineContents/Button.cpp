@@ -11,6 +11,7 @@ Button::Button()
 	: ButtonCol_(nullptr)
 	, ButtonRenderer_(nullptr)
 	, IsBorderEffect_(false)
+	, ButtonScale_()
 	, MouseState_(MOUSE_STATE::MOUSE_OUT)
 	, IsActivated_(true)
 {

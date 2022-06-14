@@ -4,6 +4,11 @@ GameMapMaster::GameMapMaster()
 	: BackGround_(nullptr)
 	, Ground_(nullptr)
 	, ColMap_(nullptr)
+	, ColMapRenderer_(nullptr)
+	, LargeCloudActor_(nullptr)
+	, SmallCloudActor_(nullptr)
+	, WaterActor_(nullptr)
+
 {
 	// √ ±‚»≠
 	for (int i = 0; i < PLAYER_MAX_NUMBER; i++)

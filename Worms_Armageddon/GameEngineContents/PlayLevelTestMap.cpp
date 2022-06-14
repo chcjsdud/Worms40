@@ -6,6 +6,10 @@
 
 PlayLevelTestMap::PlayLevelTestMap() :
 	ChangeMode_(false)
+	, BackGround_(nullptr)
+	, ColImage_(nullptr)
+	, Ground_(nullptr)
+	, MidGround_(nullptr)
 {
 }
 

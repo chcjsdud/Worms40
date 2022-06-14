@@ -6,7 +6,8 @@ HpBar::HpBar()
 	:
 	HpBar_(nullptr),
 	HpFont_(nullptr),
-	FontColor_(FONT_COLOR::White)
+	FontColor_(FONT_COLOR::White),
+	Hp_(100)
 {
 }
 

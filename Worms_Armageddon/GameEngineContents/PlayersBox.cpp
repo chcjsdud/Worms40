@@ -5,6 +5,7 @@
 
 PlayersBox::PlayersBox() 
 	: BoxRenderer_(nullptr)
+	, BulbRenderer_(nullptr)
 {
 }
 

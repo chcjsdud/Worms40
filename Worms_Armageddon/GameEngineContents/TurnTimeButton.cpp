@@ -2,6 +2,8 @@
 
 
 TurnTimeButton::TurnTimeButton() 
+	:
+	ButtonRenderer_(nullptr)
 {
 	TurnTimes_ = {15, 20, 30, 45, 60, 90, 999};
 	TurnTimesIdx_ = 3;

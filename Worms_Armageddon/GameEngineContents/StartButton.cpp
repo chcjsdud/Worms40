@@ -6,6 +6,7 @@
 
 StartButton::StartButton()
 	: IsGameStart_(false)
+	, ButtonRenderer_(nullptr)
 {
 }
 

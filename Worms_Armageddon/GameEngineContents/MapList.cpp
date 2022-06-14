@@ -10,7 +10,8 @@ MapList::MapList()
 	Font_(nullptr),
 	MapListRenderer_(nullptr),
 	MapListCollision_(nullptr),
-	MapType_(MapType::Books)
+	MapType_(MapType::Books),
+	MouseColCheck()
 {	
 }
 

@@ -38,6 +38,17 @@ Player::Player()
 	, IsFly_(false)
 	, IsGrave_(false)
 	, WeaponState_(WeaponState::None)
+	, ColMapImage_(nullptr)
+	, CrgBlob_(nullptr)
+	, Crshair_(nullptr)
+	//, CurrentState_(PlayerState::None) 초기화 하면 플레이어 상태 이상해짐
+	//, PrevState_(PlayerState::None)
+	, JumpSpeed_(0.f)
+	, MyTeamColor_(TeamColor::Max)
+	, PixelCol_(nullptr)
+	, PrevWeaponState_(WeaponState::None)
+	, UnControlState_(PlayerUnControlState::UncontrolIdle)
+	, WeaponType_(0)
 {
 }
 

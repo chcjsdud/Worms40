@@ -4,7 +4,7 @@
 
 FadeIn::FadeIn() 
 	:
-	Alpha_(255),
+	Alpha_(255.f),
 	FadeRenderer_(nullptr)
 {
 }
@@ -26,7 +26,7 @@ void FadeIn::Update()
 {
 
 	Alpha_-= (3.f + (GameEngineTime::GetInst()->GetDeltaTime()));
-	FadeRenderer_->SetAlpha(Alpha_);
+	FadeRenderer_->SetAlpha(static_cast<unsigned int>(Alpha_));
 
 	if (Alpha_ <= 0)
 	{

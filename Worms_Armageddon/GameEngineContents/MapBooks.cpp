@@ -6,7 +6,7 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineImage.h>
 
-MapBooks::MapBooks() :
+MapBooks::MapBooks() : 
 	ShowColMap_(false)
 {
 }
@@ -27,13 +27,14 @@ void MapBooks::Start()
 	//배경색은 카메라영향을 받지 않게
 	BackGround_->CameraEffectOff();
 
+	//박지영 : 경고 수정 작업. double에서 float로 캐스팅
 	// 충돌판정 렌더러?
-	ColMapRenderer_= CreateRendererToScale(IMG_MAPBOOKS_GROUND, { 5000.0f * 0.4f, 3200.0 * 0.4f }, (int)RenderOrder::BackGround_2);
+	ColMapRenderer_= CreateRendererToScale(IMG_MAPBOOKS_GROUND, { 5000.0f * 0.4f, 3200.0f * 0.4f }, static_cast<int>(RenderOrder::BackGround_2));
 	ColMapHalf = ColMapRenderer_->GetScale().Half();
 	ColMapRenderer_->SetPivot(ColMapHalf);
 
 	// 맵 렌더러
-	Ground_ = CreateRendererToScale(IMG_MAPBOOKS, { SCALE_MAPBOOKS_X, SCALE_MAPBOOKS_Y }, (int)RenderOrder::BackGround_2);
+	Ground_ = CreateRendererToScale(IMG_MAPBOOKS, { static_cast<float>(SCALE_MAPBOOKS_X), static_cast<float>(SCALE_MAPBOOKS_Y )}, static_cast<int>(RenderOrder::BackGround_2));
 	GroundHalf = Ground_->GetScale().Half();
 	Ground_->SetPivot(GroundHalf);
 
@@ -49,7 +50,7 @@ void MapBooks::Start()
 
 	// 물 이미지
 	WaterActor_ = GetLevel()->CreateActor<Water>();
-	WaterActor_->SetPosition({ SCALE_CAMERA_MAPMOOKS_X / 2, SCALE_CAMERA_MAPMOOKS_Y - 50});
+	WaterActor_->SetPosition({ static_cast<float>( SCALE_CAMERA_MAPMOOKS_X) / 2, static_cast<float>(SCALE_CAMERA_MAPMOOKS_Y) - 50});
 
 
 	// 플레이어 포지션 설정

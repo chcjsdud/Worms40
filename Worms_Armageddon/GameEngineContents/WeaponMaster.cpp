@@ -52,7 +52,7 @@ WeaponMaster::~WeaponMaster()
 void WeaponMaster::CreateTimerBox(TeamColor _Color)
 {
 	TimerBox_ = GetLevel()->CreateActor<TimerBox>();
-	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color), SelfDestructSec_);
+	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color), static_cast<int>(SelfDestructSec_));
 }
 
 void WeaponMaster::Start()

@@ -22,7 +22,7 @@ protected:
 private:
 	GameEngineRenderer* FadeRenderer_;
 
-	int Alpha_;
+	float Alpha_;
 
 };
 

@@ -6,7 +6,8 @@
 LargeCloud::LargeCloud() :
 	CloudDir_(float4::ZERO),
 	CloudSpeed_(0),
-	WindDir_(0)
+	WindDir_(0),
+	CloudRenderer_(nullptr)
 {
 }
 

@@ -27,9 +27,11 @@ void SuperSheep::Start()
 
 	float AnimSpeed = 0.08f;
 	
-	for (size_t i = 0; i < 32; i++)
+
+	//박지영 : 오류 제거 작업. siez_t 에서 int로 변경
+	for (int i = 0; i < 32; i++)
 	{
-		int AnimIndex = i * 2.0f;
+		int AnimIndex = i * 2;
 		WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, "spsheepAngle-" + std::to_string(i), AnimIndex, AnimIndex + 1, AnimSpeed);
 	}
 
@@ -152,7 +154,9 @@ void SuperSheep::CycleFly(int _CycleDir)
 		SheepFlyDir_ = float4::DegreeToDirectionFloat4(CalDegree);
 
 		int AnimAngle = (int)SpDegree_ % 360;
-		AnimAngle = AnimAngle / 11.25f;
+
+		//박지영 : 오류 제거 작업. int로 캐스팅
+		AnimAngle = static_cast<int>(AnimAngle / 11.25f);
 		WeaponRender_->ChangeAnimation("spsheepAngle-" + std::to_string(AnimAngle));
 	}
 	else
@@ -161,7 +165,7 @@ void SuperSheep::CycleFly(int _CycleDir)
 		SheepFlyDir_ = float4::DegreeToDirectionFloat4(CalDegree);
 
 		int AnimAngle = (int)SpDegree_ % 360;
-		AnimAngle = AnimAngle / 11.25f;
+		AnimAngle = static_cast<int>(AnimAngle / 11.25f);
 		AnimAngle = 31 - AnimAngle;
 		WeaponRender_->ChangeAnimation("spsheepAngle-" + std::to_string(AnimAngle));
 	}

@@ -4,6 +4,7 @@
 
 LobbySettings::LobbySettings() 
 	: BoxRenderer_(nullptr)
+	, TurnTimeButtonPtr_(nullptr)
 {
 }
 
