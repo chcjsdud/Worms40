@@ -6,7 +6,7 @@
 
 Grenade::Grenade() 
 	:
-	GrenadeTimerBox_(nullptr)
+	TimerBox_(nullptr)
 {
 }
 
@@ -48,7 +48,7 @@ bool Grenade::WeaponUpdate()
 	if (5.0f < GetAccTime()) // 5초 후 폭발
 	{
 		Explosion();
-		GrenadeTimerBox_->DeleteGrenadeBox();
+		TimerBox_->DeleteGrenadeBox();
 		return false;
 	}
 
@@ -57,9 +57,9 @@ bool Grenade::WeaponUpdate()
 	BulletColEvent(); // 충돌하면 이벤트가 발생한다.
 
 	//타이머 박스 위치
-	if (GrenadeTimerBox_ != nullptr)
+	if (TimerBox_ != nullptr)
 	{
-		GrenadeTimerBox_->TimerBoxSetPosition({this->GetPosition().x, this->GetPosition().y - 50.f});
+		TimerBox_->TimerBoxSetPosition({this->GetPosition().x, this->GetPosition().y - 50.f});
 	}
 
 
@@ -73,9 +73,9 @@ bool Grenade::WeaponUpdate()
 	}
 }
 
-void Grenade::CreateGrenadeTimerBox(TeamColor _Color)
+void Grenade::CreateTimerBox(TeamColor _Color)
 {
-	GrenadeTimerBox_ = GetLevel()->CreateActor<GrenadeTimerBox>();
-	GrenadeTimerBox_->CreateGrenadeTimerBox(static_cast<FONT_COLOR>(_Color));
+	TimerBox_ = GetLevel()->CreateActor<TimerBox>();
+	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color));
 }
 

@@ -42,7 +42,7 @@ public:
 	}
 
 
-	virtual void CreateGrenadeTimerBox(TeamColor _Color);
+	virtual void CreateTimerBox(TeamColor _Color);
 
 	inline void SetShotDir(float4 _WeaponDir)
 	{

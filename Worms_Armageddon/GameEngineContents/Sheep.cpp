@@ -1,12 +1,12 @@
 #include "Sheep.h"
 #include "SuperSheep.h"
 #include "PixelCollision.h"
-#include "GrenadeTimerBox.h"
+#include "TimerBox.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineRenderer.h>
 
 Sheep::Sheep() 
-	: GrenadeTimerBox_(nullptr)
+	: TimerBox_(nullptr)
 {
 }
 
@@ -42,14 +42,14 @@ bool Sheep::WeaponUpdate()
 	if (7.0f < GetAccTime()) // 20초 후 폭발
 	{
 		Explosion();
-		GrenadeTimerBox_->DeleteGrenadeBox();
+		TimerBox_->DeleteGrenadeBox();
 		return false;
 	}
 
 	//타이머 박스 위치
-	if (GrenadeTimerBox_ != nullptr)
+	if (TimerBox_ != nullptr)
 	{
-		GrenadeTimerBox_->TimerBoxSetPosition({ this->GetPosition().x, this->GetPosition().y - 50.f });
+		TimerBox_->TimerBoxSetPosition({ this->GetPosition().x, this->GetPosition().y - 50.f });
 	}
 
 	if (true == GameEngineInput::GetInst()->IsDown(KEY_FIRE)) // 자폭
@@ -76,8 +76,8 @@ bool Sheep::WeaponUpdate()
 	}
 }
 
-void Sheep::CreateGrenadeTimerBox(TeamColor _Color)
+void Sheep::CreateTimerBox(TeamColor _Color)
 {
-	GrenadeTimerBox_ = GetLevel()->CreateActor<GrenadeTimerBox>();
-	GrenadeTimerBox_->CreateGrenadeTimerBox(static_cast<FONT_COLOR>(_Color));
+	TimerBox_ = GetLevel()->CreateActor<TimerBox>();
+	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color));
 }

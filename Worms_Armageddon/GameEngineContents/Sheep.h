@@ -2,7 +2,7 @@
 #include "WeaponMaster.h"
 
 // Ό³Έν :
-class GrenadeTimerBox;
+class TimerBox;
 class Sheep : public WeaponMaster
 {
 public:
@@ -20,9 +20,9 @@ protected:
 	void Start() override;
 	void Update() override;
 	bool WeaponUpdate() override;
-	void CreateGrenadeTimerBox(TeamColor _Color) override;
+	void CreateTimerBox(TeamColor _Color) override;
 
 private:
-	GrenadeTimerBox* GrenadeTimerBox_;
+	TimerBox* TimerBox_;
 };
 

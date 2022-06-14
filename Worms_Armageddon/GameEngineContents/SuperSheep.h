@@ -2,7 +2,7 @@
 #include "WeaponMaster.h"
 
 // 설명 :
-class GrenadeTimerBox;
+class TimerBox;
 class SuperSheep : public WeaponMaster
 {
 public:
@@ -20,7 +20,7 @@ protected:
 	void Start() override;
 	void Update() override;
 	bool WeaponUpdate() override;
-	void CreateGrenadeTimerBox(TeamColor _Color) override;
+	void CreateTimerBox(TeamColor _Color) override;
 
 
 private:
@@ -28,7 +28,7 @@ private:
 	int ModeCnt_;
 	float SpDegree_;
 	float4 SheepFlyDir_;
-	GrenadeTimerBox* GrenadeTimerBox_;
+	TimerBox* TimerBox_;
 
 	// 회전 애니메이션 랜더 (0= 반시계, 1= 시계)
 	void CycleFly(int _CycleDir);

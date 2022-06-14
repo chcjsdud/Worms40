@@ -1,7 +1,7 @@
-#include "GrenadeTimerBox.h"
+#include "TimerBox.h"
 #include "Enums.h"
 
-GrenadeTimerBox::GrenadeTimerBox()
+TimerBox::TimerBox()
 	:
 	TimerFont_(nullptr),
 	TimerState_(GrenadeTimerState::Timer),
@@ -11,16 +11,16 @@ GrenadeTimerBox::GrenadeTimerBox()
 {
 }
 
-GrenadeTimerBox::~GrenadeTimerBox()
+TimerBox::~TimerBox()
 {
 }
 
-void GrenadeTimerBox::Start()
+void TimerBox::Start()
 {
 
 }
 
-void GrenadeTimerBox::Update()
+void TimerBox::Update()
 {
 	if (TimerBox_ != nullptr)
 	{
@@ -64,24 +64,24 @@ void GrenadeTimerBox::Update()
 }
 
 
-void GrenadeTimerBox::TimerBoxSetPosition(float4 _Pos)
+void TimerBox::TimerBoxSetPosition(float4 _Pos)
 {
 	this->SetPosition(_Pos);
 	TimerFont_->SetPosition(_Pos);
 }
 
-void GrenadeTimerBox::SetBoxBorder()
+void TimerBox::SetBoxBorder()
 {
 	TimerBox_->SetImage("GrenadeBoxBorder.bmp");
 }
 
-void GrenadeTimerBox::SetBoxThin()
+void TimerBox::SetBoxThin()
 {
 	TimerBox_->SetImage("GrenadeBox.bmp");
 
 }
 
-void GrenadeTimerBox::DeleteGrenadeBox()
+void TimerBox::DeleteGrenadeBox()
 {
 	TimerFont_->Death();
 	TimerBox_->Death();
@@ -89,7 +89,7 @@ void GrenadeTimerBox::DeleteGrenadeBox()
 
 }
 
-void GrenadeTimerBox::CreateGrenadeTimerBox(FONT_COLOR _FontColor)
+void TimerBox::CreateTimerBox(FONT_COLOR _FontColor)
 {
 
 	TimerBox_ = CreateRenderer("GrenadeBox.bmp", static_cast<int>(RenderOrder::UI));

@@ -173,7 +173,7 @@
     <ClInclude Include="WindGauge.h">
       <Filter>02.PlayLevel</Filter>
     </ClInclude>
-    <ClInclude Include="GrenadeTimerBox.h">
+    <ClInclude Include="TimerBox.h">
       <Filter>02.PlayLevel\UI</Filter>
     </ClInclude>
     <ClInclude Include="WindGauge.h">
@@ -350,7 +350,7 @@
     <ClCompile Include="PlayShootingStar.cpp">
       <Filter>02.PlayLevel\UI</Filter>
     </ClCompile>
-    <ClCompile Include="GrenadeTimerBox.cpp">
+    <ClCompile Include="TimerBox.cpp">
       <Filter>02.PlayLevel\UI</Filter>
     </ClCompile>
     <ClCompile Include="PlayLevel.cpp">

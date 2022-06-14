@@ -46,7 +46,7 @@ WeaponMaster::~WeaponMaster()
 }
 
 
-void WeaponMaster::CreateGrenadeTimerBox(TeamColor _Color)
+void WeaponMaster::CreateTimerBox(TeamColor _Color)
 {
 }
 

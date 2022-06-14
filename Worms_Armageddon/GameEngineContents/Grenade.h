@@ -1,7 +1,8 @@
 #pragma once
 #include "WeaponMaster.h"
-#include "GrenadeTimerBox.h"
+#include "TimerBox.h"
 
+class TimerBox;
 // Ό³Έν :
 class Grenade : public WeaponMaster
 {
@@ -22,11 +23,11 @@ protected:
 	bool WeaponUpdate() override;
 
 private:
-	GrenadeTimerBox* GrenadeTimerBox_;
+	TimerBox* TimerBox_;
 	
 
 public:
-	void CreateGrenadeTimerBox(TeamColor _Color) override;
+	void CreateTimerBox(TeamColor _Color) override;
 
 };
 

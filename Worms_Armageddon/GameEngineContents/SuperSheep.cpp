@@ -2,14 +2,14 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineRenderer.h>
 #include "PixelCollision.h"
-#include "GrenadeTimerBox.h"
+#include "TimerBox.h"
 
 SuperSheep::SuperSheep() 
 	: IsSuper_(false)
 	, ModeCnt_(0)
 	, SpDegree_(90.f)
 	, SheepFlyDir_(float4::UP)
-	, GrenadeTimerBox_(nullptr)
+	, TimerBox_(nullptr)
 {
 }
 
@@ -54,14 +54,14 @@ bool SuperSheep::WeaponUpdate()
 	if (20.0f < GetAccTime()) // 20초 후 폭발
 	{
 		Explosion();
-		GrenadeTimerBox_->DeleteGrenadeBox();
+		TimerBox_->DeleteGrenadeBox();
 		return false;
 	}
 
 	//타이머 박스 위치
-	if (GrenadeTimerBox_ != nullptr)
+	if (TimerBox_ != nullptr)
 	{
-		GrenadeTimerBox_->TimerBoxSetPosition({ this->GetPosition().x, this->GetPosition().y - 50.f });
+		TimerBox_->TimerBoxSetPosition({ this->GetPosition().x, this->GetPosition().y - 50.f });
 	}
 
 	if (false == IsSuper_) // 양 모드
@@ -126,10 +126,10 @@ bool SuperSheep::WeaponUpdate()
 	}
 }
 
-void SuperSheep::CreateGrenadeTimerBox(TeamColor _Color)
+void SuperSheep::CreateTimerBox(TeamColor _Color)
 {
-	GrenadeTimerBox_ = GetLevel()->CreateActor<GrenadeTimerBox>();
-	GrenadeTimerBox_->CreateGrenadeTimerBox(static_cast<FONT_COLOR>(_Color));
+	TimerBox_ = GetLevel()->CreateActor<TimerBox>();
+	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color));
 }
 
 void SuperSheep::CycleFly(int _CycleDir)
