@@ -41,13 +41,13 @@ enum class RenderOrder
 	BackGround_1,
 	// ¸Ê
 	BackGround_2,
+	Back_Fx,
 	Weapon,
 	// ¸Ê
 	BackGround_3,
 
 	LobbyStar,
 
-	Back_Fx,
 	Player,
 	Front_Fx,
 	UI,
@@ -157,7 +157,8 @@ enum class FxPlayList
 {
 	Foom,
 	Circle50,
-	Elipse50
+	Elipse50,
+	SupersheepSkid
 };
 
 enum class CreateEffect

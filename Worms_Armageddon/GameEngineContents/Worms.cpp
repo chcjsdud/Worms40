@@ -88,6 +88,8 @@ void Worms::GameInit()
 			Image->Cut({ 150,150 });
 			Image = GameEngineImageManager::GetInst()->Find(IMG_FX_BLOB);
 			Image->Cut({ 64, 64 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_FX_SKIDMARK_SPSHEEP);
+			Image->Cut({ 60, 60 });
 		}
 
 	}

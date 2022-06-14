@@ -235,11 +235,13 @@
 #define IMG_FX_CIRCLE50 "circle50.bmp"
 #define IMG_FX_ELIPSE50 "elipse50.bmp"
 #define IMG_FX_BLOB "blob.bmp"
+#define IMG_FX_SKIDMARK_SPSHEEP "kamismk.bmp"
 
 // 이펙트 애니메이션
 #define ANIM_NAME_FX_EXFOOM "exfoomAnim"
 #define ANIM_NAME_FX_CIRCLE50 "circle50Anim"
 #define ANIM_NAME_FX_ELIPSE50 "Elipse50Anim"
+#define ANIM_NAME_FX_SKIDMARK_SPSHEEP "SpsSkidAnim"
 
 // 콜리전 그룹
 #define COL_GROUP_BUTTON "Button"

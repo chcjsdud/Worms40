@@ -92,6 +92,10 @@ public:
 		}
 	}
 
+	inline void SetFixActPos(bool _Fix)
+	{
+		IsFixActPos_ = _Fix;
+	}
 
 	void CameraEffectOff()
 	{
@@ -135,7 +139,7 @@ public:
 
 	int GetCurrentFrame();
 protected:
-	// EngineImage의 TransCopy 로 이미지를 백버퍼에 그린다.
+	// EngineImage의 TransCopy 로 이미지를 백버퍼에 그린다. ( 랜더가 액터의 위치에 영향 받을지 )
 	void Render();
 
 private:
@@ -170,6 +174,8 @@ private:
 
 	float RotZ_;
 	GameEngineImage* RotationFilterImage_;
+
+	bool IsFixActPos_; // 랜더 위치가 액터의 위치에 영향을 받는지
 
 public:
 	void SetRotationFilter(const std::string& _ImageName);

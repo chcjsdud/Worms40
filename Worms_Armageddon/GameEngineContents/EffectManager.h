@@ -51,5 +51,6 @@ private: // 정의된 단일 이펙트 생성 함수
 	void PlayFoom();
 	void PlayCircle50();
 	void PlayElipse50();
+	void SupersheepSkid();
 };
 

@@ -179,6 +179,9 @@
     <ClInclude Include="WindGauge.h">
       <Filter>02.PlayLevel</Filter>
     </ClInclude>
+    <ClInclude Include="Skidmark.h">
+      <Filter>02.PlayLevel\Effects\FxObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
@@ -358,6 +361,9 @@
     </ClCompile>
     <ClCompile Include="PlayLevel.cpp">
       <Filter>02.PlayLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="Skidmark.cpp">
+      <Filter>02.PlayLevel\Effects\FxObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

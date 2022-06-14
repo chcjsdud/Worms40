@@ -50,6 +50,10 @@ void EffectManager::FxPlay(FxPlayList _Fx)
 		PlayElipse50();
 		break;
 
+	case FxPlayList::SupersheepSkid:
+		SupersheepSkid();
+		break;
+
 	default:
 		break;
 	}

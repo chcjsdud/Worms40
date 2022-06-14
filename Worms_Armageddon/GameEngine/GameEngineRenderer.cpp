@@ -20,6 +20,7 @@ GameEngineRenderer::GameEngineRenderer()
 	, Alpha_(255)
 	, RotZ_(0.0f)
 	, SortingPivot(float4::ZERO)
+	, IsFixActPos_(true)
 {
 }
 
@@ -88,6 +89,11 @@ void GameEngineRenderer::Render()
 
 
 	float4 RenderPos = GetActor()->GetPosition() + RenderPivot_;
+
+	if (false == IsFixActPos_)
+	{
+		RenderPos = RenderPivot_;
+	}
 	
 	if (true == IsCameraEffect_)	// 
 	{

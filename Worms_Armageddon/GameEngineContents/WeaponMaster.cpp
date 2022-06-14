@@ -301,11 +301,11 @@ void WeaponMaster::BulletMove(float _Gravity, bool _IsWind)
 		WeaponRender_->SetRotationZ(BounceRotate_);
 		if (MyPos.x < GetNextPos.x) // ->
 		{
-			BounceRotate_ += 10.f * BulletDir_.x * GameEngineTime::GetDeltaTime();
+			BounceRotate_ += 5.f * BulletDir_.x * GameEngineTime::GetDeltaTime();
 		}
 		else if (MyPos.x > GetNextPos.x) // <-
 		{
-			BounceRotate_ += 10.f * BulletDir_.x * GameEngineTime::GetDeltaTime();
+			BounceRotate_ += 5.f * BulletDir_.x * GameEngineTime::GetDeltaTime();
 		}
 
 		return;
@@ -433,7 +433,7 @@ bool WeaponMaster::BulletColEvent()
 		// 튕겼으면 감속
 		if (PixelCol_->GetBounceFlg() == true)
 		{
-			BulletDir_ *= 0.75f;
+			BulletDir_ *= 0.5f;
 		}
 
 		// 너무 느려졌으면 속도를 0으로 설정

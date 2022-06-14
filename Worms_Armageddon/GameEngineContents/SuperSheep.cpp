@@ -3,6 +3,7 @@
 #include <GameEngine/GameEngineRenderer.h>
 #include "PixelCollision.h"
 #include "TimerBox.h"
+#include "Skidmark.h"
 
 SuperSheep::SuperSheep() 
 	: IsSuper_(false)
@@ -102,6 +103,9 @@ bool SuperSheep::WeaponUpdate()
 		{ // + Angle_
 			CycleFly(1);
 		}
+
+		EffectManager* Effect = GetLevel()->CreateActor<Skidmark>();
+		Effect->SetPosition(GetPosition());
 
 		SetMove(SheepFlyDir_ * Speed);
 

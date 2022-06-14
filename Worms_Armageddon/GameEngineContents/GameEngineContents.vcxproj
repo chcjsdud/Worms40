@@ -222,6 +222,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Skidmark.h" />
     <ClInclude Include="TimerBox.h" />
     <ClInclude Include="HpBar.h" />
     <ClInclude Include="Inventory.h">
@@ -400,6 +401,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Skidmark.cpp" />
     <ClCompile Include="TimerBox.cpp" />
     <ClCompile Include="HpBar.cpp" />
     <ClCompile Include="Inventory.cpp">

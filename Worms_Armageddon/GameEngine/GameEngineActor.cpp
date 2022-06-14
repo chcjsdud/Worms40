@@ -64,7 +64,8 @@ void GameEngineActor::DebugRectRender()
 GameEngineRenderer* GameEngineActor::CreateRenderer(
 	int _Order, /*= static_cast<int>(EngineMax::RENDERORDERMAX)*/
 	RenderPivot _PivotType /*= RenderPivot::CENTER*/, 
-	const float4& _PivotPos /*= { 0,0 }*/)
+	const float4& _PivotPos /*= { 0,0 }*/,
+	bool _FixActPos /*= true*/)
 {
 	GameEngineRenderer* NewRenderer = new GameEngineRenderer();
 
@@ -91,7 +92,8 @@ GameEngineRenderer* GameEngineActor::CreateRenderer(
 	const std::string& _Image,
 	int _Order, /*= static_cast<int>(EngineMax::RENDERORDERMAX)*/
 	RenderPivot _PivotType /*= RenderPivot::CENTER*/,
-	const float4& _PivotPos /*= { 0,0 }*/
+	const float4& _PivotPos /*= { 0,0 }*/,
+	bool _FixActPos /*= true*/
 )
 {
 	GameEngineRenderer* NewRenderer = new GameEngineRenderer();
@@ -108,6 +110,7 @@ GameEngineRenderer* GameEngineActor::CreateRenderer(
 	NewRenderer->SetImage(_Image);
 	NewRenderer->SetPivot(_PivotPos);
 	NewRenderer->SetPivotType(_PivotType);
+	NewRenderer->SetFixActPos(_FixActPos);
 	GetLevel()->AddRenderer(NewRenderer);
 
 	RenderList_.push_back(NewRenderer);
