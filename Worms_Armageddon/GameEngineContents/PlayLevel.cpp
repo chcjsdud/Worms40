@@ -12,6 +12,8 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineSound.h>
+#include <GameEngine/GameEngine.h>
+
 #include <string>
 #include "AirBomb.h"
 
@@ -77,9 +79,12 @@ void PlayLevel::Loading()
 
 void PlayLevel::Update()
 {
+	if (true == GameEngineInput::GetInst()->IsPress(KEY_CHANGE_CREDITLEVEL))
+	{
+		GameEngine::GetInst().ChangeLevel(LEVEL_CREDIT_LEVEL);
+	}
+
 	PlayerDamagedCheck4AirStrike();
-
-
 
 	for (std::list<Player*>& Team : AllPlayer_)
 	{

@@ -2,6 +2,7 @@
 #include "TitleLevel.h"
 #include "PlayLevel.h"
 #include "LobbyLevel.h"
+#include "CreditLevel.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineBase/GameEngineFile.h>
@@ -28,6 +29,7 @@ void Worms::GameInit()
 	//레벨변경 키생성
 	GameEngineInput::GetInst()->CreateKey(KEY_CHANGE_PLAYLEVEL, 'P');
 	GameEngineInput::GetInst()->CreateKey(KEY_CHANGE_LOBBYLEVEL, 'L');
+	GameEngineInput::GetInst()->CreateKey(KEY_CHANGE_CREDITLEVEL, 'E');
 
 	//마우스 클릭 키생성
 	GameEngineInput::GetInst()->CreateKey(KEY_MOUSE_LEFT, VK_LBUTTON);
@@ -397,6 +399,8 @@ void Worms::GameInit()
 	CreateLevel<TitleLevel>(LEVEL_TITLE_LEVEL);
 	CreateLevel<PlayLevel>(LEVEL_PLAY_LEVEL);
 	CreateLevel<LobbyLevel>(LEVEL_LOBBY_LEVEL);
+	CreateLevel<CreditLevel>(LEVEL_CREDIT_LEVEL);
+
 	ChangeLevel(LEVEL_TITLE_LEVEL);
 
 }

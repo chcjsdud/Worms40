@@ -182,6 +182,15 @@
     <ClInclude Include="Skidmark.h">
       <Filter>02.PlayLevel\Effects\FxObjects</Filter>
     </ClInclude>
+    <ClInclude Include="CreditLevel.h">
+      <Filter>03.EndingLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="Credit.h">
+      <Filter>03.EndingLevel\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="FadeIn.h">
+      <Filter>03.EndingLevel\Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
@@ -365,6 +374,15 @@
     <ClCompile Include="Skidmark.cpp">
       <Filter>02.PlayLevel\Effects\FxObjects</Filter>
     </ClCompile>
+    <ClCompile Include="CreditLevel.cpp">
+      <Filter>03.EndingLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="Credit.cpp">
+      <Filter>03.EndingLevel\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="FadeIn.cpp">
+      <Filter>03.EndingLevel\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="02.PlayLevel">
@@ -414,6 +432,12 @@
     </Filter>
     <Filter Include="01.LobbyLevel\LobbyActor\Button">
       <UniqueIdentifier>{6184b198-e4ce-4492-81e1-d33be17f814d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.EndingLevel">
+      <UniqueIdentifier>{d3e9fdb1-ec10-4a99-89da-b7f5e939251d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.EndingLevel\Actor">
+      <UniqueIdentifier>{d9f7a5bd-6252-4e8d-82f7-4b34e51b8c8a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

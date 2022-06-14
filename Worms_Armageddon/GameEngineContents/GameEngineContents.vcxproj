@@ -193,6 +193,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Credit.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CreditLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Crosshair.h">
       <SubType>
       </SubType>
@@ -202,6 +210,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ExitButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FadeIn.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -377,6 +389,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Credit.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CreditLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Crosshair.cpp">
       <SubType>
       </SubType>
@@ -387,6 +407,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ExitButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="FadeIn.cpp">
       <SubType>
       </SubType>
     </ClCompile>

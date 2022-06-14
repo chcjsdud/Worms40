@@ -58,6 +58,7 @@
 #define LEVEL_TITLE_LEVEL "TitleLevel"
 #define LEVEL_LOBBY_LEVEL "LobbyLevel"
 #define LEVEL_PLAY_LEVEL "PlayLevel"
+#define LEVEL_CREDIT_LEVEL "CreditLevel"
 
 // Ű
 #define KEY_CAMERAMOVE_UP "CameraMoveUp"
@@ -66,6 +67,9 @@
 #define KEY_CAMERAMOVE_RIGHT "CameraMoveRight"
 #define KEY_CHANGE_PLAYLEVEL "ChangePlayLevel"
 #define KEY_CHANGE_LOBBYLEVEL "ChangeLobbyLevel"
+#define KEY_CHANGE_CREDITLEVEL "ChangeCreditLevel"
+
+
 #define KEY_CHANGE_PIXELMODE "ChangePixelMode"
 #define KEY_MOVE_LEFT "MoveLeft"
 #define KEY_MOVE_RIGHT "MoveRight"

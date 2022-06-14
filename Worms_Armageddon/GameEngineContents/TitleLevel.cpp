@@ -156,4 +156,9 @@ void TitleLevel::Update()
 		GameEngine::GetInst().ChangeLevel(LEVEL_LOBBY_LEVEL);
 	}
 
+	if (true == GameEngineInput::GetInst()->IsPress(KEY_CHANGE_CREDITLEVEL))
+	{
+		GameEngine::GetInst().ChangeLevel(LEVEL_CREDIT_LEVEL);
+	}
+
 }
