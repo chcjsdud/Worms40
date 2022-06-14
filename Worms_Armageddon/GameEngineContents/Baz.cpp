@@ -4,6 +4,8 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineRenderer.h>
 
+#include <GameEngineBase/GameEngineSound.h>
+
 Baz::Baz()
 {
 }
@@ -26,7 +28,7 @@ void Baz::Update()
 
 bool Baz::WeaponUpdate()
 {
-	if (true == IsBulletOutofBound())
+	if (true == WeaponMaster::IsBulletOutofBound())
 	{
 		return false;
 	}

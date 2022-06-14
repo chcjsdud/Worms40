@@ -9,6 +9,12 @@ const float BlobPadding = 4.0f;
 // TODO::방향 받아서 pivot값 적용해야함
 void ChargeBlob::SetChargePower(float _ChargePower, float4 _PlayerPos, float4 _ShootVec)
 {
+	if (false == IsSoundPlay_)
+	{
+		SoundPlayer_ = GameEngineSound::SoundPlayControl("throwpowerup.wav", 0);
+		IsSoundPlay_ = true;
+	}
+
 	float4 ShootDir = _ShootVec;
 	ShootDir.Normal2D();
 
@@ -30,15 +36,19 @@ void ChargeBlob::SetChargePower(float _ChargePower, float4 _PlayerPos, float4 _S
 	
 }
 
-void ChargeBlob::RenderOff()
+void ChargeBlob::DeActivate()
 {
 	for (auto Blob : Blobs_)
 	{
 		Blob->Off();
 	}
+
+	SoundPlayer_.Stop();
+	IsSoundPlay_ = false;
 }
 
 ChargeBlob::ChargeBlob()
+	: IsSoundPlay_(false)
 {
 }
 
@@ -56,6 +66,6 @@ void ChargeBlob::Start()
 		Blobs_.push_back(ptr);
 	}	
 
-	RenderOff();
+	DeActivate();
 }
 

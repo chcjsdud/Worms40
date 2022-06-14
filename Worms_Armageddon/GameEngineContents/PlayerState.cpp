@@ -21,7 +21,7 @@ void Player::IdleUpdate()
 		if (true == IsActionKeyUp())
 		{
 			ControlWorms_->Off();
-			CrgBlob_->RenderOff();
+			CrgBlob_->DeActivate();
 			Crshair_->Off();
 			StateChange(PlayerState::Action);
 			return;
@@ -579,12 +579,12 @@ void Player::WeaponSwapStart()
 
 void Player::MoveStart()
 {
+	// 걷는 사운드
+
 	// 이동을 시작함
 
 	// 무기 파워 초기화
-	ShotPower_ = 0.0f;
-
-	// 크로스헤어 안보이게
+	ShotPower_ = 0.0f;	// 크로스헤어 안보이게
 	Crshair_->Off();
 }
 
@@ -761,7 +761,7 @@ void Player::DeathStart()
 	JumpMoveDir_ = float4::UP;
 
 	Crshair_->Off();
-	CrgBlob_->RenderOff();
+	CrgBlob_->DeActivate();
 	ControlWorms_->Off();
 }
 

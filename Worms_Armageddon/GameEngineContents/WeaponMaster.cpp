@@ -8,6 +8,7 @@
 #include <GameEngineBase/GameEngineTime.h>
 #include <GameEngine/GameEngineImage.h>
 #include <GameEngine/GameEngineImageManager.h>
+#include <GameEngineBase/GameEngineSound.h>
 
 GameMapMaster* WeaponMaster::GameMap_ = nullptr;
 float4 WeaponMaster::WeaponCameraPos_ = float4::ZERO;
@@ -464,6 +465,9 @@ bool WeaponMaster::BulletColEvent()
 
 void WeaponMaster::Explosion()
 {
+	// 폭발음
+	GameEngineSound::SoundPlayOneShot("rocketrelease.wav", 0);
+
 	IsExplodEnd_ = true;
 	// 이미지를 가져와서 땅이 파여있는 상태를 메모리에 보존?
 	// 바닥

@@ -30,7 +30,7 @@ void Grenade::Update()
 bool Grenade::WeaponUpdate()
 {
 	// ÃÑ¾Ë 
-	if (true == IsBulletOutofBound())
+	if (true == WeaponMaster::IsBulletOutofBound())
 	{
 		return false;
 	}

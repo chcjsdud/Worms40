@@ -29,7 +29,7 @@ void SuperSheep::Start()
 	
 	for (size_t i = 0; i < 32; i++)
 	{
-		int AnimIndex = i * 2;
+		int AnimIndex = i * 2.0f;
 		WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, "spsheepAngle-" + std::to_string(i), AnimIndex, AnimIndex + 1, AnimSpeed);
 	}
 
@@ -45,6 +45,11 @@ void SuperSheep::Update()
 
 bool SuperSheep::WeaponUpdate()
 {
+	if (true == WeaponMaster::IsBulletOutofBound())
+	{
+		return false;
+	}
+
 	// Å×½ºÆ®
 	if (true == GameEngineInput::GetInst()->IsDown(KEY_MOVE_JUMP))
 	{

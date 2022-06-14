@@ -4,7 +4,6 @@
 #include "TimerBox.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineRenderer.h>
-
 Sheep::Sheep() 
 {
 }
@@ -32,6 +31,11 @@ void Sheep::Update()
 
 bool Sheep::WeaponUpdate()
 {
+	if (true == WeaponMaster::IsBulletOutofBound())
+	{
+		return false;
+	}
+
 	// Å×½ºÆ®
 	if (true == GameEngineInput::GetInst()->IsDown(KEY_MOVE_JUMP))
 	{

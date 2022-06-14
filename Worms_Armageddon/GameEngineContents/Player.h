@@ -161,7 +161,7 @@ private:
 	float4 FlyMoveDir_;
 
 	// 사운드 오브젝트
-	GameEngineSound* SoundPlayer_;
+	GameEngineSoundPlayer SoundPlayer_;
 
 	static GameEngineRandom Ran;
 

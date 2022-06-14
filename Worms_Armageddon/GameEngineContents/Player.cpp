@@ -142,7 +142,7 @@ bool Player::ControllUpdate()
 	{
 		IsTurnEnd_ = true;
 		ControlWorms_->Off();
-		CrgBlob_->RenderOff();
+		CrgBlob_->DeActivate();
 		Crshair_->Off();
 		return IsTurnEnd_;
 	}
@@ -152,7 +152,7 @@ bool Player::ControllUpdate()
 	{
 		IsTurnEnd_ = true;
 		ControlWorms_->Off();
-		CrgBlob_->RenderOff();
+		CrgBlob_->DeActivate();
 		Crshair_->Off();
 		return IsTurnEnd_;
 	}
@@ -166,7 +166,7 @@ bool Player::ControllUpdate()
 	{
 		ControlWorms_->Off();
 		Crshair_->Off();
-		CrgBlob_->RenderOff();
+		CrgBlob_->DeActivate();
 	}
 
 	return IsTurnEnd_;
@@ -223,15 +223,15 @@ void Player::PlayerAnimationInit()
 
 	//낙하 애니메이션
 	//33번째 이미지때 올라가게
-	PlayerRenderer_->CreateAnimation(IMG_PLAYER_FALL, ANIM_NAME_PLAYER_FALL, 0, 48, 0.05, false);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_FALL, ANIM_NAME_PLAYER_FALL, 0, 48, 0.05f, false);
 
 
 	//죽음 애니메이션
-	PlayerRenderer_->CreateAnimation(IMG_PLAYER_DIE_LEFT, ANIM_NAME_PLAYER_DEATH_LEFT, 0, 59, 0.02, false);
-	PlayerRenderer_->CreateAnimation(IMG_PLAYER_DIE_RIGHT, ANIM_NAME_PLAYER_DEATH_RIGHT, 0, 59, 0.02, false);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_DIE_LEFT, ANIM_NAME_PLAYER_DEATH_LEFT, 0, 59, 0.02f, false);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_DIE_RIGHT, ANIM_NAME_PLAYER_DEATH_RIGHT, 0, 59, 0.02f, false);
 
 	//묘비 애니메이션
-	PlayerRenderer_->CreateAnimation(IMG_PLAYER_GRAVE, ANIM_NAME_PLAYER_GRAVE, 0, 19, 0.04, true,true);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_GRAVE, ANIM_NAME_PLAYER_GRAVE, 0, 19, 0.04f, true,true);
 
 	//날라가는 애니메이션
 	PlayerRenderer_->CreateAnimation(IMG_FLY_LEFT, ANIM_NAME_PLAYER_FLY, 0, 0, 0, false);
@@ -652,7 +652,7 @@ void Player::ChargingWeaponPower()
 		{
 			ShotPower_ = WEAPON_MAX_SHOT_POWER;
 
-			CrgBlob_->RenderOff();
+			CrgBlob_->DeActivate();
 			Crshair_->Off();
 			ShotPower_ = WEAPON_DEFAULT_SHOT_POWER;
 

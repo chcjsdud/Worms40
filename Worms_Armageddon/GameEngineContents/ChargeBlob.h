@@ -1,13 +1,16 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
 #include <vector>
+#include <GameEngineBase/GameEngineSound.h>
 
 // 설명 :
 class ChargeBlob : public GameEngineActor
 {
 public:
 	void SetChargePower(float _ChargePower, float4 _PlayerPos, float4 _ShootVec);
-	void RenderOff();
+	
+	// Update플래그와 사운드 함께 다룸
+	void DeActivate();
 
 public:
 	// constrcuter destructer
@@ -23,8 +26,10 @@ public:
 protected:
 	void Start() override;
 
-
 private:
 	std::vector<GameEngineRenderer*> Blobs_;
+	
+	GameEngineSoundPlayer SoundPlayer_;
+	bool IsSoundPlay_;
 };
 
