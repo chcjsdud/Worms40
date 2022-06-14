@@ -493,11 +493,6 @@ void PlayLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 
 }
 
-void PlayLevel::CreateTestBullet()
-{
-
-}
-
 void PlayLevel::UpdateCamera(float4 _CameraPos)
 {
 	float CurrentLevelH = 0.0f;

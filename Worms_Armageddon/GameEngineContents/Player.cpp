@@ -715,6 +715,7 @@ void Player::CreateControlArrow(TeamColor _TeamColor)
 	ControlWorms_->CreateAnimation(Color,"ArrowUpdate", 0, 29, 0.04f, true);
 	ControlWorms_->ChangeAnimation("ArrowUpdate");
 	ControlWorms_->SetPivot({0, -90.f});
+	ControlWorms_->SetOrder(static_cast<int>(RenderOrder::UI_2));
 	ControlWorms_->Off();
 
 }
