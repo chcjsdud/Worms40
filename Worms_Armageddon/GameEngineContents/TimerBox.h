@@ -46,6 +46,6 @@ public:
 
 	void DeleteGrenadeBox();
 	
-	void CreateTimerBox(FONT_COLOR _FontColor);
+	void CreateTimerBox(FONT_COLOR _FontColor, int _Time);
 };
 

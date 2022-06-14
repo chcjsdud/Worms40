@@ -129,7 +129,7 @@ bool SuperSheep::WeaponUpdate()
 void SuperSheep::CreateTimerBox(TeamColor _Color)
 {
 	TimerBox_ = GetLevel()->CreateActor<TimerBox>();
-	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color));
+	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color), 10);
 }
 
 void SuperSheep::CycleFly(int _CycleDir)

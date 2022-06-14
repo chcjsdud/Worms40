@@ -76,6 +76,6 @@ bool Grenade::WeaponUpdate()
 void Grenade::CreateTimerBox(TeamColor _Color)
 {
 	TimerBox_ = GetLevel()->CreateActor<TimerBox>();
-	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color));
+	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color), 5);
 }
 

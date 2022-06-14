@@ -72,14 +72,26 @@ void TimerBox::TimerBoxSetPosition(float4 _Pos)
 
 void TimerBox::SetBoxBorder()
 {
+
 	TimerBox_->SetImage("GrenadeBoxBorder.bmp");
+
+	if (Timer_ >= 10)
+	{
+		TimerBox_->SetScale({ 24, 18 });
+	}
 }
 
 void TimerBox::SetBoxThin()
 {
+
 	TimerBox_->SetImage("GrenadeBox.bmp");
 
+	if (Timer_ >= 10)
+	{
+		TimerBox_->SetScale({ 24, 18 });
+	}
 }
+
 
 void TimerBox::DeleteGrenadeBox()
 {
@@ -89,11 +101,18 @@ void TimerBox::DeleteGrenadeBox()
 
 }
 
-void TimerBox::CreateTimerBox(FONT_COLOR _FontColor)
+void TimerBox::CreateTimerBox(FONT_COLOR _FontColor, int _Time)
 {
 
 	TimerBox_ = CreateRenderer("GrenadeBox.bmp", static_cast<int>(RenderOrder::UI));
 	TimerFont_ = GetLevel()->CreateActor<Font>();
 	FontColor_ = _FontColor;
-	TimerFont_->GameContentCreateNumberFont(5, { 0,0 }, FontColor_);
+	Timer_ = _Time;
+
+	if (_Time >= 10)
+	{
+		TimerBox_->SetScale({24, 18});
+	}
+
+	TimerFont_->GameContentCreateNumberFont(Timer_, { 0,0 }, FontColor_);
 }
