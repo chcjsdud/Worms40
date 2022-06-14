@@ -22,7 +22,7 @@ void Grenade::Start()
 	WeaponRender_->SetImage("GrenadeSpin.bmp");
 	WeaponRender_->SetRotationFilter("GrenadeSpinFilter.bmp");
 
-
+	SelfDestructSec_ = 5.f;
 }
 void Grenade::Update()
 {
@@ -45,7 +45,7 @@ bool Grenade::WeaponUpdate()
 		return false;
 	}
 
-	if (5.0f < GetAccTime()) // 5ÃÊ ÈÄ Æø¹ß
+	if (SelfDestructSec_ < GetAccTime()) // ÀÚÆø
 	{
 		Explosion();
 		TimerBox_->DeleteGrenadeBox();
@@ -76,6 +76,6 @@ bool Grenade::WeaponUpdate()
 void Grenade::CreateTimerBox(TeamColor _Color)
 {
 	TimerBox_ = GetLevel()->CreateActor<TimerBox>();
-	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color), 5);
+	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color), SelfDestructSec_);
 }
 

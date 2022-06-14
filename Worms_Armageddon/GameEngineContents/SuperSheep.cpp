@@ -35,6 +35,8 @@ void SuperSheep::Start()
 	}
 
 	WeaponRender_->ChangeAnimation(ANIM_NAME_SHEEP_LEFT);
+
+	SelfDestructSec_ = 10.f;
 }
 
 void SuperSheep::Update()
@@ -52,7 +54,7 @@ bool SuperSheep::WeaponUpdate()
 		return false;
 	}
 
-	if (20.0f < GetAccTime()) // 20ÃÊ ÈÄ Æø¹ß
+	if (SelfDestructSec_ < GetAccTime()) // ÀÚÆø
 	{
 		Explosion();
 		TimerBox_->DeleteGrenadeBox();
@@ -133,7 +135,7 @@ bool SuperSheep::WeaponUpdate()
 void SuperSheep::CreateTimerBox(TeamColor _Color)
 {
 	TimerBox_ = GetLevel()->CreateActor<TimerBox>();
-	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color), 10);
+	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color), SelfDestructSec_);
 }
 
 void SuperSheep::CycleFly(int _CycleDir)

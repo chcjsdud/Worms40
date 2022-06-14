@@ -22,6 +22,8 @@ void Sheep::Start()
 	WeaponRender_->CreateAnimation(IMG_SHEEP_BULLET_LEFT, ANIM_NAME_SHEEP_LEFT, 0, 7, 0.04f);
 	WeaponRender_->CreateAnimation(IMG_SHEEP_BULLET_RIGHT, ANIM_NAME_SHEEP_RIGHT, 0, 7, 0.04f);
 	WeaponRender_->ChangeAnimation(ANIM_NAME_SHEEP_LEFT);
+
+	SelfDestructSec_ = 10.f;
 }
 
 void Sheep::Update()
@@ -39,7 +41,9 @@ bool Sheep::WeaponUpdate()
 		return false;
 	}
 
-	if (7.0f < GetAccTime()) // 20ÃÊ ÈÄ Æø¹ß
+	//float ExpTime = 20.f;
+
+	if (SelfDestructSec_ < GetAccTime()) // ÀÚÆø
 	{
 		Explosion();
 		TimerBox_->DeleteGrenadeBox();
@@ -79,5 +83,5 @@ bool Sheep::WeaponUpdate()
 void Sheep::CreateTimerBox(TeamColor _Color)
 {
 	TimerBox_ = GetLevel()->CreateActor<TimerBox>();
-	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color), 20);
+	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color), SelfDestructSec_);
 }

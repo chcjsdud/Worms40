@@ -120,6 +120,8 @@ protected:
 	float4 ShotAngle_;
 	// 무기 발사 힘
 	float ShotPower_;
+	// 자폭 시간
+	float SelfDestructSec_;
 
 
 	// 카메라가 봐야할 무기의 위치

@@ -38,6 +38,7 @@ WeaponMaster::WeaponMaster()
 	, BulletDir_(float4::ZERO)
 	, ShotAngle_(float4::ZERO)
 	, ShotPower_(0)
+	, SelfDestructSec_(0)
 {
 }
 
