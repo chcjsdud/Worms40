@@ -200,6 +200,7 @@ void Player::WeaponSwapUpdate()
 		case WeaponState::Grider:
 			break;
 		case WeaponState::None:
+			StateName_ = ANIM_KEYWORD_PLAYER_IDLE;
 			break;
 		default:
 			break;
@@ -521,6 +522,7 @@ void Player::FalledUpdate()
 		//애니메이션이 끝나면 IdleState로 변경
 		if (true == PlayerRenderer_->IsEndAnimation())
 		{
+			WeaponState_ = WeaponState::None;
 			StateChange(PlayerState::Idle);
 		}
 	}
@@ -530,7 +532,14 @@ void Player::FalledUpdate()
 
 void Player::IdleStart()
 {
-	Crshair_->On();
+	if (WeaponState_ != WeaponState::None)
+	{
+		Crshair_->On();
+	}
+	else
+	{
+		Crshair_->Off();
+	}
 
 	if (WeaponState_ == WeaponState::Baz)
 	{

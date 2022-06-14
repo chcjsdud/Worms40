@@ -37,6 +37,7 @@ Player::Player()
 	, FlySpeed_(0.0f)
 	, IsFly_(false)
 	, IsGrave_(false)
+	, WeaponState_(WeaponState::None)
 {
 }
 

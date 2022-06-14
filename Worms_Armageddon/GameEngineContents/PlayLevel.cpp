@@ -11,6 +11,7 @@
 #include "GameEngineBase/GameEngineRandom.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineWindow.h>
+#include <GameEngineBase/GameEngineSound.h>
 #include <string>
 #include "AirBomb.h"
 
@@ -256,6 +257,7 @@ void PlayLevel::Update()
 			SetWindUI(WinInt);
 			CameraControledByWASDFlg_ = false;
 			PrevCameraPos_ = LerpCameraPos_;
+			GameEngineSound::SoundPlayOneShot("HELLO.WAV");
 			LevelPhase_ = LevelFSM::Move;
 		}
 		else
