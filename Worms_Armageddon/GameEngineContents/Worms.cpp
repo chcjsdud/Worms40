@@ -9,6 +9,7 @@
 #include <GameEngineBase/GameEngineSound.h>
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineImage.h>
+#include <GameEngineBase/GameEngineSound.h>
 
 
 Worms::Worms()
@@ -247,52 +248,52 @@ void Worms::GameInit()
 		}
 
 		{ // LEFT 용 이미지
-			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_AIM_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_IDLE_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_JUMPRDY_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_FLYLINK_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_FLYDOWN_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_BACKFLIP_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_WALK_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_FLYLINK_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_ON_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_OFF_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_GRN_OFF_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_GRN_ON_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_AIRSTRIKE_OFF_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_AIRSTRIKE_ON_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_SHEEP_ON_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_SHEEP_OFF_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_FLY_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_DIE_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_DIE_RIGHT);
-			Image->Cut({ 60, 60 });
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_AIM_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_IDLE_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_JUMPRDY_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_FLYLINK_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_FLYDOWN_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_BACKFLIP_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_WALK_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_FLYLINK_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_ON_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_OFF_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_GRN_OFF_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_GRN_ON_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_AIRSTRIKE_OFF_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_AIRSTRIKE_ON_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_SHEEP_ON_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_SHEEP_OFF_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_FLY_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_DIE_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_DIE_RIGHT);
+		Image->Cut({ 60, 60 });
 
-			//무기
-			Image = GameEngineImageManager::GetInst()->Find(IMG_HOMING_AIM_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_ON_LEFT);
-			Image->Cut({ 60, 60 });
-			Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_OFF_LEFT);
-			Image->Cut({ 60, 60 });
+		//무기
+		Image = GameEngineImageManager::GetInst()->Find(IMG_HOMING_AIM_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_ON_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_OFF_LEFT);
+		Image->Cut({ 60, 60 });
 		}
 		{ // RIGHT 용 이미지
 			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find(IMG_BAZ_AIM_RIGHT);
@@ -343,6 +344,52 @@ void Worms::GameInit()
 		}
 	}
 
+	// 사운드 파일 로딩
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParent(DIR_WORMS_PARENTS);
+		Dir.Move(DIR_RESOURCES);
+		Dir.Move(DIR_SOUND);
+
+		std::vector<GameEngineFile> AllImageFileList = Dir.GetAllFile();
+
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineSound::LoadRes(AllImageFileList[i].GetFullPath());
+		}
+	}
+
+	// 사운드 파일 로딩
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParent(DIR_WORMS_PARENTS);
+		Dir.Move(DIR_RESOURCES);
+		Dir.Move(DIR_SOUND);
+		Dir.Move(DIR_EFFECTS);
+
+		std::vector<GameEngineFile> AllImageFileList = Dir.GetAllFile();
+
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineSound::LoadRes(AllImageFileList[i].GetFullPath());
+		}
+	}
+
+	// 사운드 파일 로딩
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParent(DIR_WORMS_PARENTS);
+		Dir.Move(DIR_RESOURCES);
+		Dir.Move(DIR_SOUND);
+		Dir.Move(DIR_ENGLISH);
+
+		std::vector<GameEngineFile> AllImageFileList = Dir.GetAllFile();
+
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineSound::LoadRes(AllImageFileList[i].GetFullPath());
+		}
+	}
 
 	
 	CreateLevel<TitleLevel>(LEVEL_TITLE_LEVEL);

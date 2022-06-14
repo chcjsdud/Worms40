@@ -3,6 +3,7 @@
 #define DIR_WORMS_PARENTS "Worms_Armageddon"
 #define DIR_RESOURCES "Resources"
 #define DIR_IMAGE "Image"
+#define DIR_SOUND "Sound"
 #define DIR_EFFECTS "Effects"
 #define DIR_FONT "Font"
 #define DIR_MAP "Map"
@@ -10,6 +11,7 @@
 #define DIR_WORMS "Worms"
 #define DIR_MISC "Misc"
 #define DIR_UI "UI"
+#define DIR_ENGLISH "English"
 
 
 //#define DIR_HIT "hit"
