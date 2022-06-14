@@ -24,7 +24,7 @@ void ChargeBlob::SetChargePower(float _ChargePower, float4 _PlayerPos, float4 _S
 		}
 		else
 		{
-			Blobs_[i]->Off();
+ 			Blobs_[i]->Off();
 		}
 	}
 	

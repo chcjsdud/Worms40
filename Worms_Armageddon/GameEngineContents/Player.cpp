@@ -101,10 +101,12 @@ void Player::Update()
 	{
 		StateUpdate();
 	}
-	else
+	
+	if(IsDeath_==true)
 	{
 		DeathUpdate();
 	}
+
 	// 컨트롤되고 있지 않은 플레이어 캐릭터는 피격판정등의 동작만 수행
 	if (this->GetPlayerState() == PlayerState::Idle
 		|| this->GetPlayerState() == PlayerState::Move)
@@ -122,7 +124,6 @@ void Player::Update()
 	{
 		FlyAwayStart();
 	}
-
 	// 컨트롤되고 있지 않은 캐릭터는 데미지를 받더라도 턴이 끝나지 않음
 }
 
@@ -133,19 +134,25 @@ void Player::Render()
 bool Player::ControllUpdate()
 {
 	// State내부에서 턴종료 플래그를 세워주면 턴종료
-	IsTurnEnd_ = false;
+	//IsTurnEnd_ = false;
+
 
 	if (IsDeath_ == true)
 	{
 		IsTurnEnd_ = true;
 		ControlWorms_->Off();
+		CrgBlob_->RenderOff();
+		Crshair_->Off();
 		return IsTurnEnd_;
 	}
+
 
 	if (IsDamaged_ == true)
 	{
 		IsTurnEnd_ = true;
 		ControlWorms_->Off();
+		CrgBlob_->RenderOff();
+		Crshair_->Off();
 		return IsTurnEnd_;
 	}
 
@@ -160,7 +167,6 @@ bool Player::ControllUpdate()
 		Crshair_->Off();
 		CrgBlob_->RenderOff();
 	}
-
 
 	return IsTurnEnd_;
 }

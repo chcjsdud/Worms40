@@ -20,6 +20,9 @@ void Player::IdleUpdate()
 		// 액션은 이동보다 우선순위가 높음.
 		if (true == IsActionKeyUp())
 		{
+			ControlWorms_->Off();
+			CrgBlob_->RenderOff();
+			Crshair_->Off();
 			StateChange(PlayerState::Action);
 			return;
 		}

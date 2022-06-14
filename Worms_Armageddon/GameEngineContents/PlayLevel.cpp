@@ -78,11 +78,14 @@ void PlayLevel::Update()
 {
 	PlayerDamagedCheck4AirStrike();
 
+
+
 	for (std::list<Player*>& Team : AllPlayer_)
 	{
 		for (Player* Player : Team)
 		{
 			Player->SetControlFlg(false);
+			//Player->SetTurnEndFlg(false);
 		}
 	}
 
@@ -158,6 +161,7 @@ void PlayLevel::Update()
 		// 움직임이 끝나면(true) 턴종료
 		if (true == CurrentPlayer->ControllUpdate())
 		{
+			CurrentPlayer->SetTurnEndFlg(false);
 			Teams.pop_front();
 
 			if (Teams.size() != 0)

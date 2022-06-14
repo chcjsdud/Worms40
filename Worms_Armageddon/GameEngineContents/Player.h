@@ -86,6 +86,12 @@ public:
 		ControlFlg_ = _ControlFlg;
 	}
 
+	inline void SetTurnEndFlg(bool _TurnEndFlg)
+	{
+		IsTurnEnd_ = _TurnEndFlg;
+	}
+
+
 	bool ControllUpdate();
 
 
