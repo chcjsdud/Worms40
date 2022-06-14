@@ -227,46 +227,6 @@
 #define ANIM_NAME_SHEEP_LEFT "sheepwlkAnimLeft"
 #define ANIM_NAME_SHEEP_RIGHT "sheepwlkAnimRight"
 
-#define ANIM_NAME_SUPERSHEEP_90 "spsheepAngle-8"
-
-#define ANIM_NAME_SUPERSHEEP_80 "spsheepAngle-7"
-#define ANIM_NAME_SUPERSHEEP_70 "spsheepAngle-6"
-#define ANIM_NAME_SUPERSHEEP_60 "spsheepAngle-5"
-#define ANIM_NAME_SUPERSHEEP_50 "spsheepAngle-4"
-#define ANIM_NAME_SUPERSHEEP_30 "spsheepAngle-3"
-#define ANIM_NAME_SUPERSHEEP_20 "spsheepAngle-2"
-#define ANIM_NAME_SUPERSHEEP_10 "spsheepAngle-1"
-
-#define ANIM_NAME_SUPERSHEEP_0 "spsheepAngle-0"
-
-#define ANIM_NAME_SUPERSHEEP_350 "spsheepAngle-31"
-#define ANIM_NAME_SUPERSHEEP_340 "spsheepAngle-30"
-#define ANIM_NAME_SUPERSHEEP_330 "spsheepAngle-29"
-#define ANIM_NAME_SUPERSHEEP_320 "spsheepAngle-28"
-#define ANIM_NAME_SUPERSHEEP_310 "spsheepAngle-27"
-#define ANIM_NAME_SUPERSHEEP_290 "spsheepAngle-26"
-#define ANIM_NAME_SUPERSHEEP_280 "spsheepAngle-25"
-
-#define ANIM_NAME_SUPERSHEEP_270 "spsheepAngle-24"
-
-#define ANIM_NAME_SUPERSHEEP_260 "spsheepAngle-23"
-#define ANIM_NAME_SUPERSHEEP_250 "spsheepAngle-22"
-#define ANIM_NAME_SUPERSHEEP_240 "spsheepAngle-21"
-#define ANIM_NAME_SUPERSHEEP_230 "spsheepAngle-20"
-#define ANIM_NAME_SUPERSHEEP_220 "spsheepAngle-19"
-#define ANIM_NAME_SUPERSHEEP_200 "spsheepAngle-18"
-#define ANIM_NAME_SUPERSHEEP_190 "spsheepAngle-17"
-
-#define ANIM_NAME_SUPERSHEEP_180 "spsheepAngle-16"
-
-#define ANIM_NAME_SUPERSHEEP_170 "spsheepAngle-15"
-#define ANIM_NAME_SUPERSHEEP_160 "spsheepAngle-14"
-#define ANIM_NAME_SUPERSHEEP_150 "spsheepAngle-13"
-#define ANIM_NAME_SUPERSHEEP_140 "spsheepAngle-12"
-#define ANIM_NAME_SUPERSHEEP_130 "spsheepAngle-11"
-#define ANIM_NAME_SUPERSHEEP_110 "spsheepAngle-10"
-#define ANIM_NAME_SUPERSHEEP_100 "spsheepAngle-9"
-
 // ¿Ã∆Â∆Æ
 #define IMG_FX_EXFOOM "exfoom.bmp"
 #define IMG_FX_CIRCLE50 "circle50.bmp"

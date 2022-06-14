@@ -29,93 +29,19 @@ void SuperSheep::Start()
 	}
 
 	float AnimSpeed = 0.08f;
-	int AnimIndex = 0;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_90, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_80, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_70, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_60, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_50, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_30, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_20, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_10, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_0, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_350, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_340, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_330, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_320, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_310, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_290, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_280, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_270, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_260, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_250, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_240, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_230, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_220, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_200, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_190, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_180, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_170, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_160, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_150, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_140, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_130, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_110, AnimIndex, AnimIndex + 1, AnimSpeed);
-	AnimIndex += 2;
-	WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SUPERSHEEP_100, AnimIndex, AnimIndex + 1, AnimSpeed);
 	
-	WeaponRender_->ChangeAnimation(ANIM_NAME_SHEEP_LEFT);
+	for (size_t i = 0; i < 32; i++)
+	{
+		int AnimIndex = i * 2;
+		WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, "spsheepAngle-" + std::to_string(i), AnimIndex, AnimIndex + 1, AnimSpeed);
+	}
 
-	// 0 <= angle <= 359
-	// static_cast<int>(angle/10);
-	//WeaponRender_->ChangeAnimation("spsheepAngle-" + std::to_string(10));
+	WeaponRender_->ChangeAnimation(ANIM_NAME_SHEEP_LEFT);
 }
 
 void SuperSheep::Update()
 {
 
-}
-
-void SuperSheep::Render()
-{
-	if (IsSuper_)
-	{
-		int AnimAngle = (int)SpDegree_ % 360;
-
-		AnimAngle = AnimAngle / 11.25f;
-		
-		WeaponRender_->ChangeAnimation("spsheepAngle-" + std::to_string(AnimAngle));
-	}
 }
 
 bool SuperSheep::WeaponUpdate()
@@ -145,7 +71,7 @@ bool SuperSheep::WeaponUpdate()
 				Explosion();
 			}
 
-			WeaponRender_->ChangeAnimation(ANIM_NAME_SUPERSHEEP_90);
+			WeaponRender_->ChangeAnimation("spsheepAngle-8");
 			IsSuper_ = true;
 		}
 
@@ -174,6 +100,8 @@ bool SuperSheep::WeaponUpdate()
 			{
 				SpDegree_ = 360.f;
 			}
+
+			CycleFlyRender(0);
 		}
 		else if (true == GameEngineInput::GetInst()->IsPress(KEY_MOVE_RIGHT))
 		{ // + Angle_
@@ -187,6 +115,8 @@ bool SuperSheep::WeaponUpdate()
 			{
 				SpDegree_ = 360.f;
 			}
+
+			CycleFlyRender(1);
 		}
 
 		SetMove(SheepFlyDir_ * Speed);
@@ -212,7 +142,19 @@ bool SuperSheep::WeaponUpdate()
 	}
 }
 
-void SuperSheep::CycleFly()
+void SuperSheep::CycleFlyRender(int _CycleDir)
 {
-	
+	if (0 == _CycleDir)
+	{
+		int AnimAngle = (int)SpDegree_ % 360;
+		AnimAngle = AnimAngle / 11.25f;
+		WeaponRender_->ChangeAnimation("spsheepAngle-" + std::to_string(AnimAngle));
+	}
+	else
+	{
+		int AnimAngle = (int)SpDegree_ % 360;
+		AnimAngle = AnimAngle / 11.25f;
+		AnimAngle = 31 - AnimAngle;
+		WeaponRender_->ChangeAnimation("spsheepAngle-" + std::to_string(AnimAngle));
+	}
 }

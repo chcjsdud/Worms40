@@ -18,7 +18,6 @@ public:
 protected:
 	void Start() override;
 	void Update() override;
-	void Render() override;
 	bool WeaponUpdate() override;
 
 private:
@@ -27,6 +26,7 @@ private:
 	float SpDegree_;
 	float4 SheepFlyDir_;
 
-	void CycleFly();
+	// 회전 애니메이션 랜더 (0= 반시계, 1= 시계)
+	void CycleFlyRender(int _CycleDir);
 };
 
