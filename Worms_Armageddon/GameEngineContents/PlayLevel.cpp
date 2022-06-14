@@ -86,16 +86,6 @@ void PlayLevel::Update()
 		}
 	}
 
-	// TeamHpBar디버그용
-	{
-		if (true == GameEngineInput::GetInst()->IsDown(DEBUG_KEY))
-		{
-			TargetPlayer_->SetPlayerHp(20);
-
-			LevelPhase_ = LevelFSM::Damage;
-		}
-	}
-
 	switch (LevelPhase_)
 	{
 	case LevelFSM::Ready:

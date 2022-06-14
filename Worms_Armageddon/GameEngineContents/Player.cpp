@@ -800,7 +800,8 @@ void Player::Damaged(float4 _WeaponPos /*= float4::ZERO */)
 		}
 	}
 
-
+	// HP UI에 표시될 HP변경
+	Hpbar_->ChangeHpBarFont(PlayerHp_);
 }
 
 

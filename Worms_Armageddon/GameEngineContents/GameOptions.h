@@ -31,16 +31,6 @@ public:
 		return TurnTime_;
 	}
 
-	inline void SetPlayerNum(int _Num)
-	{
-		PlayerNum_ = _Num;
-	}
-
-	inline int GetPlayerNum()
-	{
-		return PlayerNum_;
-	}
-
 	inline void SetMapType(MapType _MapType)
 	{
 		MapType_ = _MapType;
@@ -67,8 +57,7 @@ private:
 
 	// 한 턴의 시간 값
 	int TurnTime_;
-	// 플레이어 인원수
-	int PlayerNum_;
+
 	// 맵 종류
 	MapType MapType_;
 

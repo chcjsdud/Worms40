@@ -80,7 +80,6 @@ void LobbyLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 	LobbySettings* LobbySettingsPtr = dynamic_cast<LobbySettings*>(LobbySettings_);
 	// PlayerNum
 	int PlayerNum = TeamEditBoxPtr->GetSelectedTeamNum();
-	GameOptions::PlayingOptions.SetPlayerNum(PlayerNum);
 
 	// TeamColor & TeamNum
 	std::list<TeamButton*> TeamButtons = TeamEditBoxPtr->GetSelectedTeams();
@@ -100,7 +99,6 @@ void LobbyLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		&& TurnTime == 45 && MapType::Other == GameOptions::PlayingOptions.GetMapType())
 	{
 		GameOptions::PlayingOptions.SetTurnTime(45);
-		GameOptions::PlayingOptions.SetPlayerNum(3);
 		GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)0, 3);
 		GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)2, 3);
 		GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)4, 3);
