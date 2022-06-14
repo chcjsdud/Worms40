@@ -6,7 +6,6 @@
 #include <GameEngine/GameEngineRenderer.h>
 
 Sheep::Sheep() 
-	: TimerBox_(nullptr)
 {
 }
 
@@ -46,14 +45,14 @@ bool Sheep::WeaponUpdate()
 	if (SelfDestructSec_ < GetAccTime()) // 자폭
 	{
 		Explosion();
-		TimerBox_->DeleteGrenadeBox();
+		GetTimerBox()->DeleteGrenadeBox();
 		return false;
 	}
-
+	
 	//타이머 박스 위치
-	if (TimerBox_ != nullptr)
+	if (GetTimerBox() != nullptr)
 	{
-		TimerBox_->TimerBoxSetPosition({ this->GetPosition().x, this->GetPosition().y - 50.f });
+		GetTimerBox()->TimerBoxSetPosition({ this->GetPosition().x, this->GetPosition().y - 50.f });
 	}
 
 	if (true == GameEngineInput::GetInst()->IsDown(KEY_FIRE)) // 자폭
@@ -78,10 +77,4 @@ bool Sheep::WeaponUpdate()
 	{
 		return true;
 	}
-}
-
-void Sheep::CreateTimerBox(TeamColor _Color)
-{
-	TimerBox_ = GetLevel()->CreateActor<TimerBox>();
-	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color), SelfDestructSec_);
 }

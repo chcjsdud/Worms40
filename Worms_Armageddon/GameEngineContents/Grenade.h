@@ -23,11 +23,9 @@ protected:
 	bool WeaponUpdate() override;
 
 private:
-	TimerBox* TimerBox_;
 	
 
 public:
-	void CreateTimerBox(TeamColor _Color) override;
 
 };
 

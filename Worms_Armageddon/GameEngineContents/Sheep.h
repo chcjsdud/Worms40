@@ -20,9 +20,7 @@ protected:
 	void Start() override;
 	void Update() override;
 	bool WeaponUpdate() override;
-	void CreateTimerBox(TeamColor _Color) override;
 
 private:
-	TimerBox* TimerBox_;
 };
 

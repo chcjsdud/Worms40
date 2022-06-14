@@ -10,7 +10,6 @@ SuperSheep::SuperSheep()
 	, ModeCnt_(0)
 	, SpDegree_(90.f)
 	, SheepFlyDir_(float4::UP)
-	, TimerBox_(nullptr)
 {
 }
 
@@ -57,14 +56,14 @@ bool SuperSheep::WeaponUpdate()
 	if (SelfDestructSec_ < GetAccTime()) // 자폭
 	{
 		Explosion();
-		TimerBox_->DeleteGrenadeBox();
+		GetTimerBox()->DeleteGrenadeBox();
 		return false;
 	}
 
 	//타이머 박스 위치
-	if (TimerBox_ != nullptr)
+	if (GetTimerBox() != nullptr)
 	{
-		TimerBox_->TimerBoxSetPosition({ this->GetPosition().x, this->GetPosition().y - 50.f });
+		GetTimerBox()->TimerBoxSetPosition({ this->GetPosition().x, this->GetPosition().y - 50.f });
 	}
 
 	if (false == IsSuper_) // 양 모드
@@ -132,11 +131,6 @@ bool SuperSheep::WeaponUpdate()
 	}
 }
 
-void SuperSheep::CreateTimerBox(TeamColor _Color)
-{
-	TimerBox_ = GetLevel()->CreateActor<TimerBox>();
-	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color), SelfDestructSec_);
-}
 
 void SuperSheep::CycleFly(int _CycleDir)
 {

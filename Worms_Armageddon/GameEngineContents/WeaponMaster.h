@@ -1,6 +1,7 @@
 #pragma once
 #include "Enums.h"
 #include "GameMapMaster.h"
+#include "TimerBox.h"
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineCustomStringSet.h>
 
@@ -20,6 +21,9 @@ public:
 	WeaponMaster(WeaponMaster&& _Other) noexcept = delete;
 	WeaponMaster& operator=(const WeaponMaster& _Other) = delete;
 	WeaponMaster& operator=(WeaponMaster&& _Other) noexcept = delete;
+
+	void CreateTimerBox(TeamColor _Color);
+
 
 	virtual bool WeaponUpdate() 
 	{ 
@@ -41,9 +45,6 @@ public:
 		return GetPosition();
 	}
 
-
-	virtual void CreateTimerBox(TeamColor _Color);
-
 	inline void SetShotDir(float4 _WeaponDir)
 	{
 		ShotDir_ = _WeaponDir;
@@ -64,6 +65,12 @@ public:
 		return IsExplodEnd_;
 	}
 
+	inline TimerBox* GetTimerBox() const
+	{
+		return TimerBox_;
+	}
+
+
 private: 
 	// 지정한 목표 좌표
 	float4 TargetPos_;
@@ -79,6 +86,10 @@ private:
 	bool IsBomb_;
 	// 무기의 폭발이 끝나는 플래그
 	bool IsExplodEnd_;
+
+	//타이머 박스
+	TimerBox* TimerBox_;
+
 
 
 	// 동물 투사체 움직임 값
@@ -158,6 +169,7 @@ protected:
 
 	// 투사체 바닥 범위 넘어갔는지 체크
 	bool IsBulletOutofBound();
+
 
 public:
 

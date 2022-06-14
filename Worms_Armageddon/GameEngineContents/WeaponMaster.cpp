@@ -39,6 +39,7 @@ WeaponMaster::WeaponMaster()
 	, ShotAngle_(float4::ZERO)
 	, ShotPower_(0)
 	, SelfDestructSec_(0)
+	, TimerBox_(nullptr)
 {
 }
 
@@ -49,6 +50,8 @@ WeaponMaster::~WeaponMaster()
 
 void WeaponMaster::CreateTimerBox(TeamColor _Color)
 {
+	TimerBox_ = GetLevel()->CreateActor<TimerBox>();
+	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color), SelfDestructSec_);
 }
 
 void WeaponMaster::Start()
