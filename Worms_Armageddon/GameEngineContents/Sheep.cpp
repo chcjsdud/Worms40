@@ -1,10 +1,12 @@
 #include "Sheep.h"
 #include "SuperSheep.h"
 #include "PixelCollision.h"
+#include "GrenadeTimerBox.h"
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineRenderer.h>
 
 Sheep::Sheep() 
+	: GrenadeTimerBox_(nullptr)
 {
 }
 
@@ -37,16 +39,32 @@ bool Sheep::WeaponUpdate()
 		return false;
 	}
 
+	if (7.0f < GetAccTime()) // 20초 후 폭발
+	{
+		Explosion();
+		GrenadeTimerBox_->DeleteGrenadeBox();
+		return false;
+	}
+
+	//타이머 박스 위치
+	if (GrenadeTimerBox_ != nullptr)
+	{
+		GrenadeTimerBox_->TimerBoxSetPosition({ this->GetPosition().x, this->GetPosition().y - 50.f });
+	}
+
+	if (true == GameEngineInput::GetInst()->IsDown(KEY_FIRE)) // 자폭
+	{
+		Explosion();
+		return false;
+	}
 
 	if (1 == ShotDir_.x) // 양이 바라보는 방향이 오른쪽
 	{
 		WeaponRender_->ChangeAnimation(ANIM_NAME_SHEEP_RIGHT);
 	}
 
-
 	ThrowStart(0); // 투사체를 던지고
 	AnimalMove(); // 양이 움직이다가
-	//BulletColEvent();
 
 	if (false == IsUpdate()) // 웜즈가 체력이 깎인 후 false 리턴되도록 변경 예정
 	{
@@ -56,4 +74,10 @@ bool Sheep::WeaponUpdate()
 	{
 		return true;
 	}
+}
+
+void Sheep::CreateGrenadeTimerBox(TeamColor _Color)
+{
+	GrenadeTimerBox_ = GetLevel()->CreateActor<GrenadeTimerBox>();
+	GrenadeTimerBox_->CreateGrenadeTimerBox(static_cast<FONT_COLOR>(_Color));
 }

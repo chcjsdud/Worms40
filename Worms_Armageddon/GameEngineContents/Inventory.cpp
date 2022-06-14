@@ -150,5 +150,6 @@ void Inventory::InventoryWeaponInit()
 	WeaponButtons_[1][0].Weapon_ = WeaponState::Baz;
 	WeaponButtons_[2][0].Weapon_ = WeaponState::Grenade;
 	WeaponButtons_[6][0].Weapon_ = WeaponState::AirStrike;
+	WeaponButtons_[5][2].Weapon_ = WeaponState::Sheep;
 	WeaponButtons_[5][3].Weapon_ = WeaponState::SuperSheep;
 }

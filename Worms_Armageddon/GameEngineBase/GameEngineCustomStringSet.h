@@ -78,7 +78,8 @@
 #define KEY_WEAPON_BAZ "WeaponBaz"
 #define KEY_WEAPON_GRENADE "WeaponGrenade"
 #define KEY_WEAPON_AIRSTRIKE "WeaponAirStrike"
-#define KEY_WEAPON_SUPERSHEEP "WeaponSuperSheep"
+#define KEY_WEAPON_SHEEP "WeaponSuperSheep"
+#define KEY_WEAPON_SUPERSHEEP "WeaponSheep"
 
 // ¸¶¿ì½º
 #define IMG_MOUSE_CURSOR "Cursor.bmp"

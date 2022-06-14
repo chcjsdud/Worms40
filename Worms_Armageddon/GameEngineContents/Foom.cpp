@@ -24,8 +24,8 @@ void Foom::Update()
 	{
 		if (false == IsStartFx_)
 		{
-			FxPlay(FxPlayList::Foom);
 			FxPlay(FxPlayList::Circle50);
+			FxPlay(FxPlayList::Foom);
 			FxPlay(FxPlayList::Elipse50);
 			IsStartFx_ = true;
 		}

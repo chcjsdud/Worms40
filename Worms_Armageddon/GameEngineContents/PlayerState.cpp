@@ -90,7 +90,12 @@ void Player::IdleUpdate()
 			WeaponState_ = WeaponState::AirStrike;
 			IsSwitch = true;
 		}
-		else if (GameEngineInput::GetInst()->IsDown(KEY_WEAPON_SUPERSHEEP))
+		if (GameEngineInput::GetInst()->IsDown(KEY_WEAPON_SHEEP))
+		{
+			WeaponState_ = WeaponState::Sheep;
+			IsSwitch = true;
+		}
+		if (GameEngineInput::GetInst()->IsDown(KEY_WEAPON_SUPERSHEEP))
 		{
 			WeaponState_ = WeaponState::SuperSheep;
 			IsSwitch = true;
@@ -121,6 +126,10 @@ void Player::IdleUpdate()
 		case WeaponState::Mortar:
 			break;
 		case WeaponState::Grenade:
+			// 무기 각도 조절
+			MoveWeaponAngle(GameEngineTime::GetDeltaTime());
+			// 무기 파워 조절
+			ChargingWeaponPower();
 			break;
 		case WeaponState::Axe:
 			break;
@@ -173,6 +182,7 @@ void Player::WeaponSwapUpdate()
 		case WeaponState::FirePunch:
 			break;
 		case WeaponState::Sheep:
+			StateName_ = ANIM_KEYWORD_PLAYER_SHEEPOFF;
 			break;
 		case WeaponState::SuperSheep:
 			StateName_ = ANIM_KEYWORD_PLAYER_SHEEPOFF;
@@ -531,6 +541,10 @@ void Player::IdleStart()
 	{
 		StateName_ = ANIM_KEYWORD_PLAYER_AIRON;
 	}
+	else if (WeaponState_ == WeaponState::Sheep)
+	{
+		StateName_ = ANIM_KEYWORD_PLAYER_SHEEPON;
+	}
 	else if (WeaponState_ == WeaponState::SuperSheep)
 	{
 		StateName_ = ANIM_KEYWORD_PLAYER_SHEEPON;
@@ -588,10 +602,11 @@ void Player::ActionStart()
 		break;
 	case WeaponState::Sheep:
 		Weapon_ = GetLevel()->CreateActor<Sheep>();
+		Weapon_->CreateGrenadeTimerBox(MyTeamColor_);
 		break;
 	case WeaponState::SuperSheep:
 		Weapon_ = GetLevel()->CreateActor<SuperSheep>();
-		//Weapon_->SetWeaponState(WeaponState_);
+		Weapon_->CreateGrenadeTimerBox(MyTeamColor_);
 		break;
 	case WeaponState::AirStrike:
 		Weapon_ = GetLevel()->CreateActor<AirStrike>();

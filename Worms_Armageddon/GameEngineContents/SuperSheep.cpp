@@ -2,12 +2,14 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngine/GameEngineRenderer.h>
 #include "PixelCollision.h"
+#include "GrenadeTimerBox.h"
 
 SuperSheep::SuperSheep() 
 	: IsSuper_(false)
 	, ModeCnt_(0)
 	, SpDegree_(90.f)
 	, SheepFlyDir_(float4::UP)
+	, GrenadeTimerBox_(nullptr)
 {
 }
 
@@ -22,11 +24,6 @@ void SuperSheep::Start()
 	WeaponRender_ = CreateRenderer((int)RenderOrder::Weapon);
 	WeaponRender_->CreateAnimation(IMG_SHEEP_BULLET_LEFT, ANIM_NAME_SHEEP_LEFT, 0, 7, 0.04f);
 	WeaponRender_->CreateAnimation(IMG_SHEEP_BULLET_RIGHT, ANIM_NAME_SHEEP_RIGHT, 0, 7, 0.04f);
-
-	for (size_t i = 0; i < 360; ++i)
-	{
-		int AnimAngle;
-	}
 
 	float AnimSpeed = 0.08f;
 	
@@ -54,6 +51,19 @@ bool SuperSheep::WeaponUpdate()
 		return false;
 	}
 
+	if (20.0f < GetAccTime()) // 20초 후 폭발
+	{
+		Explosion();
+		GrenadeTimerBox_->DeleteGrenadeBox();
+		return false;
+	}
+
+	//타이머 박스 위치
+	if (GrenadeTimerBox_ != nullptr)
+	{
+		GrenadeTimerBox_->TimerBoxSetPosition({ this->GetPosition().x, this->GetPosition().y - 50.f });
+	}
+
 	if (false == IsSuper_) // 양 모드
 	{
 		IsBounce_ = true;
@@ -69,6 +79,7 @@ bool SuperSheep::WeaponUpdate()
 			if (1 == ModeCnt_)
 			{
 				Explosion();
+				return false;
 			}
 
 			WeaponRender_->ChangeAnimation("spsheepAngle-8");
@@ -81,42 +92,15 @@ bool SuperSheep::WeaponUpdate()
 	else // 슈퍼양 모드
 	{
 		IsBounce_ = false;
-		float Speed = 3.0f;
-
-		if (false == GameEngineInput::GetInst()->IsPress(KEY_MOVE_LEFT) &&
-			false == GameEngineInput::GetInst()->IsPress(KEY_MOVE_RIGHT))
-		{
-			//IsAngleInit_ = false;
-		}
+		float Speed = 5.0f;
 
 		if (true == GameEngineInput::GetInst()->IsPress(KEY_MOVE_LEFT))
 		{ // - Angle_
-
-			SpDegree_ += SpDegree_ * GameEngineTime::GetDeltaTime() * 1.f;
-			float CalDegree = -1.f * SpDegree_;
-			SheepFlyDir_ = float4::DegreeToDirectionFloat4(CalDegree);
-
-			if (720.f < SpDegree_)
-			{
-				SpDegree_ = 360.f;
-			}
-
-			CycleFlyRender(0);
+			CycleFly(0);
 		}
 		else if (true == GameEngineInput::GetInst()->IsPress(KEY_MOVE_RIGHT))
 		{ // + Angle_
-
-
-			SpDegree_ += SpDegree_ * GameEngineTime::GetDeltaTime() * 1.f;
-			float CalDegree = 1.f * SpDegree_;
-			SheepFlyDir_ = float4::DegreeToDirectionFloat4(CalDegree);
-
-			if (720.f < SpDegree_)
-			{
-				SpDegree_ = 360.f;
-			}
-
-			CycleFlyRender(1);
+			CycleFly(1);
 		}
 
 		SetMove(SheepFlyDir_ * Speed);
@@ -142,16 +126,35 @@ bool SuperSheep::WeaponUpdate()
 	}
 }
 
-void SuperSheep::CycleFlyRender(int _CycleDir)
+void SuperSheep::CreateGrenadeTimerBox(TeamColor _Color)
 {
+	GrenadeTimerBox_ = GetLevel()->CreateActor<GrenadeTimerBox>();
+	GrenadeTimerBox_->CreateGrenadeTimerBox(static_cast<FONT_COLOR>(_Color));
+}
+
+void SuperSheep::CycleFly(int _CycleDir)
+{
+	if (720.f < SpDegree_)
+	{
+		SpDegree_ = 360.f;
+	}
+
+	SpDegree_ += SpDegree_ * GameEngineTime::GetDeltaTime() * 0.8f;
+
 	if (0 == _CycleDir)
 	{
+		float CalDegree = -1.f * SpDegree_;
+		SheepFlyDir_ = float4::DegreeToDirectionFloat4(CalDegree);
+
 		int AnimAngle = (int)SpDegree_ % 360;
 		AnimAngle = AnimAngle / 11.25f;
 		WeaponRender_->ChangeAnimation("spsheepAngle-" + std::to_string(AnimAngle));
 	}
 	else
 	{
+		float CalDegree = 1.f * SpDegree_;
+		SheepFlyDir_ = float4::DegreeToDirectionFloat4(CalDegree);
+
 		int AnimAngle = (int)SpDegree_ % 360;
 		AnimAngle = AnimAngle / 11.25f;
 		AnimAngle = 31 - AnimAngle;
