@@ -280,13 +280,11 @@ void WeaponMaster::AirStart(float4 _AirSpawn)
 
 void WeaponMaster::TargetCursor()
 {
-	float4 PlayerPos = GetPosition();
-	PlayerPos.x -= SCALE_GRADIENT_X / 2;
-	PlayerPos.y -= SCALE_GRADIENT_Y / 2; // 플레이어 카메라 LeftTop 위치 구함 
+	float4 CameraPos = GetLevel()->GetCameraPos();
 
 	float4 CursorPos = Cursor::GetCursorPosition(); // 카메라좌표에서 커서 위치 받음
 
-	TargetPos_ = PlayerPos + CursorPos; // 커서로 지정한 월드좌표
+	TargetPos_ = CameraPos + CursorPos; // 커서로 지정한 월드좌표
 }
 
 void WeaponMaster::BulletMove(float _Gravity, bool _IsWind)

@@ -6,6 +6,7 @@
 
 AirStrike::AirStrike() 
 	: IsBomb_(false)
+	, IsAirOff_(true)
 {
 }
 
@@ -32,6 +33,20 @@ bool AirStrike::WeaponUpdate()
 		return false;
 	}
 	
+	if (true == IsBomb_)
+	{
+		if (IsAirOff_)
+		{
+			ReSetAccTime();
+			IsAirOff_ = false;
+		}
+		
+		if (1.f < GetAccTime())
+		{
+			Off();
+		}
+	}
+
 	AirStart(float4::LEFT); // 폭격기 출격
 	// 폭격기가 경로를 다 지나가야 다음 턴 넘어감
 

@@ -23,5 +23,6 @@ protected:
 
 private:
 	bool IsBomb_;
+	bool IsAirOff_;
 };
 

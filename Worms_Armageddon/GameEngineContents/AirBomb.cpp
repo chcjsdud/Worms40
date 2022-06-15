@@ -21,12 +21,24 @@ void AirBomb::Start()
 void AirBomb::Update()
 {
 	bool IsExplosion = true;
+	
+
+	if (true == WeaponMaster::IsBulletOutofBound())
+	{
+		AirBombExplodEnd_ = !IsExplosion;
+
+		if (BombCount_ == 2)
+		{
+			WeaponStaticReturn_ = !IsExplosion;
+		}
+		return;
+	}
 
 	ThrowStart(300); // 투사체를 던지고
 	BulletMove(500, false); // 그게 날아가서
 	IsExplosion = BulletColEvent(); // 충돌하면 이벤트가 발생한다.
-	AirBombExplodEnd_ = !IsExplosion;
 
+	AirBombExplodEnd_ = !IsExplosion;
 
 	if (BombCount_ == 2)
 	{

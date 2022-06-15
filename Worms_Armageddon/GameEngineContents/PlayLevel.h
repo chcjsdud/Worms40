@@ -108,5 +108,10 @@ public:
 	{
 		return Mouse_;
 	}
+
+	float4 GetCameraPos()
+	{
+		return CameraPos_;
+	}
 };
 
