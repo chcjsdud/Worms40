@@ -362,39 +362,6 @@ void Worms::GameInit()
 			GameEngineSound::LoadRes(AllImageFileList[i].GetFullPath());
 		}
 	}
-
-	// 사운드 파일 로딩
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParent(DIR_WORMS_PARENTS);
-		Dir.Move(DIR_RESOURCES);
-		Dir.Move(DIR_SOUND);
-		Dir.Move(DIR_EFFECTS);
-
-		std::vector<GameEngineFile> AllImageFileList = Dir.GetAllFile();
-
-		for (size_t i = 0; i < AllImageFileList.size(); i++)
-		{
-			GameEngineSound::LoadRes(AllImageFileList[i].GetFullPath());
-		}
-	}
-
-	// 사운드 파일 로딩
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParent(DIR_WORMS_PARENTS);
-		Dir.Move(DIR_RESOURCES);
-		Dir.Move(DIR_SOUND);
-		Dir.Move(DIR_ENGLISH);
-
-		std::vector<GameEngineFile> AllImageFileList = Dir.GetAllFile();
-
-		for (size_t i = 0; i < AllImageFileList.size(); i++)
-		{
-			GameEngineSound::LoadRes(AllImageFileList[i].GetFullPath());
-		}
-	}
-
 	
 	CreateLevel<TitleLevel>(LEVEL_TITLE_LEVEL);
 	CreateLevel<PlayLevel>(LEVEL_PLAY_LEVEL);
