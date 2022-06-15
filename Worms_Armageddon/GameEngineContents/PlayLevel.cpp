@@ -130,6 +130,18 @@ void PlayLevel::Update()
 		}
 
 		AllPlayerIter_ = PlayQueue_.begin();
+
+		// 조작 가능한 플레이어가 모두 없어졌을 경우 크레딧 레벨로
+		if (AllPlayerIter_->size() == 0)
+		{
+			// 2초 대기
+			Sleep(2000);
+
+			GameEngine::GetInst().ChangeLevel(LEVEL_CREDIT_LEVEL);
+
+			return;
+		}
+
 		TargetPlayer_ = *AllPlayerIter_->begin();
 
 		// 첫 실행시 현재 플레이어의 위치 초기화
