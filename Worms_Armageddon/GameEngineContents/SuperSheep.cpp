@@ -47,16 +47,12 @@ void SuperSheep::Update()
 
 bool SuperSheep::WeaponUpdate()
 {
-	// 테스트
-	if (true == GameEngineInput::GetInst()->IsDown(KEY_MOVE_JUMP))
-	{
-		// 무기가 폭발하고 
-		// 동작 끝 - > 플레이어의 State가 변경, 턴종료
-		return false;
-	}
-
 	if (true == WeaponMaster::IsBulletOutofBound()) // 바다에 빠지면
 	{
+		if (nullptr != TimerBox_)
+		{
+			GetTimerBox()->DeleteGrenadeBox();
+		}
 		Off();
 		return false;
 	}

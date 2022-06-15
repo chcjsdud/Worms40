@@ -29,17 +29,13 @@ void Grenade::Update()
 
 bool Grenade::WeaponUpdate()
 {
-	// 총알 
-	if (true == WeaponMaster::IsBulletOutofBound())
+	if (true == WeaponMaster::IsBulletOutofBound()) // 바다에 빠지면
 	{
-		return false;
-	}
-
-	// 테스트
-	if (true == GameEngineInput::GetInst()->IsDown(KEY_FIRE))
-	{
-		// 무기가 폭발하고 
-		// 동작 끝 - > 플레이어의 State가 변경, 턴종료
+		if (nullptr != TimerBox_)
+		{
+			GetTimerBox()->DeleteGrenadeBox();
+		}
+		Off();
 		return false;
 	}
 
