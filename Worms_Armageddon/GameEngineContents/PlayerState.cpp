@@ -642,7 +642,9 @@ void Player::ActionStart()
 		Weapon_->CreateTimerBox(MyTeamColor_);
 		break;
 	case WeaponState::AirStrike:
+
 		Weapon_ = GetLevel()->CreateActor<AirStrike>();
+
 		break;
 	case WeaponState::BlowTorch:
 		break;

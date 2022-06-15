@@ -26,6 +26,8 @@ void AirBomb::Update()
 	if (true == WeaponMaster::IsBulletOutofBound())
 	{
 		AirBombExplodEnd_ = !IsExplosion;
+		this->Death();
+		WeaponMaster::AirBombArr_[BombCount_] = nullptr;
 
 		if (BombCount_ == 2)
 		{
