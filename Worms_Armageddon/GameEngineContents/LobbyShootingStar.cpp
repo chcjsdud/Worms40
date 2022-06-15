@@ -49,7 +49,7 @@ void LobbyShootingStar::Update()
 
 		ShootingParticle_ = (GetLevel()->CreateActor<ShootingParticle>(static_cast<int>(RenderOrder::LobbyStar)));
 		ShootingParticle_->SetPosition({ RandomPosX_.RandomFloat(-1280.f, 1280.f), RandomPosY_.RandomFloat(-600.f, 0) });
-
+		ShootingParticle_->SetDirection(float4::RIGHT);
 		CreateStarState_ = CreateStar::SetTimer;
 
 		break;

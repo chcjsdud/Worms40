@@ -39,7 +39,7 @@ void ShootingParticle::Update()
 	LeafUpdate();
 }
 
-void ShootingParticle::SetDirectionLeft(float4 _Direction)
+void ShootingParticle::SetDirection(float4 _Direction)
 {
 	MoveDirection_.x = _Direction.x;
 }

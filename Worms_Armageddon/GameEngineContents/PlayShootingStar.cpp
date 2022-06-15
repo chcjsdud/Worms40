@@ -59,12 +59,12 @@ void PlayShootingStar::Update()
 
 		if (Dir_ == true)
 		{
-			ShootingParticle_->SetDirectionLeft(float4::LEFT);
+			ShootingParticle_->SetDirection(float4::LEFT);
 
 		}
 		else
 		{
-			ShootingParticle_->SetDirectionLeft(float4::RIGHT);
+			ShootingParticle_->SetDirection(float4::RIGHT);
 
 		}
 
