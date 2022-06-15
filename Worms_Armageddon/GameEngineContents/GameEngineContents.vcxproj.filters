@@ -194,6 +194,9 @@
     <ClInclude Include="MiddleCloud.h">
       <Filter>02.PlayLevel\BackGroundActor</Filter>
     </ClInclude>
+    <ClInclude Include="ChattingBox.h">
+      <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Worms.cpp" />
@@ -388,6 +391,9 @@
     </ClCompile>
     <ClCompile Include="MiddleCloud.cpp">
       <Filter>02.PlayLevel\BackGroundActor</Filter>
+    </ClCompile>
+    <ClCompile Include="ChattingBox.cpp">
+      <Filter>01.LobbyLevel\LobbyActor\Box</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

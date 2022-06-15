@@ -11,6 +11,8 @@ PlayShootingStar::PlayShootingStar()
 	RandomPosX_(),
 	RandomPosY_(),
 
+	Dir_(false),
+
 	ShootingParticle_(nullptr),
 	CreateStarState_(CreateStar::SetTimer)
 {
@@ -26,6 +28,8 @@ void PlayShootingStar::Start()
 
 void PlayShootingStar::Update()
 {
+
+
 
 	switch (CreateStarState_)
 	{
@@ -53,6 +57,17 @@ void PlayShootingStar::Update()
 		ShootingParticle_->SetLeafAnimation();
 		ShootingParticle_->SetLeafCurve();
 
+		if (Dir_ == true)
+		{
+			ShootingParticle_->SetDirectionLeft(float4::LEFT);
+
+		}
+		else
+		{
+			ShootingParticle_->SetDirectionLeft(float4::RIGHT);
+
+		}
+
 		CreateStarState_ = CreateStar::SetTimer;
 
 		break;
@@ -60,4 +75,14 @@ void PlayShootingStar::Update()
 		break;
 	}
 
+}
+
+void PlayShootingStar::SetLeftDir()
+{
+	Dir_ = true;
+}
+
+void PlayShootingStar::SetRightDir()
+{
+	Dir_ = false;
 }

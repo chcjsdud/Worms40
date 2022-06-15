@@ -4,13 +4,14 @@
 #include <GameEngineBase/GameEngineRandom.h>
 #include <math.h>
 
+
+float4 ShootingParticle::MoveDirection_ = float4::RIGHT;
+
 ShootingParticle::ShootingParticle()
 	:
 	StarRenderer_(nullptr),
 	StarUpdate_(true),
 	LimitY_(GameEngineWindow::GetInst().GetScale().y),
-	MoveDirection_(float4::RIGHT),
-
 	Speed_(150.f)
 {
 	GameEngineRandom Random_;

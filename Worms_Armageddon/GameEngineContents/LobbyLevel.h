@@ -3,6 +3,8 @@
 
 #include "Font.h"
 #include "LobbyShootingStar.h"
+#include "ChattingBox.h"
+#include "ChatBox.h"
 
 // Ό³Έν :
 class GameEngineActor;
@@ -33,7 +35,7 @@ private:
 	GameEngineActor* PlayersBox_;
 	GameEngineActor* TeamListBox_;
 	GameEngineActor* TeamEditBox_;
-	GameEngineActor* ChatBox_;
+
 	GameEngineActor* TypingBox_;
 	GameEngineActor* TerrainBox_;
 
@@ -43,8 +45,11 @@ private:
 	GameEngineActor* StartButton_;
 	GameEngineActor* ExitButton_;
 
+	ChatBox* ChatBox_;
+
 	LobbyShootingStar* LobbyShootingStar_;
 
+	ChattingBox* ChattingBox_;
 
 };
 

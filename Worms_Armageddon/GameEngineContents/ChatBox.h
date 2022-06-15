@@ -1,5 +1,7 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
+#include "Font.h"
+#include <vector>
 
 // Ό³Έν :
 class GameEngineRenderer;
@@ -22,5 +24,9 @@ protected:
 
 private:
 	GameEngineRenderer* BoxRenderer_;
+	std::vector<Font*> ChatList_;
+
+public:
+	void CreateChatList(std::string _Chat);
 };
 

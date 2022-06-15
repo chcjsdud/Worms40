@@ -23,8 +23,6 @@ void MapList::Start()
 {
 	MapListRenderer_ = CreateRenderer("SelectMapListBox.bmp", static_cast<int>(RenderOrder::SelectBox));
 	Font_ = GetLevel()-> CreateActor<Font>(static_cast<int>(RenderOrder::Font));
-	//Font_->GameContentCreateFont("Books", float4({ -20 , 0 }));
-
 }
 
 void MapList::Update()
@@ -42,8 +40,6 @@ void MapList::CreateMapList(std::string _Name)
 	{
 		Font_->SetPosition({ this->GetPosition().x - 14.f, this->GetPosition().y });
 	}
-
-
 }
 void MapList::ChangeTypeAndFont(std::string _Name, MapType _MapType)
 {

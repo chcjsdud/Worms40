@@ -50,6 +50,81 @@ void LobbyLevel::Loading()
 
 	LobbyShootingStar_ = CreateActor<LobbyShootingStar>(static_cast<int>(ActorGroup::UI));
 
+	//Ã¤ÆÃ 
+	ChattingBox_ = CreateActor<ChattingBox>();
+
+	//
+	GameEngineInput::GetInst()->CreateKey("ChatKeyA", 'A');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyB", 'B');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyC", 'C');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyD", 'D');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyE", 'E');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyF", 'F');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyG", 'G');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyH", 'H');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyI", 'I');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyJ", 'J');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyK", 'K');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyL", 'L');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyM", 'M');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyN", 'N');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyO", 'O');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyP", 'P');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyQ", 'Q');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyR", 'R');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyS", 'S');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyT", 'T');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyU", 'U');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyV", 'V');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyW", 'W');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyX", 'X');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyY", 'Y');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyZ", 'Z');
+
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmalla", 'a');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmallb", 'b');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmallc", 'c');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmalld", 'd');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmalle", 'e');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmallf", 'f');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmallg", 'g');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmallh", 'h');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmalli", 'i');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmallj", 'j');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmallk", 'k');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmalll", 'l');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmallm", 'm');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmalln", 'n');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmallo", 'o');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmallp", 'p');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmallq", 'q');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmallr", 'r');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmalls", 's');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmallt", 't');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmallu", 'u');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmallv", 'v');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmallw", 'w');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmallx", 'x');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmally", 'y');
+	GameEngineInput::GetInst()->CreateKey("ChatKeySmallz", 'z');
+
+	GameEngineInput::GetInst()->CreateKey("ChatKey0", '0');
+	GameEngineInput::GetInst()->CreateKey("ChatKey1", '1');
+	GameEngineInput::GetInst()->CreateKey("ChatKey2", '2');
+	GameEngineInput::GetInst()->CreateKey("ChatKey3", '3');
+	GameEngineInput::GetInst()->CreateKey("ChatKey4", '4');
+	GameEngineInput::GetInst()->CreateKey("ChatKey5", '5');
+	GameEngineInput::GetInst()->CreateKey("ChatKey6", '6');
+	GameEngineInput::GetInst()->CreateKey("ChatKey7", '7');
+	GameEngineInput::GetInst()->CreateKey("ChatKey8", '8');
+	GameEngineInput::GetInst()->CreateKey("ChatKey9", '9');
+
+	GameEngineInput::GetInst()->CreateKey("ChatKeyGrave_Exclamaion_Mark", '!');
+	GameEngineInput::GetInst()->CreateKey("ChatKeyGrave_Empty", ' ');
+
+	GameEngineInput::GetInst()->CreateKey("EnterChat", VK_RETURN);
+	GameEngineInput::GetInst()->CreateKey("BackSpace", VK_BACK);
+
 }
 
 void LobbyLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)

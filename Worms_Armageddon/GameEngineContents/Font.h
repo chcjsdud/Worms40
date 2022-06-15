@@ -143,8 +143,6 @@ enum class FONT_INDEX
 	Slash = 91,						// /
 	Question = 92,					//
 	Empty = 160,
-
-
 };
 
 

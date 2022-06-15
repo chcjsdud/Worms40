@@ -32,5 +32,11 @@ private:
 	ShootingParticle* ShootingParticle_;
 
 	float CreateTimer_;
+
+	bool Dir_; //true 오른쪽 false 왼쪽
+
+public:
+	void SetLeftDir();
+	void SetRightDir();
 };
 

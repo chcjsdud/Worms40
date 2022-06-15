@@ -22,7 +22,7 @@ void Font::Update()
 void Font::GameContentCreateFont(std::string _Text, float4 _Pivot)
 {
 	FontRenderer.reserve(_Text.size());
-	const int FontSize = _Text.size();
+	size_t FontSize = _Text.size();
 
 	for (int i = 0; i < FontSize; ++i)
 	{
@@ -286,7 +286,7 @@ void Font::GameContentChangeFont(std::string _Text, float4 _Pivot)
 
 
 	FontRenderer.reserve(_Text.size());
-	const int FontSize = _Text.size();
+	size_t FontSize = _Text.size();
 
 	for (int i = 0; i < FontSize; ++i)
 	{
@@ -537,7 +537,7 @@ void Font::GameContentCreateNumberFont(int _Num, float4 _Pivot, FONT_COLOR _Font
 	ssInt << _Num;
 
 	FontRenderer.reserve(ssInt.str().size());
-	const int FontSize = ssInt.str().size();
+	size_t FontSize = ssInt.str().size();
 
 	for (int i = 0; i < FontSize; ++i)
 	{
@@ -652,7 +652,7 @@ void Font::GameContentChangeNumberFont(int _Num, float4 _Pivot, FONT_COLOR _Font
 	ssInt << _Num;
 
 	FontRenderer.reserve(ssInt.str().size());
-	const int FontSize = ssInt.str().size();
+	size_t FontSize = ssInt.str().size();
 
 	for (int i = 0; i < FontSize; ++i)
 	{
