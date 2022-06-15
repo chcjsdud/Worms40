@@ -455,7 +455,6 @@ bool WeaponMaster::BulletColEvent()
 		{
 			// 무기 폭발 이펙트
 			Explosion();
-			ExplodeWeapon_ = this;
 			IsExplodEnd_ = true;
 			// 무기가 폭발했음을 반환(데미지 처리용)
 			return false;
@@ -499,6 +498,8 @@ void WeaponMaster::Explosion()
 	EffectManager* Effect = GetLevel()->CreateActor<Foom>();
 	Effect->SetPosition(GetPosition());
 
+
+	ExplodeWeapon_ = this;
 	Off();
 }
 
