@@ -287,7 +287,9 @@ void PlayLevel::Update()
 			SetWindUI(WinInt);
 			CameraControledByWASDFlg_ = false;
 			PrevCameraPos_ = LerpCameraPos_;
-			GameEngineSound::SoundPlayOneShot("HELLO.WAV");
+			//GameEngineSound::SoundPlayOneShot("HELLO.WAV");
+			SoundPlayer_Hello_ = GameEngineSound::SoundPlayControl("HELLO.WAV");
+			SoundPlayer_Hello_.Volume(0.1f);
 			LevelPhase_ = LevelFSM::Move;
 		}
 		else
@@ -515,11 +517,13 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 	PlayShootingStar_->SetPosition({0,0});
 
+	SoundPlayer_BGM_ = GameEngineSound::SoundPlayControl("ingame-11-rain&surf.wav", 100);
+	SoundPlayer_BGM_.Volume(0.1f);
 }
 
 void PlayLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 {
-
+	SoundPlayer_BGM_.Stop();
 
 }
 

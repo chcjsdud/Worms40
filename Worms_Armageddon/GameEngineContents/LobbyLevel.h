@@ -1,6 +1,6 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
-
+#include <GameEngineBase/GameEngineSound.h>
 #include "Font.h"
 #include "LobbyShootingStar.h"
 #include "ChattingBox.h"
@@ -51,5 +51,6 @@ private:
 
 	ChattingBox* ChattingBox_;
 
+	GameEngineSoundPlayer SoundPlayer_;
 };
 

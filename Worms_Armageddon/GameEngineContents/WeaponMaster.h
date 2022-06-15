@@ -4,6 +4,7 @@
 #include "TimerBox.h"
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineCustomStringSet.h>
+#include <GameEngineBase/GameEngineSound.h>
 
 // 설명 : 
 class GameEngineImage;
@@ -91,8 +92,8 @@ private:
 	// 무기의 폭발이 끝나는 플래그
 	bool IsExplodEnd_;
 
-	
-
+	// 사운드
+	GameEngineSoundPlayer SoundPlayer_Explode_;
 
 
 	// 동물 투사체 움직임 값

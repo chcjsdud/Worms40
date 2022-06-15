@@ -144,7 +144,8 @@ void LobbyLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 	LobbyShootingStar_->SetPosition({0,0});
 
-
+	SoundPlayer_ = GameEngineSound::SoundPlayControl("menu-loop.wav", 1000);
+	SoundPlayer_.Volume(0.1f);
 
 }
 
@@ -178,6 +179,8 @@ void LobbyLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)2, 3);
 		GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)4, 3);
 	}
+
+	SoundPlayer_.Stop();
 }
 
 

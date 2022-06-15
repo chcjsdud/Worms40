@@ -4,7 +4,7 @@
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngine/GameEngineRenderer.h>
 #include <sstream>
-
+#include <GameEngineBase/GameEngineSound.h>
 
 TitleLevel::TitleLevel()
 	:
@@ -54,7 +54,6 @@ void TitleLevel::Update()
 	switch (TitleState_)
 	{
 	case TITLE_STATE::StartLogo:
-
 		//시작 로고가 나오고 2초 뒤에 페이드 아웃 시작. 그리고 메인 로고 등장.
 		if (StartLogo_->GetAccTime() > 2.f)
 		{
@@ -81,6 +80,12 @@ void TitleLevel::Update()
 		break;
 	case TITLE_STATE::MainLogo:
 
+		if (false == SoundOn_Heart)
+		{
+			Sound_Heart = GameEngineSound::SoundPlayControl("Worms_TitleScreen_Heartbeat.wav");
+			SoundOn_Heart = true;
+		}
+
 		// 메인 로고가 나오고 5초 이후에 화이트 페이드 아웃
 		BlackFadeInOutAlpha_ -= 5.f + (GameEngineTime::GetInst()->GetDeltaTime());
 		BlackFadeInOut_->GetRenderer()->SetAlpha(static_cast<unsigned int>(BlackFadeInOutAlpha_));
@@ -103,7 +108,7 @@ void TitleLevel::Update()
 			WhiteFadeOut_->SetPosition({ GameEngineWindow::GetInst().GetScale().Half().x,  GameEngineWindow::GetInst().GetScale().Half().y });
 
 			WhiteFadeOut_->GetRenderer()->SetOrder(static_cast<int>(TITLE_RENDER_ORDER::FadeInOut));
-
+			Sound_Heart.Stop();
 			TitleState_ = TITLE_STATE::WhiteFadeOut;
 		}
 
@@ -120,6 +125,21 @@ void TitleLevel::Update()
 
 		break;
 	case TITLE_STATE::FontUpdate:
+
+		if (false == SoundOn_Bomb)
+		{
+			Sound_Bomb = GameEngineSound::SoundPlayControl("meganuke.wav");
+			Sound_Bomb.Volume(0.2f);
+			SoundOn_Bomb = true;
+		}
+
+		if (false == SoundOn_Title)
+		{
+			Sound_Title = GameEngineSound::SoundPlayControl("title.wav");
+			Sound_Title.Volume(0.2f);
+			SoundOn_Title = true;
+		}
+
 
 		FontTimer_ += GameEngineTime::GetInst()->GetDeltaTime();
 
@@ -161,4 +181,11 @@ void TitleLevel::Update()
 		GameEngine::GetInst().ChangeLevel(LEVEL_CREDIT_LEVEL);
 	}
 
+}
+
+void TitleLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
+{
+	Sound_Heart.Stop();
+	Sound_Bomb.Stop();
+	Sound_Title.Stop();
 }

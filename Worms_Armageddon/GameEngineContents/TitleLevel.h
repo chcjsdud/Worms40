@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
+#include <GameEngineBase/GameEngineSound.h>
 #include "StartLogo.h"
 #include "MainLogo.h"
 #include "TitleImage.h"
@@ -41,6 +42,8 @@ protected:
 	void Loading() override;
 	void Update() override;
 
+	void LevelChangeEnd(GameEngineLevel* _NextLevel) override;
+
 private:
 	StartLogo* StartLogo_;
 	MainLogo* MainLogo_;
@@ -58,6 +61,13 @@ private:
 
 	TITLE_STATE TitleState_;
 
+	// »ç¿îµå
+	GameEngineSoundPlayer Sound_Heart;
+	GameEngineSoundPlayer Sound_Bomb;
+	GameEngineSoundPlayer Sound_Title;
 
+	bool SoundOn_Heart;
+	bool SoundOn_Bomb;
+	bool SoundOn_Title;
 };
 

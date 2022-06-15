@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngine/GameEngineLevel.h>
 #include <GameEngineBase/GameEngineCustomStringSet.h>
+#include <GameEngineBase/GameEngineSound.h>
 
 #include "Cursor.h"
 #include "WindGauge.h"
@@ -97,6 +98,8 @@ private:
 	// ¹Ù¶÷
 	void SetWindUI(int _WindDir);
 
+	GameEngineSoundPlayer SoundPlayer_BGM_;
+	GameEngineSoundPlayer SoundPlayer_Hello_;
 
 public:
 	float4 GetWindDir()
