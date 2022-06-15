@@ -513,6 +513,9 @@ void Player::CheckHillPixel()
 // 상태 변경
 void Player::StateChange(PlayerState _State)
 {
+	Sound_BackflipOn = false;
+	Sound_JumpOn = false;
+
 	if (CurrentState_ != _State)
 	{
 		switch (_State)

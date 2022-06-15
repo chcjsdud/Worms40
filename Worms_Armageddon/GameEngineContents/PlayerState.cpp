@@ -227,14 +227,14 @@ void Player::MoveUpdate()
 	// 액션은 이동보다 우선순위가 높음.
 	if (true == IsActionKeyUp())
 	{
-		SoundPlayer_.Stop();
+		Sound_Walk.Stop();
 		StateChange(PlayerState::Action);
 		return;
 	}
 	// 키가 떨어졌을경우 Idle상태로 전환
 	if (true == IsMoveKeyUp() && false == IsMoveKeyPress())
 	{
-		SoundPlayer_.Stop();
+		Sound_Walk.Stop();
 		StateChange(PlayerState::Idle);
 		return;
 	}
@@ -259,7 +259,7 @@ void Player::MoveUpdate()
 	//점프키 눌리면 점프
 	if (true == IsJumpKeyDown())
 	{
-		SoundPlayer_.Stop();
+		Sound_Walk.Stop();
 		StateChange(PlayerState::Jump);
 		return;
 	}
@@ -271,7 +271,7 @@ void Player::MoveUpdate()
 		if (2 <= KeyCount_)
 		{
 			KeyCount_ = 0;
-			SoundPlayer_.Stop();
+			Sound_Walk.Stop();
 			StateChange(PlayerState::BackFlip);
 			return;
 		}
@@ -341,7 +341,13 @@ void Player::JumpUpdate()
 		StateName_ = ANIM_KEYWORD_PLAYER_JUMP;
 		PlayerAnimationChange(StateName_);
 
-
+		// 사운드
+		if (false == Sound_JumpOn)
+		{
+			Sound_Jump = GameEngineSound::SoundPlayControl("jump1.wav");
+			Sound_Jump.Volume(SND_VOL_JUMP);
+			Sound_JumpOn = true;
+		}
 
 		//충돌시 좌 ,우 변경
 		JumpMoveDir_ = PixelCol_->PlayerBounce(GetPosition(), { PLAYER_SIZE_X,PLAYER_SIZE_Y }, ColMapImage_, JumpMoveDir_,JumpSpeed_);
@@ -447,7 +453,13 @@ void Player::BackFlipUpdate()
 		StateName_ = ANIM_KEYWORD_PLAYER_BACKFLIP;
 		PlayerAnimationChange(StateName_);
 
-
+		// 사운드
+		if (false == Sound_BackflipOn)
+		{
+			Sound_Backflip = GameEngineSound::SoundPlayControl("backflip.wav");
+			Sound_Backflip.Volume(SND_VOL_BACKFLIP);
+			Sound_BackflipOn = true;
+		}
 
 		SetMove(JumpMoveDir_ * GameEngineTime::GetDeltaTime());
 
@@ -612,8 +624,8 @@ void Player::WeaponSwapStart()
 void Player::MoveStart()
 {
 	// 걷는 사운드
-	SoundPlayer_ = GameEngineSound::SoundPlayControl("Walk-ExpandCompress.wav", 100);
-	SoundPlayer_.Volume(SND_VOL_WALK);
+	Sound_Walk = GameEngineSound::SoundPlayControl("Walk-ExpandCompress.wav", 100);
+	Sound_Walk.Volume(SND_VOL_WALK);
 	// 이동을 시작함
 
 	// 무기 파워 초기화
@@ -712,6 +724,10 @@ void Player::FalledStart()
 	MoveDir_ = float4::UP * JumpSpeed_;
 	PlayerAnimationChange(StateName_);
 	JumpDelayTime_ = 1.6f;
+
+	// Fall 사운드
+	Sound_Fall = GameEngineSound::SoundPlayControl("fall.wav");
+	Sound_Fall.Volume(SND_VOL_FALL);
 }
 
 void Player::FlyAwayStart()

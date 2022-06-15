@@ -162,7 +162,12 @@ private:
 	float4 FlyMoveDir_;
 
 	// 사운드 오브젝트
-	GameEngineSoundPlayer SoundPlayer_;
+	GameEngineSoundPlayer Sound_Walk;
+	GameEngineSoundPlayer Sound_Fall;
+	GameEngineSoundPlayer Sound_Jump;
+	GameEngineSoundPlayer Sound_Backflip;
+	bool Sound_JumpOn;
+	bool Sound_BackflipOn;
 
 	static GameEngineRandom Ran;
 
