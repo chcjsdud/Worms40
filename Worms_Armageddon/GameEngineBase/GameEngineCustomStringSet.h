@@ -294,3 +294,12 @@
 // 크로스헤어
 #define IMG_CRSHIR_RED "crshir.bmp"
 #define IMG_CRSHIR_FILTER "crshir_filter.bmp"
+
+// 사운드 볼륨
+#define SND_VOL_WALK 0.4f
+#define SND_VOL_CHARGE 0.2f
+#define SND_VOL_BAZEXPLODE 0.3f
+#define SND_VOL_LOBBYBGM 0.5f
+#define SND_VOL_HEARTBEAT 5.0f
+#define SND_VOL_MEGANUKE 0.2f
+#define SND_VOL_TITLEBGM 0.2f

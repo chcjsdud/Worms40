@@ -468,7 +468,7 @@ void WeaponMaster::Explosion()
 	// 폭발음
 	//GameEngineSound::SoundPlayOneShot("rocketrelease.wav", 0);
 	SoundPlayer_Explode_ = GameEngineSound::SoundPlayControl("rocketrelease.wav");
-	SoundPlayer_Explode_.Volume(0.3f);
+	SoundPlayer_Explode_.Volume(SND_VOL_BAZEXPLODE);
 
 	IsExplodEnd_ = true;
 	// 이미지를 가져와서 땅이 파여있는 상태를 메모리에 보존?

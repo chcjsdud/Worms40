@@ -613,6 +613,7 @@ void Player::MoveStart()
 {
 	// 걷는 사운드
 	SoundPlayer_ = GameEngineSound::SoundPlayControl("Walk-ExpandCompress.wav", 100);
+	SoundPlayer_.Volume(SND_VOL_WALK);
 	// 이동을 시작함
 
 	// 무기 파워 초기화

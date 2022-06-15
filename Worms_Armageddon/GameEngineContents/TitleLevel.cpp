@@ -83,6 +83,7 @@ void TitleLevel::Update()
 		if (false == SoundOn_Heart)
 		{
 			Sound_Heart = GameEngineSound::SoundPlayControl("Worms_TitleScreen_Heartbeat.wav");
+			Sound_Heart.Volume(SND_VOL_HEARTBEAT);
 			SoundOn_Heart = true;
 		}
 
@@ -129,14 +130,14 @@ void TitleLevel::Update()
 		if (false == SoundOn_Bomb)
 		{
 			Sound_Bomb = GameEngineSound::SoundPlayControl("meganuke.wav");
-			Sound_Bomb.Volume(0.2f);
+			Sound_Bomb.Volume(SND_VOL_MEGANUKE);
 			SoundOn_Bomb = true;
 		}
 
 		if (false == SoundOn_Title)
 		{
 			Sound_Title = GameEngineSound::SoundPlayControl("title.wav");
-			Sound_Title.Volume(0.2f);
+			Sound_Title.Volume(SND_VOL_MEGANUKE);
 			SoundOn_Title = true;
 		}
 

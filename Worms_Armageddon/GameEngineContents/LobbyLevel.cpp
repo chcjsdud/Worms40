@@ -145,7 +145,7 @@ void LobbyLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	LobbyShootingStar_->SetPosition({0,0});
 
 	SoundPlayer_ = GameEngineSound::SoundPlayControl("menu-loop.wav", 1000);
-	SoundPlayer_.Volume(0.1f);
+	SoundPlayer_.Volume(SND_VOL_LOBBYBGM);
 
 }
 

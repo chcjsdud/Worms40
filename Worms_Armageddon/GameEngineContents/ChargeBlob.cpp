@@ -12,7 +12,7 @@ void ChargeBlob::SetChargePower(float _ChargePower, float4 _PlayerPos, float4 _S
 	if (false == IsSoundPlay_)
 	{
 		SoundPlayer_ = GameEngineSound::SoundPlayControl("throwpowerup.wav", 0);
-		SoundPlayer_.Volume(0.2f);
+		SoundPlayer_.Volume(SND_VOL_CHARGE);
 		IsSoundPlay_ = true;
 	}
 
