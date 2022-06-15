@@ -31,6 +31,7 @@ void Foom::Update()
 		}
 
 		NextFxPhase(1.f);
+		//FxPhase_ = 0;
 	}
 	break;
 	default:

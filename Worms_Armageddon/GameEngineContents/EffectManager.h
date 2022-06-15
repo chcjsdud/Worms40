@@ -32,6 +32,8 @@ protected:
 	// 이펙트 스타트
 	bool IsStartFx_;
 
+	bool IsRepeat_;
+
 	void Start() override;
 	void Update() override;
 

@@ -5,6 +5,7 @@ EffectManager::EffectManager()
 	: FxOffCnt_(0)
 	, FxPhase_(0)
 	, IsStartFx_(false)
+	, IsRepeat_(false)
 {
 }
 
