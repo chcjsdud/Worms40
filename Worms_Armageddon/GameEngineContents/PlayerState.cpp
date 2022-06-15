@@ -770,8 +770,7 @@ void Player::FlyAwayUpdate()
 
 			//너무높은곳에서 떨어지면
 			StateChange(PlayerState::Falled);
-			PlayerHp_ -= 10;
-			Hpbar_->ChangeHpBarFont(PlayerHp_);
+			Damage_ += 10;
 			IsDamaged_ = false;
 			IsFly_ = false;
 		}

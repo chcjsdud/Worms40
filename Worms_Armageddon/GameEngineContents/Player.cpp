@@ -51,6 +51,7 @@ Player::Player()
 	, WeaponType_(0)
 	, Damage_(0)
 	, SlideEnd_(false)
+	, DeathDelayTime_(1.0f)
 {
 }
 
@@ -866,7 +867,11 @@ void Player::CheckDeath()
 
 	if (PlayerHp_ == 0)
 	{
-		StateChange(PlayerState::Death);
+		DeathDelayTime_ -= GameEngineTime::GetDeltaTime();
+		if (DeathDelayTime_ <= 0)
+		{
+			StateChange(PlayerState::Death);
+		}
 	//	IsDeath_ = true;
 	}
 

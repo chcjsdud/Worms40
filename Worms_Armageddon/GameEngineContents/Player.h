@@ -210,7 +210,7 @@ private:
 
 
 	bool ControlFlg_;
-
+	float DeathDelayTime_;
 	bool SlideEnd_;
 	bool IsFly_;
 
