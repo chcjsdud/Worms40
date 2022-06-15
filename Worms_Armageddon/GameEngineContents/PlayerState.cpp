@@ -843,6 +843,9 @@ void Player::FlyAwayUpdate()
 
 void Player::DeathStart()
 {
+	Sound_Byebye = GameEngineSound::SoundPlayControl("byebye.wav");
+	Sound_Byebye.Volume(SND_VOL_BYEBYE);
+
 	PlayerAnimationChange(ANIM_KEYWORD_PLAYER_DEATH);
 	PlayerHp_ = 0;
 	JumpSpeed_ = 100.0f;

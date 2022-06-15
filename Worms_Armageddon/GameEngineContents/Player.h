@@ -166,6 +166,7 @@ private:
 	GameEngineSoundPlayer Sound_Fall;
 	GameEngineSoundPlayer Sound_Jump;
 	GameEngineSoundPlayer Sound_Backflip;
+	GameEngineSoundPlayer Sound_Byebye;
 	bool Sound_JumpOn;
 	bool Sound_BackflipOn;
 
