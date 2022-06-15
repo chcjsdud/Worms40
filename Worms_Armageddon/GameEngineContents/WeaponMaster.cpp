@@ -498,7 +498,10 @@ void WeaponMaster::Explosion()
 	EffectManager* Effect = GetLevel()->CreateActor<Foom>();
 	Effect->SetPosition(GetPosition());
 
-
+	if (nullptr != TimerBox_)
+	{
+		GetTimerBox()->DeleteGrenadeBox();
+	}
 	ExplodeWeapon_ = this;
 	Off();
 }

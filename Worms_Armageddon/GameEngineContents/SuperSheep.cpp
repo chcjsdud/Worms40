@@ -63,7 +63,6 @@ bool SuperSheep::WeaponUpdate()
 	if (SelfDestructSec_ < GetAccTime()) // ÀÚÆø
 	{
 		Explosion();
-		GetTimerBox()->DeleteGrenadeBox();
 		return false;
 	}
 

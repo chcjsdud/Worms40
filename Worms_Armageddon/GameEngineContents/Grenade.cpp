@@ -46,7 +46,9 @@ bool Grenade::WeaponUpdate()
 	if (SelfDestructSec_ < GetAccTime()) // ÀÚÆø
 	{
 		Explosion();
-		GetTimerBox()->DeleteGrenadeBox();
+
+
+
 		return false;
 	}
 
