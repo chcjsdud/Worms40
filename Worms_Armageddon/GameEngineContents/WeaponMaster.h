@@ -70,6 +70,10 @@ public:
 		return TimerBox_;
 	}
 
+	inline void SetTeamColor(TeamColor _Color)
+	{
+		MyTeamColor_ = _Color;
+	}
 
 private: 
 	// 지정한 목표 좌표
@@ -87,8 +91,7 @@ private:
 	// 무기의 폭발이 끝나는 플래그
 	bool IsExplodEnd_;
 
-	//타이머 박스
-	TimerBox* TimerBox_;
+	
 
 
 
@@ -133,6 +136,12 @@ protected:
 	float ShotPower_;
 	// 자폭 시간
 	float SelfDestructSec_;
+	//타이머 박스
+	TimerBox* TimerBox_;
+	// 나의 팀 색깔 정보
+	TeamColor MyTeamColor_;
+	// 
+	bool IsTimerCreate_;
 
 
 	// 카메라가 봐야할 무기의 위치
@@ -169,7 +178,6 @@ protected:
 
 	// 투사체 바닥 범위 넘어갔는지 체크
 	bool IsBulletOutofBound();
-
 
 public:
 

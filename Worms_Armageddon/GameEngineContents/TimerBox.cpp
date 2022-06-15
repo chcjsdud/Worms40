@@ -98,7 +98,6 @@ void TimerBox::DeleteGrenadeBox()
 	TimerFont_->Death();
 	TimerBox_->Death();
 	this->Death();
-
 }
 
 void TimerBox::CreateTimerBox(FONT_COLOR _FontColor, int _Time)

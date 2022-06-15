@@ -254,6 +254,7 @@
 // 무기 애니메이션
 #define ANIM_NAME_SHEEP_LEFT "sheepwlkAnimLeft"
 #define ANIM_NAME_SHEEP_RIGHT "sheepwlkAnimRight"
+#define ANIM_NAME_SPSHEEP_FLY "spsheepAngle-"
 
 // 이펙트
 #define IMG_FX_EXFOOM "exfoom.bmp"

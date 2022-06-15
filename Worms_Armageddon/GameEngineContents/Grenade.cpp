@@ -43,12 +43,16 @@ bool Grenade::WeaponUpdate()
 		return false;
 	}
 
+	if (SelfDestructSec_ - 5.f < GetAccTime() && false == IsTimerCreate_) // 타이머 박스 생성
+	{
+		CreateTimerBox(MyTeamColor_);
+		IsTimerCreate_ = true;
+	}
+
 	if (SelfDestructSec_ < GetAccTime()) // 자폭
 	{
+		GetTimerBox()->DeleteGrenadeBox();
 		Explosion();
-
-
-
 		return false;
 	}
 

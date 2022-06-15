@@ -3,6 +3,7 @@
 #include "Foom.h"
 #include "PixelCollision.h"
 #include "AirBomb.h"
+#include "Player.h"
 #include <GameEngineBase/GameEngineCustomStringSet.h>
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngineBase/GameEngineTime.h>
@@ -42,6 +43,7 @@ WeaponMaster::WeaponMaster()
 	, ShotPower_(0)
 	, SelfDestructSec_(0)
 	, TimerBox_(nullptr)
+	, IsTimerCreate_(false)
 {
 }
 
@@ -53,7 +55,7 @@ WeaponMaster::~WeaponMaster()
 void WeaponMaster::CreateTimerBox(TeamColor _Color)
 {
 	TimerBox_ = GetLevel()->CreateActor<TimerBox>();
-	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color), static_cast<int>(SelfDestructSec_));
+	TimerBox_->CreateTimerBox(static_cast<FONT_COLOR>(_Color), static_cast<int>(5.f));
 }
 
 void WeaponMaster::Start()
@@ -496,10 +498,6 @@ void WeaponMaster::Explosion()
 	EffectManager* Effect = GetLevel()->CreateActor<Foom>();
 	Effect->SetPosition(GetPosition());
 
-	if (nullptr != TimerBox_)
-	{
-		GetTimerBox()->DeleteGrenadeBox();
-	}
 	ExplodeWeapon_ = this;
 	Off();
 }

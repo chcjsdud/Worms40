@@ -636,7 +636,7 @@ void Player::ActionStart()
 		break;
 	case WeaponState::Grenade:
 		Weapon_ = GetLevel()->CreateActor<Grenade>();
-		Weapon_->CreateTimerBox(MyTeamColor_);
+		Weapon_->SetTeamColor(MyTeamColor_);
 		break;
 	case WeaponState::Axe:
 		break;
@@ -646,16 +646,14 @@ void Player::ActionStart()
 		break;
 	case WeaponState::Sheep:
 		Weapon_ = GetLevel()->CreateActor<Sheep>();
-		Weapon_->CreateTimerBox(MyTeamColor_);
+		Weapon_->SetTeamColor(MyTeamColor_);
 		break;
 	case WeaponState::SuperSheep:
 		Weapon_ = GetLevel()->CreateActor<SuperSheep>();
-		Weapon_->CreateTimerBox(MyTeamColor_);
+		Weapon_->SetTeamColor(MyTeamColor_);
 		break;
 	case WeaponState::AirStrike:
-
 		Weapon_ = GetLevel()->CreateActor<AirStrike>();
-
 		break;
 	case WeaponState::BlowTorch:
 		break;

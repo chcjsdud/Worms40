@@ -21,7 +21,7 @@ void Sheep::Start()
 	WeaponRender_->CreateAnimation(IMG_SHEEP_BULLET_RIGHT, ANIM_NAME_SHEEP_RIGHT, 0, 7, 0.04f);
 	WeaponRender_->ChangeAnimation(ANIM_NAME_SHEEP_LEFT);
 
-	SelfDestructSec_ = 10.f;
+	SelfDestructSec_ = 8.f;
 }
 
 void Sheep::Update()
@@ -31,11 +31,6 @@ void Sheep::Update()
 
 bool Sheep::WeaponUpdate()
 {
-	if (true == WeaponMaster::IsBulletOutofBound())
-	{
-		return false;
-	}
-
 	// 테스트
 	if (true == GameEngineInput::GetInst()->IsDown(KEY_MOVE_JUMP))
 	{
@@ -44,13 +39,23 @@ bool Sheep::WeaponUpdate()
 		return false;
 	}
 
-	//float ExpTime = 20.f;
-
-	if (SelfDestructSec_ < GetAccTime()) // 자폭
+	if (true == WeaponMaster::IsBulletOutofBound()) // 바다에 빠지면
 	{
+		GetTimerBox()->DeleteGrenadeBox();
+		Off();
+		return false;
+	}
+
+	if (SelfDestructSec_-5.f < GetAccTime() && false == IsTimerCreate_) // 타이머 박스 생성
+	{
+		CreateTimerBox(MyTeamColor_);
+		IsTimerCreate_ = true;
+	}
+
+	if (SelfDestructSec_ < GetAccTime()) // 자동자폭
+	{
+		GetTimerBox()->DeleteGrenadeBox();
 		Explosion();
-
-
 
 		return false;
 	}
@@ -63,6 +68,10 @@ bool Sheep::WeaponUpdate()
 
 	if (true == GameEngineInput::GetInst()->IsDown(KEY_FIRE)) // 자폭
 	{
+		if (nullptr != TimerBox_)
+		{
+			GetTimerBox()->DeleteGrenadeBox();
+		}
 		Explosion();
 		return false;
 	}

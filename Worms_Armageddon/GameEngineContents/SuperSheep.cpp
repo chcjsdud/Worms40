@@ -8,7 +8,7 @@
 SuperSheep::SuperSheep() 
 	: IsSuper_(false)
 	, ModeCnt_(0)
-	, SpDegree_(90.f)
+	, SpDegree_(270.f)
 	, SheepFlyDir_(float4::UP)
 {
 }
@@ -32,7 +32,7 @@ void SuperSheep::Start()
 	for (int i = 0; i < 32; i++)
 	{
 		int AnimIndex = i * 2;
-		WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, "spsheepAngle-" + std::to_string(i), AnimIndex, AnimIndex + 1, AnimSpeed);
+		WeaponRender_->CreateAnimation(IMG_SUPERSHEEP_FLY, ANIM_NAME_SPSHEEP_FLY + std::to_string(i), AnimIndex, AnimIndex + 1, AnimSpeed);
 	}
 
 	WeaponRender_->ChangeAnimation(ANIM_NAME_SHEEP_LEFT);
@@ -47,11 +47,6 @@ void SuperSheep::Update()
 
 bool SuperSheep::WeaponUpdate()
 {
-	if (true == WeaponMaster::IsBulletOutofBound())
-	{
-		return false;
-	}
-
 	// 테스트
 	if (true == GameEngineInput::GetInst()->IsDown(KEY_MOVE_JUMP))
 	{
@@ -60,8 +55,21 @@ bool SuperSheep::WeaponUpdate()
 		return false;
 	}
 
+	if (true == WeaponMaster::IsBulletOutofBound()) // 바다에 빠지면
+	{
+		Off();
+		return false;
+	}
+
+	if (SelfDestructSec_ - 5.f < GetAccTime() && false == IsTimerCreate_) // 타이머 박스 생성
+	{
+		CreateTimerBox(MyTeamColor_);
+		IsTimerCreate_ = true;
+	}
+
 	if (SelfDestructSec_ < GetAccTime()) // 자폭
 	{
+		GetTimerBox()->DeleteGrenadeBox();
 		Explosion();
 		return false;
 	}
@@ -86,6 +94,10 @@ bool SuperSheep::WeaponUpdate()
 		{
 			if (1 == ModeCnt_)
 			{
+				if (nullptr != TimerBox_)
+				{
+					GetTimerBox()->DeleteGrenadeBox();
+				}
 				Explosion();
 				return false;
 			}
@@ -111,8 +123,8 @@ bool SuperSheep::WeaponUpdate()
 			CycleFly(1);
 		}
 
-		EffectManager* Effect = GetLevel()->CreateActor<Skidmark>();
-		Effect->SetPosition(GetPosition());
+		//EffectManager* Effect = GetLevel()->CreateActor<Skidmark>();
+		//Effect->SetPosition(GetPosition());
 
 		SetMove(SheepFlyDir_ * Speed);
 
@@ -140,32 +152,32 @@ bool SuperSheep::WeaponUpdate()
 
 void SuperSheep::CycleFly(int _CycleDir)
 {
-	if (720.f < SpDegree_)
+	if (360.0f < SpDegree_)
 	{
-		SpDegree_ = 360.f;
+		SpDegree_ = 0.0f;
+	}
+	else if (0 > SpDegree_)
+	{
+		SpDegree_ = 360.0f;
 	}
 
-	SpDegree_ += SpDegree_ * GameEngineTime::GetDeltaTime() * 0.8f;
+	// 랜더링 각도 계산
+	int AnimAngle = (int)SpDegree_ % 360;
+	AnimAngle = static_cast<int>(AnimAngle / 11.25f);
+	AnimAngle = 31 - AnimAngle;
 
 	if (0 == _CycleDir)
 	{
-		float CalDegree = -1.f * SpDegree_;
-		SheepFlyDir_ = float4::DegreeToDirectionFloat4(CalDegree);
+		SpDegree_ -= GameEngineTime::GetDeltaTime() * 270.0f;
+		SheepFlyDir_ = float4::DegreeToDirectionFloat4(SpDegree_);
 
-		int AnimAngle = (int)SpDegree_ % 360;
-
-		//박지영 : 오류 제거 작업. int로 캐스팅
-		AnimAngle = static_cast<int>(AnimAngle / 11.25f);
-		WeaponRender_->ChangeAnimation("spsheepAngle-" + std::to_string(AnimAngle));
+		WeaponRender_->ChangeAnimation(ANIM_NAME_SPSHEEP_FLY + std::to_string(AnimAngle));
 	}
 	else
 	{
-		float CalDegree = 1.f * SpDegree_;
-		SheepFlyDir_ = float4::DegreeToDirectionFloat4(CalDegree);
+		SpDegree_ += GameEngineTime::GetDeltaTime() * 270.0f;
+		SheepFlyDir_ = float4::DegreeToDirectionFloat4(SpDegree_);
 
-		int AnimAngle = (int)SpDegree_ % 360;
-		AnimAngle = static_cast<int>(AnimAngle / 11.25f);
-		AnimAngle = 31 - AnimAngle;
-		WeaponRender_->ChangeAnimation("spsheepAngle-" + std::to_string(AnimAngle));
+		WeaponRender_->ChangeAnimation(ANIM_NAME_SPSHEEP_FLY + std::to_string(AnimAngle));
 	}
 }
