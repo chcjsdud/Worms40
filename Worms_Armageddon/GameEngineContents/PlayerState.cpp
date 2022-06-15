@@ -241,12 +241,14 @@ void Player::MoveUpdate()
 	// 액션은 이동보다 우선순위가 높음.
 	if (true == IsActionKeyUp())
 	{
+		SoundPlayer_.Stop();
 		StateChange(PlayerState::Action);
 		return;
 	}
 	// 키가 떨어졌을경우 Idle상태로 전환
 	if (true == IsMoveKeyUp() && false == IsMoveKeyPress())
 	{
+		SoundPlayer_.Stop();
 		StateChange(PlayerState::Idle);
 		return;
 	}
@@ -271,6 +273,7 @@ void Player::MoveUpdate()
 	//점프키 눌리면 점프
 	if (true == IsJumpKeyDown())
 	{
+		SoundPlayer_.Stop();
 		StateChange(PlayerState::Jump);
 		return;
 	}
@@ -282,6 +285,7 @@ void Player::MoveUpdate()
 		if (2 <= KeyCount_)
 		{
 			KeyCount_ = 0;
+			SoundPlayer_.Stop();
 			StateChange(PlayerState::BackFlip);
 			return;
 		}
@@ -597,7 +601,7 @@ void Player::WeaponSwapStart()
 void Player::MoveStart()
 {
 	// 걷는 사운드
-
+	SoundPlayer_ = GameEngineSound::SoundPlayControl("Walk-ExpandCompress.wav", 100);
 	// 이동을 시작함
 
 	// 무기 파워 초기화
