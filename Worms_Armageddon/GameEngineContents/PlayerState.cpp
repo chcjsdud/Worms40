@@ -789,6 +789,12 @@ void Player::FlyAwayUpdate()
 		{
 			MoveDir_ = float4::RIGHT;
 		}
+
+		if (FlyMoveDir_.x < 0)
+		{
+			MoveDir_ = float4::LEFT;
+		}
+
 		StateChange(PlayerState::Slide);
 		return;
 			
@@ -803,6 +809,11 @@ void Player::FlyAwayUpdate()
 		else
 		{
 			MoveDir_ = float4::LEFT;
+		}
+
+		if (FlyMoveDir_.x >= 0)
+		{
+			MoveDir_ = float4::RIGHT;
 		}
 		StateChange(PlayerState::Slide);
 		return;
@@ -921,6 +932,7 @@ void Player::SlideUpdate()
 			} while (RGB(0, 0, 255) == RightColor);
 			
 			FlyMoveDir_.x *= -1.0f;
+			MoveDir_ = float4::LEFT;
 			PlayerRenderer_->ChangeAnimation(ANIM_NAME_PLAYER_SLIDE_LEFT);
 		}
 	}
@@ -936,17 +948,17 @@ void Player::SlideUpdate()
 			} while (RGB(0, 0, 255) == LeftColor);
 			
 			FlyMoveDir_.x *= -1.0f;
+			MoveDir_ = float4::RIGHT;
 			PlayerRenderer_->ChangeAnimation(ANIM_NAME_PLAYER_SLIDE_RIGHT);
 		}
 	}
 	
-
-	FlyMoveDir_ *= 0.7f;
+	FlyMoveDir_ *= 0.9f;
 	SetMove(FlyMoveDir_ * GameEngineTime::GetDeltaTime());
 	
 
 	//
-	if (FlyMoveDir_.x <= 0.001f)
+	if (FlyMoveDir_.x <= 0.01 && FlyMoveDir_.x >= -0.01)
 	{
 		FlyMoveDir_ = float4::ZERO;
 		SlideEnd_ = true;
