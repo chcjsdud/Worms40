@@ -38,12 +38,22 @@ void MapList::CreateMapList(std::string _Name)
 	Font_->SetPosition({ this->GetPosition() });
 	Font_->GameContentCreateFont(_Name, float4({ -20 , 0 }));
 
+	if (_Name == "Birthday")
+	{
+		Font_->SetPosition({ this->GetPosition().x - 14.f, this->GetPosition().y });
+	}
+
+
 }
 void MapList::ChangeTypeAndFont(std::string _Name, MapType _MapType)
 {
 	MapType_ = _MapType;
 	Font_->GameContentChangeFont(_Name, float4({ -20 , 0 }));
 	Font_->SetPosition({ this->GetPosition() });
+	if (_MapType == MapType::Books)
+	{
+		Font_->SetPosition({ this->GetPosition().x - 20.f, this->GetPosition().y});
+	}
 }
 void MapList::MapListAllUpdateOff()
 {
