@@ -108,6 +108,7 @@ private:
 	bool IsDamagedCam_;
 	//모든 데미지의 총합
 	int AllDamage_;
+	int Damage_;
 	// 속도
 	float Speed_;
 	// 낙하 속도

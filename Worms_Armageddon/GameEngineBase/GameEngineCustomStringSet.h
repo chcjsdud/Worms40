@@ -152,6 +152,12 @@
 #define IMG_FLY_LEFT "FlyLeft.bmp"
 #define IMG_FLY_LFFT_FILTER "FlyLeftFilter.bmp"
 #define IMG_PLAYER_GRAVE "grave3.bmp"
+#define IMG_PLAYER_WIN_LEFT "winLeft.bmp"
+#define IMG_PLAYER_WIN_RIGHT "winRight.bmp"
+#define IMG_PLAYER_SLIDE_LEFT "SlideL_.bmp"
+#define IMG_PLAYER_SLIDE_RIGHT "SlideR_.bmp"
+#define IMG_PLAYER_SLIDE_UP_LEFT "SlideL2_.bmp"
+#define IMG_PLAYER_SLIDE_UP_RIGHT "SlideR2_.bmp"
 
 
 // 애니메이션 키워드
@@ -173,6 +179,9 @@
 #define ANIM_KEYWORD_PLAYER_SHEEPON "sheepOn"
 #define ANIM_KEYWORD_PLAYER_DEATH "wdie"
 #define ANIM_KEYWORD_PLAYER_GRAVE "grave3"
+#define ANIM_KEYWORD_PLAYER_SLIDE "Slide"
+#define ANIM_KEYWORD_PLAYER_WIN "win"
+#define ANIM_KEYWORD_PLAYER_SLIDE_UP "SlideUp"
 
 
 #define ANIM_KEYWORD_DIR_LEFT "Left"
@@ -198,6 +207,12 @@
 #define ANIM_NAME_PLAYER_DEATH_LEFT "wdieLeft"
 #define ANIM_NAME_PLAYER_DEATH_RIGHT "wdieRight"
 #define ANIM_NAME_PLAYER_GRAVE "grave3"
+#define ANIM_NAME_PLAYER_WIN_LEFT "winLeft"
+#define ANIM_NAME_PLAYER_WIN_RIGHT "winRight"
+#define ANIM_NAME_PLAYER_SLIDE_LEFT "SlideLeft"
+#define ANIM_NAME_PLAYER_SLIDE_RIGHT "SlideRight"
+#define ANIM_NAME_PLAYER_SLIDE_UP_LEFT "SlideUpLeft"
+#define ANIM_NAME_PLAYER_SLIDE_UP_RIGHT "SlideUpRight"
 
 
 #define ANIM_NAME_BAZ_ON_LEFT "bazOnLeft"

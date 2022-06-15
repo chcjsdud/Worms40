@@ -15,6 +15,23 @@
 
 void Player::IdleUpdate()
 {
+	if (Damage_ != 0)
+	{
+   		PlayerHp_ -= Damage_;
+		//Hp가 0보다 작으면 0으로
+		if (PlayerHp_ <= 0)
+		{
+			PlayerHp_ = 0;
+		}
+
+		Damage_ = 0;
+
+		// HP UI에 표시될 HP변경
+		Hpbar_->ChangeHpBarFont(PlayerHp_);
+	}
+
+
+
 	if (ControlFlg_ == true)
 	{
 		// 액션은 이동보다 우선순위가 높음.

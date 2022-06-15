@@ -49,6 +49,7 @@ Player::Player()
 	, PrevWeaponState_(WeaponState::None)
 	, UnControlState_(PlayerUnControlState::UncontrolIdle)
 	, WeaponType_(0)
+	, Damage_(0)
 {
 }
 
@@ -109,6 +110,11 @@ void Player::Update()
 
 	CheckDeath();
 
+	if (IsDamaged_ == true)
+	{
+		StateChange(PlayerState::FlyAway);
+	}
+
 	if (IsDeath_ == false)
 	{
 		StateUpdate();
@@ -132,10 +138,6 @@ void Player::Update()
 	//	Damaged(Weapon_->GetWeaponPosition());
 	//}
 
-	if (IsDamaged_ == true)
-	{
-		StateChange(PlayerState::FlyAway);
-	}
 	// 컨트롤되고 있지 않은 캐릭터는 데미지를 받더라도 턴이 끝나지 않음
 }
 
@@ -247,6 +249,15 @@ void Player::PlayerAnimationInit()
 	//날라가는 애니메이션
 	PlayerRenderer_->CreateAnimation(IMG_FLY_LEFT, ANIM_NAME_PLAYER_FLY, 0, 0, 0, false);
 
+	//승리 애니메이션
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_WIN_LEFT, ANIM_NAME_PLAYER_WIN_LEFT, 0, 13, 0.2f, true,true);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_WIN_RIGHT, ANIM_NAME_PLAYER_WIN_RIGHT, 0, 13, 0.2f, true,true);
+	//미끄러지는 애니메이션
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_SLIDE_LEFT, ANIM_NAME_PLAYER_SLIDE_LEFT, 0, 2, 0.1f, true, true);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_SLIDE_RIGHT, ANIM_NAME_PLAYER_SLIDE_RIGHT, 0, 2, 0.1f, true, true);
+	//미끄러지는 애니메이션에서 일어나는 애니메이션
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_SLIDE_UP_LEFT, ANIM_NAME_PLAYER_SLIDE_UP_LEFT, 0, 35, 0.1f, false);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_SLIDE_UP_RIGHT, ANIM_NAME_PLAYER_SLIDE_UP_RIGHT, 0, 35, 0.1f, false);
 }
 
 void Player::PlayerKeyInit()
@@ -665,7 +676,6 @@ void Player::ChargingWeaponPower()
 
 			CrgBlob_->DeActivate();
 			Crshair_->Off();
-			ShotPower_ = WEAPON_DEFAULT_SHOT_POWER;
 
 			// 최대값을 넘어가면 자동으로 발사되도록
 			StateChange(PlayerState::Action);
@@ -815,19 +825,19 @@ void Player::Damaged(float4 _WeaponPos /*= float4::ZERO */)
 	{
 		if (Damage == static_cast<int>(50 - Len_))
 		{
-			PlayerHp_ -= Damage;
 			AllDamage_ += Damage;
-
-			//Hp가 0보다 작으면 0으로
-			if (PlayerHp_ <= 0)
-			{
-				PlayerHp_ = 0;
-			}
+			Damage_ += Damage;
+			//PlayerHp_ -= Damage;
+			////Hp가 0보다 작으면 0으로
+			//if (PlayerHp_ <= 0)
+			//{
+			//	PlayerHp_ = 0;
+			//}
 		}
 	}
 
-	// HP UI에 표시될 HP변경
-	Hpbar_->ChangeHpBarFont(PlayerHp_);
+	//// HP UI에 표시될 HP변경
+	//Hpbar_->ChangeHpBarFont(PlayerHp_);
 }
 
 
