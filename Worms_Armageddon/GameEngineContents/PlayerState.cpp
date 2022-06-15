@@ -15,20 +15,6 @@
 
 void Player::IdleUpdate()
 {
-	if (Damage_ != 0)
-	{
-   		PlayerHp_ -= Damage_;
-		//Hp가 0보다 작으면 0으로
-		if (PlayerHp_ <= 0)
-		{
-			PlayerHp_ = 0;
-		}
-
-		Damage_ = 0;
-
-		// HP UI에 표시될 HP변경
-		Hpbar_->ChangeHpBarFont(PlayerHp_);
-	}
 
 
 
@@ -553,6 +539,24 @@ void Player::FalledUpdate()
 
 void Player::IdleStart()
 {
+
+
+	if (Damage_ != 0)
+	{
+		PlayerHp_ -= Damage_;
+		//Hp가 0보다 작으면 0으로
+		if (PlayerHp_ <= 0)
+		{
+			PlayerHp_ = 0;
+		}
+
+		Damage_ = 0;
+
+		// HP UI에 표시될 HP변경
+		Hpbar_->ChangeHpBarFont(PlayerHp_);
+	}
+
+
 	if (WeaponState_ != WeaponState::None)
 	{
 		Crshair_->On();
@@ -584,7 +588,14 @@ void Player::IdleStart()
 	}
 	else
 	{
-		StateName_ = ANIM_KEYWORD_PLAYER_IDLE;
+		if (PlayerHp_ <= 40)
+		{
+			StateName_ = ANIM_KEYWORD_PLAYER_BREATH;
+		}
+		else
+		{
+			StateName_ = ANIM_KEYWORD_PLAYER_IDLE;
+		}
 	}
 	// 아무것도 안함을 시작함
 	// TODO::현재 들고 있는 무기의 종류에 따라서 이미지를 변경?
@@ -700,7 +711,7 @@ void Player::FalledStart()
 	StateName_ = ANIM_KEYWORD_PLAYER_FALL;
 	JumpSpeed_ = 50.0f;
 	MoveDir_ = float4::UP * JumpSpeed_;
-	PlayerRenderer_->ChangeAnimation(StateName_);
+	PlayerAnimationChange(StateName_);
 	JumpDelayTime_ = 1.6f;
 }
 
@@ -721,55 +732,84 @@ void Player::FlyAwayUpdate()
 	SetMove(FlyMoveDir_ * GameEngineTime::GetDeltaTime());
 	FlyMoveDir_.y += 10.0f;
 
+	
 	FlyMoveDir_ = PixelCol_->PlayerFlyBounce(GetPosition(), { PLAYER_SIZE_X,PLAYER_SIZE_Y }, ColMapImage_, FlyMoveDir_, FlySpeed_);
+	
+	if (true == PixelCol_->GetBounceFlg())
+	{
+		FlyMoveDir_ *= 0.5f;
+	}
 
-
-	//if (PixelCol_->GetBounceFlg())
-	//{
-	//	FlySpeed_ *= 0.5f;
-	//}
 
 
 	float4 DownPos = GetPosition() + float4{0,PLAYER_SIZE_Y / 2};
-	float4 DownLeftPos = GetPosition() + float4{ -PLAYER_SIZE_X/2,PLAYER_SIZE_Y / 2 };
-	float4 DownRightPos = GetPosition() + float4{ PLAYER_SIZE_X/2,PLAYER_SIZE_Y / 2 };
+	float4 DownLeftPos = GetPosition() + float4{ -PLAYER_SIZE_X / 2,PLAYER_SIZE_Y / 2 };
+	float4 DownRightPos = GetPosition() + float4{ PLAYER_SIZE_X / 2,PLAYER_SIZE_Y / 2 };
+	float4 LeftPos = GetPosition() + float4{ -PLAYER_SIZE_X / 2,0 };
+	float4 RightPos = GetPosition() + float4{ PLAYER_SIZE_X / 2 ,0 };
 
 	int DownColor = ColMapImage_->GetImagePixel(DownPos);
 	int DownLeftColor = ColMapImage_->GetImagePixel(DownLeftPos);
 	int DownRightColor = ColMapImage_->GetImagePixel(DownRightPos);
+	int LeftColor = ColMapImage_->GetImagePixel(LeftPos);
+	int RightColor = ColMapImage_->GetImagePixel(RightPos);
 
-	if (RGB(0, 0, 255) == DownColor ||
-		RGB(0,0,255)== DownLeftColor ||
-		RGB(0,0,255)==DownRightColor)
+
+
+
+	if (RGB(0, 0, 255) == DownColor)
 	{
-		PlayerRenderer_->SetRotationZ(0);
-		do
-		{
- 			SetMove(float4::UP);
-			DownPos = { GetPosition().x, GetPosition().y + PLAYER_SIZE_Y / 2 };
-			DownColor = ColMapImage_->GetImagePixel(DownPos);
-		} while (RGB(0, 0, 255) == DownColor);
-
-
-		//너무높은곳에서 떨어지면
 		if (FlyMoveDir_.y >= 500.0f)
 		{
+			PlayerRenderer_->SetRotationZ(0);
+			do
+			{
+				SetMove(float4::UP);
+				DownPos = { GetPosition().x, GetPosition().y + PLAYER_SIZE_Y / 2 };
+				DownColor = ColMapImage_->GetImagePixel(DownPos);
+			} while (RGB(0, 0, 255) == DownColor);
+
+
+			//너무높은곳에서 떨어지면
 			StateChange(PlayerState::Falled);
 			PlayerHp_ -= 10;
 			Hpbar_->ChangeHpBarFont(PlayerHp_);
 			IsDamaged_ = false;
 			IsFly_ = false;
 		}
+	}
+
+	if (RGB(0, 0, 255) == DownColor && RGB(0, 0, 255) == DownRightColor)
+	{
+		//경사가 심하다면 방향전환  
+		if (FlyMoveDir_.x >= 0 && RGB(0,0,255) == RightColor)
+		{
+			FlyMoveDir_.x *= -1.0f;
+			MoveDir_ = float4::LEFT;
+		}
 		else
 		{
-			StateChange(PlayerState::Idle);
-			IsDamaged_ = false;
-			IsFly_ = false;
+			MoveDir_ = float4::RIGHT;
 		}
-
-
-
+		StateChange(PlayerState::Slide);
+		return;
+			
 	}
+	else if (RGB(0, 0, 255) == DownColor && RGB(0, 0, 255) == DownLeftColor)
+	{
+		if (FlyMoveDir_.x <= 0 && RGB(0, 0, 255) == LeftColor)
+		{
+			FlyMoveDir_.x *= -1.0f;
+			MoveDir_ = float4::RIGHT;
+		}
+		else
+		{
+			MoveDir_ = float4::LEFT;
+		}
+		StateChange(PlayerState::Slide);
+		return;
+	}
+
 
 	///마지막에 IsTrunEnd =true;
 	///IsDamaged = true;
@@ -782,10 +822,11 @@ void Player::DeathStart()
 	PlayerHp_ = 0;
 	JumpSpeed_ = 100.0f;
 	JumpMoveDir_ = float4::UP;
-
+	Hpbar_->ChangeHpBarFont(PlayerHp_);
 	Crshair_->Off();
 	CrgBlob_->DeActivate();
 	ControlWorms_->Off();
+
 }
 
 void Player::DeathUpdate()
@@ -825,6 +866,118 @@ void Player::DeathUpdate()
 		PlayerRenderer_->ChangeAnimation(ANIM_KEYWORD_PLAYER_GRAVE);
 		IsGrave_ = true;
 	}
+
+
+}
+
+
+
+void Player::SlideStart()
+{
+	PlayerRenderer_->SetRotationZ(0);
+	PlayerAnimationChange(ANIM_KEYWORD_PLAYER_SLIDE);
+	IsDamaged_ = false;
+	IsFly_ = false;
+
+	FlyMoveDir_.y = 0;
+	SlideEnd_ = false;
+}
+
+void Player::SlideUpdate()
+{
+
+	if (SlideEnd_ == true)
+	{
+		PlayerAnimationChange(ANIM_KEYWORD_PLAYER_SLIDE_UP);
+
+		if (PlayerRenderer_->IsEndAnimation())
+		{
+			SlideEnd_ = false;
+			StateChange(PlayerState::Idle);
+		}
+		return;
+	}
+
+	float4 DownPos = GetPosition() + float4{ 0,PLAYER_SIZE_Y / 2 };
+	float4 DownLeftPos = GetPosition() + float4{ -PLAYER_SIZE_X / 2,PLAYER_SIZE_Y / 2 };
+	float4 DownRightPos = GetPosition() + float4{ PLAYER_SIZE_X / 2,PLAYER_SIZE_Y / 2 };
+	float4 LeftPos = GetPosition() + float4{ -PLAYER_SIZE_X / 2,0 };
+	float4 RightPos = GetPosition() + float4{ PLAYER_SIZE_X / 2 ,0 };
+
+	int DownColor = ColMapImage_->GetImagePixel(DownPos);
+	int DownLeftColor = ColMapImage_->GetImagePixel(DownLeftPos);
+	int DownRightColor = ColMapImage_->GetImagePixel(DownRightPos);
+	int LeftColor = ColMapImage_->GetImagePixel(LeftPos);
+	int RightColor = ColMapImage_->GetImagePixel(RightPos);
+
+
+	if (MoveDir_.CompareInt2D(float4::RIGHT))
+	{
+		if (RGB(0, 0, 255) == RightColor)
+		{
+			do
+			{
+				SetMove(float4::LEFT);
+				RightPos = { GetPosition().x + 12.0f, GetPosition().y };
+				RightColor = ColMapImage_->GetImagePixel(RightPos);
+			} while (RGB(0, 0, 255) == RightColor);
+			
+			FlyMoveDir_.x *= -1.0f;
+			PlayerRenderer_->ChangeAnimation(ANIM_NAME_PLAYER_SLIDE_LEFT);
+		}
+	}
+	else
+	{
+		if (RGB(0, 0, 255) == LeftColor)
+		{
+			do
+			{
+				SetMove(float4::RIGHT);
+				LeftPos = { GetPosition().x - 12.0f, GetPosition().y };
+				LeftColor = ColMapImage_->GetImagePixel(LeftPos);
+			} while (RGB(0, 0, 255) == LeftColor);
+			
+			FlyMoveDir_.x *= -1.0f;
+			PlayerRenderer_->ChangeAnimation(ANIM_NAME_PLAYER_SLIDE_RIGHT);
+		}
+	}
+	
+
+	FlyMoveDir_ *= 0.7f;
+	SetMove(FlyMoveDir_ * GameEngineTime::GetDeltaTime());
+	
+
+	//
+	if (FlyMoveDir_.x <= 0.001f)
+	{
+		FlyMoveDir_ = float4::ZERO;
+		SlideEnd_ = true;
+	}
+	else
+	{
+		if (RGB(0, 0, 255) != DownColor)
+		{
+			do
+			{
+				SetMove(float4::DOWN * GameEngineTime::GetDeltaTime());
+				DownPos = { GetPosition().x, GetPosition().y + 12.0f };
+				DownColor = ColMapImage_->GetImagePixel(DownPos);
+			} while (RGB(0, 0, 255) != DownColor);
+
+			
+		}
+
+		if (RGB(0, 0, 255) == DownColor)
+		{
+			do
+			{
+				SetMove(float4::UP);
+				DownPos = { GetPosition().x , GetPosition().y + 12.0f };
+				DownColor = ColMapImage_->GetImagePixel(DownPos);
+			} while (RGB(0, 0, 255) == DownColor);
+		}
+	}
+
 
 
 }

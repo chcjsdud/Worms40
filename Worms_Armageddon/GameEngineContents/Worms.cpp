@@ -305,6 +305,10 @@ void Worms::GameInit()
 		Image->Cut({ 60, 60 });
 		Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_SLIDE_UP_RIGHT);
 		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_BREATH_LEFT);
+		Image->Cut({ 60, 60 });
+		Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_BREATH_RIGHT);
+		Image->Cut({ 60, 60 });
 
 
 		//¹«±â
@@ -357,7 +361,9 @@ void Worms::GameInit()
 
 		}
 		{
-			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_FALL);
+			GameEngineImage* Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_FALL_LEFT);
+			Image->Cut({ 60,60 });
+			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_FALL_RIGHT);
 			Image->Cut({ 60,60 });
 			Image = GameEngineImageManager::GetInst()->Find(IMG_PLAYER_GRAVE);
 			Image->Cut({ 60,60 });

@@ -132,7 +132,8 @@
 #define IMG_PLAYER_WALK_RIGHT "WalkRight.bmp"
 #define IMG_PLAYER_DIE_LEFT "wdieLeft.bmp"
 #define IMG_PLAYER_DIE_RIGHT "wdieRight.bmp"
-#define IMG_PLAYER_FALL "wtwang.bmp"
+#define IMG_PLAYER_FALL_LEFT "wtwangLeft.bmp"
+#define IMG_PLAYER_FALL_RIGHT "wtwangRight.bmp"
 #define IMG_BAZ_ON_LEFT "bazOnLeft.bmp"
 #define IMG_BAZ_ON_RIGHT "bazOnRight.bmp"
 #define IMG_BAZ_OFF_LEFT "bazOffLeft.bmp"
@@ -158,6 +159,8 @@
 #define IMG_PLAYER_SLIDE_RIGHT "SlideR_.bmp"
 #define IMG_PLAYER_SLIDE_UP_LEFT "SlideL2_.bmp"
 #define IMG_PLAYER_SLIDE_UP_RIGHT "SlideR2_.bmp"
+#define IMG_PLAYER_BREATH_LEFT "wbrthLeft.bmp"
+#define IMG_PLAYER_BREATH_RIGHT "wbrthRight.bmp"
 
 
 // 애니메이션 키워드
@@ -182,6 +185,7 @@
 #define ANIM_KEYWORD_PLAYER_SLIDE "Slide"
 #define ANIM_KEYWORD_PLAYER_WIN "win"
 #define ANIM_KEYWORD_PLAYER_SLIDE_UP "SlideUp"
+#define ANIM_KEYWORD_PLAYER_BREATH "wbrth"
 
 
 #define ANIM_KEYWORD_DIR_LEFT "Left"
@@ -202,7 +206,8 @@
 #define ANIM_NAME_PLAYER_WALKRIGHT "WalkRight"
 #define ANIM_NAME_PLAYER_JUMPRIGHT "JumpRight"
 #define ANIM_NAME_PLAYER_JUMPLEFT "JumpLeft"
-#define ANIM_NAME_PLAYER_FALL "Falled"
+#define ANIM_NAME_PLAYER_FALL_LEFT "FalledLeft"
+#define ANIM_NAME_PLAYER_FALL_RIGHT "FalledRight"
 #define ANIM_NAME_PLAYER_FLY "FlyLeft"
 #define ANIM_NAME_PLAYER_DEATH_LEFT "wdieLeft"
 #define ANIM_NAME_PLAYER_DEATH_RIGHT "wdieRight"
@@ -213,7 +218,8 @@
 #define ANIM_NAME_PLAYER_SLIDE_RIGHT "SlideRight"
 #define ANIM_NAME_PLAYER_SLIDE_UP_LEFT "SlideUpLeft"
 #define ANIM_NAME_PLAYER_SLIDE_UP_RIGHT "SlideUpRight"
-
+#define ANIM_NAME_PLAYER_BREATH_LEFT "wbrthLeft"
+#define ANIM_NAME_PLAYER_BREATH_RIGHT "wbrthRight"
 
 #define ANIM_NAME_BAZ_ON_LEFT "bazOnLeft"
 #define ANIM_NAME_BAZ_ON_RIGHT "bazOnRight"

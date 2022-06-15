@@ -19,6 +19,7 @@ enum class PlayerState
 	Action,
 	FlyAway,
 	Death,
+	Slide,
 	None
 };
 

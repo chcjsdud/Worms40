@@ -386,7 +386,7 @@ float4 PixelCollision::PlayerFlyBounce(float4 _ActorPos, float4 _ActorScale,
 	{
 		float4 Dir = _ActorPos - (_ActorPos + Top);
 		Dir.Normal2D();
-		_MoveDir = Dir * _FlySpeed * 0.6f;
+		_MoveDir = Dir * _FlySpeed;
 		return _MoveDir;
 	}
 	else if (ColorFlag_[0] == true && ColorFlag_[7] == true && ColorFlag_[1] == false) //상단, 좌상단 충돌시
@@ -395,14 +395,14 @@ float4 PixelCollision::PlayerFlyBounce(float4 _ActorPos, float4 _ActorScale,
 		{
 			float4 Dir = _ActorPos - (_ActorPos + float4{ (Top.x + Left.x) / 2,(Top.y + Left.y) / 2 });
 			Dir.Normal2D();
-			_MoveDir = Dir * _FlySpeed * 0.6f;
+			_MoveDir = Dir * _FlySpeed;
 			return _MoveDir;
 		}
 		else
 		{  //왼쪽 대각 / <-이각도
 			float4 Dir = _ActorPos - (_ActorPos + float4{ (Top.x + TopLeft.x) / 2,(Top.y + TopLeft.y) / 2 });
 			Dir.Normal2D();
-			_MoveDir = Dir * _FlySpeed * 0.6f;
+			_MoveDir = Dir * _FlySpeed;
 			return _MoveDir;
 		}
 	}
@@ -412,14 +412,14 @@ float4 PixelCollision::PlayerFlyBounce(float4 _ActorPos, float4 _ActorScale,
 		{
 			float4 Dir = _ActorPos - (_ActorPos + float4{ (Top.x + Right.x) / 2,(Top.y + Right.y) / 2 });
 			Dir.Normal2D();
-			_MoveDir = Dir * _FlySpeed * 0.6f;
+			_MoveDir = Dir * _FlySpeed;
 			return _MoveDir;
 		}
 		else
 		{
 			float4 Dir = _ActorPos - (_ActorPos + float4{ (Top.x + TopRight.x) / 2,(Top.y + TopRight.y) / 2 });
 			Dir.Normal2D();
-			_MoveDir = Dir * _FlySpeed * 0.6f;
+			_MoveDir = Dir * _FlySpeed;
 			return _MoveDir;
 		}
 	}
@@ -431,7 +431,7 @@ float4 PixelCollision::PlayerFlyBounce(float4 _ActorPos, float4 _ActorScale,
 		ColorFlag_[2] = true;
 		float4 Dir = { _ActorPos.x - Right.x , _MoveDir.y };
 		Dir.Normal2D();
-		_MoveDir = Dir * _FlySpeed * 0.6f;
+		_MoveDir = Dir * _FlySpeed;
 		return _MoveDir;
 	}
 	else
@@ -446,7 +446,7 @@ float4 PixelCollision::PlayerFlyBounce(float4 _ActorPos, float4 _ActorScale,
 		ColorFlag_[6] = true;
 		float4 Dir = { _ActorPos.x - Left.x , _MoveDir.y };
 		Dir.Normal2D();
-		_MoveDir = Dir * _FlySpeed * 0.6f;
+		_MoveDir = Dir * _FlySpeed;
 		return _MoveDir;
 	}
 	else

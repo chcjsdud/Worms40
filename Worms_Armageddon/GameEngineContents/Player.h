@@ -211,6 +211,7 @@ private:
 
 	bool ControlFlg_;
 
+	bool SlideEnd_;
 	bool IsFly_;
 
 	//키 입력 카운트
@@ -262,6 +263,7 @@ private:
 	void BackFlipStart();
 	void FalledStart();
 	void DeathStart();
+	void SlideStart();
 
 
 
@@ -274,6 +276,7 @@ private:
 	void FalledUpdate();
 	void FlyAwayUpdate();
 	void DeathUpdate();
+	void SlideUpdate();
 
 	void PlayerAnimationChange(std::string _Anim);
 

@@ -50,6 +50,7 @@ Player::Player()
 	, UnControlState_(PlayerUnControlState::UncontrolIdle)
 	, WeaponType_(0)
 	, Damage_(0)
+	, SlideEnd_(false)
 {
 }
 
@@ -191,8 +192,15 @@ bool Player::ControllUpdate()
 void Player::PlayerAnimationInit()
 {
 	PlayerRenderer_ = CreateRenderer((int)RenderOrder::Player);
+
+	//idle
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_IDLE_RIGHT, ANIM_NAME_PLAYER_IDLE_RIGHT, 0, 5, 0.1f, true);
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_IDLE_LEFT, ANIM_NAME_PLAYER_IDLE_LEFT, 0, 5, 0.1f, true);
+
+
+	//hp <50 idle
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_BREATH_LEFT, ANIM_NAME_PLAYER_BREATH_LEFT, 0, 12, 0.05f, true , true);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_BREATH_RIGHT, ANIM_NAME_PLAYER_BREATH_RIGHT, 0, 12, 0.05f, true , true);
 
 	// 웨폰 애니메이션
 	//바주카
@@ -236,7 +244,8 @@ void Player::PlayerAnimationInit()
 
 	//낙하 애니메이션
 	//33번째 이미지때 올라가게
-	PlayerRenderer_->CreateAnimation(IMG_PLAYER_FALL, ANIM_NAME_PLAYER_FALL, 0, 48, 0.05f, false);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_FALL_LEFT, ANIM_NAME_PLAYER_FALL_LEFT, 0, 48, 0.05f, false);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_FALL_RIGHT, ANIM_NAME_PLAYER_FALL_RIGHT, 0, 48, 0.05f, false);
 
 
 	//죽음 애니메이션
@@ -256,8 +265,8 @@ void Player::PlayerAnimationInit()
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_SLIDE_LEFT, ANIM_NAME_PLAYER_SLIDE_LEFT, 0, 2, 0.1f, true, true);
 	PlayerRenderer_->CreateAnimation(IMG_PLAYER_SLIDE_RIGHT, ANIM_NAME_PLAYER_SLIDE_RIGHT, 0, 2, 0.1f, true, true);
 	//미끄러지는 애니메이션에서 일어나는 애니메이션
-	PlayerRenderer_->CreateAnimation(IMG_PLAYER_SLIDE_UP_LEFT, ANIM_NAME_PLAYER_SLIDE_UP_LEFT, 0, 35, 0.1f, false);
-	PlayerRenderer_->CreateAnimation(IMG_PLAYER_SLIDE_UP_RIGHT, ANIM_NAME_PLAYER_SLIDE_UP_RIGHT, 0, 35, 0.1f, false);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_SLIDE_UP_LEFT, ANIM_NAME_PLAYER_SLIDE_UP_LEFT, 0, 35, 0.02f, false);
+	PlayerRenderer_->CreateAnimation(IMG_PLAYER_SLIDE_UP_RIGHT, ANIM_NAME_PLAYER_SLIDE_UP_RIGHT, 0, 35, 0.02f, false);
 }
 
 void Player::PlayerKeyInit()
@@ -516,6 +525,9 @@ void Player::StateChange(PlayerState _State)
 		case PlayerState::Move:
 			MoveStart();
 			break;
+		case PlayerState::Slide:
+			SlideStart();
+			break;
 		case PlayerState::Jump:
 			JumpStart();
 			break;
@@ -559,6 +571,9 @@ void Player::StateUpdate()
 		break;
 	case PlayerState::Move:
 		MoveUpdate();
+		break;
+	case PlayerState::Slide:
+		SlideUpdate();
 		break;
 	case PlayerState::Jump:
 		JumpUpdate();

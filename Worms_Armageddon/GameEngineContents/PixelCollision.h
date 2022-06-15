@@ -20,7 +20,7 @@ public:
 	float4 Bounce(float4 _ActorPos, float4 _ActorScale, GameEngineImage* _ColMapImage, float4 _BulletDir);
 	float4 PlayerBounce(float4 _ActorPos, float4 _ActorScale, GameEngineImage* _ColMapImage, float4 _MoveDir, float _JumpSpeed);
 	float4 PlayerFlyBounce(float4 _ActorPos, float4 _ActorScale, GameEngineImage* _ColMapImage, float4 _MoveDir, float _FlySpeed);
-
+	float4 PlayerSlideBounce(float4 _ActorPos, float4 _ActorScale, GameEngineImage* _ColMapImage, float4 _MoveDir, float _FlySpeed);
 	inline bool GetBounceFlg() const
 	{
 		return BounceFlg_;
