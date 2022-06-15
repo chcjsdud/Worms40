@@ -477,14 +477,14 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 			//// TODO::로비레벨에서 넘어오도록 수정
 			//// Player_->SetPlayerHp(GameOptions_->PlayingOptions.GetWormzHp());
 			Player_[TeamSetNum][PlayerNum]->SetPlayerHp(100);
-			Player_[TeamSetNum][PlayerNum]->SetMyTeamColor(static_cast<TeamColor>(teamColor));
+			Player_[TeamSetNum][PlayerNum]->SetMyTeamColor(static_cast<TeamColor>(TeamSetNum));
 			Player_[TeamSetNum][PlayerNum]->SetPosition(GameMapInfo_->GetResponPosition(tmpRandom));
 
 			//플레이어 색 지정
-			Player_[TeamSetNum][PlayerNum]->CreateHpBar(100, { 0,0 }, (static_cast<FONT_COLOR>(teamColor)));
+			Player_[TeamSetNum][PlayerNum]->CreateHpBar(100, { 0,0 }, (static_cast<FONT_COLOR>(TeamSetNum)));
 
 			//화살표
-			Player_[TeamSetNum][PlayerNum]->CreateControlArrow(static_cast<TeamColor>(teamColor));
+			Player_[TeamSetNum][PlayerNum]->CreateControlArrow(static_cast<TeamColor>(TeamSetNum));
 			// 팀에 플레이어를 추가
 			Playerlist.push_back(Player_[TeamSetNum][PlayerNum]);
 
