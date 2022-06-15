@@ -175,6 +175,7 @@ public:
 
 	// ≈ı«œ«— ∆¯≈∫¿« ¡§∫∏
 	static GameEngineActor* AirBombArr_[5];
+	static GameEngineActor* ExplodeWeapon_;
 	inline GameEngineActor* GetAirBomb_(int _Num)
 	{
 		if (AirBombArr_[_Num] != nullptr)

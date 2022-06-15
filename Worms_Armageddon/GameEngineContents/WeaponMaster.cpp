@@ -14,6 +14,7 @@ GameMapMaster* WeaponMaster::GameMap_ = nullptr;
 float4 WeaponMaster::WeaponCameraPos_ = float4::ZERO;
 bool WeaponMaster::WeaponStaticReturn_ = true;
 GameEngineActor* WeaponMaster::AirBombArr_[5] = { nullptr };
+GameEngineActor* WeaponMaster::ExplodeWeapon_ = nullptr;
 
 WeaponMaster::WeaponMaster() 
 	: TargetPos_(float4::ZERO)
@@ -454,6 +455,7 @@ bool WeaponMaster::BulletColEvent()
 		{
 			// 무기 폭발 이펙트
 			Explosion();
+			ExplodeWeapon_ = this;
 			IsExplodEnd_ = true;
 			// 무기가 폭발했음을 반환(데미지 처리용)
 			return false;

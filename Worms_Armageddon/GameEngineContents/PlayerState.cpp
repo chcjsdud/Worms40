@@ -290,7 +290,7 @@ void Player::ActionUpdate()
 	if (false == Weapon_->WeaponUpdate())
 	{
 		// 사용된 무기 삭제
-		Weapon_->Death();
+		// Weapon_->Death();
 		ShotPower_ = WEAPON_DEFAULT_SHOT_POWER;
 		WeaponState_ = WeaponState::None;
 

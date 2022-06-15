@@ -127,10 +127,10 @@ void Player::Update()
 	}
 
 	//WeaponÀÌ »ý¼ºµÇ°í ¶¥¿¡´ê¾Æ Æø¹ßÇß´Ù¸é
-	if (Weapon_ != nullptr && Weapon_->GetExplodEndFlg() == true)
-	{
-		Damaged(Weapon_->GetWeaponPosition());
-	}
+	//if (Weapon_ != nullptr && Weapon_->GetExplodEndFlg() == true)
+	//{
+	//	Damaged(Weapon_->GetWeaponPosition());
+	//}
 
 	if (IsDamaged_ == true)
 	{

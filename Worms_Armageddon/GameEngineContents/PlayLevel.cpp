@@ -94,7 +94,10 @@ void PlayLevel::Update()
 		GameEngine::GetInst().ChangeLevel(LEVEL_CREDIT_LEVEL);
 	}
 
+	// 에어스트라크
 	PlayerDamagedCheck4AirStrike();
+	// 일반무기에 대한
+	PlayerDamagedCheck4NormalWeapon();
 
 	for (std::list<Player*>& Team : AllPlayer_)
 	{
@@ -637,5 +640,42 @@ void PlayLevel::PlayerDamagedCheck4AirStrike()
 			}
 		}
 
+	}
+}
+
+void PlayLevel::PlayerDamagedCheck4NormalWeapon()
+{
+	float4 tmpWeaponActorPos = float4::ZERO;
+
+	if (WeaponMaster_->ExplodeWeapon_ != nullptr)
+	{
+		tmpWeaponActorPos = WeaponMaster_->ExplodeWeapon_->GetPosition();
+	}
+
+	if (WeaponMaster_->ExplodeWeapon_ != nullptr 
+		&& WeaponMaster_->GetExplodEndFlg() == false)
+	{
+		for (std::list<Player*>& Team : AllPlayer_)
+		{
+			for (Player* Player : Team)
+			{
+				if (Player->GetIsDeath())
+				{
+					continue;
+				}
+
+				// 플레이어에게 데미지 판정
+				Player->Damaged(tmpWeaponActorPos);
+
+
+			}
+		}
+
+		// 끝난 폭탄에 대한 Death, nullptr
+		if (WeaponMaster_->ExplodeWeapon_ != nullptr)
+		{
+			WeaponMaster_->ExplodeWeapon_->Death();
+			WeaponMaster_->ExplodeWeapon_ = nullptr;
+		}
 	}
 }

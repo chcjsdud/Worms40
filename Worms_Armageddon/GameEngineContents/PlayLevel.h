@@ -91,6 +91,7 @@ private:
 
 	// 에어스트라이크류 공격에 대한 공격처리
 	void PlayerDamagedCheck4AirStrike();
+	void PlayerDamagedCheck4NormalWeapon();
 
 	/// UI ///
 	// 바람
