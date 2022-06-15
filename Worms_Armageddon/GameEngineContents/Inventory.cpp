@@ -123,6 +123,14 @@ void Inventory::ClickWeapon()
 			}
 		}
 	}
+
+	// 클릭하면 인벤토리 집어넣기
+	if (true == IsOut_)
+	{
+		IsOut_ = false;
+		UIMaster::MoveSetting(InPos_, OutPos_, SlotSpeed);
+		UIMaster::Move();
+	}
 }
 
 // 무기 위에 커서 올라가면 경계선 On/Off
