@@ -3,18 +3,18 @@
 #include<GameEngine/GameEngineActor.h>
 
 // Ό³Έν :
-class LargeCloud	:public GameEngineActor
+class MiddleCloud :public GameEngineActor
 {
 public:
 	// constrcuter destructer
-	LargeCloud();
-	~LargeCloud();
+	MiddleCloud();
+	~MiddleCloud();
 
 	// delete Function
-	LargeCloud(const LargeCloud& _Other) = delete;
-	LargeCloud(LargeCloud&& _Other) noexcept = delete;
-	LargeCloud& operator=(const LargeCloud& _Other) = delete;
-	LargeCloud& operator=(LargeCloud&& _Other) noexcept = delete;
+	MiddleCloud(const MiddleCloud& _Other) = delete;
+	MiddleCloud(MiddleCloud&& _Other) noexcept = delete;
+	MiddleCloud& operator=(const MiddleCloud& _Other) = delete;
+	MiddleCloud& operator=(MiddleCloud&& _Other) noexcept = delete;
 
 protected:
 	void Start() override;
@@ -29,7 +29,7 @@ private:
 
 
 public:
-	inline void SetLargeCloudDir(int  _WindDir, float _CloudSpeed)
+	inline void SetMiddleCloudDir(int  _WindDir, float _CloudSpeed)
 	{
 		CloudSpeed_ = MySpeed_;
 		WindDir_ = _WindDir;

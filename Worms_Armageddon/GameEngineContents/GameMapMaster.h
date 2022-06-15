@@ -3,6 +3,7 @@
 #include <GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineMath.h>
 #include "LargeCloud.h"
+#include "MiddleCloud.h"
 #include "SmallCloud.h"
 #include "Water.h"
 
@@ -57,15 +58,28 @@ public:
 		return PositionFlg_[_ArrI];
 	}
 
-	inline void SetLargeCloudDir(int  _WindDir, float _CloudSpeed)
+	void SetLargeCloudDir(int  _WindDir, float _CloudSpeed)
 	{
-		LargeCloudActor_->SetLargeCloudDir(_WindDir, _CloudSpeed);
+		for (int i = 0; i < 4; i++)
+		{
+			LargeCloudActor_[i]->SetLargeCloudDir(_WindDir, _CloudSpeed);
+		}
 	}
 
-	inline void SetSmallCloudDir(int  _WindDir, float _CloudSpeed)
+	void SetMiddleCloudDir(int  _WindDir, float _CloudSpeed)
 	{
-		SmallCloudActor_->SetSmallCloudDir(_WindDir, _CloudSpeed);
+		for (int i = 0; i < 3; i++)
+		{
+			MiddleCloudActor_[i]->SetMiddleCloudDir(_WindDir, _CloudSpeed);
+		}
+	}
 
+	void SetSmallCloudDir(int  _WindDir, float _CloudSpeed)
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			SmallCloudActor_[i]->SetSmallCloudDir(_WindDir, _CloudSpeed);
+		}
 	}
 
 protected:
@@ -89,7 +103,8 @@ protected:
 	Water* WaterActor_;
 
 	// 구름 이미지
-	LargeCloud* LargeCloudActor_;
-	SmallCloud* SmallCloudActor_;
+	LargeCloud* LargeCloudActor_[4];
+	MiddleCloud* MiddleCloudActor_[3];
+	SmallCloud* SmallCloudActor_[5];
 };
 

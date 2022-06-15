@@ -43,10 +43,55 @@ void MapBooks::Start()
 
 
 	// 배경 이미지
-	LargeCloudActor_ = GetLevel()->CreateActor<LargeCloud>();
-	LargeCloudActor_->SetPosition({ 200.0f,200.0f });
-	SmallCloudActor_ = GetLevel()->CreateActor<SmallCloud>();
-	SmallCloudActor_->SetPosition({ 250.0f,200.0f });
+	{
+		LargeCloudActor_[0] = GetLevel()->CreateActor<LargeCloud>();
+		LargeCloudActor_[0]->SetPosition({ 100.0f,500.0f });
+		LargeCloudActor_[0]->SetSpeed(100.0f);
+
+		LargeCloudActor_[1] = GetLevel()->CreateActor<LargeCloud>();
+		LargeCloudActor_[1]->SetPosition({ 30.0f,550.0f });
+		LargeCloudActor_[1]->SetSpeed(20.0f);
+
+		LargeCloudActor_[2] = GetLevel()->CreateActor<LargeCloud>();
+		LargeCloudActor_[2]->SetPosition({ 500.0f,450.0f });
+		LargeCloudActor_[2]->SetSpeed(70.0f);
+
+		LargeCloudActor_[3] = GetLevel()->CreateActor<LargeCloud>();
+		LargeCloudActor_[3]->SetPosition({ 900.0f,480.0f });
+		LargeCloudActor_[3]->SetSpeed(50.0f);
+
+		MiddleCloudActor_[0] = GetLevel()->CreateActor<MiddleCloud>();
+		MiddleCloudActor_[0]->SetPosition({ 1500.0f,470.0f });
+		MiddleCloudActor_[0]->SetSpeed(100.0f);
+
+		MiddleCloudActor_[1] = GetLevel()->CreateActor<MiddleCloud>();
+		MiddleCloudActor_[1]->SetPosition({ 400.0f,520.0f });
+		MiddleCloudActor_[1]->SetSpeed(150.0f);
+
+		MiddleCloudActor_[2] = GetLevel()->CreateActor<MiddleCloud>();
+		MiddleCloudActor_[2]->SetPosition({ 620.0f,500.0f });
+		MiddleCloudActor_[2]->SetSpeed(20.0f);
+
+		SmallCloudActor_[0] = GetLevel()->CreateActor<SmallCloud>();
+		SmallCloudActor_[0]->SetPosition({ 220.0f,510.0f });
+		SmallCloudActor_[0]->SetSpeed(10.0f);
+
+		SmallCloudActor_[1] = GetLevel()->CreateActor<SmallCloud>();
+		SmallCloudActor_[1]->SetPosition({ 10.0f,470.0f });
+		SmallCloudActor_[1]->SetSpeed(290.0f);
+
+		SmallCloudActor_[2] = GetLevel()->CreateActor<SmallCloud>();
+		SmallCloudActor_[2]->SetPosition({ 1740.0f,500.0f });
+		SmallCloudActor_[2]->SetSpeed(500.0f);
+
+		SmallCloudActor_[3] = GetLevel()->CreateActor<SmallCloud>();
+		SmallCloudActor_[3]->SetPosition({ 1110.0f,580.0f });
+		SmallCloudActor_[3]->SetSpeed(150.0f);
+
+		SmallCloudActor_[4] = GetLevel()->CreateActor<SmallCloud>();
+		SmallCloudActor_[4]->SetPosition({ 760.0f,530.0f });
+		SmallCloudActor_[4]->SetSpeed(200.0f);
+	}
 
 	// 물 이미지
 	WaterActor_ = GetLevel()->CreateActor<Water>();

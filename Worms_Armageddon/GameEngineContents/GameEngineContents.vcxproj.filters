@@ -170,9 +170,6 @@
     <ClInclude Include="PlayShootingStar.h">
       <Filter>02.PlayLevel\UI</Filter>
     </ClInclude>
-    <ClInclude Include="WindGauge.h">
-      <Filter>02.PlayLevel</Filter>
-    </ClInclude>
     <ClInclude Include="TimerBox.h">
       <Filter>02.PlayLevel\UI</Filter>
     </ClInclude>
@@ -190,6 +187,12 @@
     </ClInclude>
     <ClInclude Include="FadeIn.h">
       <Filter>03.EndingLevel\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="WindGauge.h">
+      <Filter>02.PlayLevel\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MiddleCloud.h">
+      <Filter>02.PlayLevel\BackGroundActor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -382,6 +385,9 @@
     </ClCompile>
     <ClCompile Include="FadeIn.cpp">
       <Filter>03.EndingLevel\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="MiddleCloud.cpp">
+      <Filter>02.PlayLevel\BackGroundActor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

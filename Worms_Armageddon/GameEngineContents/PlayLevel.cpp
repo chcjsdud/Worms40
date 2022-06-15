@@ -84,7 +84,7 @@ void PlayLevel::Loading()
 		GameEngineInput::GetInst()->CreateKey(KEY_MOUSE_RIGHT, VK_RBUTTON);
 	}
 
-	WindSpeed_ = 45.0f;
+	//WindSpeed_ = 45.0f;
 }
 
 void PlayLevel::Update()
@@ -590,6 +590,7 @@ void PlayLevel::SetWindUI(int _WindDir)
 		//구름Actor에도 넘겨준다
 
 		GameMapInfo_->SetLargeCloudDir(_WindDir, WindSpeed_);
+		GameMapInfo_->SetMiddleCloudDir(_WindDir, WindSpeed_);
 		GameMapInfo_->SetSmallCloudDir(_WindDir, WindSpeed_);
 	}
 	else
@@ -599,6 +600,7 @@ void PlayLevel::SetWindUI(int _WindDir)
 		WindDir_ = float4::RIGHT * WindSpeed_;
 		WindGaugeActor_->SetWind(WindType::Right, WindSpeed_);
 		GameMapInfo_->SetLargeCloudDir(_WindDir, WindSpeed_);
+		GameMapInfo_->SetMiddleCloudDir(_WindDir, WindSpeed_);
 		GameMapInfo_->SetSmallCloudDir(_WindDir, WindSpeed_);
 	}
 }

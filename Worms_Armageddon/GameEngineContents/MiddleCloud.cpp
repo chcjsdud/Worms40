@@ -1,39 +1,39 @@
-#include "LargeCloud.h"
+#include "MiddleCloud.h"
 #include "Enums.h"
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngineBase/GameEngineTime.h>
 
-LargeCloud::LargeCloud() :
+MiddleCloud::MiddleCloud() :
 	CloudDir_(float4::ZERO),
 	CloudSpeed_(0),
-	MySpeed_(0),
 	WindDir_(0),
+	MySpeed_(0),
 	CloudRenderer_(nullptr)
 {
 }
 
-LargeCloud::~LargeCloud() 
+MiddleCloud::~MiddleCloud()
 {
 }
 
-void LargeCloud::Start()
-{	
+void MiddleCloud::Start()
+{
 	CloudRenderer_ = CreateRenderer((int)RenderOrder::BackGround_3);
-	CloudRenderer_->CreateAnimation("cloudl.bmp", "CloudlAni", 0, 19, 0.05f, true,true);
-	CloudRenderer_->ChangeAnimation("CloudlAni");
+	CloudRenderer_->CreateAnimation("cloudm.bmp", "CloudmAni", 0, 19, 0.05f, true, true);
+	CloudRenderer_->ChangeAnimation("CloudmAni");
 
 }
 
-void LargeCloud::Update()
+void MiddleCloud::Update()
 {
 	//바람의 방향과 속도를 받아서 이동시킨다.
 	if (WindDir_ == (int)WindType::Left)
 	{
-		CloudDir_ = float4::LEFT* GameEngineTime::GetDeltaTime() * CloudSpeed_;
+		CloudDir_ = float4::LEFT * GameEngineTime::GetDeltaTime() * CloudSpeed_;
 	}
 	else if (WindDir_ == (int)WindType::Right)
 	{
-		CloudDir_=float4::RIGHT *GameEngineTime::GetDeltaTime() * CloudSpeed_;
+		CloudDir_ = float4::RIGHT * GameEngineTime::GetDeltaTime() * CloudSpeed_;
 	}
 
 	SetMove(CloudDir_);
@@ -50,6 +50,6 @@ void LargeCloud::Update()
 	}
 }
 
-void LargeCloud::Render()
+void MiddleCloud::Render()
 {
 }

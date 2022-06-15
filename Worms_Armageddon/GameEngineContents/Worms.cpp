@@ -161,6 +161,9 @@ void Worms::GameInit()
 		GameEngineImage* cloudl = GameEngineImageManager::GetInst()->Find("cloudl.bmp");
 		cloudl->Cut({ 160, 160 });
 
+		GameEngineImage* cloudm = GameEngineImageManager::GetInst()->Find("cloudm.bmp");
+		cloudm->Cut({ 128, 128 });
+
 		GameEngineImage* clouds = GameEngineImageManager::GetInst()->Find("clouds.bmp");
 		clouds->Cut({ 60, 60 });
 

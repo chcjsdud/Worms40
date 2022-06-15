@@ -37,9 +37,9 @@ void SmallCloud::Update()
 	//화면넘어가면 반대편에 재위치
 	if (-30.0f >= GetPosition().x)
 	{
-		SetPosition({ 1310.0f,GetPosition().y });
+		SetPosition({ 2100.0f,GetPosition().y });
 	}
-	else if (1310 <= GetPosition().x)
+	else if (2100 <= GetPosition().x)
 	{
 		SetPosition({ -30.0f,GetPosition().y });
 	}

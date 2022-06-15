@@ -24,13 +24,22 @@ private:
 	GameEngineRenderer* CloudRenderer_;
 	float4 CloudDir_;
 	float CloudSpeed_;
+	float MySpeed_;
 	int WindDir_;
 
 public:
 	inline void SetSmallCloudDir(int  _WindDir, float _CloudSpeed)
 	{
+		CloudSpeed_ = MySpeed_;
 		WindDir_ = _WindDir;
-		CloudSpeed_ = _CloudSpeed;
+		CloudSpeed_ += _CloudSpeed;
+	}
+
+
+	inline void SetSpeed(float _Speed)
+	{
+		CloudSpeed_ = _Speed;
+		MySpeed_ = _Speed;
 	}
 };
 
