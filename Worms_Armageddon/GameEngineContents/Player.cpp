@@ -52,6 +52,7 @@ Player::Player()
 	, Damage_(0)
 	, SlideEnd_(false)
 	, DeathDelayTime_(1.0f)
+	, SlideFallspeed_(400.0f)
 {
 }
 

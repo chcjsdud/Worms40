@@ -113,6 +113,7 @@ private:
 	float Speed_;
 	// 낙하 속도
 	float FallSpeed_;
+	float SlideFallspeed_;
 	// 낙하 거리
 	float FallLength_;
 	//점프 속도

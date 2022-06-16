@@ -749,11 +749,7 @@ void Player::FlyAwayUpdate()
 
 	
 	FlyMoveDir_ = PixelCol_->PlayerFlyBounce(GetPosition(), { PLAYER_SIZE_X,PLAYER_SIZE_Y }, ColMapImage_, FlyMoveDir_, FlySpeed_);
-	
-	if (true == PixelCol_->GetBounceFlg())
-	{
-		FlyMoveDir_ *= 0.5f;
-	}
+
 
 
 
@@ -909,6 +905,8 @@ void Player::SlideStart()
 
 	FlyMoveDir_.y = 0;
 	SlideEnd_ = false;
+	IsFall_ = false;
+	
 }
 
 void Player::SlideUpdate()
@@ -972,31 +970,57 @@ void Player::SlideUpdate()
 		}
 	}
 	
-	FlyMoveDir_ *= 0.9f;
+	if (IsFall_ == false)
+	{
+		FlyMoveDir_.x *= 0.9f;
+	}
+
 	SetMove(FlyMoveDir_ * GameEngineTime::GetDeltaTime());
-	
+
+	//MoveFall();
+	//중력
+	float4 CheckLength = float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
+	float4 NextPos = { GetPosition().x + CheckLength.x , GetPosition().y + CheckLength.y + PLAYER_SIZE_Y / 2 };
+	int Color = ColMapImage_->GetImagePixel(NextPos);
+
+	if (RGB(0, 0, 255) != Color)
+	{
+		FallLength_ += SlideFallspeed_ * GameEngineTime::GetDeltaTime();
+		SlideFallspeed_ += 50.0f * GameEngineTime::GetDeltaTime();
+
+		// 최대 낙하속도
+		if (SlideFallspeed_ >= 600.0f)
+		{
+			SlideFallspeed_ = 600.0f;
+		}
+
+		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * SlideFallspeed_);
+	}
+	else
+	{
+
+		SlideFallspeed_ = 400.0f;
+	}
 
 	//
-	if (FlyMoveDir_.x <= 0.01 && FlyMoveDir_.x >= -0.01)
+	if (FlyMoveDir_.x <= 0.01 && FlyMoveDir_.x >= -0.01 && IsFall_== false)
 	{
 		FlyMoveDir_ = float4::ZERO;
 		SlideEnd_ = true;
 	}
 	else
 	{
-		if (RGB(0, 0, 255) != DownColor)
+		/*if (RGB(0, 0, 255) != DownColor)
 		{
 			do
 			{
 				SetMove(float4::DOWN * GameEngineTime::GetDeltaTime());
-				DownPos = { GetPosition().x, GetPosition().y + 12.0f };
+				DownPos = { GetPosition().x, GetPosition().y  + 2.0f };
 				DownColor = ColMapImage_->GetImagePixel(DownPos);
+
 			} while (RGB(0, 0, 255) != DownColor);
-
-			
-		}
-
-		if (RGB(0, 0, 255) == DownColor)
+		}*/
+		/*if (RGB(0, 0, 255) == DownColor && IsFall_ == false)
 		{
 			do
 			{
@@ -1004,7 +1028,7 @@ void Player::SlideUpdate()
 				DownPos = { GetPosition().x , GetPosition().y + 12.0f };
 				DownColor = ColMapImage_->GetImagePixel(DownPos);
 			} while (RGB(0, 0, 255) == DownColor);
-		}
+		}*/
 	}
 
 
