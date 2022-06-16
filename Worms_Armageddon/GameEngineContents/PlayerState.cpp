@@ -905,7 +905,6 @@ void Player::SlideStart()
 
 	FlyMoveDir_.y = 0;
 	SlideEnd_ = false;
-	IsFall_ = false;
 	
 }
 
@@ -970,10 +969,8 @@ void Player::SlideUpdate()
 		}
 	}
 	
-	if (IsFall_ == false)
-	{
-		FlyMoveDir_.x *= 0.9f;
-	}
+
+	FlyMoveDir_.x *= 0.9f;
 
 	SetMove(FlyMoveDir_ * GameEngineTime::GetDeltaTime());
 
@@ -1003,7 +1000,7 @@ void Player::SlideUpdate()
 	}
 
 	//
-	if (FlyMoveDir_.x <= 0.01 && FlyMoveDir_.x >= -0.01 && IsFall_== false)
+	if (FlyMoveDir_.x <= 0.01 && FlyMoveDir_.x >= -0.01)
 	{
 		FlyMoveDir_ = float4::ZERO;
 		SlideEnd_ = true;
