@@ -175,9 +175,9 @@ void LobbyLevel::LevelChangeEnd(GameEngineLevel* _NextLevel)
 		&& TurnTime == 45 && MapType::Other == GameOptions::PlayingOptions.GetMapType())
 	{
 		GameOptions::PlayingOptions.SetTurnTime(45);
-		GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)0, 1);
-		//GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)2, 3);
-		//GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)4, 3);
+		GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)0, 3);
+		GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)2, 3);
+		GameOptions::PlayingOptions.SetPlayerTeamSetting((TeamColor)4, 3);
 	}
 
 	SoundPlayer_.Stop();
