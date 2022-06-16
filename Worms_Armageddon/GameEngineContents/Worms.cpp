@@ -172,6 +172,9 @@ void Worms::GameInit()
 
 		GameEngineImage* ScatterLeaf = GameEngineImageManager::GetInst()->Find("ScatterLeaf.bmp");
 		ScatterLeaf->Cut({ 32, 32 });
+
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("markerp.bmp");
+		Image->Cut({ 60,60 });
 	}
 
 

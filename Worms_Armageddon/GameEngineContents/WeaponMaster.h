@@ -91,6 +91,8 @@ private:
 	bool IsBomb_;
 	// 무기의 폭발이 끝나는 플래그
 	bool IsExplodEnd_;
+	//
+	float JumpTime_;
 
 	// 사운드
 	GameEngineSoundPlayer SoundPlayer_Explode_;

@@ -1,5 +1,6 @@
 #pragma once
 #include "WeaponMaster.h"
+#include <GameEngineBase/GameEngineSound.h>
 
 // 설명 :
 class TimerBox;
@@ -27,6 +28,11 @@ private:
 	int ModeCnt_;
 	float SpDegree_;
 	float4 SheepFlyDir_;
+
+	// 사운드
+	GameEngineSoundPlayer SoundPlayer_SpSheep;
+
+	bool SpSoundOn_;
 
 	// 회전 애니메이션 랜더 (0= 반시계, 1= 시계)
 	void CycleFly(int _CycleDir);

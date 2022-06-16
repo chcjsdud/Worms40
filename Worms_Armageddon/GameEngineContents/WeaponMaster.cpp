@@ -24,6 +24,7 @@ WeaponMaster::WeaponMaster()
 	, BounceRotate_(0)
 	, IsBomb_(false)
 	, IsExplodEnd_(false)
+	, JumpTime_(0)
 	, AnimalMoveDir_(float4::ZERO)
 	, Speed_(100)
 	, FallLength_(0)
@@ -179,6 +180,15 @@ void WeaponMaster::AnimalJump()
 {
 	if (IsJumpCol_ == false)
 	{
+		
+
+		if (1.f < JumpTime_)
+		{
+			SoundPlayer_Explode_ = GameEngineSound::SoundPlayControl("SHEEPBAA.wav");
+			SoundPlayer_Explode_.Volume(SND_VOL_BAZEXPLODE);
+			JumpTime_ = 0;
+		}
+
 		IsJumpCol_ = true;
 		//충돌하기 전까지는 원래진행하던 방향으로 좌,우 이동
 		if (1 == AnimalMoveDir_.x)
@@ -191,6 +201,8 @@ void WeaponMaster::AnimalJump()
 		}
 
 		JumpMoveDir_ += float4::UP * JumpSpeed_;
+
+		
 	}
 
 	if (IsJumpCol_ == true)
@@ -264,6 +276,9 @@ void WeaponMaster::AirStart(float4 _AirSpawn)
 			SetPosition({ WEAPON_AIRFLY_START_RIGHT,WEAPON_AIRFLY_HIGHT });
 			BulletDir_ = float4::LEFT * WEAPON_AIRFLY_SPEED;
 		}
+
+		SoundPlayer_Explode_ = GameEngineSound::SoundPlayControl("Airstrike.wav");
+		SoundPlayer_Explode_.Volume(SND_VOL_BAZEXPLODE);
 
 		IsShot_ = true;
 	}
@@ -406,6 +421,7 @@ bool WeaponMaster::Bombing(WeaponState _Bomb)
 
 void WeaponMaster::AnimalMove(WeaponState _Animal)
 {
+	JumpTime_ += GameEngineTime::GetDeltaTime();
 	if (false == IsJump_)
 	{
 		AnimalMoveCheck(ShotDir_);

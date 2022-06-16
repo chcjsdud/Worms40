@@ -10,6 +10,7 @@ SuperSheep::SuperSheep()
 	, ModeCnt_(0)
 	, SpDegree_(270.f)
 	, SheepFlyDir_(float4::UP)
+	, SpSoundOn_(false)
 {
 }
 
@@ -53,6 +54,7 @@ bool SuperSheep::WeaponUpdate()
 		{
 			GetTimerBox()->DeleteGrenadeBox();
 		}
+		SoundPlayer_SpSheep.Stop();
 		Off();
 		return false;
 	}
@@ -66,6 +68,7 @@ bool SuperSheep::WeaponUpdate()
 	if (SelfDestructSec_ < GetAccTime()) // 자폭
 	{
 		GetTimerBox()->DeleteGrenadeBox();
+		SoundPlayer_SpSheep.Stop();
 		Explosion();
 		return false;
 	}
@@ -94,9 +97,13 @@ bool SuperSheep::WeaponUpdate()
 				{
 					GetTimerBox()->DeleteGrenadeBox();
 				}
+				SoundPlayer_SpSheep.Stop();
 				Explosion();
 				return false;
 			}
+
+			SoundPlayer_SpSheep = GameEngineSound::SoundPlayControl("SUPERSHEEPRELEASE.wav");
+			SoundPlayer_SpSheep.Volume(SND_VOL_BAZEXPLODE);
 
 			WeaponRender_->ChangeAnimation("spsheepAngle-8");
 			IsSuper_ = true;
@@ -107,6 +114,14 @@ bool SuperSheep::WeaponUpdate()
 	}
 	else // 슈퍼양 모드
 	{
+		if (false == SpSoundOn_)
+		{
+			SoundPlayer_SpSheep = GameEngineSound::SoundPlayControl("SUPERSHEEPWHOOSH.wav",10);
+			SoundPlayer_SpSheep.Volume(SND_VOL_BAZEXPLODE);
+			SpSoundOn_ = true;
+		}
+		
+
 		IsBounce_ = false;
 		float Speed = 5.0f;
 
@@ -127,12 +142,21 @@ bool SuperSheep::WeaponUpdate()
 		// 모드 전환
 		if (true == GameEngineInput::GetInst()->IsDown(KEY_FIRE))
 		{
+			SoundPlayer_SpSheep.Stop();
 			WeaponRender_->ChangeAnimation(ANIM_NAME_SHEEP_LEFT);
 			IsSuper_ = false;
 			++ModeCnt_;
 		}
-
-		BulletColEvent();
+		
+		bool BulletCol = BulletColEvent();
+		if (false == BulletCol)
+		{
+			SoundPlayer_SpSheep.Stop();
+			if (nullptr != TimerBox_)
+			{
+				GetTimerBox()->DeleteGrenadeBox();
+			}
+		}
 	}
 
 	if (false == IsUpdate()) // 웜즈가 체력이 깎인 후 false 리턴되도록 변경 예정
