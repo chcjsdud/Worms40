@@ -44,6 +44,7 @@ WeaponMaster::WeaponMaster()
 	, SelfDestructSec_(0)
 	, TimerBox_(nullptr)
 	, IsTimerCreate_(false)
+	, BounceStop_(false)
 {
 }
 
@@ -306,7 +307,11 @@ void WeaponMaster::TargetCursor()
 void WeaponMaster::BulletMove(float _Gravity, bool _IsWind)
 {
 	SetMove(BulletDir_ * GameEngineTime::GetDeltaTime());
-	BulletDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * _Gravity; // 중력
+	if (false == BounceStop_)
+	{
+		BulletDir_ += float4::DOWN * GameEngineTime::GetDeltaTime() * _Gravity; // 중력
+	}
+	
 
 	if (true == _IsWind)
 	{
@@ -452,16 +457,21 @@ bool WeaponMaster::BulletColEvent()
 		BulletDir_ = PixelCol_->Bounce(GetPosition(), BAZ_COL_SIZE, GetGameMap()->GetColMap(), BulletDir_);
 
 		// 튕겼으면 감속
-		if (PixelCol_->GetBounceFlg() == true)
+		if (PixelCol_->GetBounceFlg() == true && false == BounceStop_)
 		{
+			SoundPlayer_Explode_ = GameEngineSound::SoundPlayControl("GRENADEIMPACT.wav");
+			SoundPlayer_Explode_.Volume(SND_VOL_BAZEXPLODE);
 			BulletDir_ *= 0.5f;
 		}
 
 		// 너무 느려졌으면 속도를 0으로 설정
-		if (BulletDir_.y < 1.0f && BulletDir_.y > -1.0f)
+		if (BulletDir_.y < 10.0f && BulletDir_.y > -10.0f && PixelCol_->GetBounceFlg() == true)
 		{
-			BulletDir_ *= float4{1.0f, 0.0f};
+			SoundPlayer_Explode_.Stop();
+			BulletDir_ *= float4{ 0.0f, 0.0f };
+			BounceStop_ = true;
 		}
+		
 	}
 	else
 	{

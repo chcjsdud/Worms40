@@ -114,6 +114,8 @@ private:
 	static GameMapMaster* GameMap_;
 	// 바람 방향 정보
 	float4 WindDirInfo_;
+	//
+	bool BounceStop_;
 	
 
 	// 투사체 투하 : 어떤 것을 투하할지 지정, 투하시간 간격

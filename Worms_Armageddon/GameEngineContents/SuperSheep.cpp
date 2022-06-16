@@ -88,11 +88,15 @@ bool SuperSheep::WeaponUpdate()
 			WeaponRender_->ChangeAnimation(ANIM_NAME_SHEEP_RIGHT);
 		}
 
+		
+
 		// 모드 전환
 		if (true == GameEngineInput::GetInst()->IsDown(KEY_FIRE))
 		{
 			if (1 == ModeCnt_)
 			{
+
+
 				if (nullptr != TimerBox_)
 				{
 					GetTimerBox()->DeleteGrenadeBox();
