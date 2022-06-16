@@ -865,6 +865,7 @@ void Player::CheckDeath()
 {
 	if (GetPosition().y >= SCALE_MAPBOOKS_Y)
 	{
+		Sound_Walk.Stop();
 		IsDeath_ = true;
 	}
 
